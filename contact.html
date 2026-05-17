@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050e1f">
+  <title>Contact — CukSDA</title>
+  <meta name="description" content="Reach out to CukSDA for visit planning, prayer requests, ministry involvement, and campus fellowship.">
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo-wrap" href="./index.html">
+      <svg class="logo-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2L4 9v14l12 7 12-7V9L16 2zm0 4.6l8 4.7v9.4l-8 4.7-8-4.7v-9.4l8-4.7zM16 11l-5 3v6l5 3 5-3v-6l-5-3z"></path></svg>
+      <div class="logo-text"><span class="church-name">CukSDA</span><span class="church-sub">Cooperative University SDA</span></div>
+    </a>
+    <nav class="primary-nav">
+      <div class="nav-item"><a href="./index.html">Home</a></div>
+      <div class="nav-item"><a href="./about.html">About</a></div>
+      <div class="nav-item"><a href="./ministries.html">Ministries</a></div>
+      <div class="nav-item"><a href="./events.html">Events</a></div>
+      <div class="nav-item"><a href="./beliefs.html">Beliefs</a></div>
+      <div class="nav-item"><a href="./sermons.html">Sermons</a></div>
+      <div class="nav-item"><a class="active" href="./contact.html" aria-current="page">Contact</a></div>
+    </nav>
+    <button class="menu-toggle" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="page-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1494173853739-c21f58b16055?w=1600&q=80');"></div>
+      <div class="page-hero-content">
+        <span class="page-hero-tag">Contact</span>
+        <h1>Reach out to CukSDA.</h1>
+        <p>Contact us for visit planning, prayer requests, ministry involvement, or any questions about our student community.</p>
+      </div>
+    </section>
+
+    <section class="page-content">
+      <div class="section-block">
+        <span class="section-tag">Connect</span>
+        <h2 class="section-title">We’re here to help and welcome you.</h2>
+        <p>Use the form below to send a prayer request, ask about a ministry, or plan your visit to CUK campus fellowship.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3>Contact Details</h3>
+          <p><strong>Location</strong><br>Cooperative University of Kenya, Karen Campus</p>
+          <p><strong>Email</strong><br><a href="mailto:hello@cuksda.org">hello@cuksda.org</a></p>
+          <p><strong>Phone</strong><br><a href="tel:+254700000000">+254 700 000 000</a></p>
+        </div>
+        <div class="contact-card">
+          <h3>Prayer &amp; Visits</h3>
+          <p>Submit a prayer request or ask for guidance to join our next Sabbath service or outreach event.</p>
+          <p><strong>Service times</strong><br>Sabbath School · 9:00 AM<br>Divine Service · 11:00 AM</p>
+        </div>
+      </div>
+
+      <form class="contact-form" onsubmit="event.preventDefault(); alert('Message submitted. Thank you!');">
+        <div class="form-grid">
+          <input type="text" placeholder="Your name" required>
+          <input type="email" placeholder="Your email" required>
+        </div>
+        <input type="text" placeholder="Subject" required>
+        <textarea placeholder="How can we help you?" required></textarea>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+      </form>
+
+      <div class="map-card">
+        <h3>Find us in Karen</h3>
+        <p>CUK Main Campus is located in the Karen neighborhood of Nairobi. We’d love to welcome you to our next gathering.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo-wrap">
+          <svg class="logo-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2L4 9v14l12 7 12-7V9L16 2zm0 4.6l8 4.7v9.4l-8 4.7-8-4.7v-9.4l8-4.7zM16 11l-5 3v6l5 3 5-3v-6l-5-3z"></path></svg>
+          <div class="logo-text"><span class="church-name">CukSDA</span><span class="church-sub">Cooperative University SDA</span></div>
+        </div>
+        <p>A student-led Adventist fellowship at the Cooperative University of Kenya, growing in faith, friendship, and service.</p>
+      </div>
+      <div class="footer-col"><h5>Explore</h5><ul><li><a href="./about.html">About Us</a></li><li><a href="./ministries.html">Ministries</a></li><li><a href="./events.html">Events</a></li><li><a href="./beliefs.html">Beliefs</a></li><li><a href="./sermons.html">Sermons</a></li></ul></div>
+      <div class="footer-col"><h5>Connect</h5><ul><li><a href="./contact.html">Contact Us</a></li><li><a href="./contact.html">Prayer Request</a></li><li><a href="./contact.html">Plan a Visit</a></li><li><a href="./contact.html">Volunteer</a></li></ul></div>
+      <div class="footer-col"><h5>Find Us</h5><ul><li><a href="#">CUK Main Campus</a></li><li><a href="#">Karen, Nairobi</a></li><li><a href="mailto:hello@cuksda.org">hello@cuksda.org</a></li><li><a href="tel:+254700000000">+254 700 000 000</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 CukSDA — Cooperative University SDA Community. All rights reserved.</p><div class="sda-badge"><svg viewBox="0 0 24 24"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z"></path></svg><span>Seventh-day Adventist Church</span></div></div>
+  </footer>
+</body>
+</html>
