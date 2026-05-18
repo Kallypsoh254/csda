@@ -3,106 +3,1239 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#050e1f">
-  <title>About — CukSDA</title>
-  <meta name="description" content="Learn about the mission, history, and leadership of the Cooperative University SDA student community.">
-  <link rel="stylesheet" href="./style.css">
-  <script src="./script.js" defer></script>
+  <title>About Us — CukSDA · Cooperative University SDA Community</title>
+  <meta name="description" content="Learn who we are, our history, leadership, beliefs, and mission as the Seventh-day Adventist community at the Cooperative University of Kenya.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── RESET & ROOT ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: 'DM Sans', sans-serif; color: #0f172a; background: #fff; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    :root {
+      --navy: #050e1f;
+      --navy-mid: #0a1e3d;
+      --navy-soft: #102952;
+      --blue: #1a5fd4;
+      --blue-mid: #1448a0;
+      --blue-light: #7aadff;
+      --blue-pale: #dbeafe;
+      --gold: #c9a84c;
+      --gold-light: #e4c97a;
+      --gold-dim: #7a5e1e;
+      --cream: #faf8f4;
+      --cream-dark: #f0ece3;
+      --white: #ffffff;
+      --gray-100: #f4f4f5;
+      --gray-200: #e4e4e7;
+      --gray-400: #a1a1aa;
+      --gray-500: #71717a;
+      --gray-700: #3f3f46;
+      --text: #0f172a;
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 40px;
+      --shadow-sm: 0 2px 12px rgba(0,0,0,0.06);
+      --shadow-md: 0 8px 32px rgba(0,0,0,0.10);
+      --shadow-lg: 0 20px 60px rgba(0,0,0,0.15);
+      --transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 0.82rem;
+      letter-spacing: 0.04em; text-transform: uppercase;
+      padding: 0.85rem 2rem; border-radius: var(--radius-xl);
+      border: 2px solid transparent; cursor: pointer; transition: var(--transition);
+    }
+    .btn svg { width: 16px; height: 16px; }
+    .btn-gold { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+    .btn-gold:hover { background: var(--gold-light); border-color: var(--gold-light); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(201,168,76,0.35); }
+    .btn-outline { background: transparent; color: var(--white); border-color: rgba(255,255,255,0.45); }
+    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.1); }
+    .btn-outline-dark { background: transparent; color: var(--navy); border-color: var(--navy); }
+    .btn-outline-dark:hover { background: var(--navy); color: var(--white); }
+    .btn-primary { background: var(--blue); color: var(--white); border-color: var(--blue); }
+    .btn-primary:hover { background: var(--blue-mid); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(26,95,212,0.35); }
+
+    /* ── HEADER ── */
+    header.site-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      height: 76px; display: flex; align-items: center; justify-content: space-between;
+      padding: 0 3rem;
+      background: linear-gradient(180deg,rgba(5,14,31,0.95) 0%,rgba(5,14,31,0.6) 100%);
+      transition: background 0.4s, box-shadow 0.4s;
+    }
+    header.site-header.scrolled {
+      background: rgba(5,14,31,0.97);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.06), 0 4px 24px rgba(0,0,0,0.4);
+      backdrop-filter: blur(12px);
+    }
+    .logo-wrap { display: flex; align-items: center; gap: 0.7rem; }
+    /* Real Adventist logo replaces old hexagon icon */
+    .logo-icon-adventist { width: 42px; height: 42px; flex-shrink: 0; }
+    .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+    .logo-text .church-name { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 1.05rem; color: var(--white); letter-spacing: 0.04em; text-transform: uppercase; }
+    .logo-text .church-sub { font-family: 'DM Mono', monospace; font-size: 0.58rem; color: var(--blue-light); letter-spacing: 0.14em; text-transform: uppercase; }
+
+    nav.primary-nav { display: flex; align-items: center; gap: 0.2rem; }
+    .nav-item { position: relative; }
+    .nav-item > a, .nav-item > button {
+      color: rgba(255,255,255,0.82); font-size: 0.8rem; font-weight: 500;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      padding: 0.5rem 0.85rem; border-radius: 6px; transition: var(--transition);
+      display: flex; align-items: center; gap: 0.3rem;
+      background: none; border: none; cursor: pointer; font-family: inherit;
+    }
+    .nav-item > a:hover, .nav-item > a.active, .nav-item > button:hover { color: var(--white); background: rgba(255,255,255,0.09); }
+    .nav-item > a.active { position: relative; }
+    .nav-item > a.active::after {
+      content: ''; position: absolute; bottom: 2px; left: 50%;
+      transform: translateX(-50%); width: 16px; height: 2px; background: var(--gold); border-radius: 2px;
+    }
+    .nav-item .chevron { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2.5; transition: transform 0.2s ease; opacity: 0.6; }
+    .nav-item:hover .chevron { transform: rotate(180deg); opacity: 1; }
+
+    .dropdown {
+      position: absolute; top: calc(100% + 8px); left: 50%;
+      transform: translateX(-50%) translateY(-10px);
+      min-width: 220px; background: rgba(5,14,31,0.98);
+      backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-md); padding: 0.75rem 0;
+      opacity: 0; visibility: hidden; transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4); z-index: 300;
+    }
+    .dropdown::before {
+      content: ''; position: absolute; top: -6px; left: 50%;
+      transform: translateX(-50%) rotate(45deg); width: 12px; height: 12px;
+      background: rgba(5,14,31,0.98);
+      border-top: 1px solid rgba(255,255,255,0.08); border-left: 1px solid rgba(255,255,255,0.08);
+    }
+    .dropdown a { display: block; padding: 0.6rem 1.25rem; color: rgba(255,255,255,0.7); font-size: 0.82rem; font-weight: 400; transition: all 0.2s; white-space: nowrap; }
+    .dropdown a:hover { color: var(--white); background: rgba(255,255,255,0.06); padding-left: 1.5rem; }
+    .dropdown a.active { color: var(--gold); background: rgba(201,168,76,0.08); }
+    .dropdown-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 0.5rem 0.75rem; }
+    .dropdown-label { padding: 0.3rem 1.25rem; font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); pointer-events: none; }
+    .nav-item:hover .dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+
+    .menu-toggle { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 8px; }
+    .menu-toggle span { display: block; width: 22px; height: 2px; background: var(--white); border-radius: 2px; transition: var(--transition); }
+
+    /* ── SECTION ATOMS ── */
+    .section-tag { font-family: 'DM Mono', monospace; font-weight: 500; font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+    .section-tag::after { content: ''; width: 36px; height: 1.5px; background: currentColor; flex-shrink: 0; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.12; color: var(--navy); }
+    .section-subtitle { color: var(--gray-500); font-size: 1rem; line-height: 1.8; max-width: 620px; margin-top: 1rem; font-weight: 400; }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      position: relative; height: 58vh; min-height: 420px;
+      display: flex; align-items: flex-end; padding: 0 5rem 5rem; overflow: hidden;
+    }
+    .page-hero-bg {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(135deg, rgba(5,14,31,0.9) 0%, rgba(10,30,61,0.65) 55%, rgba(5,14,31,0.8) 100%),
+        url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1920&q=80') center/cover no-repeat;
+      transform: scale(1.05); animation: heroZoom 22s ease-in-out infinite alternate;
+    }
+    @keyframes heroZoom { from { transform: scale(1.05); } to { transform: scale(1.0); } }
+    .page-hero-content { position: relative; z-index: 2; animation: fadeUp 0.9s ease forwards; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+    .page-hero-tag { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1rem; }
+    .page-hero-tag::before { content: ''; width: 28px; height: 2px; background: var(--gold); }
+    .page-hero h1 { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: clamp(2.6rem, 6vw, 4.5rem); color: var(--white); line-height: 1.06; }
+    .page-hero h1 em { font-style: italic; color: var(--gold-light); }
+    .page-hero p { color: rgba(255,255,255,0.72); font-size: 1rem; line-height: 1.75; max-width: 540px; margin-top: 1.25rem; font-weight: 300; }
+    .hero-crumbs { display: flex; align-items: center; gap: 0.5rem; font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.38); margin-bottom: 1.5rem; }
+    .hero-crumbs a { color: rgba(255,255,255,0.5); transition: color 0.2s; }
+    .hero-crumbs a:hover { color: var(--gold); }
+    .hero-crumbs span { color: var(--gold); }
+
+    /* ── GOLD MISSION STRIP ── */
+    .mission-strip { background: var(--gold); padding: 0.9rem 4rem; display: flex; align-items: center; justify-content: center; }
+    .mission-strip p { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-style: italic; color: var(--navy); text-align: center; }
+
+    /* ── ANCHOR TABS ── */
+    .anchor-tabs { background: var(--white); border-bottom: 1px solid var(--gray-200); position: sticky; top: 76px; z-index: 100; }
+    .anchor-tabs-inner { display: flex; align-items: center; gap: 0; padding: 0 5rem; max-width: 1400px; margin: 0 auto; overflow-x: auto; scrollbar-width: none; }
+    .anchor-tabs-inner::-webkit-scrollbar { display: none; }
+    .anchor-tab { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-500); padding: 1rem 1.25rem; border-bottom: 2px solid transparent; white-space: nowrap; transition: all 0.2s; cursor: pointer; }
+    .anchor-tab:hover, .anchor-tab.active { color: var(--navy); border-bottom-color: var(--gold); }
+
+    /* ── WHO WE ARE ── */
+    .who-section { background: var(--cream); padding: 7rem 5rem; }
+    .who-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; margin-top: 4rem; }
+    .who-copy p { color: var(--gray-500); line-height: 1.85; margin-bottom: 1.1rem; font-size: 0.97rem; }
+    .who-copy p:first-child { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--navy); line-height: 1.6; font-weight: 400; }
+    .who-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 2.5rem; }
+    .stat-box { background: var(--white); border-radius: var(--radius-md); padding: 1.5rem; border: 1px solid var(--gray-200); transition: var(--transition); }
+    .stat-box:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .stat-box .num { font-family: 'Cormorant Garamond', serif; font-size: 2.6rem; font-weight: 700; color: var(--navy); line-height: 1; }
+    .stat-box .num span { color: var(--blue); }
+    .stat-box .label { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-500); margin-top: 0.4rem; }
+    .who-image-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 210px 210px; gap: 1rem; }
+    .who-img { border-radius: var(--radius-md); overflow: hidden; background-size: cover; background-position: center; }
+    .who-img-1 { grid-row: 1 / 3; background-image: url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800&q=80'); }
+    .who-img-2 { background-image: url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80'); }
+    .who-img-3 { background-image: url('https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=600&q=80'); }
+
+    /* ── VISION MISSION VALUES ── */
+    .vmv-section { padding: 7rem 5rem; background: var(--white); }
+    .vmv-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 4rem; }
+    .vmv-card { border-radius: var(--radius-lg); padding: 2.5rem; border: 1px solid var(--gray-200); position: relative; overflow: hidden; transition: var(--transition); }
+    .vmv-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+    .vmv-card:nth-child(1)::before { background: var(--blue); }
+    .vmv-card:nth-child(2)::before { background: var(--gold); }
+    .vmv-card:nth-child(3)::before { background: linear-gradient(90deg, var(--blue), var(--gold)); }
+    .vmv-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+    .vmv-icon { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; }
+    .vmv-card:nth-child(1) .vmv-icon { background: var(--blue-pale); }
+    .vmv-card:nth-child(2) .vmv-icon { background: rgba(201,168,76,0.12); }
+    .vmv-card:nth-child(3) .vmv-icon { background: var(--cream-dark); }
+    .vmv-icon svg { width: 24px; height: 24px; stroke-width: 1.8; fill: none; }
+    .vmv-card:nth-child(1) .vmv-icon svg { stroke: var(--blue); }
+    .vmv-card:nth-child(2) .vmv-icon svg { stroke: var(--gold); }
+    .vmv-card:nth-child(3) .vmv-icon svg { stroke: var(--navy); }
+    .vmv-label { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.75rem; }
+    .vmv-card:nth-child(1) .vmv-label { color: var(--blue); }
+    .vmv-card:nth-child(2) .vmv-label { color: var(--gold); }
+    .vmv-card:nth-child(3) .vmv-label { color: var(--gray-500); }
+    .vmv-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--navy); margin-bottom: 0.85rem; line-height: 1.2; }
+    .vmv-card p { color: var(--gray-500); font-size: 0.9rem; line-height: 1.8; }
+
+    /* ── HISTORY TIMELINE ── */
+    .history-section { background: var(--cream); padding: 7rem 5rem; }
+    .history-inner { max-width: 860px; }
+    .timeline { position: relative; padding-left: 2.5rem; margin-top: 4rem; }
+    .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, var(--blue) 0%, var(--gold) 100%); border-radius: 2px; }
+    .timeline-item { position: relative; padding-bottom: 3rem; padding-left: 2.5rem; }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .tl-dot {
+      position: absolute; left: -2.5rem; top: 0.3rem;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: var(--gold); border: 3px solid var(--cream);
+      transform: translateX(-6px);
+      box-shadow: 0 0 0 3px rgba(201,168,76,0.2);
+      transition: var(--transition);
+    }
+    .timeline-item:hover .tl-dot { transform: translateX(-6px) scale(1.3); box-shadow: 0 0 0 6px rgba(201,168,76,0.15); }
+    .timeline-year { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--blue); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.4rem; }
+    .timeline-item h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; color: var(--navy); margin-bottom: 0.5rem; }
+    .timeline-item p { color: var(--gray-500); font-size: 0.92rem; line-height: 1.75; }
+    .timeline-badge { display: inline-flex; align-items: center; gap: 0.4rem; font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--blue-pale); color: var(--blue); border-radius: 4px; padding: 0.25rem 0.75rem; margin-top: 0.65rem; }
+
+    /* ── CORE VALUES (PILLARS) ── */
+    .pillars-section { padding: 7rem 5rem; background: var(--navy); position: relative; overflow: hidden; }
+    .pillars-section::before { content: ''; position: absolute; top: -20%; right: -8%; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(26,95,212,0.1) 0%, transparent 70%); pointer-events: none; }
+    .pillars-section .section-tag { color: var(--gold); }
+    .pillars-section .section-tag::after { background: var(--gold); }
+    .pillars-section .section-title { color: var(--white); }
+    .pillars-section .section-subtitle { color: rgba(255,255,255,0.55); }
+    .pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 4rem; }
+    .pillar-card {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-lg); padding: 2.2rem; transition: var(--transition);
+      position: relative; overflow: hidden;
+    }
+    .pillar-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--gold); transform: scaleX(0); transition: transform 0.35s ease; }
+    .pillar-card:hover { background: rgba(255,255,255,0.07); border-color: rgba(201,168,76,0.25); transform: translateY(-4px); }
+    .pillar-card:hover::after { transform: scaleX(1); }
+    .pillar-num { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.18em; color: var(--gold); margin-bottom: 1rem; }
+    .pillar-icon { width: 44px; height: 44px; background: rgba(26,95,212,0.18); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.2rem; }
+    .pillar-icon svg { width: 20px; height: 20px; stroke: var(--blue-light); fill: none; stroke-width: 2; }
+    .pillar-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 600; color: var(--white); margin-bottom: 0.6rem; }
+    .pillar-card p { color: rgba(255,255,255,0.5); font-size: 0.86rem; line-height: 1.72; }
+
+    /* ── LEADERSHIP TEAM ── */
+    .team-section { padding: 7rem 5rem; background: var(--white); }
+    .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 2rem; margin-top: 4rem; }
+    .team-card { text-align: center; padding: 2rem 1.5rem; border-radius: var(--radius-lg); border: 1px solid var(--gray-200); transition: var(--transition); }
+    .team-card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); border-color: transparent; }
+    .team-avatar {
+      width: 100px; height: 100px; border-radius: 50%;
+      margin: 0 auto 1.25rem;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 700; color: var(--white);
+    }
+    .team-avatar.a1 { background: linear-gradient(135deg, #0a1e3d, #1a5fd4); }
+    .team-avatar.a2 { background: linear-gradient(135deg, #102952, #1a5fd4); }
+    .team-avatar.a3 { background: linear-gradient(135deg, #7a5e1e, #c9a84c); }
+    .team-avatar.a4 { background: linear-gradient(135deg, #050e1f, #102952); }
+    .team-avatar.a5 { background: linear-gradient(135deg, #1448a0, #7aadff); }
+    .team-avatar.a6 { background: linear-gradient(135deg, #3f3f46, #71717a); }
+    .team-avatar.a7 { background: linear-gradient(135deg, #0a1e3d, #c9a84c); }
+    .team-avatar.a8 { background: linear-gradient(135deg, #102952, #1a5fd4); }
+    .team-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--navy); margin-bottom: 0.25rem; }
+    .team-role { font-family: 'DM Mono', monospace; font-size: 0.58rem; color: var(--blue); text-transform: uppercase; letter-spacing: 0.1em; }
+    .team-dept { font-size: 0.82rem; color: var(--gray-400); margin-top: 0.4rem; }
+    .team-email { display: inline-flex; align-items: center; gap: 0.35rem; margin-top: 1rem; font-size: 0.78rem; color: var(--gray-500); transition: color 0.2s; }
+    .team-email:hover { color: var(--blue); }
+    .team-email svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+    /* ── BELIEFS OVERVIEW ── */
+    .beliefs-section { padding: 7rem 5rem; background: var(--cream); }
+    .beliefs-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; margin-bottom: 4rem; }
+    .beliefs-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+    .belief-tile {
+      background: var(--navy); border-radius: var(--radius-md); padding: 1.85rem;
+      border: 1px solid rgba(255,255,255,0.06); transition: var(--transition);
+    }
+    .belief-tile:hover { background: rgba(10,30,61,0.95); border-color: rgba(201,168,76,0.3); transform: translateY(-3px); }
+    .belief-num { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.18em; color: var(--gold); margin-bottom: 0.75rem; }
+    .belief-tile h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; color: var(--white); margin-bottom: 0.6rem; }
+    .belief-tile p { color: rgba(255,255,255,0.5); font-size: 0.84rem; line-height: 1.7; }
+
+    /* ── CAMPUS LIFE ── */
+    .campus-section { padding: 7rem 5rem; background: var(--white); }
+    .campus-photos { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 260px 260px; gap: 1rem; margin-top: 4rem; }
+    .campus-photo { border-radius: var(--radius-md); overflow: hidden; background-size: cover; background-position: center; position: relative; transition: transform 0.4s ease; }
+    .campus-photo:hover { transform: scale(1.02); }
+    .campus-photo.span-col { grid-row: 1 / 3; background-image: url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800&q=80'); }
+    .campus-photo.p2 { background-image: url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80'); }
+    .campus-photo.p3 { background-image: url('https://images.unsplash.com/photo-1544531586-fde5298cdd40?w=600&q=80'); }
+    .campus-photo.p4 { background-image: url('https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=600&q=80'); }
+    .campus-photo.p5 { background-image: url('https://images.unsplash.com/photo-1516062423079-7ca13cdc7f5a?w=600&q=80'); }
+    .campus-photo-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem; background: linear-gradient(0deg, rgba(5,14,31,0.9) 0%, transparent 100%); color: var(--white); }
+    .campus-photo-overlay span { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); }
+    .campus-photo-overlay h5 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; margin-top: 0.2rem; }
+
+    /* ── JOIN CTA ── */
+    .cta-section {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, var(--navy-soft) 100%);
+      padding: 7rem 5rem; position: relative; overflow: hidden;
+    }
+    .cta-section::before { content: ''; position: absolute; bottom: -20%; left: -5%; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%); pointer-events: none; }
+    .cta-inner { max-width: 720px; position: relative; z-index: 1; }
+    .cta-section .section-tag { color: var(--gold); }
+    .cta-section .section-tag::after { background: var(--gold); }
+    .cta-section .section-title { color: var(--white); }
+    .cta-section .section-subtitle { color: rgba(255,255,255,0.6); max-width: 560px; }
+    .cta-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2.5rem; }
+    .cta-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 4rem; }
+    .cta-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-md); padding: 1.75rem; transition: var(--transition); }
+    .cta-card:hover { background: rgba(255,255,255,0.09); border-color: rgba(201,168,76,0.2); }
+    .cta-card-icon { width: 42px; height: 42px; background: rgba(26,95,212,0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
+    .cta-card-icon svg { width: 20px; height: 20px; stroke: var(--blue-light); fill: none; stroke-width: 2; }
+    .cta-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--white); margin-bottom: 0.5rem; }
+    .cta-card p { color: rgba(255,255,255,0.48); font-size: 0.84rem; line-height: 1.7; }
+
+    /* ── FOOTER ── */
+    footer.site-footer { background: var(--navy); color: var(--white); border-top: 1px solid rgba(255,255,255,0.05); }
+    .footer-top { background: rgba(255,255,255,0.02); border-bottom: 1px solid rgba(255,255,255,0.05); padding: 1.5rem 4rem; display: flex; align-items: center; justify-content: space-between; max-width: 1400px; margin: 0 auto; flex-wrap: wrap; gap: 1rem; }
+    .footer-top-text { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.05rem; color: rgba(255,255,255,0.5); }
+    .footer-top-text strong { color: var(--gold); font-style: normal; font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; }
+    .footer-inner { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 3.5rem; padding: 5rem 4rem 4rem; max-width: 1400px; margin: 0 auto; }
+    .footer-brand p { color: rgba(255,255,255,0.48); font-size: 0.88rem; line-height: 1.8; margin-top: 1.25rem; max-width: 280px; }
+    /* Real Adventist logo in footer */
+    .footer-logo-icon { width: 38px; height: 38px; flex-shrink: 0; }
+    .footer-socials { display: flex; gap: 0.6rem; margin-top: 1.75rem; }
+    .social-btn {
+      width: 38px; height: 38px; background: rgba(255,255,255,0.07); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center; transition: var(--transition);
+      color: rgba(255,255,255,0.6);
+    }
+    .social-btn:hover { background: var(--blue); color: var(--white); transform: translateY(-2px); }
+    .social-btn svg { width: 17px; height: 17px; fill: currentColor; }
+    /* Individual social colors on hover */
+    .social-fb:hover { background: #1877f2; }
+    .social-ig:hover { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); }
+    .social-yt:hover { background: #ff0000; }
+    .social-tw:hover { background: #000000; }
+    .social-wa:hover { background: #25d366; }
+
+    .footer-col h5 { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.35rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 0.65rem; }
+    .footer-col ul li a { color: rgba(255,255,255,0.48); font-size: 0.87rem; transition: color 0.2s; display: flex; align-items: center; gap: 0.45rem; }
+    .footer-col ul li a:hover { color: var(--white); }
+    .footer-col ul li a svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; opacity: 0.5; flex-shrink: 0; }
+    .footer-contact-item { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 1rem; color: rgba(255,255,255,0.48); font-size: 0.87rem; line-height: 1.55; }
+    .footer-contact-item svg { width: 15px; height: 15px; stroke: var(--blue-light); fill: none; stroke-width: 2; margin-top: 2px; flex-shrink: 0; }
+    .footer-contact-item a { color: rgba(255,255,255,0.48); transition: color 0.2s; }
+    .footer-contact-item a:hover { color: var(--white); }
+
+    .footer-newsletter { margin-top: 1.5rem; }
+    .footer-newsletter p { color: rgba(255,255,255,0.45); font-size: 0.82rem; line-height: 1.65; margin-bottom: 1rem; }
+    .newsletter-form { display: flex; flex-direction: column; gap: 0.6rem; }
+    .newsletter-form input {
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-sm); color: var(--white); font-family: 'DM Sans', sans-serif;
+      font-size: 0.84rem; padding: 0.7rem 1rem; outline: none; transition: border-color 0.2s; width: 100%;
+    }
+    .newsletter-form input:focus { border-color: var(--blue-light); }
+    .newsletter-form input::placeholder { color: rgba(255,255,255,0.3); }
+    .newsletter-form button {
+      background: var(--gold); color: var(--navy); border: none; border-radius: var(--radius-sm);
+      font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 0.75rem; letter-spacing: 0.06em;
+      text-transform: uppercase; padding: 0.7rem 1rem; cursor: pointer; transition: var(--transition);
+    }
+    .newsletter-form button:hover { background: var(--gold-light); }
+
+    .footer-divider { border: none; border-top: 1px solid rgba(255,255,255,0.06); margin: 0 4rem; }
+    .footer-bottom {
+      padding: 1.75rem 4rem; display: flex; align-items: center; justify-content: space-between;
+      max-width: 1400px; margin: 0 auto; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-bottom p { color: rgba(255,255,255,0.28); font-size: 0.78rem; }
+    .footer-bottom-links { display: flex; gap: 1.5rem; }
+    .footer-bottom-links a { color: rgba(255,255,255,0.28); font-size: 0.78rem; transition: color 0.2s; }
+    .footer-bottom-links a:hover { color: rgba(255,255,255,0.6); }
+    .sda-badge { display: flex; align-items: center; gap: 0.6rem; color: rgba(255,255,255,0.3); font-size: 0.74rem; font-family: 'DM Mono', monospace; letter-spacing: 0.08em; }
+    /* Official Adventist logo in badge */
+    .sda-badge-logo { width: 22px; height: 22px; opacity: 0.5; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1200px) {
+      .footer-inner { grid-template-columns: 1fr 1fr 1fr; gap: 2.5rem; }
+      .beliefs-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 1024px) {
+      .page-hero { padding: 0 3rem 4rem; }
+      .who-section, .vmv-section, .history-section, .pillars-section, .team-section, .beliefs-section, .campus-section, .cta-section { padding: 5rem 3rem; }
+      .who-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .who-image-grid { order: -1; }
+      .vmv-cards { grid-template-columns: 1fr 1fr; }
+      .pillars-grid { grid-template-columns: 1fr 1fr; }
+      .beliefs-intro { grid-template-columns: 1fr; gap: 2rem; }
+      .campus-photos { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .campus-photo.span-col { grid-row: auto; }
+      .cta-cards { grid-template-columns: 1fr 1fr; }
+      .footer-inner { grid-template-columns: 1fr 1fr; gap: 2.5rem; padding: 4rem 3rem 3rem; }
+      .footer-top { padding: 1.5rem 3rem; }
+      .footer-divider { margin: 0 3rem; }
+      .footer-bottom { padding: 1.5rem 3rem; }
+    }
+    @media (max-width: 768px) {
+      header.site-header { padding: 0 1.5rem; }
+      .menu-toggle { display: flex; }
+      nav.primary-nav {
+        position: fixed; top: 76px; left: 0; right: 0;
+        background: rgba(5,14,31,0.98); backdrop-filter: blur(16px);
+        flex-direction: column; padding: 1.5rem; gap: 0.4rem;
+        transform: translateY(-110%); transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+        overflow-y: auto; max-height: calc(100vh - 76px);
+      }
+      nav.primary-nav.open { transform: translateY(0); }
+      .nav-item { width: 100%; }
+      .nav-item > a, .nav-item > button { width: 100%; padding: 0.75rem 1rem; }
+      .nav-item .chevron { display: none; }
+      .dropdown {
+        position: static; transform: none; opacity: 1; visibility: visible;
+        display: none; background: rgba(255,255,255,0.03); border: none;
+        box-shadow: none; min-width: auto; padding: 0.5rem 0 0.5rem 1rem; margin-top: 0.25rem;
+      }
+      .dropdown::before { display: none; }
+      .dropdown a { padding: 0.5rem 1rem; font-size: 0.85rem; }
+      .nav-item.open .dropdown { display: block; }
+
+      .page-hero { padding: 0 1.5rem 3rem; min-height: 360px; }
+      .anchor-tabs-inner { padding: 0 1.5rem; }
+      .who-section, .vmv-section, .history-section, .pillars-section, .team-section, .beliefs-section, .campus-section, .cta-section { padding: 4rem 1.5rem; }
+      .mission-strip { padding: 0.9rem 1.5rem; }
+      .vmv-cards { grid-template-columns: 1fr; }
+      .pillars-grid { grid-template-columns: 1fr; }
+      .beliefs-grid { grid-template-columns: 1fr 1fr; }
+      .campus-photos { grid-template-columns: 1fr 1fr; }
+      .campus-photo { height: 200px; }
+      .cta-cards { grid-template-columns: 1fr; }
+      .who-stats { grid-template-columns: 1fr 1fr; }
+      .team-grid { grid-template-columns: 1fr 1fr; }
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1.5rem 2rem; }
+      .footer-top, .footer-bottom { padding: 1.25rem 1.5rem; }
+      .footer-divider { margin: 0 1.5rem; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+      .footer-bottom-links { flex-wrap: wrap; gap: 1rem; }
+    }
+  </style>
 </head>
 <body>
-  <header class="site-header">
+
+  <!-- ════════════════════ HEADER ════════════════════ -->
+  <header class="site-header" id="site-header">
     <a class="logo-wrap" href="./index.html">
-      <svg class="logo-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2L4 9v14l12 7 12-7V9L16 2zm0 4.6l8 4.7v9.4l-8 4.7-8-4.7v-9.4l8-4.7zM16 11l-5 3v6l5 3 5-3v-6l-5-3z"></path></svg>
-      <div class="logo-text"><span class="church-name">CukSDA</span><span class="church-sub">Cooperative University SDA</span></div>
+      <!-- Official Seventh-day Adventist church symbol (white) -->
+      <svg class="logo-icon-adventist" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 210" aria-hidden="true">
+        <g fill="none" fill-rule="evenodd">
+          <path fill="#FFFFFF" d="M106.924 171.313c0 .54.62.543.731 0 .824-3.998 2.075-6.663 4.03-9.25l-4.397.003c-.201 0-.364.162-.364.363v8.884zm31.611-55.503c.05 5.78-1.61 10.747-12.15 21.297l-8.336 8.338c-3.794 3.797-7.205 7.264-9.222 10.73h8.233l.974-.975 11.96-11.984c9.96-9.97 11.349-20.516 9.223-27.395-.181-.584-.687-.623-.682-.01zm-10.496 35.265l-9.99 10.008c-6.047 6.053-11.125 11.269-11.125 16.973l.006 1.588c0 .43.536.499.7.048 1.868-5.107 8.106-10.557 19.548-8.625 0 0 49.849 8.622 50.267 8.659.487.043.728-.437.414-.81-.189-.225-23.2-23.258-23.2-23.258l-26.62-4.583zm-36.062 10.988a.364.364 0 0 1-.364-.364v-5.163c0-.202.163-.364.364-.364l8.724.002c.201 0 .364-.163.364-.364-.023-4.637-3.515-7.788-17.508-5.35l-30.215 5.198s-23.012 23.033-23.2 23.258c-.315.373-.074.853.413.81.42-.037 50.267-8.66 50.267-8.66 11.443-1.931 17.681 3.52 19.548 8.626.164.45.701.383.701-.048l.001-17.218c0-.2-.163-.363-.364-.363h-8.731zm-13.928-72.16c-9.96 9.969-11.349 20.516-9.222 27.395.18.584.686.623.68.01-.05-5.78 1.612-10.746 12.151-21.296l22.721-22.735c6.047-6.054 11.125-11.27 11.125-16.973v-8.897c0-.542-.62-.544-.732 0-1.494 7.26-4.395 10.125-10.378 16.113L78.05 89.902zm37.477-26.933c0-.54-.62-.543-.732 0-1.494 7.261-4.388 10.17-10.37 16.16L80.56 102.993c-11.58 11.592-13.584 22.81-7.694 30.02.393.481.815.192.56-.388-3.895-8.819 5.443-18.17 9.889-22.62L104.401 88.9c6.047-6.053 11.125-11.269 11.125-16.973V62.97zm-34.311 55.008c-11.581 11.592-6.256 22.787.5 25.87.592.27.828-.211.374-.603-5.416-4.699-3.772-12.6 3.04-19.418l19.248-19.267c6.047-6.053 11.124-11.268 11.124-16.972v-8.896c0-.54-.62-.543-.73 0-1.495 7.259-4.39 10.112-10.373 16.1l-23.183 23.186zm25.688 37.771c0 .541.62.543.73 0 1.496-7.259 4.39-10.17 10.372-16.158l9.479-9.468c11.58-11.59 13.583-22.809 7.693-30.018-.393-.481-.815-.193-.558.387 3.893 8.819-5.444 18.169-9.89 22.62l-6.701 6.709c-6.048 6.052-11.125 11.267-11.125 16.971v8.957zm11.128-31.822c-5.983 5.988-8.879 8.841-10.373 16.101-.112.544-.731.542-.731 0v-8.896c0-5.703 5.077-10.92 11.125-16.972l4.862-4.868c6.813-6.82 8.457-14.719 3.04-19.418-.453-.392-.217-.874.376-.603 6.755 3.082 12.08 14.277.498 25.87l-8.797 8.786zM174.395 163.348c.496 0 .792-.277.792-.678 0-.447-.248-.64-.801-.64h-.468v1.318h.477zm-1.2-1.927h1.22c1.039 0 1.506.41 1.506 1.231 0 .6-.363.934-.744 1.087l1.107 1.85h-.82l-.955-1.65h-.59v1.65h-.725v-4.168zm4.262 2.079c0-1.65-1.231-2.995-2.957-2.995-1.726 0-2.966 1.25-2.966 2.995 0 1.65 1.24 2.995 2.966 2.995 1.632 0 2.957-1.25 2.957-2.995zm-6.457 0c0-2.03 1.47-3.5 3.5-3.5 1.936 0 3.5 1.47 3.5 3.5 0 2.032-1.468 3.5-3.5 3.5-2.03 0-3.5-1.468-3.5-3.5z"/>
+        </g>
+      </svg>
+      <div class="logo-text">
+        <span class="church-name">CukSDA</span>
+        <span class="church-sub">Cooperative University SDA</span>
+      </div>
     </a>
-    <nav class="primary-nav">
+
+    <nav class="primary-nav" id="primary-nav">
       <div class="nav-item"><a href="./index.html">Home</a></div>
-      <div class="nav-item"><a class="active" href="./about.html" aria-current="page">About</a></div>
-      <div class="nav-item"><a href="./ministries.html">Ministries</a></div>
-      <div class="nav-item"><a href="./events.html">Events</a></div>
-      <div class="nav-item"><a href="./beliefs.html">Beliefs</a></div>
-      <div class="nav-item"><a href="./sermons.html">Sermons</a></div>
-      <div class="nav-item"><a href="./contact.html">Contact</a></div>
+
+      <div class="nav-item">
+        <button>About
+          <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="dropdown">
+          <a href="./about.html" class="active">Who We Are</a>
+          <a href="./about.html">Our History</a>
+          <a href="./about.html">Leadership Team</a>
+          <div class="dropdown-divider"></div>
+          <div class="dropdown-label">Quick Links</div>
+          <a href="./ministries.html">Our Ministries</a>
+          <a href="./beliefs.html">What We Believe</a>
+        </div>
+      </div>
+
+      <div class="nav-item">
+        <button>Ministries
+          <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="dropdown">
+          <div class="dropdown-label">Ministries</div>
+          <a href="./ministries.html">Worship &amp; Devotion</a>
+          <a href="./ministries.html">Youth &amp; University</a>
+          <a href="./ministries.html">Health &amp; Wellness</a>
+          <a href="./ministries.html">Evangelism &amp; Outreach</a>
+          <a href="./ministries.html">Discipleship &amp; Growth</a>
+          <div class="dropdown-divider"></div>
+          <div class="dropdown-label">Get Involved</div>
+          <a href="./contact.html">Join a Ministry</a>
+          <a href="./contact.html">Volunteer</a>
+        </div>
+      </div>
+
+      <div class="nav-item">
+        <button>Events
+          <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="dropdown">
+          <a href="./events.html">Upcoming Events</a>
+          <a href="./events.html">Sabbath Services</a>
+          <a href="./events.html">Community Outreach</a>
+          <a href="./events.html">AY Programs</a>
+          <div class="dropdown-divider"></div>
+          <a href="./contact.html">Submit an Event</a>
+        </div>
+      </div>
+
+      <div class="nav-item">
+        <button>Beliefs
+          <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="dropdown">
+          <a href="./beliefs.html">28 Fundamental Beliefs</a>
+          <a href="./beliefs.html">The Bible</a>
+          <a href="./beliefs.html">The Sabbath</a>
+          <a href="./beliefs.html">Second Coming</a>
+        </div>
+      </div>
+
+      <div class="nav-item">
+        <button>Sermons
+          <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="dropdown">
+          <a href="./sermons.html">Latest Sermons</a>
+          <a href="./sermons.html">Sermon Archive</a>
+          <a href="./sermons.html">Speaker Directory</a>
+          <div class="dropdown-divider"></div>
+          <a href="./contact.html">Request a Topic</a>
+        </div>
+      </div>
+
+      <div class="nav-item">
+        <button>Visit Us
+          <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="dropdown">
+          <a href="./contact.html">Plan Your Visit</a>
+          <a href="./contact.html">Prayer Request</a>
+          <a href="./contact.html">Contact Form</a>
+          <a href="./contact.html">Location &amp; Directions</a>
+        </div>
+      </div>
     </nav>
-    <button class="menu-toggle" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+
+    <button class="menu-toggle" id="menu-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
   </header>
 
   <main>
+
+    <!-- ════════════════════ PAGE HERO ════════════════════ -->
     <section class="page-hero">
-      <div class="page-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1600&q=80');"></div>
+      <div class="page-hero-bg"></div>
       <div class="page-hero-content">
-        <span class="page-hero-tag">Who We Are</span>
-        <h1>Welcome to CukSDA</h1>
-        <p>We are a Seventh-day Adventist student community at Cooperative University of Kenya, rooted in worship, fellowship, and service.</p>
+        <div class="hero-crumbs">
+          <a href="./index.html">Home</a>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          <span>About</span>
+        </div>
+        <div class="page-hero-tag">Our Story</div>
+        <h1>Built on Faith,<br><em>Rooted in Community.</em></h1>
+        <p>We are a vibrant, growing family of Seventh-day Adventist students and staff at the Cooperative University of Kenya — united by a shared love of Christ, a passion for truth, and a calling to serve.</p>
       </div>
     </section>
 
-    <section class="page-content">
-      <div class="section-block">
-        <span class="section-tag">Mission</span>
-        <h2 class="section-title">Our purpose is to grow together in faith and impact.</h2>
-        <p>At CukSDA, we gather to study Scripture, encourage one another, and serve our campus. Our gatherings, outreach, and discipleship are shaped by the Adventist call to share Christ’s love with every student.</p>
-      </div>
+    <!-- ════════════════════ MISSION STRIP ════════════════════ -->
+    <div class="mission-strip">
+      <p>"Let your light so shine before men, that they may see your good works and glorify your Father in heaven." — Matthew 5:16</p>
+    </div>
 
-      <div class="split-grid">
-        <div>
-          <span class="section-tag">History</span>
-          <h3 class="section-heading">Built by students, for students.</h3>
-          <p>Founded as a fellowship group at CUK, our community has grown into a trusted campus ministry. From weekly Sabbath services to prayer nights and outreach events, every season has deepened our commitment to one another and to God.</p>
-          <ul class="feature-list">
-            <li>Weekly worship and Bible study</li>
-            <li>Student-led prayer groups</li>
-            <li>Community outreach projects</li>
-            <li>Mentoring and discipleship teams</li>
-          </ul>
+    <!-- ════════════════════ ANCHOR TABS ════════════════════ -->
+    <nav class="anchor-tabs" aria-label="Page sections">
+      <div class="anchor-tabs-inner">
+        <a class="anchor-tab active" href="#who">Who We Are</a>
+        <a class="anchor-tab" href="#mission">Vision &amp; Mission</a>
+        <a class="anchor-tab" href="#history">Our History</a>
+        <a class="anchor-tab" href="#values">Core Values</a>
+        <a class="anchor-tab" href="#team">Leadership</a>
+        <a class="anchor-tab" href="#beliefs">Beliefs</a>
+        <a class="anchor-tab" href="#campus">Campus Life</a>
+        <a class="anchor-tab" href="#join">Get Involved</a>
+      </div>
+    </nav>
+
+    <!-- ════════════════════ WHO WE ARE ════════════════════ -->
+    <section class="who-section" id="who">
+      <div class="who-grid">
+        <div class="who-copy">
+          <span class="section-tag">Who We Are</span>
+          <h2 class="section-title">A community shaped by grace.</h2>
+          <p style="margin-top:1.5rem">CukSDA is the official Seventh-day Adventist student and staff community at the Cooperative University of Kenya, Karen Campus in Nairobi. We exist to connect the CUK community with the love, truth, and hope found only in Jesus Christ.</p>
+          <p>We are a multigenerational, multicultural fellowship — students, faculty, staff, and friends — all walking together in faith. Whether you are a lifelong Adventist or exploring Christianity for the first time, you are deeply welcome here.</p>
+          <p>Our church life is built around the Sabbath experience — from Sabbath School at 9:00 AM to the Divine Service at 11:00 AM — but our community extends through the whole week with prayer meetings, Bible studies, ministry projects, and campus outreach.</p>
+          <div class="who-stats">
+            <div class="stat-box">
+              <div class="num">200<span>+</span></div>
+              <div class="label">Active Members</div>
+            </div>
+            <div class="stat-box">
+              <div class="num">8<span>+</span></div>
+              <div class="label">Active Ministries</div>
+            </div>
+            <div class="stat-box">
+              <div class="num">15<span>+</span></div>
+              <div class="label">Years of Fellowship</div>
+            </div>
+            <div class="stat-box">
+              <div class="num">52<span>×</span></div>
+              <div class="label">Sabbaths a Year</div>
+            </div>
+          </div>
+          <div style="margin-top:2rem">
+            <a href="./contact.html" class="btn btn-outline-dark">Plan a Visit</a>
+          </div>
         </div>
-        <div>
-          <span class="section-tag">Leadership</span>
-          <h3 class="section-heading">Guided by servant leaders.</h3>
-          <p>Our leadership team is made up of student officers, campus pastors, and ministry coordinators. Together they ensure every event, group, and service opportunity is welcoming, organized, and spiritually nourishing.</p>
-          <div class="card-grid">
-            <article class="info-card">
-              <h4>Student President</h4>
-              <p>Leading with compassion and a heart for campus community.</p>
-            </article>
-            <article class="info-card">
-              <h4>Prayer Coordinator</h4>
-              <p>Connecting our members through intercession and spiritual care.</p>
-            </article>
-            <article class="info-card">
-              <h4>Ministry Director</h4>
-              <p>Designing outreach, worship, and service opportunities across campus.</p>
-            </article>
+        <div class="who-image-grid">
+          <div class="who-img who-img-1"></div>
+          <div class="who-img who-img-2"></div>
+          <div class="who-img who-img-3"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════ VISION · MISSION · VALUES ════════════════════ -->
+    <section class="vmv-section" id="mission">
+      <span class="section-tag">Purpose &amp; Direction</span>
+      <h2 class="section-title">Why we exist and where we're going.</h2>
+      <div class="vmv-cards">
+        <div class="vmv-card">
+          <div class="vmv-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <div class="vmv-label">Our Vision</div>
+          <h3>A transformed campus community reflecting Christ.</h3>
+          <p>We envision every student and staff member at CUK having a genuine, personal encounter with Jesus Christ — and a faith community strong enough to sustain and support that journey through university life and beyond.</p>
+        </div>
+        <div class="vmv-card">
+          <div class="vmv-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          </div>
+          <div class="vmv-label">Our Mission</div>
+          <h3>Making disciples who worship, grow, and serve.</h3>
+          <p>CukSDA exists to make and mature disciples of Jesus Christ within the CUK community — through authentic worship, intentional discipleship, compassionate service, and bold, Spirit-led evangelism to all people.</p>
+        </div>
+        <div class="vmv-card">
+          <div class="vmv-icon">
+            <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <div class="vmv-label">Our Commitment</div>
+          <h3>Scripture-rooted, Spirit-led, community-driven.</h3>
+          <p>Everything we do is grounded in the inspired Word of God, empowered by the Holy Spirit, and lived out in the context of a loving, accountable, diverse church family. We are proudly part of the global Seventh-day Adventist Church.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════ HISTORY TIMELINE ════════════════════ -->
+    <section class="history-section" id="history">
+      <div class="history-inner">
+        <span class="section-tag">Our History</span>
+        <h2 class="section-title">A journey of faith across the years.</h2>
+        <p class="section-subtitle">From a small prayer group to a growing campus church family — here is how God has moved among us since the very beginning.</p>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="tl-dot"></div>
+            <div class="timeline-year">2008</div>
+            <h4>The Seed Is Planted</h4>
+            <p>A handful of Adventist students at CUK began meeting informally for prayer and Bible study in a dormitory common room. These early gatherings laid the spiritual foundation for what would become a thriving church community.</p>
+            <span class="timeline-badge">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Foundation
+            </span>
+          </div>
+
+          <div class="timeline-item">
+            <div class="tl-dot"></div>
+            <div class="timeline-year">2011</div>
+            <h4>Official Recognition</h4>
+            <p>CukSDA was officially registered as a campus ministry and recognised by both the university administration and the East Kenya Union Conference of Seventh-day Adventists. Sabbath services moved to the Main Hall for the first time.</p>
+            <span class="timeline-badge">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+              Milestone
+            </span>
+          </div>
+
+          <div class="timeline-item">
+            <div class="tl-dot"></div>
+            <div class="timeline-year">2014</div>
+            <h4>Ministry Expansion</h4>
+            <p>The Ambassadors for Christ Youth (AY) Society, the Health Ministry, and the Music Department were formally established, enabling the community to serve students with gifts across worship, wellness, and outreach.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="tl-dot"></div>
+            <div class="timeline-year">2017</div>
+            <h4>Our First Campus Evangelistic Series</h4>
+            <p>CukSDA hosted its inaugural week-long campus evangelistic crusade in partnership with the East Kenya Union. The series saw over 40 students give their hearts to Christ and be baptised, a landmark moment for the community.</p>
+            <span class="timeline-badge">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+              Growth
+            </span>
+          </div>
+
+          <div class="timeline-item">
+            <div class="tl-dot"></div>
+            <div class="timeline-year">2020</div>
+            <h4>Resilience Through the Pandemic</h4>
+            <p>When COVID-19 disrupted in-person gatherings, CukSDA pivoted swiftly to online Sabbath services, virtual prayer nights, and digital Bible study groups — keeping the community connected and spiritually alive through one of the most challenging periods in modern history.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="tl-dot"></div>
+            <div class="timeline-year">2022</div>
+            <h4>Community Health &amp; Wellness Initiative</h4>
+            <p>Launching the CukSDA Health Ministry in full, the community partnered with local hospitals to offer free health screenings, nutrition workshops, and mental health support for students — serving over 300 people in its first year.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="tl-dot"></div>
+            <div class="timeline-year">Today</div>
+            <h4>Growing Stronger Together</h4>
+            <p>With over 200 active members, eight thriving ministries, and a heart for the whole CUK campus community, CukSDA continues to grow in depth and breadth — always anchored in Christ, always open to all.</p>
+            <span class="timeline-badge">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              Present
+            </span>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="section-block">
-        <span class="section-tag">Join Us</span>
-        <h2 class="section-title">Everyone is welcome to explore faith and friendship.</h2>
-        <p>Whether you are already an Adventist student or simply curious about Christ, you will find a warm welcome here. Join our Saturday worship, prayer nights, small groups, and service teams.</p>
-        <div class="button-row">
-          <a href="./ministries.html" class="btn btn-primary">See Ministries</a>
-          <a href="./contact.html" class="btn btn-outline">Get in Touch</a>
+    <!-- ════════════════════ CORE VALUES ════════════════════ -->
+    <section class="pillars-section" id="values">
+      <span class="section-tag">Core Values</span>
+      <h2 class="section-title">What shapes everything we do.</h2>
+      <p class="section-subtitle">These are not just words on a wall — they are the convictions that guide how we worship, relate, serve, and grow together as a campus church family.</p>
+      <div class="pillars-grid">
+        <div class="pillar-card">
+          <div class="pillar-num">01</div>
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h4>Scripture First</h4>
+          <p>The Bible is our final authority in all matters of faith, life, and doctrine. We read it, preach it, study it, and live it — believing every word is breathed out by God.</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-num">02</div>
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          </div>
+          <h4>Authentic Worship</h4>
+          <p>We believe worship is a whole-life response to God. We gather on the Sabbath with reverence, joy, and expectation — offering back to God the best of who we are.</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-num">03</div>
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <h4>Genuine Community</h4>
+          <p>Nobody walks alone. We are committed to building deep, honest, and caring relationships — a family where every person is known, loved, and belongs from day one.</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-num">04</div>
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <h4>Intentional Discipleship</h4>
+          <p>Faith grows in relationship. We invest intentionally in mentorship, Bible study, and one-on-one care — because we are called to make disciples, not just attendees.</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-num">05</div>
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+          </div>
+          <h4>Bold Evangelism</h4>
+          <p>The good news of Jesus is the best news the world has ever heard. We share it boldly, compassionately, and creatively — on campus, in Karen, and beyond Kenya.</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-num">06</div>
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <h4>Wholistic Health</h4>
+          <p>We believe the body, mind, and spirit are all sacred. CukSDA champions total wellbeing — nurturing physical health, emotional resilience, and spiritual wholeness in every member.</p>
         </div>
       </div>
     </section>
+
+    <!-- ════════════════════ LEADERSHIP TEAM ════════════════════ -->
+    <section class="team-section" id="team">
+      <span class="section-tag">Leadership Team</span>
+      <h2 class="section-title">Servants leading with humility.</h2>
+      <p class="section-subtitle">Our leaders are elected volunteers from within the congregation — students and staff who give their time, gifts, and passion to serve and shepherd the CukSDA family.</p>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-avatar a1">JN</div>
+          <h4>James Njoroge</h4>
+          <div class="team-role">Head Elder</div>
+          <div class="team-dept">Senior, Business Administration</div>
+          <a href="mailto:hello@cuksda.org" class="team-email">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><polyline points="4 4 12 13 20 4"/></svg>
+            Contact
+          </a>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar a2">GM</div>
+          <h4>Grace Mutua</h4>
+          <div class="team-role">Church Clerk</div>
+          <div class="team-dept">Junior, Finance</div>
+          <a href="mailto:hello@cuksda.org" class="team-email">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><polyline points="4 4 12 13 20 4"/></svg>
+            Contact
+          </a>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar a3">PK</div>
+          <h4>Peter Kamau</h4>
+          <div class="team-role">Head Deacon</div>
+          <div class="team-dept">Staff, ICT Department</div>
+          <a href="mailto:hello@cuksda.org" class="team-email">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><polyline points="4 4 12 13 20 4"/></svg>
+            Contact
+          </a>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar a4">FW</div>
+          <h4>Faith Wanjiru</h4>
+          <div class="team-role">Treasurer</div>
+          <div class="team-dept">Senior, Accounting</div>
+          <a href="mailto:hello@cuksda.org" class="team-email">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><polyline points="4 4 12 13 20 4"/></svg>
+            Contact
+          </a>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar a5">DO</div>
+          <h4>David Ochieng</h4>
+          <div class="team-role">AY President</div>
+          <div class="team-dept">Sophomore, Engineering</div>
+          <a href="mailto:hello@cuksda.org" class="team-email">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><polyline points="4 4 12 13 20 4"/></svg>
+            Contact
+          </a>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar a6">SL</div>
+          <h4>Sarah Langat</h4>
+          <div class="team-role">Sabbath School Director</div>
+          <div class="team-dept">Staff, Library Services</div>
+          <a href="mailto:hello@cuksda.org" class="team-email">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><polyline points="4 4 12 13 20 4"/></svg>
+            Contact
+          </a>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar a7">MK</div>
+          <h4>Moses Kipchoge</h4>
+          <div class="team-role">Health Ministry Director</div>
+          <div class="team-dept">Senior, Nursing</div>
+          <a href="mailto:hello@cuksda.org" class="team-email">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><polyline points="4 4 12 13 20 4"/></svg>
+            Contact
+          </a>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar a8">RN</div>
+          <h4>Ruth Ndung'u</h4>
+          <div class="team-role">Music Director</div>
+          <div class="team-dept">Junior, Education</div>
+          <a href="mailto:hello@cuksda.org" class="team-email">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><polyline points="4 4 12 13 20 4"/></svg>
+            Contact
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════ BELIEFS OVERVIEW ════════════════════ -->
+    <section class="beliefs-section" id="beliefs">
+      <div class="beliefs-intro">
+        <div>
+          <span class="section-tag">What We Believe</span>
+          <h2 class="section-title">Anchored in Scripture, united in truth.</h2>
+        </div>
+        <div>
+          <p class="section-subtitle">As a Seventh-day Adventist congregation, our beliefs are drawn from the 28 Fundamental Beliefs of the SDA Church — a comprehensive statement of biblical faith covering God, salvation, the church, and Christian living.</p>
+          <div style="margin-top:1.75rem">
+            <a href="./beliefs.html" class="btn btn-outline-dark">Explore All 28 Beliefs</a>
+          </div>
+        </div>
+      </div>
+      <div class="beliefs-grid">
+        <div class="belief-tile">
+          <div class="belief-num">01</div>
+          <h4>Holy Scriptures</h4>
+          <p>The Bible — 66 books — is the inspired, authoritative Word of God and the only rule of faith and practice.</p>
+        </div>
+        <div class="belief-tile">
+          <div class="belief-num">05</div>
+          <h4>The Trinity</h4>
+          <p>One God in three co-eternal persons: Father, Son, and Holy Spirit — perfectly united in nature, character, and purpose.</p>
+        </div>
+        <div class="belief-tile">
+          <div class="belief-num">10</div>
+          <h4>Salvation in Christ</h4>
+          <p>In His infinite love, God gave Jesus to save fallen humanity. By His grace, through faith alone, we are justified and restored.</p>
+        </div>
+        <div class="belief-tile">
+          <div class="belief-num">20</div>
+          <h4>The Sabbath</h4>
+          <p>Saturday — the seventh day — is God's holy day of rest, given at creation and reaffirmed throughout Scripture as a sign of relationship with our Creator.</p>
+        </div>
+        <div class="belief-tile">
+          <div class="belief-num">24</div>
+          <h4>The Second Coming</h4>
+          <p>Christ's literal, personal, visible, and glorious return is the blessed hope — the grand climax of the gospel and the Christian's ultimate expectation.</p>
+        </div>
+        <div class="belief-tile">
+          <div class="belief-num">22</div>
+          <h4>Christian Stewardship</h4>
+          <p>God is owner of all things. We are stewards of time, talents, and resources — returning tithe and offerings in joyful gratitude and trust.</p>
+        </div>
+        <div class="belief-tile">
+          <div class="belief-num">14</div>
+          <h4>Unity in the Body</h4>
+          <p>In Christ, all barriers of race, class, or gender are broken down. The church is one body — diverse in expression, united in mission.</p>
+        </div>
+        <div class="belief-tile">
+          <div class="belief-num">28</div>
+          <h4>The New Earth</h4>
+          <p>After the millennium, God will re-create the earth as the eternal home of the redeemed — where sin, sorrow, and death are no more.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════ CAMPUS LIFE ════════════════════ -->
+    <section class="campus-section" id="campus">
+      <span class="section-tag">Life at CukSDA</span>
+      <h2 class="section-title">More than a Sabbath service.</h2>
+      <p class="section-subtitle">Our life together unfolds all week long — in worship, study, service, friendship, and everything in between. This is what it looks like to belong here.</p>
+      <div class="campus-photos">
+        <div class="campus-photo span-col">
+          <div class="campus-photo-overlay"><span>Worship</span><h5>Sabbath Together</h5></div>
+        </div>
+        <div class="campus-photo p2">
+          <div class="campus-photo-overlay"><span>Fellowship</span><h5>Bible Study Groups</h5></div>
+        </div>
+        <div class="campus-photo p3">
+          <div class="campus-photo-overlay"><span>Service</span><h5>Community Outreach</h5></div>
+        </div>
+        <div class="campus-photo p4">
+          <div class="campus-photo-overlay"><span>AY</span><h5>Youth Programs</h5></div>
+        </div>
+        <div class="campus-photo p5">
+          <div class="campus-photo-overlay"><span>Praise</span><h5>Choir &amp; Music</h5></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════ JOIN US / CTA ════════════════════ -->
+    <section class="cta-section" id="join">
+      <div class="cta-inner">
+        <span class="section-tag">Get Involved</span>
+        <h2 class="section-title">There's a place for you here.</h2>
+        <p class="section-subtitle">Whether you are brand new to faith, returning after a long absence, or a committed Adventist looking for a campus home — CukSDA is ready to welcome you with open arms this Sabbath.</p>
+        <div class="cta-actions">
+          <a href="./contact.html" class="btn btn-gold">Plan a Visit</a>
+          <a href="./contact.html" class="btn btn-outline">Prayer Request</a>
+        </div>
+      </div>
+      <div class="cta-cards">
+        <div class="cta-card">
+          <div class="cta-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <h4>First-Time Visitors</h4>
+          <p>We would love to meet you. Come any Sabbath, and someone from our welcome team will be there to greet you, show you around, and help you feel at home from the moment you arrive.</p>
+        </div>
+        <div class="cta-card">
+          <div class="cta-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h4>Join a Ministry</h4>
+          <p>Your gifts matter here. Whether you love music, health, youth work, evangelism, or intercession — there is a ministry where you can grow, serve, and make a real difference on campus.</p>
+        </div>
+        <div class="cta-card">
+          <div class="cta-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          </div>
+          <h4>Send a Prayer Request</h4>
+          <p>You do not have to face life alone. Our prayer team holds every request in strict confidence and lifts each one before God in faith. We are honoured to pray with and for you.</p>
+        </div>
+      </div>
+    </section>
+
   </main>
 
+  <!-- ════════════════════ FOOTER ════════════════════ -->
   <footer class="site-footer">
+    <!-- Top accent bar -->
+    <div class="footer-top" style="padding:1.5rem 4rem; border-bottom:1px solid rgba(255,255,255,0.05); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+      <p class="footer-top-text"><strong>Service Times</strong> &nbsp;·&nbsp; Sabbath School 9:00 AM &nbsp;·&nbsp; Divine Service 11:00 AM &nbsp;·&nbsp; AY Program 3:00 PM</p>
+      <a href="./contact.html" class="btn btn-gold" style="padding:0.65rem 1.5rem; font-size:0.76rem;">Plan a Visit</a>
+    </div>
+
     <div class="footer-inner">
+      <!-- Brand column -->
       <div class="footer-brand">
         <div class="logo-wrap">
-          <svg class="logo-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2L4 9v14l12 7 12-7V9L16 2zm0 4.6l8 4.7v9.4l-8 4.7-8-4.7v-9.4l8-4.7zM16 11l-5 3v6l5 3 5-3v-6l-5-3z"></path></svg>
-          <div class="logo-text"><span class="church-name">CukSDA</span><span class="church-sub">Cooperative University SDA</span></div>
+          <!-- Official Adventist Logo in footer -->
+          <svg class="footer-logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 210" aria-hidden="true">
+            <g fill="none" fill-rule="evenodd">
+              <path fill="#FFFFFF" d="M106.924 171.313c0 .54.62.543.731 0 .824-3.998 2.075-6.663 4.03-9.25l-4.397.003c-.201 0-.364.162-.364.363v8.884zm31.611-55.503c.05 5.78-1.61 10.747-12.15 21.297l-8.336 8.338c-3.794 3.797-7.205 7.264-9.222 10.73h8.233l.974-.975 11.96-11.984c9.96-9.97 11.349-20.516 9.223-27.395-.181-.584-.687-.623-.682-.01zm-10.496 35.265l-9.99 10.008c-6.047 6.053-11.125 11.269-11.125 16.973l.006 1.588c0 .43.536.499.7.048 1.868-5.107 8.106-10.557 19.548-8.625 0 0 49.849 8.622 50.267 8.659.487.043.728-.437.414-.81-.189-.225-23.2-23.258-23.2-23.258l-26.62-4.583zm-36.062 10.988a.364.364 0 0 1-.364-.364v-5.163c0-.202.163-.364.364-.364l8.724.002c.201 0 .364-.163.364-.364-.023-4.637-3.515-7.788-17.508-5.35l-30.215 5.198s-23.012 23.033-23.2 23.258c-.315.373-.074.853.413.81.42-.037 50.267-8.66 50.267-8.66 11.443-1.931 17.681 3.52 19.548 8.626.164.45.701.383.701-.048l.001-17.218c0-.2-.163-.363-.364-.363h-8.731zm-13.928-72.16c-9.96 9.969-11.349 20.516-9.222 27.395.18.584.686.623.68.01-.05-5.78 1.612-10.746 12.151-21.296l22.721-22.735c6.047-6.054 11.125-11.27 11.125-16.973v-8.897c0-.542-.62-.544-.732 0-1.494 7.26-4.395 10.125-10.378 16.113L78.05 89.902zm37.477-26.933c0-.54-.62-.543-.732 0-1.494 7.261-4.388 10.17-10.37 16.16L80.56 102.993c-11.58 11.592-13.584 22.81-7.694 30.02.393.481.815.192.56-.388-3.895-8.819 5.443-18.17 9.889-22.62L104.401 88.9c6.047-6.053 11.125-11.269 11.125-16.973V62.97zm-34.311 55.008c-11.581 11.592-6.256 22.787.5 25.87.592.27.828-.211.374-.603-5.416-4.699-3.772-12.6 3.04-19.418l19.248-19.267c6.047-6.053 11.124-11.268 11.124-16.972v-8.896c0-.54-.62-.543-.73 0-1.495 7.259-4.39 10.112-10.373 16.1l-23.183 23.186zm25.688 37.771c0 .541.62.543.73 0 1.496-7.259 4.39-10.17 10.372-16.158l9.479-9.468c11.58-11.59 13.583-22.809 7.693-30.018-.393-.481-.815-.193-.558.387 3.893 8.819-5.444 18.169-9.89 22.62l-6.701 6.709c-6.048 6.052-11.125 11.267-11.125 16.971v8.957zm11.128-31.822c-5.983 5.988-8.879 8.841-10.373 16.101-.112.544-.731.542-.731 0v-8.896c0-5.703 5.077-10.92 11.125-16.972l4.862-4.868c6.813-6.82 8.457-14.719 3.04-19.418-.453-.392-.217-.874.376-.603 6.755 3.082 12.08 14.277.498 25.87l-8.797 8.786zM174.395 163.348c.496 0 .792-.277.792-.678 0-.447-.248-.64-.801-.64h-.468v1.318h.477zm-1.2-1.927h1.22c1.039 0 1.506.41 1.506 1.231 0 .6-.363.934-.744 1.087l1.107 1.85h-.82l-.955-1.65h-.59v1.65h-.725v-4.168zm4.262 2.079c0-1.65-1.231-2.995-2.957-2.995-1.726 0-2.966 1.25-2.966 2.995 0 1.65 1.24 2.995 2.966 2.995 1.632 0 2.957-1.25 2.957-2.995zm-6.457 0c0-2.03 1.47-3.5 3.5-3.5 1.936 0 3.5 1.47 3.5 3.5 0 2.032-1.468 3.5-3.5 3.5-2.03 0-3.5-1.468-3.5-3.5z"/>
+            </g>
+          </svg>
+          <div class="logo-text">
+            <span class="church-name">CukSDA</span>
+            <span class="church-sub">Cooperative University SDA</span>
+          </div>
         </div>
-        <p>A student-led Adventist fellowship at the Cooperative University of Kenya, growing in faith, friendship, and service.</p>
+        <p>A vibrant Seventh-day Adventist community at the Cooperative University of Kenya — growing together in faith, fellowship, and service to our campus and the world.</p>
+
+        <!-- Real SVG social icons -->
+        <div class="footer-socials">
+          <!-- Facebook -->
+          <a href="#" class="social-btn social-fb" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <!-- Instagram -->
+          <a href="#" class="social-btn social-ig" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <!-- YouTube -->
+          <a href="#" class="social-btn social-yt" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+          </a>
+          <!-- X / Twitter -->
+          <a href="#" class="social-btn social-tw" aria-label="X (Twitter)">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
+          </a>
+          <!-- WhatsApp -->
+          <a href="#" class="social-btn social-wa" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          </a>
+        </div>
       </div>
-      <div class="footer-col"><h5>Explore</h5><ul><li><a href="./about.html">About Us</a></li><li><a href="./ministries.html">Ministries</a></li><li><a href="./events.html">Events</a></li><li><a href="./beliefs.html">Beliefs</a></li><li><a href="./sermons.html">Sermons</a></li></ul></div>
-      <div class="footer-col"><h5>Connect</h5><ul><li><a href="./contact.html">Contact Us</a></li><li><a href="./contact.html">Prayer Request</a></li><li><a href="./contact.html">Plan a Visit</a></li><li><a href="./contact.html">Volunteer</a></li></ul></div>
-      <div class="footer-col"><h5>Find Us</h5><ul><li><a href="#">CUK Main Campus</a></li><li><a href="#">Karen, Nairobi</a></li><li><a href="mailto:hello@cuksda.org">hello@cuksda.org</a></li><li><a href="tel:+254700000000">+254 700 000 000</a></li></ul></div>
+
+      <!-- Explore column -->
+      <div class="footer-col">
+        <h5>Explore</h5>
+        <ul>
+          <li><a href="./about.html">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            About Us
+          </a></li>
+          <li><a href="./ministries.html">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            Ministries
+          </a></li>
+          <li><a href="./events.html">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Events
+          </a></li>
+          <li><a href="./beliefs.html">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Beliefs
+          </a></li>
+          <li><a href="./sermons.html">
+            <svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+            Sermons
+          </a></li>
+        </ul>
+      </div>
+
+      <!-- Connect column -->
+      <div class="footer-col">
+        <h5>Connect</h5>
+        <ul>
+          <li><a href="./contact.html">
+            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            Contact Us
+          </a></li>
+          <li><a href="./contact.html">
+            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            Prayer Request
+          </a></li>
+          <li><a href="./contact.html">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            Plan a Visit
+          </a></li>
+          <li><a href="./contact.html">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="23" y1="11" x2="17" y2="11"/><line x1="20" y1="8" x2="20" y2="14"/></svg>
+            Volunteer
+          </a></li>
+          <li><a href="./ministries.html">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Join a Ministry
+          </a></li>
+        </ul>
+      </div>
+
+      <!-- Contact column -->
+      <div class="footer-col">
+        <h5>Find Us</h5>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Cooperative University of Kenya<br>Karen Campus, Nairobi</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>
+          <span>Sabbath School · 9:00 AM<br>Divine Service · 11:00 AM<br>AY Program · 3:00 PM</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><polyline points="4 4 12 13 20 4"/></svg>
+          <a href="mailto:hello@cuksda.org">hello@cuksda.org</a>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.5a19.79 19.79 0 01-3-8.59A2 2 0 012.06 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.5A16 16 0 0015.5 17.1l.7-.7a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          <a href="tel:+254700000000">+254 700 000 000</a>
+        </div>
+
+        <!-- Newsletter signup -->
+        <div class="footer-newsletter">
+          <h5>Stay Connected</h5>
+          <p>Get our weekly bulletin, event updates, and devotional reflections in your inbox.</p>
+          <div class="newsletter-form">
+            <input type="email" placeholder="Your email address" aria-label="Email for newsletter">
+            <button type="button" onclick="alert('Thank you! You\'ll hear from us soon.')">Subscribe</button>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="footer-bottom"><p>© 2026 CukSDA — Cooperative University SDA Community. All rights reserved.</p><div class="sda-badge"><svg viewBox="0 0 24 24"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z"></path></svg><span>Seventh-day Adventist Church</span></div></div>
+
+    <hr class="footer-divider">
+
+    <div class="footer-bottom">
+      <p>© 2026 CukSDA — Cooperative University SDA Community. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Sitemap</a>
+      </div>
+      <div class="sda-badge">
+        <!-- Official Adventist logo mark in badge -->
+        <svg class="sda-badge-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 210">
+          <g fill="none" fill-rule="evenodd">
+            <path fill="#c9a84c" d="M106.924 171.313c0 .54.62.543.731 0 .824-3.998 2.075-6.663 4.03-9.25l-4.397.003c-.201 0-.364.162-.364.363v8.884zm31.611-55.503c.05 5.78-1.61 10.747-12.15 21.297l-8.336 8.338c-3.794 3.797-7.205 7.264-9.222 10.73h8.233l.974-.975 11.96-11.984c9.96-9.97 11.349-20.516 9.223-27.395-.181-.584-.687-.623-.682-.01zm-10.496 35.265l-9.99 10.008c-6.047 6.053-11.125 11.269-11.125 16.973l.006 1.588c0 .43.536.499.7.048 1.868-5.107 8.106-10.557 19.548-8.625 0 0 49.849 8.622 50.267 8.659.487.043.728-.437.414-.81-.189-.225-23.2-23.258-23.2-23.258l-26.62-4.583zm-36.062 10.988a.364.364 0 0 1-.364-.364v-5.163c0-.202.163-.364.364-.364l8.724.002c.201 0 .364-.163.364-.364-.023-4.637-3.515-7.788-17.508-5.35l-30.215 5.198s-23.012 23.033-23.2 23.258c-.315.373-.074.853.413.81.42-.037 50.267-8.66 50.267-8.66 11.443-1.931 17.681 3.52 19.548 8.626.164.45.701.383.701-.048l.001-17.218c0-.2-.163-.363-.364-.363h-8.731zm-13.928-72.16c-9.96 9.969-11.349 20.516-9.222 27.395.18.584.686.623.68.01-.05-5.78 1.612-10.746 12.151-21.296l22.721-22.735c6.047-6.054 11.125-11.27 11.125-16.973v-8.897c0-.542-.62-.544-.732 0-1.494 7.26-4.395 10.125-10.378 16.113L78.05 89.902zm37.477-26.933c0-.54-.62-.543-.732 0-1.494 7.261-4.388 10.17-10.37 16.16L80.56 102.993c-11.58 11.592-13.584 22.81-7.694 30.02.393.481.815.192.56-.388-3.895-8.819 5.443-18.17 9.889-22.62L104.401 88.9c6.047-6.053 11.125-11.269 11.125-16.973V62.97zm-34.311 55.008c-11.581 11.592-6.256 22.787.5 25.87.592.27.828-.211.374-.603-5.416-4.699-3.772-12.6 3.04-19.418l19.248-19.267c6.047-6.053 11.124-11.268 11.124-16.972v-8.896c0-.54-.62-.543-.73 0-1.495 7.259-4.39 10.112-10.373 16.1l-23.183 23.186zm25.688 37.771c0 .541.62.543.73 0 1.496-7.259 4.39-10.17 10.372-16.158l9.479-9.468c11.58-11.59 13.583-22.809 7.693-30.018-.393-.481-.815-.193-.558.387 3.893 8.819-5.444 18.169-9.89 22.62l-6.701 6.709c-6.048 6.052-11.125 11.267-11.125 16.971v8.957z"/>
+          </g>
+        </svg>
+        Seventh-day Adventist Church
+      </div>
+    </div>
   </footer>
+
+  <script>
+    // ── Scroll header ──
+    const header = document.getElementById('site-header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 30);
+    });
+
+    // ── Mobile menu ──
+    const toggle = document.getElementById('menu-toggle');
+    const nav = document.getElementById('primary-nav');
+    toggle.addEventListener('click', () => {
+      nav.classList.toggle('open');
+      toggle.classList.toggle('open');
+    });
+
+    // ── Mobile dropdowns ──
+    if (window.innerWidth <= 768) {
+      document.querySelectorAll('.nav-item > button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          btn.closest('.nav-item').classList.toggle('open');
+        });
+      });
+    }
+
+    // ── Anchor tab active states ──
+    const sections = document.querySelectorAll('section[id]');
+    const tabs = document.querySelectorAll('.anchor-tab');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          tabs.forEach(t => t.classList.remove('active'));
+          const active = document.querySelector(`.anchor-tab[href="#${entry.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    sections.forEach(s => observer.observe(s));
+
+    // ── Smooth anchor scroll with offset ──
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          const offset = 76 + 48; // header + anchor tabs
+          window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
+        }
+      });
+    });
+
+    // ── Fade-in on scroll ──
+    const fadeEls = document.querySelectorAll('.pillar-card, .team-card, .belief-tile, .vmv-card, .cta-card, .timeline-item, .stat-box');
+    const fadeObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+    fadeEls.forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
+      fadeObserver.observe(el);
+    });
+  </script>
 </body>
 </html>
