@@ -3,89 +3,1383 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#050e1f">
-  <title>Beliefs — CukSDA</title>
-  <meta name="description" content="Learn about the core beliefs and biblical convictions that guide the CukSDA student community.">
-  <link rel="stylesheet" href="./style.css">
-  <script src="./script.js" defer></script>
+  <title>28 Fundamental Beliefs · CukSDA</title>
+  <meta name="description" content="Explore the 28 Fundamental Beliefs of the Seventh-day Adventist Church. Discover what we believe about God, salvation, the Bible, the Sabbath, and Christian living.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── RESET & ROOT ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: 'DM Sans', sans-serif; color: #0f172a; background: #fff; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    :root {
+      --navy: #050e1f;
+      --navy-mid: #0a1e3d;
+      --navy-soft: #102952;
+      --blue: #1a5fd4;
+      --blue-mid: #1448a0;
+      --blue-light: #7aadff;
+      --blue-pale: #dbeafe;
+      --gold: #c9a84c;
+      --gold-light: #e4c97a;
+      --gold-dim: #7a5e1e;
+      --cream: #faf8f4;
+      --cream-dark: #f0ece3;
+      --white: #ffffff;
+      --gray-100: #f4f4f5;
+      --gray-200: #e4e4e7;
+      --gray-400: #a1a1aa;
+      --gray-500: #71717a;
+      --gray-700: #3f3f46;
+      --text: #0f172a;
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 40px;
+      --shadow-sm: 0 2px 12px rgba(0,0,0,0.06);
+      --shadow-md: 0 8px 32px rgba(0,0,0,0.10);
+      --shadow-lg: 0 20px 60px rgba(0,0,0,0.15);
+      --transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 0.82rem;
+      letter-spacing: 0.04em; text-transform: uppercase;
+      padding: 0.85rem 2rem; border-radius: var(--radius-xl);
+      border: 2px solid transparent; cursor: pointer; transition: var(--transition);
+    }
+    .btn svg { width: 16px; height: 16px; }
+    .btn-gold { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+    .btn-gold:hover { background: var(--gold-light); border-color: var(--gold-light); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(201,168,76,0.35); }
+    .btn-outline-dark { background: transparent; color: var(--navy); border-color: var(--navy); }
+    .btn-outline-dark:hover { background: var(--navy); color: var(--white); }
+    .btn-primary { background: var(--blue); color: var(--white); border-color: var(--blue); }
+    .btn-primary:hover { background: var(--blue-mid); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(26,95,212,0.35); }
+
+    /* ── SECTION ATOMS ── */
+    .section-tag { font-family: 'DM Mono', monospace; font-weight: 500; font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+    .section-tag::after { content: ''; width: 36px; height: 1.5px; background: currentColor; flex-shrink: 0; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.12; color: var(--navy); }
+    .section-subtitle { color: var(--gray-500); font-size: 1rem; line-height: 1.8; max-width: 620px; margin-top: 1rem; font-weight: 400; }
+
+    /* ── HEADER ── */
+    header.site-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      height: 76px; display: flex; align-items: center; justify-content: space-between;
+      padding: 0 3rem;
+      background: linear-gradient(180deg,rgba(5,14,31,0.95) 0%,rgba(5,14,31,0.6) 100%);
+      transition: background 0.4s, box-shadow 0.4s;
+    }
+    header.site-header.scrolled {
+      background: rgba(5,14,31,0.97);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.06), 0 4px 24px rgba(0,0,0,0.4);
+      backdrop-filter: blur(12px);
+    }
+    .logo-wrap { display: flex; align-items: center; gap: 0.7rem; }
+    .logo-icon-adventist { width: 42px; height: 42px; flex-shrink: 0; }
+    .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+    .logo-text .church-name { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 1.05rem; color: var(--white); letter-spacing: 0.04em; text-transform: uppercase; }
+    .logo-text .church-sub { font-family: 'DM Mono', monospace; font-size: 0.58rem; color: var(--blue-light); letter-spacing: 0.14em; text-transform: uppercase; }
+
+    nav.primary-nav { display: flex; align-items: center; gap: 0.2rem; }
+    .nav-item { position: relative; }
+    .nav-item > a, .nav-item > button {
+      color: rgba(255,255,255,0.82); font-size: 0.8rem; font-weight: 500;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      padding: 0.5rem 0.85rem; border-radius: 6px; transition: var(--transition);
+      display: flex; align-items: center; gap: 0.3rem;
+      background: none; border: none; cursor: pointer; font-family: inherit;
+    }
+    .nav-item > a:hover, .nav-item > a.active, .nav-item > button:hover { color: var(--white); background: rgba(255,255,255,0.09); }
+    .nav-item > a.active { position: relative; }
+    .nav-item > a.active::after { content: ''; position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%); width: 16px; height: 2px; background: var(--gold); border-radius: 2px; }
+
+    .dropdown {
+      position: absolute; top: calc(100% + 8px); left: 50%;
+      transform: translateX(-50%) translateY(-10px);
+      min-width: 220px; background: rgba(5,14,31,0.98);
+      backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-md); padding: 0.75rem 0;
+      opacity: 0; visibility: hidden; transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4); z-index: 300;
+    }
+    .dropdown a { display: block; padding: 0.6rem 1.25rem; color: rgba(255,255,255,0.7); font-size: 0.82rem; font-weight: 400; transition: all 0.2s; white-space: nowrap; }
+    .dropdown a:hover { color: var(--white); background: rgba(255,255,255,0.06); padding-left: 1.5rem; }
+    .dropdown a.active { color: var(--gold); background: rgba(201,168,76,0.08); }
+    .nav-item:hover .dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+
+    .menu-toggle { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 8px; }
+    .menu-toggle span { display: block; width: 22px; height: 2px; background: var(--white); border-radius: 2px; transition: var(--transition); }
+
+    /* ── PAGE HEADER HERO ── */
+    .page-hero {
+      position: relative; min-height: 600px;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      overflow: hidden; background: linear-gradient(170deg, rgba(5,14,31,0.88) 0%, rgba(10,30,61,0.55) 45%, rgba(5,14,31,0.82) 100%),
+        url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1920&q=80') center/cover no-repeat;
+      margin-top: 76px;
+    }
+
+    .page-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: 0.04; pointer-events: none; z-index: 1;
+    }
+
+    .page-hero-content {
+      position: relative; z-index: 3;
+      padding: 0 6rem 5rem;
+      max-width: 1400px; width: 100%;
+      animation: fadeUp 1s ease forwards;
+    }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(32px); } to { opacity: 1; transform: translateY(0); } }
+
+    .page-hero h1 {
+      font-family: 'Cormorant Garamond', serif; font-weight: 700;
+      font-size: clamp(2.8rem, 6vw, 5rem); line-height: 1.08;
+      color: var(--white); max-width: 800px; margin-bottom: 1rem;
+    }
+
+    .page-hero p {
+      color: rgba(255,255,255,0.70); font-size: 1.05rem; line-height: 1.78;
+      max-width: 520px; font-weight: 300;
+    }
+
+    /* ── BELIEFS FILTER & NAV ── */
+    .beliefs-controls {
+      background: var(--white); padding: 2.5rem 5rem;
+      display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;
+      border-bottom: 1px solid var(--gray-200);
+      position: sticky; top: 76px; z-index: 100; box-shadow: var(--shadow-sm);
+    }
+
+    .beliefs-search {
+      flex: 1; min-width: 250px;
+      position: relative;
+    }
+
+    .beliefs-search input {
+      width: 100%; padding: 0.85rem 1.25rem 0.85rem 2.75rem;
+      border: 2px solid var(--gray-200); border-radius: var(--radius-md);
+      font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      background: var(--white);
+    }
+
+    .beliefs-search input:focus {
+      outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(26,95,212,0.1);
+    }
+
+    .beliefs-search svg {
+      position: absolute; left: 1rem; top: 50%; transform: translateY(-50%);
+      width: 16px; height: 16px; stroke: var(--gray-400); fill: none; stroke-width: 2;
+      pointer-events: none;
+    }
+
+    .beliefs-filters {
+      display: flex; gap: 0.75rem; flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 0.6rem 1.25rem; border-radius: var(--radius-md);
+      border: 2px solid var(--gray-200); background: var(--white);
+      color: var(--navy); font-family: 'DM Sans', sans-serif; font-size: 0.8rem;
+      font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase;
+      cursor: pointer; transition: var(--transition);
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      border-color: var(--gold); background: rgba(201,168,76,0.08); color: var(--navy);
+    }
+
+    /* ── BELIEFS GRID ── */
+    .beliefs-grid {
+      padding: 5rem; display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 2rem;
+    }
+
+    .belief-card {
+      background: var(--white); border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg); padding: 2.2rem;
+      cursor: pointer; transition: var(--transition);
+      position: relative; overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+
+    .belief-card::before {
+      content: ''; position: absolute; top: 0; left: 0;
+      width: 100%; height: 4px; background: var(--gold);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    .belief-card:hover {
+      box-shadow: var(--shadow-md); transform: translateY(-6px);
+      border-color: var(--gold);
+    }
+
+    .belief-card:hover::before { transform: scaleX(1); }
+
+    .belief-number {
+      font-family: 'DM Mono', monospace; font-size: 0.65rem;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.75rem; font-weight: 600;
+    }
+
+    .belief-title {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.35rem;
+      font-weight: 600; color: var(--navy); margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+
+    .belief-summary {
+      color: var(--gray-500); font-size: 0.95rem; line-height: 1.7;
+      margin-bottom: 1.5rem; flex-grow: 1;
+    }
+
+    .belief-category {
+      display: inline-block; font-family: 'DM Mono', monospace;
+      font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase;
+      background: var(--blue-pale); color: var(--blue); padding: 0.35rem 0.75rem;
+      border-radius: var(--radius-sm); margin-bottom: 1rem;
+    }
+
+    .belief-icon {
+      width: 48px; height: 48px; background: var(--blue-pale);
+      border-radius: 12px; display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .belief-icon svg {
+      width: 24px; height: 24px; stroke: var(--blue); fill: none; stroke-width: 1.8;
+    }
+
+    /* ── MODAL / EXPANDED VIEW ── */
+    .belief-modal {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(5,14,31,0.6); backdrop-filter: blur(8px);
+      display: none; align-items: center; justify-content: center;
+      z-index: 400; padding: 2rem; animation: fadeIn 0.3s ease;
+    }
+
+    .belief-modal.show { display: flex; }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    .belief-modal-content {
+      background: var(--white); border-radius: var(--radius-lg);
+      padding: 3rem; max-width: 720px; width: 100%;
+      max-height: 90vh; overflow-y: auto;
+      animation: slideUp 0.4s cubic-bezier(0.4,0,0.2,1);
+      box-shadow: var(--shadow-lg);
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .modal-close {
+      position: absolute; top: 1.5rem; right: 1.5rem;
+      width: 40px; height: 40px; background: var(--gray-100);
+      border: none; border-radius: 50%; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: var(--transition);
+    }
+
+    .modal-close:hover { background: var(--gray-200); }
+
+    .modal-close svg {
+      width: 20px; height: 20px; stroke: var(--navy); fill: none; stroke-width: 2.5;
+    }
+
+    .modal-header {
+      display: flex; align-items: flex-start; gap: 1.5rem; margin-bottom: 2rem;
+    }
+
+    .modal-icon {
+      width: 60px; height: 60px; background: var(--blue-pale);
+      border-radius: 16px; display: flex; align-items: center;
+      justify-content: center; flex-shrink: 0;
+    }
+
+    .modal-icon svg {
+      width: 32px; height: 32px; stroke: var(--blue); fill: none; stroke-width: 1.5;
+    }
+
+    .modal-title-group h2 {
+      font-family: 'Cormorant Garamond', serif; font-size: 2rem;
+      color: var(--navy); margin-bottom: 0.5rem;
+    }
+
+    .modal-title-group .belief-category {
+      margin-bottom: 0;
+    }
+
+    .modal-divider {
+      height: 2px; background: var(--gray-200);
+      margin: 2rem 0;
+    }
+
+    .modal-body h3 {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.3rem;
+      color: var(--navy); margin: 1.5rem 0 0.75rem;
+    }
+
+    .modal-body h3:first-child { margin-top: 0; }
+
+    .modal-body p {
+      color: var(--gray-700); font-size: 0.98rem; line-height: 1.85;
+      margin-bottom: 1rem;
+    }
+
+    .scripture-ref {
+      background: var(--cream); border-left: 4px solid var(--gold);
+      padding: 1rem 1.25rem; border-radius: var(--radius-md);
+      font-family: 'Cormorant Garamond', serif; font-style: italic;
+      color: var(--navy); margin: 1.5rem 0; line-height: 1.75;
+    }
+
+    .scripture-ref strong {
+      display: block; font-family: 'DM Mono', monospace;
+      font-style: normal; font-size: 0.8rem; letter-spacing: 0.1em;
+      color: var(--gold); margin-bottom: 0.5rem; text-transform: uppercase;
+    }
+
+    .belief-list {
+      list-style: none; margin: 1rem 0;
+    }
+
+    .belief-list li {
+      padding-left: 1.75rem; margin-bottom: 0.8rem;
+      color: var(--gray-700); font-size: 0.98rem; line-height: 1.7;
+      position: relative;
+    }
+
+    .belief-list li::before {
+      content: '✦'; position: absolute; left: 0; color: var(--gold);
+      font-size: 0.8rem;
+    }
+
+    .modal-actions {
+      display: flex; gap: 1rem; margin-top: 2rem; padding-top: 2rem;
+      border-top: 1px solid var(--gray-200);
+    }
+
+    .modal-actions .btn { flex: 1; text-align: center; }
+
+    /* ── CATEGORIES SECTION ── */
+    .beliefs-categories {
+      padding: 5rem; background: var(--navy);
+      position: relative; overflow: hidden;
+    }
+
+    .beliefs-categories::before {
+      content: ''; position: absolute; bottom: -20%; right: -10%;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(26,95,212,0.12) 0%, transparent 68%);
+      pointer-events: none;
+    }
+
+    .categories-header {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      flex-wrap: wrap; gap: 2rem; margin-bottom: 4rem;
+      position: relative; z-index: 2;
+    }
+
+    .categories-header h2 {
+      font-family: 'Cormorant Garamond', serif; font-size: 2.2rem;
+      color: var(--white);
+    }
+
+    .categories-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem; position: relative; z-index: 2;
+    }
+
+    .category-box {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-lg); padding: 2rem;
+      transition: var(--transition);
+    }
+
+    .category-box:hover {
+      background: rgba(255,255,255,0.08); border-color: rgba(201,168,76,0.3);
+      transform: translateY(-4px);
+    }
+
+    .category-icon {
+      width: 44px; height: 44px; background: rgba(26,95,212,0.22);
+      border-radius: 12px; display: flex; align-items: center;
+      justify-content: center; margin-bottom: 1rem;
+    }
+
+    .category-icon svg {
+      width: 22px; height: 22px; stroke: var(--blue-light); fill: none; stroke-width: 1.8;
+    }
+
+    .category-box h3 {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.25rem;
+      color: var(--white); margin-bottom: 0.75rem;
+    }
+
+    .category-box p {
+      color: rgba(255,255,255,0.55); font-size: 0.9rem; line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .category-count {
+      font-family: 'DM Mono', monospace; font-size: 0.65rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ── CTA SECTION ── */
+    .beliefs-cta {
+      padding: 6rem 5rem; background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, var(--navy-soft) 100%);
+      text-align: center; position: relative; overflow: hidden;
+    }
+
+    .beliefs-cta::after {
+      content: ''; position: absolute; top: -20%; right: -10%;
+      width: 700px; height: 700px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 68%);
+      pointer-events: none;
+    }
+
+    .beliefs-cta-content {
+      max-width: 700px; margin: 0 auto; position: relative; z-index: 2;
+    }
+
+    .beliefs-cta h2 {
+      font-family: 'Cormorant Garamond', serif; font-size: 2.2rem;
+      color: var(--white); margin-bottom: 1rem;
+    }
+
+    .beliefs-cta p {
+      color: rgba(255,255,255,0.65); font-size: 1.05rem;
+      line-height: 1.8; margin-bottom: 2rem;
+    }
+
+    .beliefs-cta-actions {
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .page-hero-content, .beliefs-controls, .beliefs-grid, .beliefs-categories, .beliefs-cta {
+        padding: 3rem;
+      }
+      .beliefs-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      }
+      .categories-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      }
+      header.site-header { padding: 0 1.5rem; }
+    }
+
+    @media (max-width: 768px) {
+      .page-hero-content { padding: 0 1.5rem 3rem; }
+      .page-hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
+      .beliefs-controls {
+        padding: 1.5rem; flex-direction: column; align-items: stretch;
+        gap: 1rem;
+      }
+      .beliefs-search { min-width: 100%; }
+      .beliefs-filters { justify-content: center; }
+      .beliefs-grid, .beliefs-categories, .beliefs-cta {
+        padding: 2rem 1.5rem;
+      }
+      .beliefs-grid {
+        grid-template-columns: 1fr;
+      }
+      .categories-grid {
+        grid-template-columns: 1fr;
+      }
+      .belief-modal-content {
+        padding: 2rem; max-height: calc(100vh - 4rem);
+      }
+      .modal-close {
+        width: 36px; height: 36px;
+      }
+      .modal-title-group h2 {
+        font-size: 1.5rem;
+      }
+      .beliefs-cta-actions {
+        flex-direction: column;
+      }
+      .beliefs-cta-actions .btn {
+        width: 100%;
+      }
+      .menu-toggle { display: flex; }
+      nav.primary-nav {
+        position: fixed; top: 76px; left: 0; right: 0;
+        background: rgba(5,14,31,0.98); backdrop-filter: blur(16px);
+        flex-direction: column; padding: 1.5rem; gap: 0.4rem;
+        transform: translateY(-110%); transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+        border-bottom: 1px solid rgba(255,255,255,0.06); overflow-y: auto;
+        max-height: calc(100vh - 76px);
+      }
+      nav.primary-nav.open { transform: translateY(0); }
+      .nav-item { width: 100%; }
+      .nav-item > a { width: 100%; padding: 0.75rem 1rem; }
+    }
+  </style>
 </head>
 <body>
-  <header class="site-header">
+
+  <!-- ════════════════════ HEADER ════════════════════ -->
+  <header class="site-header" id="site-header">
     <a class="logo-wrap" href="./index.html">
-      <svg class="logo-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2L4 9v14l12 7 12-7V9L16 2zm0 4.6l8 4.7v9.4l-8 4.7-8-4.7v-9.4l8-4.7zM16 11l-5 3v6l5 3 5-3v-6l-5-3z"></path></svg>
-      <div class="logo-text"><span class="church-name">CukSDA</span><span class="church-sub">Cooperative University SDA</span></div>
+      <svg class="logo-icon-adventist" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 210">
+        <g fill="none" fill-rule="evenodd">
+          <path fill="#FFFFFF" d="M106.924 171.313c0 .54.62.543.731 0 .824-3.998 2.075-6.663 4.03-9.25l-4.397.003c-.201 0-.364.162-.364.363v8.884zm31.611-55.503c.05 5.78-1.61 10.747-12.15 21.297l-8.336 8.338c-3.794 3.797-7.205 7.264-9.222 10.73h8.233l.974-.975 11.96-11.984c9.96-9.97 11.349-20.516 9.223-27.395-.181-.584-.687-.623-.682-.01zm-10.496 35.265l-9.99 10.008c-6.047 6.053-11.125 11.269-11.125 16.973l.006 1.588c0 .43.536.499.7.048 1.868-5.107 8.106-10.557 19.548-8.625 0 0 49.849 8.622 50.267 8.659.487.043.728-.437.414-.81-.189-.225-23.2-23.258-23.2-23.258l-26.62-4.583zm-36.062 10.988a.364.364 0 0 1-.364-.364v-5.163c0-.202.163-.364.364-.364l8.724.002c.201 0 .364-.163.364-.364-.023-4.637-3.515-7.788-17.508-5.35l-30.215 5.198s-23.012 23.033-23.2 23.258c-.315.373-.074.853.413.81.42-.037 50.267-8.66 50.267-8.66 11.443-1.931 17.681 3.52 19.548 8.626.164.45.701.383.701-.048l.001-17.218c0-.2-.163-.363-.364-.363h-8.731zm-13.928-72.16c-9.96 9.969-11.349 20.516-9.222 27.395.18.584.686.623.68.01-.05-5.78 1.612-10.746 12.151-21.296l22.721-22.735c6.047-6.054 11.125-11.27 11.125-16.973v-8.897c0-.542-.62-.544-.732 0-1.494 7.26-4.395 10.125-10.378 16.113L78.05 89.902zm37.477-26.933c0-.54-.62-.543-.732 0-1.494 7.261-4.388 10.17-10.37 16.16L80.56 102.993c-11.58 11.592-13.584 22.81-7.694 30.02.393.481.815.192.56-.388-3.895-8.819 5.443-18.17 9.889-22.62L104.401 88.9c6.047-6.053 11.125-11.269 11.125-16.973V62.97zm-34.311 55.008c-11.581 11.592-6.256 22.787.5 25.87.592.27.828-.211.374-.603-5.416-4.699-3.772-12.6 3.04-19.418l19.248-19.267c6.047-6.053 11.124-11.268 11.124-16.972v-8.896c0-.54-.62-.543-.73 0-1.495 7.259-4.39 10.112-10.373 16.1l-23.183 23.186zm25.688 37.771c0 .541.62.543.73 0 1.496-7.259 4.39-10.17 10.372-16.158l9.479-9.468c11.58-11.59 13.583-22.809 7.693-30.018-.393-.481-.815-.193-.558.387 3.893 8.819-5.444 18.169-9.89 22.62l-6.701 6.709c-6.048 6.052-11.125 11.267-11.125 16.971v8.957zm11.128-31.822c-5.983 5.988-8.879 8.841-10.373 16.101-.112.544-.731.542-.731 0v-8.896c0-5.703 5.077-10.92 11.125-16.972l4.862-4.868c6.813-6.82 8.457-14.719 3.04-19.418-.453-.392-.217-.874.376-.603 6.755 3.082 12.08 14.277.498 25.87l-8.797 8.786z"/>
+        </g>
+      </svg>
+      <div class="logo-text">
+        <span class="church-name">CukSDA</span>
+        <span class="church-sub">Cooperative University SDA</span>
+      </div>
     </a>
-    <nav class="primary-nav">
+
+    <nav class="primary-nav" id="primary-nav">
       <div class="nav-item"><a href="./index.html">Home</a></div>
       <div class="nav-item"><a href="./about.html">About</a></div>
       <div class="nav-item"><a href="./ministries.html">Ministries</a></div>
       <div class="nav-item"><a href="./events.html">Events</a></div>
-      <div class="nav-item"><a class="active" href="./beliefs.html" aria-current="page">Beliefs</a></div>
+      <div class="nav-item"><a href="./beliefs.html" class="active">Beliefs</a></div>
       <div class="nav-item"><a href="./sermons.html">Sermons</a></div>
       <div class="nav-item"><a href="./contact.html">Contact</a></div>
     </nav>
-    <button class="menu-toggle" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+
+    <button class="menu-toggle" id="menu-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
   </header>
 
+  <!-- ════════════════════ PAGE HERO ════════════════════ -->
+  <section class="page-hero">
+    <div class="page-hero-content">
+      <h1>28 Fundamental Beliefs</h1>
+      <p>The bedrock of our faith. Rooted in Scripture, these beliefs form the comprehensive biblical framework of the Seventh-day Adventist Church — covering God, salvation, the church, and Christian living.</p>
+    </div>
+  </section>
+
+  <!-- ════════════════════ SEARCH & FILTER ════════════════════ -->
+  <div class="beliefs-controls">
+    <div class="beliefs-search">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" id="beliefSearch" placeholder="Search beliefs by keyword..." aria-label="Search beliefs">
+    </div>
+    <div class="beliefs-filters">
+      <button class="filter-btn active" data-category="all">All</button>
+      <button class="filter-btn" data-category="God & Creation">God</button>
+      <button class="filter-btn" data-category="Salvation">Salvation</button>
+      <button class="filter-btn" data-category="The Church">Church</button>
+      <button class="filter-btn" data-category="Last Things">Last Things</button>
+    </div>
+  </div>
+
   <main>
-    <section class="page-hero">
-      <div class="page-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1519337265831-281ec6cc8514?w=1600&q=80');"></div>
-      <div class="page-hero-content">
-        <span class="page-hero-tag">Core Beliefs</span>
-        <h1>Faith anchored in Scripture.</h1>
-        <p>Our convictions are shaped by the Bible, the historic Adventist message, and a commitment to share hope with every student.</p>
+
+    <!-- ════════════════════ BELIEFS GRID ════════════════════ -->
+    <section class="beliefs-grid" id="beliefsGrid">
+      <!-- Dynamically populated by JavaScript -->
+    </section>
+
+    <!-- ════════════════════ BELIEF MODAL ════════════════════ -->
+    <div class="belief-modal" id="beliefModal">
+      <div class="belief-modal-content">
+        <button class="modal-close" id="modalClose" aria-label="Close">
+          <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <div class="modal-header">
+          <div class="modal-icon" id="modalIcon"></div>
+          <div class="modal-title-group">
+            <h2 id="modalTitle"></h2>
+            <span class="belief-category" id="modalCategory"></span>
+          </div>
+        </div>
+        <div class="modal-divider"></div>
+        <div class="modal-body" id="modalBody"></div>
+        <div class="modal-actions">
+          <a href="./contact.html" class="btn btn-primary">Prayer Request</a>
+          <button class="btn btn-outline-dark" onclick="printBelief()">Print Belief</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════ CATEGORIES ════════════════════ -->
+    <section class="beliefs-categories">
+      <div class="categories-header">
+        <h2>Organized by Theme</h2>
+        <p style="color: rgba(255,255,255,0.65); max-width: 400px;">Our beliefs are organized into five main themes covering the whole spectrum of Christian faith and practice.</p>
+      </div>
+      <div class="categories-grid">
+        <div class="category-box">
+          <div class="category-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 2a10 10 0 0 1 10 10"/></svg>
+          </div>
+          <h3>God & Creation</h3>
+          <p>Beliefs 1–4: The foundation of our faith in the eternal God, the Trinity, and creation.</p>
+          <div class="category-count">4 Beliefs</div>
+        </div>
+        <div class="category-box">
+          <div class="category-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-7 6.87.17 7.86L12 19.77l-5.17 3.23.17-7.86-7-6.87 6.91-1.01L12 2z"/></svg>
+          </div>
+          <h3>Salvation</h3>
+          <p>Beliefs 5–10: The redemptive work of Christ, atonement, and grace.</p>
+          <div class="category-count">6 Beliefs</div>
+        </div>
+        <div class="category-box">
+          <div class="category-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          </div>
+          <h3>The Church</h3>
+          <p>Beliefs 11–19: Community, leadership, spiritual gifts, and church organization.</p>
+          <div class="category-count">9 Beliefs</div>
+        </div>
+        <div class="category-box">
+          <div class="category-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><line x1="4" y1="4" x2="20" y2="20"/></svg>
+          </div>
+          <h3>Christian Living</h3>
+          <p>Beliefs 20–27: How we live out our faith through obedience and stewardship.</p>
+          <div class="category-count">8 Beliefs</div>
+        </div>
+        <div class="category-box">
+          <div class="category-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          </div>
+          <h3>Last Things</h3>
+          <p>Belief 28: The hope of the new earth and the promise of eternal life.</p>
+          <div class="category-count">1 Belief</div>
+        </div>
       </div>
     </section>
 
-    <section class="page-content">
-      <div class="section-block">
-        <span class="section-tag">Convictions</span>
-        <h2 class="section-title">Rooted in the Bible and Adventist truth.</h2>
-        <p>We seek to understand God’s Word, honor the Sabbath, and live with hope for the second coming of Christ.</p>
-      </div>
-
-      <div class="beliefs-grid page-beliefs-grid">
-        <article class="belief-card"><div class="belief-num">01</div><h3>The Bible</h3><p>The Bible is the inspired Word of God and the foundation for faith and practice.</p></article>
-        <article class="belief-card"><div class="belief-num">02</div><h3>The Sabbath</h3><p>Saturday is celebrated as a day of rest, worship, and spiritual renewal.</p></article>
-        <article class="belief-card"><div class="belief-num">03</div><h3>Christ’s Ministry</h3><p>Jesus is our Savior, Redeemer, and Lord, fully God and fully human.</p></article>
-        <article class="belief-card"><div class="belief-num">04</div><h3>Salvation</h3><p>Grace through faith in Christ gives assurance, forgiveness, and new life.</p></article>
-        <article class="belief-card"><div class="belief-num">05</div><h3>Second Coming</h3><p>We believe Jesus will return visibly and that this hope shapes how we live today.</p></article>
-        <article class="belief-card"><div class="belief-num">06</div><h3>Mission</h3><p>God calls us to share the gospel through worship, service, and loving witness.</p></article>
-      </div>
-
-      <div class="split-grid">
-        <div>
-          <span class="section-tag">Practice</span>
-          <h3 class="section-heading">Living faith with clarity and compassion.</h3>
-          <p>Our beliefs guide worship, discipleship, community care, and how we engage with life on campus and beyond.</p>
+    <!-- ════════════════════ CTA SECTION ════════════════════ -->
+    <section class="beliefs-cta">
+      <div class="beliefs-cta-content">
+        <h2>Explore Your Questions</h2>
+        <p>Have questions about what we believe? Our pastoral team is ready to discuss, listen, and journey with you. Reach out anytime.</p>
+        <div class="beliefs-cta-actions">
+          <a href="./contact.html" class="btn btn-gold">Ask a Question</a>
+          <a href="./contact.html" class="btn btn-outline" style="border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.85);">Schedule Conversation</a>
         </div>
-        <div class="info-card large-card">
-          <h4>Find strength in scripture</h4>
-          <p>Every gathering at CukSDA honors the Bible as our source of truth and the life-changing message of Jesus Christ.</p>
-        </div>
-      </div>
-
-      <div class="button-row">
-        <a href="./sermons.html" class="btn btn-primary">Listen to Sermons</a>
-        <a href="./contact.html" class="btn btn-outline">Request Prayer</a>
       </div>
     </section>
+
   </main>
 
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <div class="logo-wrap">
-          <svg class="logo-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2L4 9v14l12 7 12-7V9L16 2zm0 4.6l8 4.7v9.4l-8 4.7-8-4.7v-9.4l8-4.7zM16 11l-5 3v6l5 3 5-3v-6l-5-3z"></path></svg>
-          <div class="logo-text"><span class="church-name">CukSDA</span><span class="church-sub">Cooperative University SDA</span></div>
+  <script>
+    // ── Beliefs Data ──
+    const beliefs = [
+      {
+        number: 1,
+        title: "The Holy Scriptures",
+        category: "God & Creation",
+        icon: "📖",
+        summary: "The 66 books of the Bible are the inspired, inerrant Word of God.",
+        content: `
+          <h3>What We Believe</h3>
+          <p>The Bible is God's written revelation to humanity. The 66 canonical books of the Old and New Testaments are the authoritative Scripture and the only rule of faith and practice for believers.</p>
+          <scripture-ref><strong>Key Scripture</strong>2 Timothy 3:16 — "All Scripture is God-breathed and is useful for teaching, rebuking, correcting and training in righteousness."</scripture-ref>
+          <h3>Why It Matters</h3>
+          <p>The authority of Scripture forms the foundation for all other beliefs. As we read and study the Bible, we encounter God's character and His will for our lives. The Word of God is living and powerful, transforming hearts and minds.</p>
+          <h3>Key Points</h3>
+          <ul class="belief-list">
+            <li>Scripture is the ultimate authority in matters of faith and doctrine</li>
+            <li>God inspired human writers to communicate His truth</li>
+            <li>The Bible reveals God's love and plan of salvation</li>
+            <li>Individual believers have the right to interpret Scripture personally</li>
+          </ul>
+        `
+      },
+      {
+        number: 2,
+        title: "The Godhead",
+        category: "God & Creation",
+        icon: "👑",
+        summary: "The Godhead consists of the eternal Father, the Son, and the Holy Spirit.",
+        content: `
+          <h3>What We Believe</h3>
+          <p>One God exists as Father, Son, and Holy Ghost—three co-eternal, co-equal personalities. They are one in essence, character, purpose, and power, though distinct in function.</p>
+          <scripture-ref><strong>Key Scripture</strong>1 John 5:7 — "For there are three that testify in heaven: the Father, the Word and the Holy Spirit, and these three are one."</scripture-ref>
+          <h3>Why It Matters</h3>
+          <p>The Trinity reveals that God is fundamentally relational and perfectly unified. Each member of the Godhead plays a distinct role in creation, redemption, and the outworking of God's purposes. Understanding the Trinity deepens our worship and comprehension of God's nature.</p>
+          <h3>Key Points</h3>
+          <ul class="belief-list">
+            <li>The Father, Son, and Holy Spirit are eternal and co-equal</li>
+            <li>They operate in perfect unity of purpose and action</li>
+            <li>Each has distinct functions in the work of salvation and creation</li>
+            <li>The Trinity is revealed throughout Scripture</li>
+          </ul>
+        `
+      },
+      {
+        number: 3,
+        title: "God the Father",
+        category: "God & Creation",
+        icon: "⛪",
+        summary: "God the Father is the eternal, all-powerful Creator of all things.",
+        content: `
+          <h3>What We Believe</h3>
+          <p>God the Father is the omnipotent, omniscient Creator. He is loving, merciful, and just. His existence is eternal, and His character is the standard of all righteousness. He sustains all things by His power.</p>
+          <scripture-ref><strong>Key Scripture</strong>Genesis 1:1 — "In the beginning God created the heavens and the earth." Psalm 90:2 — "Before the mountains were born or you brought forth the whole world, from everlasting to everlasting you are God."</scripture-ref>
+          <h3>Why It Matters</h3>
+          <p>Recognizing God the Father as the all-powerful Creator affirms His supremacy and our place in His creation. His character of love and justice provides the foundation for how we relate to Him and to one another.</p>
+          <h3>Key Points</h3>
+          <ul class="belief-list">
+            <li>God is eternal, all-knowing, and all-powerful</li>
+            <li>He is the Creator and Sustainer of all things</li>
+            <li>God's character combines perfect justice with infinite mercy</li>
+            <li>He governs the universe with wisdom and love</li>
+          </ul>
+        `
+      },
+      {
+        number: 4,
+        title: "The Creation",
+        category: "God & Creation",
+        icon: "🌍",
+        summary: "God created all things in six literal days and rested on the seventh.",
+        content: `
+          <h3>What We Believe</h3>
+          <p>God created all things by His spoken word and in six literal days. He rested on the seventh day, sanctifying it as a day of rest for His creation. The origin of sin is found in the fall of Lucifer and humanity's disobedience.</p>
+          <scripture-ref><strong>Key Scripture</strong>Genesis 2:1–3 — "Thus the heavens and the earth were completed in all their vast array. By the seventh day God had finished the work he had been doing; so on the seventh day he rested from all his work. And God blessed the seventh day and made it holy."</scripture-ref>
+          <h3>Why It Matters</h3>
+          <p>Creation affirms God's power and purpose. The Sabbath, rooted in creation, becomes God's gift to humanity—a day set apart for rest, worship, and communion with our Creator.</p>
+          <h3>Key Points</h3>
+          <ul class="belief-list">
+            <li>God spoke all creation into existence in six literal days</li>
+            <li>Humanity was created in the image of God</li>
+            <li>The Sabbath was established at creation as a holy day of rest</li>
+            <li>Sin entered the world through human disobedience</li>
+          </ul>
+        `
+      },
+      {
+        number: 5,
+        title: "The Nature of Humanity",
+        category: "Salvation",
+        icon: "👤",
+        summary: "Humanity was created in God's image but fell into sin, becoming separated from God.",
+        content: `
+          <h3>What We Believe</h3>
+          <p>Humans were created in the image of God and given the ability to choose. Through Adam's sin, all humanity inherited sinful tendencies and are separated from God's presence. This separation is called spiritual death.</p>
+          <scripture-ref><strong>Key Scripture</strong>Genesis 1:27 — "So God created mankind in his own image, in the image of God he created them; male and female he created them." Romans 3:23 — "All have sinned and fall short of the glory of God."</scripture-ref>
+          <h3>Why It Matters</h3>
+          <p>Understanding that we are created in God's image gives us inherent worth and dignity. Recognizing our sinfulness points us to our need for a Savior and God's saving grace.</p>
+          <h3>Key Points</h3>
+          <ul class="belief-list">
+            <li>Humans were created in God's image with the power of choice</li>
+            <li>Sin separated us from God and brought spiritual death</li>
+            <li>Every person has inherited sinful tendencies</li>
+            <li>Yet God's image in us remains and can be restored through redemption</li>
+          </ul>
+        `
+      },
+      {
+        number: 6,
+        title: "The Incarnation of Christ",
+        category: "Salvation",
+        icon: "✝️",
+        summary: "Jesus Christ, the Son of God, became incarnate in human form to accomplish our redemption.",
+        content: `
+          <h3>What We Believe</h3>
+          <p>Jesus Christ is God's only begotten Son. He was born of Mary, lived a sinless life, died for our sins, rose from the dead on the third day, and ascended to heaven where He intercedes for us.</p>
+          <scripture-ref><strong>Key Scripture</strong>John 3:16 — "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life." 1 Peter 2:21–24 — "Christ suffered for you, leaving you an example."</scripture-ref>
+          <h3>Why It Matters</h3>
+          <p>The incarnation, life, death, and resurrection of Christ are the central events of human history. Through His sacrifice, we are reconciled to God. His example shows us how to live; His death paid the penalty for our sins.</p>
+          <h3>Key Points</h3>
+          <ul class="belief-list">
+            <li>Jesus is fully divine and fully human</li>
+            <li>He lived a sinless life under all temptations</li>
+            <li>His death was a sacrifice for the sins of the world</li>
+            <li>His resurrection proves His divine power and our future resurrection</li>
+          </ul>
+        `
+      },
+      {
+        number: 7,
+        title: "The Atonement",
+        category: "Salvation",
+        icon: "❤️",
+        summary: "Christ's death is the atoning sacrifice for the sins of all humanity.",
+        content: `
+          <h3>What We Believe</h3>
+          <p>Christ's death on the cross is the infinite and eternal sacrifice for our sins. His perfect, sinless life and blood were shed as an atoning offering. Through His atonement, redemption, reconciliation, and justification are made possible for all who believe.</p>
+          <scripture-ref><strong>Key Scripture</strong>Romans 3:24–25 — "All have sinned and fall short of the glory of God, and all are justified freely by his grace through the redemption that came by Christ Jesus. God presented Christ as a sacrifice of atonement."</scripture-ref>
+          <h3>Why It Matters</h3>
+          <p>The atonement is the heart of the gospel. It demonstrates both God's justice and His mercy. Because Christ bore our sins, we are freed from guilt and shame and offered the gift of eternal life.</p>
+          <h3>Key Points</h3>
+          <ul class="belief-list">
+            <li>Christ's sacrifice is the only sufficient payment for sin</li>
+            <li>The atonement is infinite and sufficient for all humanity</li>
+            <li>Through atonement, God's law is upheld and sinners are forgiven</li>
+            <li>Our acceptance of this gift is by faith alone</li>
+          </ul>
+        `
+      },
+      {
+        number: 8,
+        title: "Salvation by Faith",
+        category: "Salvation",
+        icon: "🙏",
+        summary: "Salvation is by grace through faith in Christ and His sacrifice.",
+        content: `
+          <h3>What We Believe</h3>
+          <p>Salvation is a free gift of God's grace, offered to all. We appropriate this gift by faith—accepting Jesus Christ as our Savior and Lord. This involves repentance from sin and surrender to Christ's lordship.</p>
+          <scripture-ref><strong>Key Scripture</strong>Ephesians 2:8–9 — "For it is by grace you have been saved, through faith—and this is not from yourselves, it is the gift of God—not by works, so that no one can boast."</scripture-ref>
+          <h3>Why It Matters</h3>
+          <p>Salvation by grace through faith places the emphasis on God's character and generosity, not on human achievement. It opens salvation to all people, regardless of their background or past, and invites us into a personal, transformative relationship with Christ.</p>
+          <h3>Key Points</h3>
+          <ul class="belief-list">
+            <li>Salvation is God's gift, freely offered to all</li>
+            <li>We receive it through faith in Christ's atoning sacrifice</li>
+            <li>Repentance is essential—turning from sin and toward Christ</li>
+            <li>This relationship with Christ is personal and transformative</li>
+          </ul>
+        `
+      },
+      {
+        number: 9,
+        title: "Christ's Ministry in the Heavenly Sanctuary",
+        category: "Salvation",
+        icon: "⛩️",
+        summary: "Christ ministers in heaven on behalf of believers, interceding for us before God the Father.",
+        content: `
+          <h3>What We Believe</h3>
+          <p>After His ascension, Christ entered the heavenly sanctuary where He intercedes for us. He applies His sacrifice to each believer, empowers us with His Holy Spirit, and prepares a place for us in heaven.</p>
+          <scripture-ref><strong>Key Scripture</strong>Hebrews 9:24 — "For Christ did not enter a sanctuary made with human hands... he entered heaven itself, now to appear for us in God's presence." Romans 8:34 — "Christ Jesus... is at the right hand of God and is also interceding for us."</scripture-ref>
+          <h3>Why It Matters</h3>
+          <p>Christ's heavenly ministry assures us that our salvation is secure. He is not distant—He actively represents us before God, applies His blood to our sins, and sustains us in our faith journey.</p>
+          <h3>Key Points</h3>
+          <ul class="belief-list">
+            <li>Christ ascended to the heavenly sanctuary to minister for us</li>
+            <li>He intercedes with the Father on behalf of believers</li>
+            <li>His ministry addresses our past, present, and future needs</li>
+            <li>He prepares an eternal home for those who believe</li>
+          </ul>
+        `
+      },
+      {
+        number: 10,
+        title: "The Experience of Salvation",
+        category: "Salvation",
+        icon: "🌟",
+        summary: "Salvation is experienced through conversion, adoption, justification, and sanctification.",
+        content: `
+          <h3>What We Believe</h3>
+          <p>The experience of salvation includes conversion (being born again through the Holy Spirit), adoption as children of God, justification (being declared righteous), and sanctification (being made holy through Christ's character formation in us).</p>
+          <scripture-ref><strong>Key Scripture</strong>2 Corinthians 5:17 — "Therefore, if anyone is in Christ, the new creation has come: the old has gone, the new is here!" Romans 8:15–16 — "You received the Spirit of adoption... The Spirit himself testifies with our spirit that we are God's children."</scripture-ref>
+          <h3>Why It Matters</h3>
+          <p>These aspects of salvation work together to transform us completely. We are declared righteous, adopted into God's family, and progressively made more like Christ. This is not a one-time event but a dynamic, ongoing relationship.</p>
+          <h3>Key Points</h3>
+          <ul class="belief-list">
+            <li>Conversion involves turning from sin and committing to Christ</li>
+            <li>We are justified—declared righteous by faith</li>
+            <li>We are adopted as God's children with all the rights thereof</li>
+            <li>Sanctification is the lifelong process of growth in Christ-likeness</li>
+          </ul>
+        `
+      },
+      {
+        number: 11,
+        title: "Growing in Christ",
+        category: "The Church",
+        icon: "🌱",
+        summary: "Through the Holy Spirit's power, believers grow toward spiritual maturity and Christ-likeness.",
+        content: `
+          <h3>What We Believe</h3>
+          <p>Believers are called to grow in grace and spiritual maturity. The Holy Spirit empowers us to overcome sin, develop Christ-like character, and serve others. Growth is both individual and communal, nurtured through prayer, Scripture study, and church fellowship.</p>
+          <scripture-ref><strong>Key Scripture</strong>2 Peter 3:18 — "Grow in the grace and knowledge of our Lord and Savior Jesus Christ." Philippians 2:12–13 — "Work out your salvation... for it is God who works in you to will and to act in order to fulfill his good purpose."</scripture-ref>
+          <h3>Why It Matters</h3>
+          <p>Spiritual growth is the evidence of our relationship with Christ. As we are transformed from within, we reflect Christ's character to a watching world and become increasingly effective ambassadors for His kingdom.</p>
+          <h3>Key Points</h3>
+          <ul class="belief-list">
+            <li>The Holy Spirit empowers growth toward spiritual maturity</li>
+            <li>Growth involves overcoming sin and developing Christ-like virtues</li>
+            <li>Community and accountability are essential for growth</li>
+            <li>Growth is a lifelong process continuing until Christ's return</li>
+          </ul>
+        `
+      },
+      {
+        number: 12,
+        title: "The Church",
+        category: "The Church",
+        icon: "⛪",
+        summary: "The church is the redeemed community called to continue Christ's mission on earth.",
+        content: `
+          <h3>What We Believe</h3>
+          <p>The church is composed of all believers in Christ across all ages and cultures. It is Christ's body, called to proclaim His gospel, nurture believers, serve the needy, and prepare people for His return. The church is not a building but a living organism.</p>
+          <scripture-ref><strong>Key Scripture</strong>Ephesians 1:22–23 — "God placed all things under his feet and appointed him to be head over everything for the church, which is his body." Matthew 28:19–20 — "Go and make disciples of all nations... And surely I am with you always."</scripture-ref>
+          <h3>Why It Matters</h3>
+          <p>The church is God's chosen instrument to carry forward His mission. United in Christ, we support one another, grow together, and reach the world with the gospel. The church is both a haven of grace and an agent of transformation.</p>
+          <h3>Key Points</h3>
+          <ul class="belief-list">
+            <li>The church is Christ's body, composed of all believers</li>
+            <li>It is called to teach, witness, and serve</li>
+            <li>Church members support and strengthen one another</li>
+            <li>Unity in Christ transcends all earthly divisions</li>
+          </ul>
+        `
+      },
+      {
+        number: 13,
+        title: "The Remnant and Its Mission",
+        category: "The Church",
+        icon: "🚩",
+        summary: "A remnant church, keeping God's commandments and proclaiming the gospel, prepares the world for Christ's return.",
+        content: `
+          <h3>What We Believe</h3>
+          <p>Throughout history, God has maintained a faithful remnant. In the last days, a remnant church will emerge, keeping God's commandments and proclaiming the three angels' messages of Revelation 14, preparing the world for Christ's return.</p>
+          <scripture-ref><strong>Key Scripture</strong>Revelation 12:17 — "The dragon was enraged at the woman and went off to wage war against the rest of her offspring—those who keep God's commands and hold fast their testimony about Jesus." Revelation 14:12 — "This calls for patient endurance on the part of the Lord's people who keep his commands and remain faithful to Jesus."</scripture-ref>
+          <h3>Why It Matters</h3>
+          <p>As a remnant church, Adventists understand their identity and mission: to proclaim God's last-day message, call the world to repentance, and prepare people to meet Jesus. We are not seeking worldly prominence but faithfulness to God's Word.</p>
+          <h3>Key Points</h3>
+          <ul class="belief-list">
+            <li>A faithful remnant maintains God's standards in every age</li>
+            <li>In the last days, this remnant proclaims the three angels' messages</li>
+            <li>They keep all God's commandments, including the Sabbath</li>
+            <li>Their mission is to prepare the world for Christ's return</li>
+          </ul>
+        `
+      },
+      {
+        number: 14,
+        title: "Unity in the Body of Christ",
+        category: "The Church",
+        icon: "🤝",
+        summary: "In Christ, barriers are broken and all believers are united as one body, rich in diversity.",
+        content: `
+          <h3>What We Believe</h3>
+          <p>Every believer, regardless of ethnicity, nationality, gender, or cultural background, is equally valued in Christ. The church celebrates this diversity while maintaining unity around the truth of the gospel and the commandments of God.</p>
+          <scripture-ref><strong>Key Scripture</strong>Galatians 3:28 — "There is neither Jew nor Gentile, neither slave nor free, nor is there male and female, for you are all one in Christ Jesus." Ephesians 4:4–6 — "There is one body and one Spirit... one Lord, one faith, one baptism; one God and Father of all."</scripture-ref>
+          <h3>Why It Matters</h3>
+          <p>The principle of unity is revolutionary—Christ's death breaks down the walls that divide humanity. The church demonstrates that another world is possible, where barriers of prejudice, fear, and hatred fall away in the light of God's love.</p>
+          <h3>Key Points</h3>
+          <ul class="belief-list">
+            <li>All believers are equal in worth and dignity in Christ</li>
+            <li>The church welcomes and celebrates diversity</li>
+            <li>In Christ, no person is higher or lower, accepted or rejected</li>
+            <li>True unity is built on faith in Christ and God's truth</li>
+          </ul>
+        `
+      },
+      {
+        number: 15,
+        title: "Spiritual Gifts and Ministry",
+        category: "The Church",
+        icon: "🎁",
+        summary: "The Holy Spirit distributes spiritual gifts to equip every believer for ministry and service.",
+        content: `
+          <h3>What We Believe</h3>
+          <p>The Holy Spirit gives spiritual gifts to believers—both special and ordinary—to equip them for service in Christ's kingdom. Every member has gifts; the church is strengthened as all use their gifts in love and unity.</p>
+          <scripture-ref><strong>Key Scripture</strong>1 Corinthians 12:4–7 — "There are different kinds of gifts, but the same Spirit distributes them to each one, just as he determines... Now to each one the manifestation of the Spirit is given for the common good." 1 Peter 4:10 — "Each of you should use whatever gift you have received to serve others."</scripture-ref>
+          <h3>Why It Matters</h3>
+          <p>Spiritual gifts affirm that every believer is important and has a role to play. There is no hierarchy of importance—all gifts are necessary. As we discover and use our gifts, we experience fulfillment and contribute to the church's mission.</p>
+          <h3>Key Points</h3>
+          <ul class="belief-list">
+            <li>Every believer receives at least one spiritual gift</li>
+            <li>Gifts include both the miraculous and the practical</li>
+            <li>Gifts are given for service to others, not personal glory</li>
+            <li>The body of Christ is strengthened when all use their gifts</li>
+          </ul>
+        `
+      },
+      {
+        number: 16,
+        title: "The Law of God",
+        category: "The Church",
+        icon: "📜",
+        summary: "God's moral law, summarized in the Ten Commandments, is the standard of righteousness and obedience.",
+        content: `
+          <h3>What We Believe</h3>
+          <p>God's moral law, exemplified in the Ten Commandments, is the transcendent standard of righteousness and the test of obedience. It reveals God's character and condemns sin. The law cannot save us, but it shows us our need for grace and guides us in righteous living.</p>
+          <scripture-ref><strong>Key Scripture</strong>Romans 3:20 — "Through the law we become conscious of our sin." James 1:25 — "The man who looks intently into the perfect law that gives freedom... will be blessed in what he does." 1 John 5:3 — "This is love for God: to keep his commands."</scripture-ref>
+          <h3>Why It Matters</h3>
+          <p>God's law is not a burden but a gift of love. It protects us from self-destruction and calls us into harmony with God's character. For believers, obedience to the law flows from gratitude for salvation and love for God.</p>
+          <h3>Key Points</h3>
+          <ul class="belief-list">
+            <li>God's moral law reflects His perfect character</li>
+            <li>The law condemns sin but cannot save the sinner</li>
+            <li>Obedience to the law is a response of love, not legalism</li>
+            <li>The law was not abolished by Christ but fulfilled and inwardly written</li>
+          </ul>
+        `
+      },
+      {
+        number: 17,
+        title: "The Sabbath",
+        category: "The Church",
+        icon: "🕊️",
+        summary: "Saturday, the seventh day, is God's holy day—a sign of His creative power and our covenant with Him.",
+        content: `
+          <h3>What We Believe</h3>
+          <p>The Sabbath, Friday evening to Saturday evening, is God's holy day of rest. Established at creation and reaffirmed in the Ten Commandments, the Sabbath is a sign of our covenant relationship with God and a foretaste of eternal rest in His kingdom.</p>
+          <scripture-ref><strong>Key Scripture</strong>Exodus 20:8–11 — "Remember the Sabbath day by keeping it holy... For in six days the Lord made the heavens and the earth... but he rested on the seventh day." Mark 2:27–28 — "The Sabbath was made for man, not man for the Sabbath. So the Son of Man is Lord even of the Sabbath."</scripture-ref>
+          <h3>Why It Matters</h3>
+          <p>The Sabbath is not a burden but a blessing—a day set apart to rest from labor, connect with God, nurture family and community, and remember His creative and redeeming power. In our busy world, the Sabbath is a radical act of faith and freedom.</p>
+          <h3>Key Points</h3>
+          <ul class="belief-list">
+            <li>The Sabbath is the seventh day—Saturday—established at creation</li>
+            <li>It is a day of physical rest and spiritual renewal</li>
+            <li>The Sabbath is a sign of our covenant relationship with God</li>
+            <li>It points to the eternal rest God will give to His redeemed people</li>
+          </ul>
+        `
+      },
+      {
+        number: 18,
+        title: "Stewardship",
+        category: "Christian Living",
+        icon: "🤲",
+        summary: "All we have belongs to God. We are stewards called to manage His gifts wisely and return tithes and offerings.",
+        content: `
+          <h3>What We Believe</h3>
+          <p>God is the owner of all creation; we are stewards of His gifts. Stewardship encompasses our time, talents, and treasure. As an act of worship and faith, believers return one-tenth of their income as tithe and give freewill offerings to support God's work.</p>
+          <scripture-ref><strong>Key Scripture</strong>Malachi 3:10 — "Bring the whole tithe into the storehouse... and see if I will not throw open the floodgates of heaven and pour out so much blessing that there will not be room enough to store it." 1 Corinthians 10:26 — "The earth is the Lord's, and everything in it."</scripture-ref>
+          <h3>Why It Matters</h3>
+          <p>Stewardship is about releasing our possessions to God and trusting His provision. When we tithe and give offerings, we acknowledge God's ownership, support the church's mission, and free ourselves from the slavery of materialism.</p>
+          <h3>Key Points</h3>
+          <ul class="belief-list">
+            <li>God is the owner of all; we are stewards</li>
+            <li>Tithe is ten percent of income returned to God's work</li>
+            <li>Offerings are given freely as an expression of love and support</li>
+            <li>Good stewardship extends to money, time, talents, and the environment</li>
+          </ul>
+        `
+      },
+      {
+        number: 19,
+        title: "Christian Behavior",
+        category: "Christian Living",
+        icon: "✨",
+        summary: "Believers are called to live pure, healthy lives as a reflection of Christ and a witness to the world.",
+        content: `
+          <h3>What We Believe</h3>
+          <p>Christian behavior reflects the transforming power of Christ. Believers abstain from alcohol, tobacco, narcotics, and other harmful substances. They are called to purity, integrity, and wholesome living that honors God and demonstrates the fruit of the Holy Spirit.</p>
+          <scripture-ref><strong>Key Scripture</strong>1 Corinthians 6:19–20 — "Do you not know that your bodies are temples of the Holy Spirit... You are not your own; you were bought at a price. Therefore honor God with your bodies." Philippians 4:8 — "Whatever is true, whatever is noble, whatever is right, whatever is pure, whatever is lovely, whatever is admirable—think about such things."</scripture-ref>
+          <h3>Why It Matters</h3>
+          <p>How we live is a powerful sermon. When we choose purity, health, and integrity, we demonstrate that Christ's claims on our lives are real and transformative. Our lifestyle becomes a testimony to God's grace.</p>
+          <h3>Key Points</h3>
+          <ul class="belief-list">
+            <li>The body is a temple of the Holy Spirit</li>
+            <li>Believers are called to abstain from harmful substances</li>
+            <li>Purity and integrity are expressions of devotion to Christ</li>
+            <li>Our lifestyle is a witness to the world's watching eyes</li>
+          </ul>
+        `
+      },
+      {
+        number: 20,
+        title: "Dress and Adornment",
+        category: "Christian Living",
+        icon: "👕",
+        summary: "Believers dress modestly and avoid adornment that reflects pride or worldly values.",
+        content: `
+          <h3>What We Believe</h3>
+          <p>Modest dress and simple adornment reflect inner spiritual transformation rather than outward display. Believers avoid dress, jewelry, and cosmetics that emphasize pride or appeal to worldly standards. True beauty comes from an inward, humble spirit.</p>
+          <scripture-ref><strong>Key Scripture</strong>1 Peter 3:3–4 — "Your beauty should not come from outward adornment... Rather, it should be that of your inner self, the unfading beauty of a gentle and quiet spirit, which is of great worth in God's sight." 1 Timothy 2:9–10 — "I also want the women to dress modestly, with decency and propriety, adorned with good deeds."</scripture-ref>
+          <h3>Why It Matters</h3>
+          <p>How we dress is a statement of values. Modest dress reflects our belief that our worth is found in Christ, not in external appearance. It also shows respect for others and maintains focus on the spiritual aspects of life.</p>
+          <h3>Key Points</h3>
+          <ul class="belief-list">
+            <li>Believers dress modestly to reflect inner spiritual character</li>
+            <li>Ostentatious jewelry and excessive adornment are avoided</li>
+            <li>True beauty is found in a gentle, humble spirit</li>
+            <li>Our appearance should honor God, not draw attention to ourselves</li>
+          </ul>
+        `
+      },
+      {
+        number: 21,
+        title: "Recreation and Entertainment",
+        category: "Christian Living",
+        icon: "🎮",
+        summary: "Believers choose recreation and entertainment that edify, not that which corrupts the mind or spirit.",
+        content: `
+          <h3>What We Believe</h3>
+          <p>Recreation is a God-given blessing meant to refresh and strengthen body and mind. However, believers are called to choose entertainment thoughtfully—avoiding media, games, and activities that glorify violence, sexual immorality, or that weaken spiritual sensitivity.</p>
+          <scripture-ref><strong>Key Scripture</strong>Philippians 4:8 — "Whatever is true, whatever is noble, whatever is right, whatever is pure, whatever is lovely, whatever is admirable—if anything is excellent or praiseworthy—think about such things." 1 John 2:15–16 — "Do not love the world or anything in the world... For everything in the world—the lust of the flesh, the lust of the eyes, and the pride of life—comes not from the Father but from the world."</scripture-ref>
+          <h3>Why It Matters</h3>
+          <p>Entertainment shapes our values and desires. By choosing wholesome recreation, we protect our minds and nurture our spiritual walk. What we fill our minds with ultimately influences our character and choices.</p>
+          <h3>Key Points</h3>
+          <ul class="belief-list">
+            <li>Recreation is valuable for physical and mental health</li>
+            <li>Believers are discerning about media and entertainment choices</li>
+            <li>We avoid entertainment that glorifies sin or violence</li>
+            <li>Our choices should nurture, not damage, our spiritual walk</li>
+          </ul>
+        `
+      },
+      {
+        number: 22,
+        title: "Relationships and Marriage",
+        category: "Christian Living",
+        icon: "💍",
+        summary: "Marriage is a sacred, lifelong covenant between one man and one woman, established by God.",
+        content: `
+          <h3>What We Believe</h3>
+          <p>Marriage is a sacred institution created by God. It is a covenant for life between one man and one woman. The marriage relationship reflects God's love and provides companionship, mutual support, and the foundation for family. Sexual relations are sacred within marriage.</p>
+          <scripture-ref><strong>Key Scripture</strong>Genesis 2:23–24 — "The man said, 'This is now bone of my bones and flesh of my flesh'... 'For this reason a man will leave his father and mother and be united to his wife, and they will become one flesh.'" Ephesians 5:25–27 — "Husbands, love your wives, just as Christ loved the church and gave himself up for her."</scripture-ref>
+          <h3>Why It Matters</h3>
+          <p>Marriage is a picture of Christ's love for the church—sacrificial, committed, and transformative. Within marriage, husbands and wives find companionship, accountability, and opportunity to grow in Christ together.</p>
+          <h3>Key Points</h3>
+          <ul class="belief-list">
+            <li>Marriage is a lifelong covenant before God</li>
+            <li>It is between one man and one woman</li>
+            <li>Both partners work toward unity and mutual support</li>
+            <li>Sexual relationship is sacred within marriage</li>
+          </ul>
+        `
+      },
+      {
+        number: 23,
+        title: "Christ's Ministry and Our Judgment",
+        category: "Christian Living",
+        icon: "⚖️",
+        summary: "Christ's heavenly judgment reviews each person's life and validates His redeeming work.",
+        content: `
+          <h3>What We Believe</h3>
+          <p>Christ began His investigative judgment in heaven in 1844 (according to the prophetic timeline of Daniel). Through this judgment, He reviews the lives of those who have claimed His salvation, vindicating those who are truly His and preparing the way for His return and the final judgment.</p>
+          <scripture-ref><strong>Key Scripture</strong>Daniel 8:14 — "He said to me, 'It will take 2,300 evenings and mornings; then the sanctuary will be reconsecrated.'" Revelation 14:7 — "Fear God and give him glory... Worship him who made the heavens, the earth, the sea and the springs of water." 1 Peter 4:17 — "For it is time for judgment to begin with God's household."</scripture-ref>
+          <h3>Why It Matters</h3>
+          <p>This understanding assures us that God takes our salvation seriously and that Christ is actively involved in our redemption. It encourages us to maintain integrity and faithfulness, knowing that our lives will be reviewed by a loving Judge.</p>
+          <h3>Key Points</h3>
+          <ul class="belief-list">
+            <li>Christ began a heavenly judgment in 1844 in preparation for His return</li>
+            <li>This judgment reviews the lives of those claiming Christ's salvation</li>
+            <li>It vindicates God's justice and mercy</li>
+            <li>The final judgment occurs after Christ's return for the righteous</li>
+          </ul>
+        `
+      },
+      {
+        number: 24,
+        title: "The Second Coming",
+        category: "Last Things",
+        icon: "☁️",
+        summary: "Jesus Christ will literally, personally, and visibly return to earth—the blessed hope of every believer.",
+        content: `
+          <h3>What We Believe</h3>
+          <p>Christ's literal, personal, visible return to earth is the grand climax of the gospel and the blessed hope of all believers. When He comes, the righteous dead will be raised and living believers transformed and taken to heaven. His return will end sin and suffering forever.</p>
+          <scripture-ref><strong>Key Scripture</strong>1 Thessalonians 4:16–17 — "For the Lord himself will come down from heaven, with a loud command, with the voice of the archangel and with the trumpet call of God, and the dead in Christ will rise first. After that, we who are still alive and are left will be caught up together with them in the clouds to meet the Lord in the air." Titus 2:13 — "We wait for the blessed hope—the appearing of the glory of our great God and Savior, Jesus Christ."</scripture-ref>
+          <h3>Why It Matters</h3>
+          <p>The second coming is not a distant, abstract promise—it is the ultimate hope and destination of all believers. It motivates us to live faithfully, share the gospel, and remain watchful. Christ's return will vindicate His kingship and end the reign of sin.</p>
+          <h3>Key Points</h3>
+          <ul class="belief-list">
+            <li>Christ will return literally, personally, and visibly</li>
+            <li>His coming will be glorious and unexpected—"as a thief in the night"</li>
+            <li>The righteous will be raised and transformed for eternity</li>
+            <li>The wicked will be destroyed and the earth renewed</li>
+          </ul>
+        `
+      },
+      {
+        number: 25,
+        title: "Death and Resurrection",
+        category: "Last Things",
+        icon: "🌅",
+        summary: "Death is the result of sin, but all who die in Christ will be raised to eternal life.",
+        content: `
+          <h3>What We Believe</h3>
+          <p>Death came through sin. When believers die, they sleep in Christ until He returns. In the resurrection, the dead in Christ will be raised first—their bodies reunited with their spirits—transformed and made immortal to live forever with Christ.</p>
+          <scripture-ref><strong>Key Scripture</strong>1 Corinthians 15:51–54 — "Listen, I tell you a mystery: We will not all sleep, but we will all be changed—in a flash, in the twinkling of an eye, at the last trumpet... 'Death has been swallowed up in victory.'" 1 Thessalonians 4:14 — "We believe that Jesus died and rose again, and so we believe that God will bring with Jesus those who have fallen asleep in him."</scripture-ref>
+          <h3>Why It Matters</h3>
+          <p>The promise of resurrection transforms how we view death. It is not the end but a sleep, a temporary separation from which Christ will awaken us. This hope brings comfort to grieving believers and assurance that death has no final victory.</p>
+          <h3>Key Points</h3>
+          <ul class="belief-list">
+            <li>Death is the consequence of sin but not final for believers</li>
+            <li>Believers sleep in Christ until the resurrection</li>
+            <li>In the resurrection, bodies and spirits are reunited</li>
+            <li>All believers will be made immortal and transformed to Christ's likeness</li>
+          </ul>
+        `
+      },
+      {
+        number: 26,
+        title: "The Millennium and the End of Evil",
+        category: "Last Things",
+        icon: "🔥",
+        summary: "At Christ's return, the righteous are taken to heaven for a thousand years while the earth lies desolate and Satan is bound.",
+        content: `
+          <h3>What We Believe</h3>
+          <p>When Christ returns, the righteous will be taken to heaven for the thousand-year period (the millennium). During this time, the earth will be desolate and Satan bound. After the millennium, Satan will be released, lead a final rebellion, and then be destroyed in the lake of fire—permanently ending sin and evil.</p>
+          <scripture-ref><strong>Key Scripture</strong>Revelation 20:1–7 — "And I saw an angel coming down out of heaven... He seized the dragon, that ancient serpent... and bound him for a thousand years." 2 Peter 3:10 — "But the day of the Lord will come like a thief. The heavens will disappear with a roar... the earth and everything done in it will be laid bare."</scripture-ref>
+          <h3>Why It Matters</h3>
+          <p>The promise that evil will be finally and eternally destroyed provides ultimate assurance that God's justice will prevail. No matter how evil advances in this age, it will not have the final word. Christ's kingdom will be established forever.</p>
+          <h3>Key Points</h3>
+          <ul class="belief-list">
+            <li>Christ returns to take the righteous to heaven</li>
+            <li>The earth lies desolate for a thousand years</li>
+            <li>Satan is bound and unable to tempt anyone during the millennium</li>
+            <li>After the millennium, Satan leads a final rebellion and is eternally destroyed</li>
+          </ul>
+        `
+      },
+      {
+        number: 27,
+        title: "The New Earth",
+        category: "Last Things",
+        icon: "🌳",
+        summary: "God will create a new earth where the redeemed will live forever in harmony with God and one another.",
+        content: `
+          <h3>What We Believe</h3>
+          <p>God will create a new earth, more beautiful than the original. The redeemed from all ages will live there forever with God, Jesus, and the Holy Spirit. There will be no pain, suffering, sickness, or death. The tree of life will grow, and the Lamb of God will reign eternally.</p>
+          <scripture-ref><strong>Key Scripture</strong>Revelation 21:3–4 — "And I heard a loud voice from the throne saying, 'Now the dwelling of God is with men, and he will dwell with them. They will be his people, and God himself will be with them and be their God. He will wipe every tear from their eyes. There will be no more death or mourning or crying or pain, for the old order of things has passed away.'" Isaiah 65:17 — "See, I will create new heavens and a new earth."</scripture-ref>
+          <h3>Why It Matters</h3>
+          <p>The new earth is the ultimate goal of salvation—restored communion with God, redeemed relationships, meaningful work, and eternal joy. This hope sustains believers through trials and gives ultimate meaning to our earthly struggles. We will spend eternity in a world without sin, suffering, or separation.</p>
+          <h3>Key Points</h3>
+          <ul class="belief-list">
+            <li>God will create a new earth more beautiful than the original</li>
+            <li>The redeemed will live forever with God and one another</li>
+            <li>No pain, sickness, suffering, or death will exist</li>
+            <li>Christ will reign eternally, and creation will be fully restored</li>
+          </ul>
+        `
+      },
+      {
+        number: 28,
+        title: "Bible Study and Prayer",
+        category: "Christian Living",
+        icon: "📚",
+        summary: "Believers are called to study Scripture and pray daily, growing in knowledge of God and deepening their relationship with Him.",
+        content: `
+          <h3>What We Believe</h3>
+          <p>Bible study and prayer are essential spiritual practices. Regular engagement with Scripture—whether individual or communal—deepens understanding of God's will. Prayer is direct communication with God, bringing our needs, thanksgivings, and intercessions before Him.</p>
+          <scripture-ref><strong>Key Scripture</strong>2 Timothy 2:15 — "Present yourself to God as one approved, a worker who... correctly handles the word of truth." Philippians 4:6–7 — "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God. And the peace of God, which transcends all understanding, will guard your hearts and your minds in Christ Jesus."</scripture-ref>
+          <h3>Why It Matters</h3>
+          <p>Prayer and Bible study are the primary means of deepening our relationship with God. Through Scripture, God speaks to us; through prayer, we speak to Him. These practices sustain our faith, provide guidance, and keep us centered on Christ.</p>
+          <h3>Key Points</h3>
+          <ul class="belief-list">
+            <li>Daily Bible study connects us to God's Word and will</li>
+            <li>Prayer is intimate communication with our heavenly Father</li>
+            <li>Both individual and corporate prayer are vital</li>
+            <li>These disciplines shape our character and strengthen our faith</li>
+          </ul>
+        `
+      }
+    ];
+
+    // ── State ──
+    let currentFilter = 'all';
+    let currentSearch = '';
+
+    // ── Initialize ──
+    function init() {
+      renderBeliefs();
+      setupEventListeners();
+      setupHeaderScroll();
+      setupMobileMenu();
+    }
+
+    function renderBeliefs() {
+      const grid = document.getElementById('beliefsGrid');
+      const filtered = beliefs.filter(b => {
+        const matchesCategory = currentFilter === 'all' || b.category === currentFilter;
+        const matchesSearch = b.title.toLowerCase().includes(currentSearch.toLowerCase()) ||
+                             b.summary.toLowerCase().includes(currentSearch.toLowerCase());
+        return matchesCategory && matchesSearch;
+      });
+
+      grid.innerHTML = filtered.map(belief => `
+        <div class="belief-card" onclick="openBelief(${belief.number - 1})">
+          <div class="belief-number">Belief ${belief.number}</div>
+          <div class="belief-title">${belief.title}</div>
+          <div class="belief-summary">${belief.summary}</div>
+          <div class="belief-category">${belief.category}</div>
         </div>
-        <p>A student-led Adventist fellowship at the Cooperative University of Kenya, growing in faith, friendship, and service.</p>
-      </div>
-      <div class="footer-col"><h5>Explore</h5><ul><li><a href="./about.html">About Us</a></li><li><a href="./ministries.html">Ministries</a></li><li><a href="./events.html">Events</a></li><li><a href="./beliefs.html">Beliefs</a></li><li><a href="./sermons.html">Sermons</a></li></ul></div>
-      <div class="footer-col"><h5>Connect</h5><ul><li><a href="./contact.html">Contact Us</a></li><li><a href="./contact.html">Prayer Request</a></li><li><a href="./contact.html">Plan a Visit</a></li><li><a href="./contact.html">Volunteer</a></li></ul></div>
-      <div class="footer-col"><h5>Find Us</h5><ul><li><a href="#">CUK Main Campus</a></li><li><a href="#">Karen, Nairobi</a></li><li><a href="mailto:hello@cuksda.org">hello@cuksda.org</a></li><li><a href="tel:+254700000000">+254 700 000 000</a></li></ul></div>
-    </div>
-    <div class="footer-bottom"><p>© 2026 CukSDA — Cooperative University SDA Community. All rights reserved.</p><div class="sda-badge"><svg viewBox="0 0 24 24"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z"></path></svg><span>Seventh-day Adventist Church</span></div></div>
-  </footer>
+      `).join('');
+
+      // Fade-in animation
+      const cards = document.querySelectorAll('.belief-card');
+      cards.forEach((card, i) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = `opacity 0.5s ${i * 0.05}s ease, transform 0.5s ${i * 0.05}s ease`;
+        setTimeout(() => {
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        }, 10);
+      });
+    }
+
+    function openBelief(index) {
+      const belief = beliefs[index];
+      const modal = document.getElementById('beliefModal');
+      document.getElementById('modalTitle').textContent = belief.title;
+      document.getElementById('modalCategory').textContent = belief.category;
+      document.getElementById('modalBody').innerHTML = belief.content;
+      document.getElementById('modalIcon').innerHTML = `
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="12" r="10"/><polyline points="12 8 12 12 15 14"/></svg>
+      `;
+      modal.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeBelief() {
+      document.getElementById('beliefModal').classList.remove('show');
+      document.body.style.overflow = 'auto';
+    }
+
+    function setupEventListeners() {
+      document.getElementById('beliefSearch').addEventListener('input', e => {
+        currentSearch = e.target.value;
+        renderBeliefs();
+      });
+
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', e => {
+          document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentFilter = btn.dataset.category;
+          renderBeliefs();
+        });
+      });
+
+      document.getElementById('modalClose').addEventListener('click', closeBelief);
+      document.getElementById('beliefModal').addEventListener('click', e => {
+        if (e.target.id === 'beliefModal') closeBelief();
+      });
+
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') closeBelief();
+      });
+    }
+
+    function setupHeaderScroll() {
+      const header = document.getElementById('site-header');
+      window.addEventListener('scroll', () => {
+        header.classList.toggle('scrolled', window.scrollY > 30);
+      });
+    }
+
+    function setupMobileMenu() {
+      const toggle = document.getElementById('menu-toggle');
+      const nav = document.getElementById('primary-nav');
+      toggle?.addEventListener('click', () => {
+        nav.classList.toggle('open');
+      });
+    }
+
+    function printBelief() {
+      window.print();
+    }
+
+    // ── Start ──
+    init();
+  </script>
 </body>
 </html>
