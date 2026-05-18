@@ -3,88 +3,1768 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#050e1f">
-  <title>Events — CukSDA</title>
-  <meta name="description" content="See upcoming events at CukSDA, including worship services, prayer nights, and campus outreach programs.">
-  <link rel="stylesheet" href="./style.css">
-  <script src="./script.js" defer></script>
+  <title>Events · CukSDA</title>
+  <meta name="description" content="Upcoming events, Sabbath programs, and community gatherings at the CukSDA community — Cooperative University of Kenya, Karen Campus.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: 'DM Sans', sans-serif; color: #0f172a; background: #fff; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    :root {
+      --navy: #050e1f;
+      --navy-mid: #0a1e3d;
+      --navy-soft: #102952;
+      --blue: #1a5fd4;
+      --blue-mid: #1448a0;
+      --blue-light: #7aadff;
+      --blue-pale: #dbeafe;
+      --gold: #c9a84c;
+      --gold-light: #e4c97a;
+      --gold-dim: #7a5e1e;
+      --cream: #faf8f4;
+      --cream-dark: #f0ece3;
+      --white: #ffffff;
+      --gray-100: #f4f4f5;
+      --gray-200: #e4e4e7;
+      --gray-400: #a1a1aa;
+      --gray-500: #71717a;
+      --gray-700: #3f3f46;
+      --text: #0f172a;
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 40px;
+      --shadow-sm: 0 2px 12px rgba(0,0,0,0.06);
+      --shadow-md: 0 8px 32px rgba(0,0,0,0.10);
+      --shadow-lg: 0 20px 60px rgba(0,0,0,0.15);
+      --transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 0.82rem;
+      letter-spacing: 0.04em; text-transform: uppercase;
+      padding: 0.85rem 2rem; border-radius: var(--radius-xl);
+      border: 2px solid transparent; cursor: pointer; transition: var(--transition);
+    }
+    .btn svg { width: 16px; height: 16px; }
+    .btn-gold { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+    .btn-gold:hover { background: var(--gold-light); border-color: var(--gold-light); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(201,168,76,0.35); }
+    .btn-outline { background: transparent; color: var(--white); border-color: rgba(255,255,255,0.45); }
+    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.1); }
+    .btn-outline-dark { background: transparent; color: var(--navy); border-color: var(--navy); }
+    .btn-outline-dark:hover { background: var(--navy); color: var(--white); }
+    .btn-primary { background: var(--blue); color: var(--white); border-color: var(--blue); }
+    .btn-primary:hover { background: var(--blue-mid); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(26,95,212,0.35); }
+    .btn-sm { padding: 0.6rem 1.25rem; font-size: 0.74rem; }
+
+    /* ── SECTION ATOMS ── */
+    .section-tag { font-family: 'DM Mono', monospace; font-weight: 500; font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+    .section-tag::after { content: ''; width: 36px; height: 1.5px; background: currentColor; flex-shrink: 0; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.12; color: var(--navy); }
+    .section-subtitle { color: var(--gray-500); font-size: 1rem; line-height: 1.8; max-width: 620px; margin-top: 1rem; font-weight: 400; }
+
+    /* ── HEADER ── */
+    header.site-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      height: 76px; display: flex; align-items: center; justify-content: space-between;
+      padding: 0 3rem;
+      background: linear-gradient(180deg,rgba(5,14,31,0.95) 0%,rgba(5,14,31,0.6) 100%);
+      transition: background 0.4s, box-shadow 0.4s;
+    }
+    header.site-header.scrolled {
+      background: rgba(5,14,31,0.97);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.06), 0 4px 24px rgba(0,0,0,0.4);
+      backdrop-filter: blur(12px);
+    }
+    .logo-wrap { display: flex; align-items: center; gap: 0.7rem; }
+    .logo-icon-adventist { width: 42px; height: 42px; flex-shrink: 0; }
+    .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+    .logo-text .church-name { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 1.05rem; color: var(--white); letter-spacing: 0.04em; text-transform: uppercase; }
+    .logo-text .church-sub { font-family: 'DM Mono', monospace; font-size: 0.58rem; color: var(--blue-light); letter-spacing: 0.14em; text-transform: uppercase; }
+    nav.primary-nav { display: flex; align-items: center; gap: 0.2rem; }
+    .nav-item { position: relative; }
+    .nav-item > a, .nav-item > button {
+      color: rgba(255,255,255,0.82); font-size: 0.8rem; font-weight: 500;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      padding: 0.5rem 0.85rem; border-radius: 6px; transition: var(--transition);
+      display: flex; align-items: center; gap: 0.3rem;
+      background: none; border: none; cursor: pointer; font-family: inherit;
+    }
+    .nav-item > a:hover, .nav-item > a.active, .nav-item > button:hover { color: var(--white); background: rgba(255,255,255,0.09); }
+    .nav-item > a.active::after { content: ''; position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%); width: 16px; height: 2px; background: var(--gold); border-radius: 2px; }
+    .nav-item .chevron { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2.5; transition: transform 0.2s ease; opacity: 0.6; }
+    .nav-item:hover .chevron { transform: rotate(180deg); opacity: 1; }
+    .dropdown {
+      position: absolute; top: calc(100% + 8px); left: 50%;
+      transform: translateX(-50%) translateY(-10px);
+      min-width: 220px; background: rgba(5,14,31,0.98);
+      backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-md); padding: 0.75rem 0;
+      opacity: 0; visibility: hidden; transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4); z-index: 300;
+    }
+    .dropdown::before { content: ''; position: absolute; top: -6px; left: 50%; transform: translateX(-50%) rotate(45deg); width: 12px; height: 12px; background: rgba(5,14,31,0.98); border-top: 1px solid rgba(255,255,255,0.08); border-left: 1px solid rgba(255,255,255,0.08); }
+    .dropdown a { display: block; padding: 0.6rem 1.25rem; color: rgba(255,255,255,0.7); font-size: 0.82rem; font-weight: 400; transition: all 0.2s; white-space: nowrap; }
+    .dropdown a:hover { color: var(--white); background: rgba(255,255,255,0.06); padding-left: 1.5rem; }
+    .dropdown-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 0.5rem 0.75rem; }
+    .dropdown-label { padding: 0.3rem 1.25rem; font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); pointer-events: none; }
+    .nav-item:hover .dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+    .menu-toggle { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 8px; }
+    .menu-toggle span { display: block; width: 22px; height: 2px; background: var(--white); border-radius: 2px; transition: var(--transition); }
+
+    /* ══════════════════════════════════════
+       PAGE HERO
+    ══════════════════════════════════════ */
+    .page-hero {
+      position: relative; padding: 140px 5rem 80px;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-soft) 60%, #0d3060 100%);
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: ''; position: absolute; top: -40%; right: -10%; width: 800px; height: 800px;
+      border-radius: 50%; background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .page-hero::after {
+      content: ''; position: absolute; bottom: -30%; left: -5%; width: 600px; height: 600px;
+      border-radius: 50%; background: radial-gradient(circle, rgba(26,95,212,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .page-hero-inner { position: relative; z-index: 1; max-width: 1400px; }
+    .breadcrumb { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem; font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+    .breadcrumb a { color: rgba(255,255,255,0.4); transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--gold); }
+    .breadcrumb svg { width: 10px; height: 10px; stroke: currentColor; fill: none; stroke-width: 2.5; }
+    .page-hero h1 { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: clamp(3rem, 6vw, 5rem); color: var(--white); line-height: 1.06; }
+    .page-hero h1 em { font-style: italic; color: var(--gold-light); }
+    .page-hero-desc { color: rgba(255,255,255,0.62); font-size: 1.05rem; line-height: 1.75; max-width: 560px; margin-top: 1.25rem; }
+    .hero-meta-strip { display: flex; gap: 2.5rem; margin-top: 2.5rem; flex-wrap: wrap; }
+    .hero-meta-item { display: flex; align-items: center; gap: 0.6rem; color: rgba(255,255,255,0.55); font-size: 0.85rem; font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; }
+    .hero-meta-item svg { width: 15px; height: 15px; stroke: var(--gold); fill: none; stroke-width: 2; flex-shrink: 0; }
+    .hero-arc { position: absolute; bottom: -2px; left: 0; right: 0; z-index: 2; pointer-events: none; }
+    .hero-arc svg { display: block; width: 100%; }
+
+    /* ══════════════════════════════════════
+       CONTROLS BAR
+    ══════════════════════════════════════ */
+    .controls-bar {
+      background: var(--white); border-bottom: 1px solid var(--gray-200);
+      padding: 1.25rem 5rem; position: sticky; top: 76px; z-index: 100;
+      display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+    }
+    .controls-left { display: flex; align-items: center; gap: 0.75rem; flex: 1; flex-wrap: wrap; }
+    .filter-btn {
+      font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.55rem 1.1rem; border-radius: var(--radius-xl);
+      border: 1.5px solid var(--gray-200); background: transparent; cursor: pointer;
+      color: var(--gray-500); transition: var(--transition); white-space: nowrap;
+    }
+    .filter-btn:hover { border-color: var(--navy); color: var(--navy); }
+    .filter-btn.active { background: var(--navy); color: var(--white); border-color: var(--navy); }
+    .filter-btn.active-gold { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+    .search-wrap { position: relative; }
+    .search-wrap svg { position: absolute; left: 0.85rem; top: 50%; transform: translateY(-50%); width: 15px; height: 15px; stroke: var(--gray-400); fill: none; stroke-width: 2; pointer-events: none; }
+    .search-input { border: 1.5px solid var(--gray-200); border-radius: var(--radius-xl); padding: 0.55rem 1rem 0.55rem 2.5rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; color: var(--text); outline: none; transition: border-color 0.2s; width: 220px; }
+    .search-input:focus { border-color: var(--blue); }
+    .view-toggle { display: flex; border: 1.5px solid var(--gray-200); border-radius: var(--radius-sm); overflow: hidden; }
+    .view-btn { padding: 0.45rem 0.7rem; background: transparent; border: none; cursor: pointer; transition: background 0.2s; display: flex; align-items: center; }
+    .view-btn svg { width: 16px; height: 16px; stroke: var(--gray-400); fill: none; stroke-width: 2; }
+    .view-btn.active { background: var(--navy); }
+    .view-btn.active svg { stroke: var(--white); }
+
+    /* ══════════════════════════════════════
+       FEATURED / HERO EVENT
+    ══════════════════════════════════════ */
+    .featured-section { background: var(--cream); padding: 4rem 5rem; }
+    .featured-tag { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; }
+    .featured-tag::after { content: ''; width: 36px; height: 1.5px; background: currentColor; flex-shrink: 0; }
+
+    .featured-card {
+      background: var(--navy); border-radius: var(--radius-lg); overflow: hidden;
+      display: grid; grid-template-columns: 1fr 1fr; min-height: 480px;
+      box-shadow: var(--shadow-lg);
+    }
+    .featured-visual {
+      position: relative;
+      background: url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1000&q=80') center/cover;
+    }
+    .featured-visual-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(5,14,31,0.3) 0%, transparent 100%); }
+    .featured-badge {
+      position: absolute; top: 2rem; left: 2rem;
+      background: var(--gold); color: var(--navy);
+      font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 0.4rem 0.9rem; border-radius: 4px; font-weight: 500;
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .featured-badge::before { content: ''; width: 6px; height: 6px; background: var(--navy); border-radius: 50%; animation: featuredPulse 2s ease infinite; }
+    @keyframes featuredPulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.4); } }
+    .featured-countdown {
+      position: absolute; bottom: 2rem; left: 2rem; right: 2rem;
+      background: rgba(5,14,31,0.85); backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem; display: flex; gap: 1.5rem; align-items: center;
+    }
+    .countdown-unit { text-align: center; }
+    .countdown-num { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 700; color: var(--gold); line-height: 1; display: block; }
+    .countdown-label { font-family: 'DM Mono', monospace; font-size: 0.52rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+    .countdown-sep { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: rgba(255,255,255,0.2); align-self: flex-start; margin-top: 0.15rem; }
+
+    .featured-body { padding: 3rem 3.5rem; display: flex; flex-direction: column; justify-content: center; }
+    .featured-series { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+    .featured-body h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 700; color: var(--white); line-height: 1.1; margin-bottom: 1rem; }
+    .featured-body h2 em { font-style: italic; color: var(--gold-light); }
+    .featured-body p { color: rgba(255,255,255,0.62); font-size: 0.95rem; line-height: 1.75; }
+    .featured-details { display: flex; flex-direction: column; gap: 0.75rem; margin: 1.75rem 0; }
+    .featured-detail-item { display: flex; align-items: center; gap: 0.75rem; color: rgba(255,255,255,0.7); font-size: 0.88rem; }
+    .featured-detail-item svg { width: 16px; height: 16px; stroke: var(--gold); fill: none; stroke-width: 2; flex-shrink: 0; }
+    .featured-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+    /* ══════════════════════════════════════
+       CALENDAR MONTH VIEW
+    ══════════════════════════════════════ */
+    .calendar-section { padding: 4rem 5rem; background: var(--white); }
+    .calendar-header-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; }
+    .calendar-nav { display: flex; align-items: center; gap: 1rem; }
+    .cal-nav-btn { width: 38px; height: 38px; border: 1.5px solid var(--gray-200); border-radius: 50%; background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: var(--transition); }
+    .cal-nav-btn svg { width: 16px; height: 16px; stroke: var(--gray-500); fill: none; stroke-width: 2.5; }
+    .cal-nav-btn:hover { border-color: var(--navy); }
+    .cal-nav-btn:hover svg { stroke: var(--navy); }
+    .cal-month-label { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 700; color: var(--navy); min-width: 220px; text-align: center; }
+    .calendar-grid { border: 1px solid var(--gray-200); border-radius: var(--radius-lg); overflow: hidden; }
+    .cal-weekdays { display: grid; grid-template-columns: repeat(7, 1fr); background: var(--navy); }
+    .cal-weekday { padding: 0.75rem; text-align: center; font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+    .cal-weekday.sabbath { color: var(--gold); }
+    .cal-days { display: grid; grid-template-columns: repeat(7, 1fr); }
+    .cal-day {
+      border-right: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200);
+      padding: 0.6rem; min-height: 100px; position: relative; transition: background 0.2s; cursor: default;
+    }
+    .cal-day:nth-child(7n) { border-right: none; }
+    .cal-day:hover { background: var(--cream); }
+    .cal-day.other-month { background: var(--gray-100); }
+    .cal-day.other-month .cal-day-num { color: var(--gray-400); }
+    .cal-day.today .cal-day-num { background: var(--blue); color: var(--white); }
+    .cal-day.sabbath-day { background: rgba(201,168,76,0.04); }
+    .cal-day.has-event { cursor: pointer; }
+    .cal-day-num { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.82rem; font-weight: 600; color: var(--navy); font-family: 'DM Mono', monospace; margin-bottom: 0.35rem; }
+    .cal-event-dot { font-size: 0.7rem; padding: 0.15rem 0.4rem; border-radius: 3px; margin-bottom: 0.2rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: 'DM Sans', sans-serif; font-weight: 500; display: block; }
+    .dot-gold { background: rgba(201,168,76,0.18); color: var(--gold-dim); }
+    .dot-blue { background: rgba(26,95,212,0.12); color: var(--blue-mid); }
+    .dot-green { background: rgba(16,185,129,0.12); color: #065f46; }
+    .dot-purple { background: rgba(139,92,246,0.12); color: #6d28d9; }
+    .cal-sabbath-label { position: absolute; bottom: 0.35rem; right: 0.5rem; font-family: 'DM Mono', monospace; font-size: 0.48rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); opacity: 0.6; }
+
+    /* ══════════════════════════════════════
+       EVENTS LIST + GRID
+    ══════════════════════════════════════ */
+    .events-main { padding: 3rem 5rem; background: var(--cream); }
+    .events-main-header { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 2.5rem; }
+    .results-count { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-400); }
+
+    /* LIST VIEW */
+    .events-list-view { display: flex; flex-direction: column; gap: 1.25rem; }
+    .event-list-card {
+      background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg);
+      display: flex; gap: 0; overflow: hidden; transition: var(--transition);
+      cursor: pointer;
+    }
+    .event-list-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); border-color: transparent; }
+    .event-list-card.hidden { display: none; }
+    .event-list-cal {
+      background: var(--navy); padding: 1.5rem 1.75rem;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      min-width: 90px; flex-shrink: 0;
+    }
+    .event-list-cal .month { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); }
+    .event-list-cal .day { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 700; color: var(--white); line-height: 1; }
+    .event-list-cal .year { font-family: 'DM Mono', monospace; font-size: 0.55rem; color: rgba(255,255,255,0.35); letter-spacing: 0.1em; }
+    .event-list-body { padding: 1.75rem 2rem; flex: 1; display: flex; flex-direction: column; justify-content: center; }
+    .event-list-category { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.6rem; }
+    .category-pill { font-family: 'DM Mono', monospace; font-size: 0.56rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.25rem 0.65rem; border-radius: 4px; font-weight: 500; }
+    .cat-worship { background: rgba(201,168,76,0.15); color: var(--gold-dim); }
+    .cat-health { background: rgba(16,185,129,0.12); color: #065f46; }
+    .cat-youth { background: rgba(139,92,246,0.12); color: #6d28d9; }
+    .cat-outreach { background: rgba(26,95,212,0.12); color: var(--blue-mid); }
+    .cat-prayer { background: rgba(239,68,68,0.1); color: #991b1b; }
+    .cat-music { background: rgba(249,115,22,0.12); color: #9a3412; }
+    .cat-evangelism { background: rgba(20,184,166,0.12); color: #115e59; }
+    .event-list-body h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--navy); margin-bottom: 0.4rem; }
+    .event-list-meta { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
+    .event-meta-item { display: flex; align-items: center; gap: 0.4rem; font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-400); }
+    .event-meta-item svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2; }
+    .event-list-body p { color: var(--gray-500); font-size: 0.88rem; line-height: 1.65; }
+    .event-list-actions { padding: 1.75rem 2rem 1.75rem 0; display: flex; flex-direction: column; align-items: flex-end; justify-content: center; gap: 0.75rem; min-width: 160px; }
+    .event-recurring-badge { font-family: 'DM Mono', monospace; font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-400); display: flex; align-items: center; gap: 0.4rem; }
+    .event-recurring-badge svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+    /* GRID VIEW */
+    .events-grid-view { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .event-grid-card {
+      background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg);
+      overflow: hidden; transition: var(--transition); cursor: pointer;
+    }
+    .event-grid-card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); border-color: transparent; }
+    .event-grid-card.hidden { display: none; }
+    .event-grid-thumb { height: 180px; background: var(--navy); position: relative; overflow: hidden; }
+    .event-grid-thumb-bg { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform 0.5s ease; }
+    .event-grid-card:hover .event-grid-thumb-bg { transform: scale(1.06); }
+    .event-grid-thumb-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5,14,31,0.3) 0%, rgba(5,14,31,0.7) 100%); }
+    .event-grid-date-badge {
+      position: absolute; top: 1rem; left: 1rem;
+      background: var(--white); border-radius: 10px; padding: 0.5rem 0.75rem;
+      text-align: center; min-width: 48px;
+    }
+    .event-grid-date-badge .gd-month { font-family: 'DM Mono', monospace; font-size: 0.5rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-dim); }
+    .event-grid-date-badge .gd-day { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 700; color: var(--navy); line-height: 1; }
+    .event-grid-cat { position: absolute; bottom: 1rem; left: 1rem; }
+    .event-grid-body { padding: 1.5rem; }
+    .event-grid-body h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--navy); margin-bottom: 0.5rem; line-height: 1.25; }
+    .event-grid-meta { display: flex; flex-direction: column; gap: 0.3rem; margin-bottom: 0.75rem; }
+    .event-grid-meta-item { display: flex; align-items: center; gap: 0.4rem; font-family: 'DM Mono', monospace; font-size: 0.56rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-400); }
+    .event-grid-meta-item svg { width: 11px; height: 11px; stroke: currentColor; fill: none; stroke-width: 2; }
+    .event-grid-body p { color: var(--gray-500); font-size: 0.83rem; line-height: 1.6; margin-bottom: 1rem; }
+    .event-grid-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 0.9rem; border-top: 1px solid var(--gray-200); }
+    .event-grid-footer-link { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); display: flex; align-items: center; gap: 0.4rem; }
+    .event-grid-footer-link svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2.5; }
+
+    /* ══════════════════════════════════════
+       WEEKLY RECURRING SERVICES
+    ══════════════════════════════════════ */
+    .weekly-section { background: var(--navy); padding: 5rem; position: relative; overflow: hidden; }
+    .weekly-section::before { content: ''; position: absolute; top: -20%; right: -5%; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%); pointer-events: none; }
+    .weekly-section .section-tag { color: var(--gold); }
+    .weekly-section .section-tag::after { background: var(--gold); }
+    .weekly-section .section-title { color: var(--white); }
+    .weekly-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem; flex-wrap: wrap; margin-bottom: 3rem; }
+    .weekly-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .weekly-card {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-lg); padding: 2rem; transition: var(--transition); position: relative; overflow: hidden;
+    }
+    .weekly-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--gold); transform: scaleX(0); transition: transform 0.35s ease; }
+    .weekly-card:hover { background: rgba(255,255,255,0.07); border-color: rgba(201,168,76,0.25); transform: translateY(-4px); }
+    .weekly-card:hover::before { transform: scaleX(1); }
+    .weekly-day { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+    .weekly-time { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 700; color: var(--white); line-height: 1; margin-bottom: 0.5rem; }
+    .weekly-name { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: rgba(255,255,255,0.9); margin-bottom: 0.6rem; }
+    .weekly-desc { color: rgba(255,255,255,0.45); font-size: 0.85rem; line-height: 1.7; }
+    .weekly-loc { display: flex; align-items: center; gap: 0.5rem; margin-top: 1.25rem; font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
+    .weekly-loc svg { width: 12px; height: 12px; stroke: var(--gold); fill: none; stroke-width: 2; }
+
+    /* ══════════════════════════════════════
+       SUBMIT / PRAYER CTA
+    ══════════════════════════════════════ */
+    .cta-strip { background: var(--gold); padding: 3rem 5rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .cta-strip-text h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 700; color: var(--navy); }
+    .cta-strip-text p { color: rgba(5,14,31,0.65); font-size: 0.92rem; margin-top: 0.35rem; }
+    .cta-strip-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-navy { background: var(--navy); color: var(--white); border-color: var(--navy); }
+    .btn-navy:hover { background: var(--navy-soft); }
+    .btn-outline-navy { background: transparent; color: var(--navy); border: 2px solid rgba(5,14,31,0.4); }
+    .btn-outline-navy:hover { background: rgba(5,14,31,0.08); }
+
+    /* ══════════════════════════════════════
+       EVENT MODAL
+    ══════════════════════════════════════ */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(5,14,31,0.7); backdrop-filter: blur(8px);
+      z-index: 500; display: flex; align-items: center; justify-content: center; padding: 2rem;
+      opacity: 0; visibility: hidden; transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+    .modal-overlay.open { opacity: 1; visibility: visible; }
+    .modal {
+      background: var(--white); border-radius: var(--radius-lg); max-width: 680px; width: 100%;
+      overflow: hidden; transform: translateY(30px) scale(0.97);
+      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+      box-shadow: 0 40px 120px rgba(0,0,0,0.35);
+    }
+    .modal-overlay.open .modal { transform: translateY(0) scale(1); }
+    .modal-hero { height: 240px; position: relative; background: var(--navy); }
+    .modal-hero-bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
+    .modal-hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5,14,31,0.4) 0%, rgba(5,14,31,0.85) 100%); }
+    .modal-close {
+      position: absolute; top: 1rem; right: 1rem; width: 36px; height: 36px;
+      background: rgba(255,255,255,0.15); border: none; border-radius: 50%; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; transition: background 0.2s; z-index: 2;
+    }
+    .modal-close:hover { background: rgba(255,255,255,0.3); }
+    .modal-close svg { width: 16px; height: 16px; stroke: var(--white); fill: none; stroke-width: 2.5; }
+    .modal-hero-content { position: absolute; bottom: 1.5rem; left: 2rem; right: 2rem; z-index: 1; }
+    .modal-hero-content .category-pill { margin-bottom: 0.5rem; }
+    .modal-hero-content h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 700; color: var(--white); line-height: 1.1; }
+    .modal-body { padding: 2rem; }
+    .modal-details { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; margin-bottom: 1.5rem; }
+    .modal-detail { display: flex; align-items: flex-start; gap: 0.65rem; }
+    .modal-detail-icon { width: 34px; height: 34px; background: var(--cream); border-radius: 9px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .modal-detail-icon svg { width: 15px; height: 15px; stroke: var(--navy); fill: none; stroke-width: 2; }
+    .modal-detail-label { font-family: 'DM Mono', monospace; font-size: 0.54rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-400); margin-bottom: 0.15rem; }
+    .modal-detail-value { font-size: 0.88rem; font-weight: 500; color: var(--navy); }
+    .modal-desc { color: var(--gray-500); font-size: 0.92rem; line-height: 1.75; margin-bottom: 1.75rem; }
+    .modal-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+    /* ══════════════════════════════════════
+       SUBMIT EVENT FORM
+    ══════════════════════════════════════ */
+    .submit-section { background: var(--cream); padding: 5rem; }
+    .submit-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: start; }
+    .submit-copy .section-tag { color: var(--blue); }
+    .form-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 2.5rem; box-shadow: var(--shadow-sm); }
+    .form-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--navy); margin-bottom: 1.75rem; font-weight: 700; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.45rem; margin-bottom: 1.1rem; }
+    .form-group label { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-700); }
+    .form-group input, .form-group select, .form-group textarea {
+      border: 1.5px solid var(--gray-200); border-radius: var(--radius-sm);
+      padding: 0.75rem 1rem; font-family: 'DM Sans', sans-serif; font-size: 0.88rem;
+      color: var(--text); outline: none; transition: border-color 0.2s; background: var(--white);
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--blue); }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-submit { width: 100%; padding: 0.9rem; font-size: 0.82rem; margin-top: 0.5rem; border-radius: var(--radius-sm); }
+    .form-success { display: none; text-align: center; padding: 2rem; }
+    .form-success svg { width: 48px; height: 48px; stroke: #059669; fill: none; stroke-width: 2; margin: 0 auto 1rem; }
+    .form-success h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--navy); margin-bottom: 0.5rem; }
+    .form-success p { color: var(--gray-500); font-size: 0.88rem; }
+
+    /* ══════════════════════════════════════
+       FOOTER (minimal repeat of main)
+    ══════════════════════════════════════ */
+    footer.site-footer { background: var(--navy); color: var(--white); border-top: 1px solid rgba(255,255,255,0.05); }
+    .footer-top { background: rgba(255,255,255,0.02); border-bottom: 1px solid rgba(255,255,255,0.05); padding: 1.5rem 4rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-top-text { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.05rem; color: rgba(255,255,255,0.5); }
+    .footer-top-text strong { color: var(--gold); font-style: normal; font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; }
+    .footer-bottom-simple { padding: 2rem 4rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-bottom-simple p { color: rgba(255,255,255,0.28); font-size: 0.78rem; }
+    .footer-links-simple { display: flex; gap: 1.5rem; }
+    .footer-links-simple a { color: rgba(255,255,255,0.35); font-size: 0.78rem; transition: color 0.2s; }
+    .footer-links-simple a:hover { color: rgba(255,255,255,0.7); }
+
+    /* ── SCROLL FADE ── */
+    .fade-in { opacity: 0; transform: translateY(22px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1200px) {
+      .featured-card { grid-template-columns: 1fr; }
+      .featured-visual { min-height: 300px; }
+      .featured-countdown { position: relative; bottom: auto; left: auto; right: auto; margin-top: 1rem; }
+      .events-grid-view { grid-template-columns: 1fr 1fr; }
+      .weekly-grid { grid-template-columns: 1fr 1fr; }
+      .submit-grid { grid-template-columns: 1fr; gap: 3rem; }
+    }
+    @media (max-width: 1024px) {
+      .page-hero { padding: 130px 3rem 70px; }
+      .controls-bar { padding: 1.25rem 3rem; }
+      .featured-section, .calendar-section, .events-main, .weekly-section, .submit-section { padding: 4rem 3rem; }
+      .cta-strip { padding: 2.5rem 3rem; }
+      .modal-details { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      header.site-header { padding: 0 1.5rem; }
+      .menu-toggle { display: flex; }
+      nav.primary-nav { position: fixed; top: 76px; left: 0; right: 0; background: rgba(5,14,31,0.98); backdrop-filter: blur(16px); flex-direction: column; padding: 1.5rem; gap: 0.4rem; transform: translateY(-110%); transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); border-bottom: 1px solid rgba(255,255,255,0.06); overflow-y: auto; max-height: calc(100vh - 76px); }
+      nav.primary-nav.open { transform: translateY(0); }
+      .nav-item { width: 100%; }
+      .nav-item > a, .nav-item > button { width: 100%; padding: 0.75rem 1rem; }
+      .nav-item .chevron { display: none; }
+      .dropdown { position: static; transform: none; opacity: 1; visibility: visible; display: none; background: rgba(255,255,255,0.03); border: none; box-shadow: none; min-width: auto; padding: 0.5rem 0 0.5rem 1rem; margin-top: 0.25rem; }
+      .dropdown::before { display: none; }
+      .dropdown a { padding: 0.5rem 1rem; }
+      .nav-item.open .dropdown { display: block; }
+      .page-hero { padding: 120px 1.5rem 60px; }
+      .controls-bar { padding: 1rem 1.5rem; top: 76px; }
+      .featured-section, .calendar-section, .events-main, .weekly-section, .submit-section { padding: 3rem 1.5rem; }
+      .cta-strip { padding: 2rem 1.5rem; flex-direction: column; }
+      .events-grid-view { grid-template-columns: 1fr; }
+      .event-list-card { flex-direction: column; }
+      .event-list-cal { flex-direction: row; gap: 0.75rem; min-width: auto; padding: 1rem 1.5rem; }
+      .event-list-actions { flex-direction: row; padding: 0 1.5rem 1.5rem; min-width: auto; }
+      .weekly-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .cal-day { min-height: 65px; }
+      .cal-event-dot { display: none; }
+      .modal { margin: 1rem; }
+    }
+    
+    /* ── FOOTER ── */
+    footer.site-footer { background: var(--navy); color: var(--white); border-top: 1px solid rgba(255,255,255,0.05); }
+    .footer-top { background: rgba(255,255,255,0.02); border-bottom: 1px solid rgba(255,255,255,0.05); padding: 1.5rem 4rem; display: flex; align-items: center; justify-content: space-between; max-width: 1400px; margin: 0 auto; flex-wrap: wrap; gap: 1rem; }
+    .footer-top-text { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.05rem; color: rgba(255,255,255,0.5); }
+    .footer-top-text strong { color: var(--gold); font-style: normal; font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; }
+    .footer-inner { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 3.5rem; padding: 5rem 4rem 4rem; max-width: 1400px; margin: 0 auto; }
+    .footer-brand p { color: rgba(255,255,255,0.48); font-size: 0.88rem; line-height: 1.8; margin-top: 1.25rem; max-width: 280px; }
+    /* Real Adventist logo in footer */
+    .footer-logo-icon { width: 38px; height: 38px; flex-shrink: 0; }
+    .footer-socials { display: flex; gap: 0.6rem; margin-top: 1.75rem; }
+    .social-btn {
+      width: 38px; height: 38px; background: rgba(255,255,255,0.07); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center; transition: var(--transition);
+      color: rgba(255,255,255,0.6);
+    }
+    .social-btn:hover { background: var(--blue); color: var(--white); transform: translateY(-2px); }
+    .social-btn svg { width: 17px; height: 17px; fill: currentColor; }
+    /* Individual social colors on hover */
+    .social-fb:hover { background: #1877f2; }
+    .social-ig:hover { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); }
+    .social-yt:hover { background: #ff0000; }
+    .social-tw:hover { background: #000000; }
+    .social-wa:hover { background: #25d366; }
+
+    .footer-col h5 { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.35rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 0.65rem; }
+    .footer-col ul li a { color: rgba(255,255,255,0.48); font-size: 0.87rem; transition: color 0.2s; display: flex; align-items: center; gap: 0.45rem; }
+    .footer-col ul li a:hover { color: var(--white); }
+    .footer-col ul li a svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; opacity: 0.5; flex-shrink: 0; }
+    .footer-contact-item { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 1rem; color: rgba(255,255,255,0.48); font-size: 0.87rem; line-height: 1.55; }
+    .footer-contact-item svg { width: 15px; height: 15px; stroke: var(--blue-light); fill: none; stroke-width: 2; margin-top: 2px; flex-shrink: 0; }
+    .footer-contact-item a { color: rgba(255,255,255,0.48); transition: color 0.2s; }
+    .footer-contact-item a:hover { color: var(--white); }
+
+    .footer-newsletter { margin-top: 1.5rem; }
+    .footer-newsletter p { color: rgba(255,255,255,0.45); font-size: 0.82rem; line-height: 1.65; margin-bottom: 1rem; }
+    .newsletter-form { display: flex; flex-direction: column; gap: 0.6rem; }
+    .newsletter-form input {
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-sm); color: var(--white); font-family: 'DM Sans', sans-serif;
+      font-size: 0.84rem; padding: 0.7rem 1rem; outline: none; transition: border-color 0.2s; width: 100%;
+    }
+    .newsletter-form input:focus { border-color: var(--blue-light); }
+    .newsletter-form input::placeholder { color: rgba(255,255,255,0.3); }
+    .newsletter-form button {
+      background: var(--gold); color: var(--navy); border: none; border-radius: var(--radius-sm);
+      font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 0.75rem; letter-spacing: 0.06em;
+      text-transform: uppercase; padding: 0.7rem 1rem; cursor: pointer; transition: var(--transition);
+    }
+    .newsletter-form button:hover { background: var(--gold-light); }
+
+    .footer-divider { border: none; border-top: 1px solid rgba(255,255,255,0.06); margin: 0 4rem; }
+    .footer-bottom {
+      padding: 1.75rem 4rem; display: flex; align-items: center; justify-content: space-between;
+      max-width: 1400px; margin: 0 auto; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-bottom p { color: rgba(255,255,255,0.28); font-size: 0.78rem; }
+    .footer-bottom-links { display: flex; gap: 1.5rem; }
+    .footer-bottom-links a { color: rgba(255,255,255,0.28); font-size: 0.78rem; transition: color 0.2s; }
+    .footer-bottom-links a:hover { color: rgba(255,255,255,0.6); }
+    .sda-badge { display: flex; align-items: center; gap: 0.6rem; color: rgba(255,255,255,0.3); font-size: 0.74rem; font-family: 'DM Mono', monospace; letter-spacing: 0.08em; }
+    /* Official Adventist logo in badge */
+    .sda-badge-logo { width: 22px; height: 22px; opacity: 0.5; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1200px) {
+      .footer-inner { grid-template-columns: 1fr 1fr 1fr; gap: 2.5rem; }
+      .beliefs-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 1024px) {
+      .page-hero { padding: 0 3rem 4rem; }
+      .who-section, .vmv-section, .history-section, .pillars-section, .team-section, .beliefs-section, .campus-section, .cta-section { padding: 5rem 3rem; }
+      .who-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .who-image-grid { order: -1; }
+      .vmv-cards { grid-template-columns: 1fr 1fr; }
+      .pillars-grid { grid-template-columns: 1fr 1fr; }
+      .beliefs-intro { grid-template-columns: 1fr; gap: 2rem; }
+      .campus-photos { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .campus-photo.span-col { grid-row: auto; }
+      .cta-cards { grid-template-columns: 1fr 1fr; }
+      .footer-inner { grid-template-columns: 1fr 1fr; gap: 2.5rem; padding: 4rem 3rem 3rem; }
+      .footer-top { padding: 1.5rem 3rem; }
+      .footer-divider { margin: 0 3rem; }
+      .footer-bottom { padding: 1.5rem 3rem; }
+    }
+    @media (max-width: 768px) {
+      header.site-header { padding: 0 1.5rem; }
+      .menu-toggle { display: flex; }
+      nav.primary-nav {
+        position: fixed; top: 76px; left: 0; right: 0;
+        background: rgba(5,14,31,0.98); backdrop-filter: blur(16px);
+        flex-direction: column; padding: 1.5rem; gap: 0.4rem;
+        transform: translateY(-110%); transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+        overflow-y: auto; max-height: calc(100vh - 76px);
+      }
+      nav.primary-nav.open { transform: translateY(0); }
+      .nav-item { width: 100%; }
+      .nav-item > a, .nav-item > button { width: 100%; padding: 0.75rem 1rem; }
+      .nav-item .chevron { display: none; }
+      .dropdown {
+        position: static; transform: none; opacity: 1; visibility: visible;
+        display: none; background: rgba(255,255,255,0.03); border: none;
+        box-shadow: none; min-width: auto; padding: 0.5rem 0 0.5rem 1rem; margin-top: 0.25rem;
+      }
+      .dropdown::before { display: none; }
+      .dropdown a { padding: 0.5rem 1rem; font-size: 0.85rem; }
+      .nav-item.open .dropdown { display: block; }
+
+      .page-hero { padding: 0 1.5rem 3rem; min-height: 360px; }
+      .anchor-tabs-inner { padding: 0 1.5rem; }
+      .who-section, .vmv-section, .history-section, .pillars-section, .team-section, .beliefs-section, .campus-section, .cta-section { padding: 4rem 1.5rem; }
+      .mission-strip { padding: 0.9rem 1.5rem; }
+      .vmv-cards { grid-template-columns: 1fr; }
+      .pillars-grid { grid-template-columns: 1fr; }
+      .beliefs-grid { grid-template-columns: 1fr 1fr; }
+      .campus-photos { grid-template-columns: 1fr 1fr; }
+      .campus-photo { height: 200px; }
+      .cta-cards { grid-template-columns: 1fr; }
+      .who-stats { grid-template-columns: 1fr 1fr; }
+      .team-grid { grid-template-columns: 1fr 1fr; }
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1.5rem 2rem; }
+      .footer-top, .footer-bottom { padding: 1.25rem 1.5rem; }
+      .footer-divider { margin: 0 1.5rem; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+      .footer-bottom-links { flex-wrap: wrap; gap: 1rem; }
+    }
+  </style>
 </head>
 <body>
-  <header class="site-header">
-    <a class="logo-wrap" href="./index.html">
-      <svg class="logo-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2L4 9v14l12 7 12-7V9L16 2zm0 4.6l8 4.7v9.4l-8 4.7-8-4.7v-9.4l8-4.7zM16 11l-5 3v6l5 3 5-3v-6l-5-3z"></path></svg>
-      <div class="logo-text"><span class="church-name">CukSDA</span><span class="church-sub">Cooperative University SDA</span></div>
-    </a>
-    <nav class="primary-nav">
-      <div class="nav-item"><a href="./index.html">Home</a></div>
-      <div class="nav-item"><a href="./about.html">About</a></div>
-      <div class="nav-item"><a href="./ministries.html">Ministries</a></div>
-      <div class="nav-item"><a class="active" href="./events.html" aria-current="page">Events</a></div>
-      <div class="nav-item"><a href="./beliefs.html">Beliefs</a></div>
-      <div class="nav-item"><a href="./sermons.html">Sermons</a></div>
-      <div class="nav-item"><a href="./contact.html">Contact</a></div>
-    </nav>
-    <button class="menu-toggle" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
-  </header>
 
-  <main>
-    <section class="page-hero">
-      <div class="page-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1600&q=80');"></div>
-      <div class="page-hero-content">
-        <span class="page-hero-tag">Upcoming Events</span>
-        <h1>Gather with us this semester.</h1>
-        <p>Find Sabbath services, prayer nights, outreach days, and student programs that connect faith with campus life.</p>
+<!-- ════════════════════ HEADER ════════════════════ -->
+<header class="site-header" id="site-header">
+  <a class="logo-wrap" href="./index.html">
+    <svg class="logo-icon-adventist" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 210" aria-label="Seventh-day Adventist symbol">
+      <g fill="none" fill-rule="evenodd">
+        <path fill="#FFFFFF" d="M106.924 171.313c0 .54.62.543.731 0 .824-3.998 2.075-6.663 4.03-9.25l-4.397.003c-.201 0-.364.162-.364.363v8.884zm31.611-55.503c.05 5.78-1.61 10.747-12.15 21.297l-8.336 8.338c-3.794 3.797-7.205 7.264-9.222 10.73h8.233l.974-.975 11.96-11.984c9.96-9.97 11.349-20.516 9.223-27.395-.181-.584-.687-.623-.682-.01zm-10.496 35.265l-9.99 10.008c-6.047 6.053-11.125 11.269-11.125 16.973l.006 1.588c0 .43.536.499.7.048 1.868-5.107 8.106-10.557 19.548-8.625 0 0 49.849 8.622 50.267 8.659.487.043.728-.437.414-.81-.189-.225-23.2-23.258-23.2-23.258l-26.62-4.583zm-36.062 10.988a.364.364 0 0 1-.364-.364v-5.163c0-.202.163-.364.364-.364l8.724.002c.201 0 .364-.163.364-.364-.023-4.637-3.515-7.788-17.508-5.35l-30.215 5.198s-23.012 23.033-23.2 23.258c-.315.373-.074.853.413.81.42-.037 50.267-8.66 50.267-8.66 11.443-1.931 17.681 3.52 19.548 8.626.164.45.701.383.701-.048l.001-17.218c0-.2-.163-.363-.364-.363h-8.731zm-13.928-72.16c-9.96 9.969-11.349 20.516-9.222 27.395.18.584.686.623.68.01-.05-5.78 1.612-10.746 12.151-21.296l22.721-22.735c6.047-6.054 11.125-11.27 11.125-16.973v-8.897c0-.542-.62-.544-.732 0-1.494 7.26-4.395 10.125-10.378 16.113L78.05 89.902zm37.477-26.933c0-.54-.62-.543-.732 0-1.494 7.261-4.388 10.17-10.37 16.16L80.56 102.993c-11.58 11.592-13.584 22.81-7.694 30.02.393.481.815.192.56-.388-3.895-8.819 5.443-18.17 9.889-22.62L104.401 88.9c6.047-6.053 11.125-11.269 11.125-16.973V62.97zm-34.311 55.008c-11.581 11.592-6.256 22.787.5 25.87.592.27.828-.211.374-.603-5.416-4.699-3.772-12.6 3.04-19.418l19.248-19.267c6.047-6.053 11.124-11.268 11.124-16.972v-8.896c0-.54-.62-.543-.73 0-1.495 7.259-4.39 10.112-10.373 16.1l-23.183 23.186zm25.688 37.771c0 .541.62.543.73 0 1.496-7.259 4.39-10.17 10.372-16.158l9.479-9.468c11.58-11.59 13.583-22.809 7.693-30.018-.393-.481-.815-.193-.558.387 3.893 8.819-5.444 18.169-9.89 22.62l-6.701 6.709c-6.048 6.052-11.125 11.267-11.125 16.971v8.957zm11.128-31.822c-5.983 5.988-8.879 8.841-10.373 16.101-.112.544-.731.542-.731 0v-8.896c0-5.703 5.077-10.92 11.125-16.972l4.862-4.868c6.813-6.82 8.457-14.719 3.04-19.418-.453-.392-.217-.874.376-.603 6.755 3.082 12.08 14.277.498 25.87l-8.797 8.786z"/>
+      </g>
+    </svg>
+    <div class="logo-text">
+      <span class="church-name">CukSDA</span>
+      <span class="church-sub">Cooperative University SDA</span>
+    </div>
+  </a>
+
+  <nav class="primary-nav" id="primary-nav">
+    <div class="nav-item"><a href="./index.html">Home</a></div>
+    <div class="nav-item">
+      <button>About <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+      <div class="dropdown">
+        <a href="./about.html">Who We Are</a>
+        <a href="./about.html">Our History</a>
+        <a href="./about.html">Leadership Team</a>
+        <div class="dropdown-divider"></div>
+        <div class="dropdown-label">Quick Links</div>
+        <a href="./ministries.html">Our Ministries</a>
+        <a href="./beliefs.html">What We Believe</a>
       </div>
-    </section>
-
-    <section class="page-content">
-      <div class="section-block">
-        <span class="section-tag">Calendar</span>
-        <h2 class="section-title">Events that shape our community.</h2>
-        <p>Our calendar includes weekly worship, midweek prayer, youth gatherings, and service opportunities for every student.</p>
+    </div>
+    <div class="nav-item">
+      <button>Ministries <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+      <div class="dropdown">
+        <a href="./ministries.html">Worship &amp; Devotion</a>
+        <a href="./ministries.html">Youth &amp; University</a>
+        <a href="./ministries.html">Health &amp; Wellness</a>
+        <a href="./ministries.html">Evangelism &amp; Outreach</a>
       </div>
-
-      <div class="events-grid page-event-grid">
-        <article class="event-card"><div class="event-date"><div class="day">08</div><div class="month">May</div></div><div><h3>Communion Sabbath</h3><p class="event-meta">Main Hall · Saturday · 9:00 AM</p></div></article>
-        <article class="event-card"><div class="event-date"><div class="day">12</div><div class="month">May</div></div><div><h3>Midweek Prayer Night</h3><p class="event-meta">Chapel · Wednesday · 6:30 PM</p></div></article>
-        <article class="event-card"><div class="event-date"><div class="day">15</div><div class="month">May</div></div><div><h3>Youth Sabbath Afternoon</h3><p class="event-meta">Student Center · Friday · 4:00 PM</p></div></article>
-        <article class="event-card"><div class="event-date"><div class="day">22</div><div class="month">May</div></div><div><h3>Community Health Day</h3><p class="event-meta">Karen Campus · Saturday · 10:00 AM</p></div></article>
-        <article class="event-card"><div class="event-date"><div class="day">29</div><div class="month">May</div></div><div><h3>Retreat Weekend</h3><p class="event-meta">Naivasha · Fri–Sun</p></div></article>
+    </div>
+    <div class="nav-item"><a href="./events.html" class="active">Events</a></div>
+    <div class="nav-item">
+      <button>Beliefs <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+      <div class="dropdown">
+        <a href="./beliefs.html">28 Fundamental Beliefs</a>
+        <a href="./beliefs.html">The Sabbath</a>
+        <a href="./beliefs.html">Second Coming</a>
       </div>
+    </div>
+    <div class="nav-item">
+      <button>Sermons <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+      <div class="dropdown">
+        <a href="./sermons.html">Latest Sermons</a>
+        <a href="./sermons.html">Sermon Archive</a>
+      </div>
+    </div>
+    <div class="nav-item"><a href="./contact.html">Visit Us</a></div>
+  </nav>
+  <button class="menu-toggle" id="menu-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+</header>
 
-      <div class="split-grid">
-        <div>
-          <span class="section-tag">Plan Ahead</span>
-          <h3 class="section-heading">Be part of every season.</h3>
-          <p>Mark your semester with worship services, outreach activities, and fellowship events that build deeper community across CUK.</p>
+<main>
+
+  <!-- ════════════════════ PAGE HERO ════════════════════ -->
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <div class="breadcrumb">
+        <a href="./index.html">Home</a>
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+        <span>Events</span>
+      </div>
+      <h1>What's happening<br>at <em>CukSDA.</em></h1>
+      <p class="page-hero-desc">From Sabbath worship services to campus crusades, health screenings, AY programs, and community outreach — there is always something happening here. Find your next gathering.</p>
+      <div class="hero-meta-strip">
+        <div class="hero-meta-item">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          8 Upcoming Events
         </div>
-        <div class="info-card large-card">
-          <h4>Submit an event</h4>
-          <p>If you would like to share a study group, outreach project, or fellowship gathering, connect with our event team through the contact page.</p>
+        <div class="hero-meta-item">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>
+          Every Sabbath · 9 AM – 5 PM
+        </div>
+        <div class="hero-meta-item">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Karen Campus, Nairobi
+        </div>
+      </div>
+    </div>
+    <div class="hero-arc">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,60 C360,0 1080,0 1440,60 L1440,60 L0,60 Z" fill="#faf8f4"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ════════════════════ FEATURED EVENT ════════════════════ -->
+  <section class="featured-section">
+    <div class="featured-tag">Featured Event</div>
+    <div class="featured-card">
+      <div class="featured-visual">
+        <div class="featured-visual-overlay"></div>
+        <div class="featured-badge">Featured · Flagship Event</div>
+        <div class="featured-countdown">
+          <div class="countdown-unit"><span class="countdown-num" id="cd-days">27</span><span class="countdown-label">Days</span></div>
+          <div class="countdown-sep">:</div>
+          <div class="countdown-unit"><span class="countdown-num" id="cd-hours">14</span><span class="countdown-label">Hours</span></div>
+          <div class="countdown-sep">:</div>
+          <div class="countdown-unit"><span class="countdown-num" id="cd-mins">32</span><span class="countdown-label">Mins</span></div>
+          <div class="countdown-sep">:</div>
+          <div class="countdown-unit"><span class="countdown-num" id="cd-secs">08</span><span class="countdown-label">Secs</span></div>
+        </div>
+      </div>
+      <div class="featured-body">
+        <div class="featured-series">Evangelism · 2026 Series</div>
+        <h2>Campus Evangelistic<br>Series — <em>"More Than Enough"</em></h2>
+        <p>A week of powerful preaching, praise music, and community prayer — open to the entire CUK campus and the surrounding Karen community. In partnership with the East Kenya Union Conference.</p>
+        <div class="featured-details">
+          <div class="featured-detail-item">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Saturday June 14 – Saturday June 21, 2026
+          </div>
+          <div class="featured-detail-item">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>
+            6:30 PM Nightly (Opening Night: 5:00 PM)
+          </div>
+          <div class="featured-detail-item">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Main Hall · CUK Karen Campus
+          </div>
+          <div class="featured-detail-item">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            Preacher: Pastor David Mwangi, EKUC
+          </div>
+        </div>
+        <div class="featured-actions">
+          <a href="#" class="btn btn-gold">Register Now</a>
+          <button class="btn btn-outline" onclick="openModal('evangelism')" style="border-color: rgba(255,255,255,0.3);">Full Details</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ CONTROLS ════════════════════ -->
+  <div class="controls-bar" id="controls-bar">
+    <div class="controls-left">
+      <button class="filter-btn active" data-filter="all">All Events</button>
+      <button class="filter-btn" data-filter="worship">Worship</button>
+      <button class="filter-btn" data-filter="youth">Youth</button>
+      <button class="filter-btn" data-filter="health">Health</button>
+      <button class="filter-btn" data-filter="outreach">Outreach</button>
+      <button class="filter-btn" data-filter="prayer">Prayer</button>
+      <button class="filter-btn" data-filter="music">Music</button>
+    </div>
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" class="search-input" id="event-search" placeholder="Search events…" oninput="filterEvents()">
+    </div>
+    <div class="view-toggle">
+      <button class="view-btn active" id="list-view-btn" onclick="setView('list')" title="List view">
+        <svg viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+      </button>
+      <button class="view-btn" id="grid-view-btn" onclick="setView('grid')" title="Grid view">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ════════════════════ CALENDAR ════════════════════ -->
+  <section class="calendar-section">
+    <div class="calendar-header-row">
+      <div>
+        <span class="section-tag">Monthly Calendar</span>
+      </div>
+      <div class="calendar-nav">
+        <button class="cal-nav-btn" onclick="changeMonth(-1)">
+          <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="cal-month-label" id="cal-month-label">June 2026</div>
+        <button class="cal-nav-btn" onclick="changeMonth(1)">
+          <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="calendar-grid">
+      <div class="cal-weekdays">
+        <div class="cal-weekday">Sun</div>
+        <div class="cal-weekday">Mon</div>
+        <div class="cal-weekday">Tue</div>
+        <div class="cal-weekday">Wed</div>
+        <div class="cal-weekday">Thu</div>
+        <div class="cal-weekday">Fri</div>
+        <div class="cal-weekday sabbath">Sat ✦</div>
+      </div>
+      <div class="cal-days" id="cal-days"></div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ EVENTS LIST ════════════════════ -->
+  <section class="events-main">
+    <div class="events-main-header">
+      <div>
+        <span class="section-tag">All Events</span>
+        <h2 class="section-title">Upcoming gatherings.</h2>
+      </div>
+      <div class="results-count" id="results-count">Showing 8 events</div>
+    </div>
+
+    <!-- LIST VIEW -->
+    <div class="events-list-view" id="list-view">
+
+      <div class="event-list-card fade-in" data-category="health" data-title="Health Ministry Free Screening" onclick="openModal('health')">
+        <div class="event-list-cal"><div class="month">May</div><div class="day">24</div><div class="year">2026</div></div>
+        <div class="event-list-body">
+          <div class="event-list-category"><span class="category-pill cat-health">Health</span></div>
+          <h3>Health Ministry Free Screening</h3>
+          <div class="event-list-meta">
+            <div class="event-meta-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg> 9:00 AM – 2:00 PM</div>
+            <div class="event-meta-item"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/></svg> Foyer, CUK Karen</div>
+          </div>
+          <p>Free blood pressure, blood sugar, and BMI screenings for all students and staff. Brought to you by the Health & Wellness Ministry.</p>
+        </div>
+        <div class="event-list-actions">
+          <a href="#" class="btn btn-primary btn-sm">RSVP</a>
+          <div class="event-recurring-badge"><svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg> One-time</div>
         </div>
       </div>
 
-      <div class="button-row">
-        <a href="./contact.html" class="btn btn-primary">Submit an Event</a>
-        <a href="./about.html" class="btn btn-outline">Learn About Us</a>
+      <div class="event-list-card fade-in" data-category="prayer" data-title="Mid-Week Prayer Meeting" onclick="openModal('prayer')">
+        <div class="event-list-cal"><div class="month">May</div><div class="day">28</div><div class="year">2026</div></div>
+        <div class="event-list-body">
+          <div class="event-list-category"><span class="category-pill cat-prayer">Prayer</span></div>
+          <h3>Mid-Week Prayer Meeting</h3>
+          <div class="event-list-meta">
+            <div class="event-meta-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg> 6:00 PM – 7:30 PM</div>
+            <div class="event-meta-item"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/></svg> Chapel</div>
+          </div>
+          <p>Intercessory prayer, Scripture sharing, and group devotion. Open to all students, staff, and friends. Come with your burdens and your praise.</p>
+        </div>
+        <div class="event-list-actions">
+          <a href="#" class="btn btn-primary btn-sm">Add to Calendar</a>
+          <div class="event-recurring-badge"><svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg> Weekly · Wed</div>
+        </div>
       </div>
-    </section>
-  </main>
 
+      <div class="event-list-card fade-in" data-category="youth" data-title="AY Society Talent Show" onclick="openModal('talent')">
+        <div class="event-list-cal"><div class="month">Jun</div><div class="day">07</div><div class="year">2026</div></div>
+        <div class="event-list-body">
+          <div class="event-list-category"><span class="category-pill cat-youth">Youth</span></div>
+          <h3>AY Society Talent Show 2026</h3>
+          <div class="event-list-meta">
+            <div class="event-meta-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg> 3:00 PM – 6:00 PM</div>
+            <div class="event-meta-item"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/></svg> Main Hall</div>
+          </div>
+          <p>A showcase of student talent — music, drama, spoken word, poetry, and more. Celebrating the creativity God has placed in our community.</p>
+        </div>
+        <div class="event-list-actions">
+          <a href="#" class="btn btn-primary btn-sm">Register to Perform</a>
+          <div class="event-recurring-badge"><svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg> Annual</div>
+        </div>
+      </div>
+
+      <div class="event-list-card fade-in" data-category="outreach" data-title="Campus Evangelistic Series" onclick="openModal('evangelism')">
+        <div class="event-list-cal"><div class="month">Jun</div><div class="day">14</div><div class="year">2026</div></div>
+        <div class="event-list-body">
+          <div class="event-list-category"><span class="category-pill cat-outreach">Evangelism</span></div>
+          <h3>Campus Evangelistic Series 2026</h3>
+          <div class="event-list-meta">
+            <div class="event-meta-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg> June 14–21 · 6:30 PM Nightly</div>
+            <div class="event-meta-item"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/></svg> Main Hall</div>
+          </div>
+          <p>"More Than Enough" — a week-long campus crusade with powerful preaching, praise, and prayer. Bring friends, bring your questions, come expecting.</p>
+        </div>
+        <div class="event-list-actions">
+          <a href="#" class="btn btn-gold btn-sm">Register</a>
+          <div class="event-recurring-badge"><svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg> Annual</div>
+        </div>
+      </div>
+
+      <div class="event-list-card fade-in" data-category="music" data-title="Choir Recital and Praise Night" onclick="openModal('choir')">
+        <div class="event-list-cal"><div class="month">Jun</div><div class="day">21</div><div class="year">2026</div></div>
+        <div class="event-list-body">
+          <div class="event-list-category"><span class="category-pill cat-music">Music</span></div>
+          <h3>Choir Recital &amp; Praise Night</h3>
+          <div class="event-list-meta">
+            <div class="event-meta-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg> 5:00 PM – 8:00 PM</div>
+            <div class="event-meta-item"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/></svg> Main Hall</div>
+          </div>
+          <p>A closing celebration concert for the Evangelistic Series — featuring the CukSDA choir, praise teams, and special guest musicians. Free entry, all welcome.</p>
+        </div>
+        <div class="event-list-actions">
+          <a href="#" class="btn btn-primary btn-sm">RSVP</a>
+          <div class="event-recurring-badge"><svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg> Special</div>
+        </div>
+      </div>
+
+      <div class="event-list-card fade-in" data-category="outreach" data-title="Karen Community Outreach Day" onclick="openModal('outreach')">
+        <div class="event-list-cal"><div class="month">Jul</div><div class="day">05</div><div class="year">2026</div></div>
+        <div class="event-list-body">
+          <div class="event-list-category"><span class="category-pill cat-outreach">Outreach</span></div>
+          <h3>Karen Community Outreach Day</h3>
+          <div class="event-list-meta">
+            <div class="event-meta-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg> 8:00 AM – 4:00 PM</div>
+            <div class="event-meta-item"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/></svg> Karen Village, Nairobi</div>
+          </div>
+          <p>Door-to-door visits, health checks, literature distribution, and children's programmes in the Karen community. Volunteers needed — sign up today.</p>
+        </div>
+        <div class="event-list-actions">
+          <a href="#" class="btn btn-primary btn-sm">Volunteer</a>
+          <div class="event-recurring-badge"><svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg> Quarterly</div>
+        </div>
+      </div>
+
+      <div class="event-list-card fade-in" data-category="youth" data-title="AY Leadership Camp" onclick="openModal('camp')">
+        <div class="event-list-cal"><div class="month">Aug</div><div class="day">01</div><div class="year">2026</div></div>
+        <div class="event-list-body">
+          <div class="event-list-category"><span class="category-pill cat-youth">Youth</span></div>
+          <h3>AY Leadership Camp 2026</h3>
+          <div class="event-list-meta">
+            <div class="event-meta-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg> Aug 1–3 · Full Weekend</div>
+            <div class="event-meta-item"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/></svg> Brackenhurst, Limuru</div>
+          </div>
+          <p>A three-day leadership and discipleship retreat for university students — featuring workshops, devotionals, team challenges, and nature worship.</p>
+        </div>
+        <div class="event-list-actions">
+          <a href="#" class="btn btn-primary btn-sm">Apply Now</a>
+          <div class="event-recurring-badge"><svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg> Annual</div>
+        </div>
+      </div>
+
+      <div class="event-list-card fade-in" data-category="worship" data-title="Graduation Thanksgiving Service" onclick="openModal('graduation')">
+        <div class="event-list-cal"><div class="month">Aug</div><div class="day">22</div><div class="year">2026</div></div>
+        <div class="event-list-body">
+          <div class="event-list-category"><span class="category-pill cat-worship">Worship</span></div>
+          <h3>Graduation Thanksgiving Service</h3>
+          <div class="event-list-meta">
+            <div class="event-meta-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg> 10:00 AM – 1:00 PM</div>
+            <div class="event-meta-item"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/></svg> Main Hall · CUK Karen</div>
+          </div>
+          <p>A special thanksgiving divine service honouring our 2026 graduating class — celebrating their faithfulness through four years of campus faith and study.</p>
+        </div>
+        <div class="event-list-actions">
+          <a href="#" class="btn btn-primary btn-sm">Add to Calendar</a>
+          <div class="event-recurring-badge"><svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg> Annual</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- GRID VIEW (hidden by default) -->
+    <div class="events-grid-view" id="grid-view" style="display:none;">
+
+      <div class="event-grid-card fade-in" data-category="health" data-title="Health Ministry Free Screening" onclick="openModal('health')">
+        <div class="event-grid-thumb">
+          <div class="event-grid-thumb-bg" style="background-image:url('https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=600&q=80')"></div>
+          <div class="event-grid-thumb-overlay"></div>
+          <div class="event-grid-date-badge"><div class="gd-month">May</div><div class="gd-day">24</div></div>
+          <div class="event-grid-cat"><span class="category-pill cat-health">Health</span></div>
+        </div>
+        <div class="event-grid-body">
+          <h3>Health Ministry Free Screening</h3>
+          <div class="event-grid-meta">
+            <div class="event-grid-meta-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg> 9:00 AM – 2:00 PM</div>
+            <div class="event-grid-meta-item"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/></svg> Foyer, CUK Karen</div>
+          </div>
+          <p>Free BP, blood sugar, and BMI checks for students and staff by the Health Ministry.</p>
+          <div class="event-grid-footer">
+            <span class="event-grid-footer-link">Learn more <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+            <a href="#" class="btn btn-primary btn-sm" onclick="event.stopPropagation()">RSVP</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="event-grid-card fade-in" data-category="prayer" data-title="Mid-Week Prayer Meeting" onclick="openModal('prayer')">
+        <div class="event-grid-thumb">
+          <div class="event-grid-thumb-bg" style="background-image:url('https://images.unsplash.com/photo-1544531586-fde5298cdd40?w=600&q=80')"></div>
+          <div class="event-grid-thumb-overlay"></div>
+          <div class="event-grid-date-badge"><div class="gd-month">May</div><div class="gd-day">28</div></div>
+          <div class="event-grid-cat"><span class="category-pill cat-prayer">Prayer</span></div>
+        </div>
+        <div class="event-grid-body">
+          <h3>Mid-Week Prayer Meeting</h3>
+          <div class="event-grid-meta">
+            <div class="event-grid-meta-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg> Wednesdays · 6:00 PM</div>
+            <div class="event-grid-meta-item"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/></svg> Chapel</div>
+          </div>
+          <p>Weekly intercessory prayer and devotional gathering open to all.</p>
+          <div class="event-grid-footer">
+            <span class="event-grid-footer-link">Learn more <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+            <a href="#" class="btn btn-primary btn-sm" onclick="event.stopPropagation()">Join</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="event-grid-card fade-in" data-category="youth" data-title="AY Society Talent Show" onclick="openModal('talent')">
+        <div class="event-grid-thumb">
+          <div class="event-grid-thumb-bg" style="background-image:url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=600&q=80')"></div>
+          <div class="event-grid-thumb-overlay"></div>
+          <div class="event-grid-date-badge"><div class="gd-month">Jun</div><div class="gd-day">07</div></div>
+          <div class="event-grid-cat"><span class="category-pill cat-youth">Youth</span></div>
+        </div>
+        <div class="event-grid-body">
+          <h3>AY Society Talent Show 2026</h3>
+          <div class="event-grid-meta">
+            <div class="event-grid-meta-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg> Jun 7 · 3:00 PM</div>
+            <div class="event-grid-meta-item"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/></svg> Main Hall</div>
+          </div>
+          <p>Music, drama, spoken word, and poetry — celebrating student creativity in faith.</p>
+          <div class="event-grid-footer">
+            <span class="event-grid-footer-link">Learn more <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+            <a href="#" class="btn btn-primary btn-sm" onclick="event.stopPropagation()">Register</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="event-grid-card fade-in" data-category="outreach" data-title="Campus Evangelistic Series" onclick="openModal('evangelism')">
+        <div class="event-grid-thumb">
+          <div class="event-grid-thumb-bg" style="background-image:url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80')"></div>
+          <div class="event-grid-thumb-overlay"></div>
+          <div class="event-grid-date-badge"><div class="gd-month">Jun</div><div class="gd-day">14</div></div>
+          <div class="event-grid-cat"><span class="category-pill cat-outreach">Evangelism</span></div>
+        </div>
+        <div class="event-grid-body">
+          <h3>Campus Evangelistic Series 2026</h3>
+          <div class="event-grid-meta">
+            <div class="event-grid-meta-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg> Jun 14–21 · Nightly</div>
+            <div class="event-grid-meta-item"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/></svg> Main Hall</div>
+          </div>
+          <p>"More Than Enough" — a week-long campus crusade. Everyone welcome.</p>
+          <div class="event-grid-footer">
+            <span class="event-grid-footer-link">Learn more <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+            <a href="#" class="btn btn-gold btn-sm" onclick="event.stopPropagation()">Register</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="event-grid-card fade-in" data-category="music" data-title="Choir Recital and Praise Night" onclick="openModal('choir')">
+        <div class="event-grid-thumb">
+          <div class="event-grid-thumb-bg" style="background-image:url('https://images.unsplash.com/photo-1516062423079-7ca13cdc7f5a?w=600&q=80')"></div>
+          <div class="event-grid-thumb-overlay"></div>
+          <div class="event-grid-date-badge"><div class="gd-month">Jun</div><div class="gd-day">21</div></div>
+          <div class="event-grid-cat"><span class="category-pill cat-music">Music</span></div>
+        </div>
+        <div class="event-grid-body">
+          <h3>Choir Recital &amp; Praise Night</h3>
+          <div class="event-grid-meta">
+            <div class="event-grid-meta-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg> Jun 21 · 5:00 PM</div>
+            <div class="event-grid-meta-item"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/></svg> Main Hall</div>
+          </div>
+          <p>Closing concert featuring choir, praise teams, and special guest musicians. Free entry.</p>
+          <div class="event-grid-footer">
+            <span class="event-grid-footer-link">Learn more <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+            <a href="#" class="btn btn-primary btn-sm" onclick="event.stopPropagation()">RSVP</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="event-grid-card fade-in" data-category="outreach" data-title="Karen Community Outreach Day" onclick="openModal('outreach')">
+        <div class="event-grid-thumb">
+          <div class="event-grid-thumb-bg" style="background-image:url('https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=600&q=80')"></div>
+          <div class="event-grid-thumb-overlay"></div>
+          <div class="event-grid-date-badge"><div class="gd-month">Jul</div><div class="gd-day">05</div></div>
+          <div class="event-grid-cat"><span class="category-pill cat-outreach">Outreach</span></div>
+        </div>
+        <div class="event-grid-body">
+          <h3>Karen Community Outreach Day</h3>
+          <div class="event-grid-meta">
+            <div class="event-grid-meta-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg> Jul 5 · 8:00 AM</div>
+            <div class="event-grid-meta-item"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/></svg> Karen Village</div>
+          </div>
+          <p>Door-to-door outreach, health checks, and literature distribution. Volunteers welcome.</p>
+          <div class="event-grid-footer">
+            <span class="event-grid-footer-link">Learn more <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+            <a href="#" class="btn btn-primary btn-sm" onclick="event.stopPropagation()">Volunteer</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="no-results" style="display:none; text-align:center; padding:4rem 2rem;">
+      <svg style="width:48px;height:48px;stroke:var(--gray-400);fill:none;stroke-width:1.5;margin:0 auto 1rem;" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <p style="color:var(--gray-400);font-size:0.95rem;">No events match your search. <a href="#" onclick="resetFilters();return false;" style="color:var(--blue);">Clear filters</a></p>
+    </div>
+  </section>
+
+  <!-- ════════════════════ RECURRING SERVICES ════════════════════ -->
+  <section class="weekly-section">
+    <div class="weekly-header">
+      <div>
+        <span class="section-tag">Every Week</span>
+        <h2 class="section-title">Regular services &amp; programmes.</h2>
+      </div>
+    </div>
+    <div class="weekly-grid">
+      <div class="weekly-card fade-in">
+        <div class="weekly-day">Saturday · Weekly</div>
+        <div class="weekly-time">9:00 AM</div>
+        <div class="weekly-name">Sabbath School</div>
+        <div class="weekly-desc">Interactive Bible study in small groups. Perfect for both seasoned members and first-time visitors. Discussion-driven, Scripture-centred.</div>
+        <div class="weekly-loc"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> Main Hall · CUK Karen Campus</div>
+      </div>
+      <div class="weekly-card fade-in">
+        <div class="weekly-day">Saturday · Weekly</div>
+        <div class="weekly-time">11:00 AM</div>
+        <div class="weekly-name">Divine Service</div>
+        <div class="weekly-desc">Our main worship gathering — rich with praise, prayer, Scripture reading, and a Spirit-led message. Expect a warm welcome and authentic faith.</div>
+        <div class="weekly-loc"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> Main Hall · CUK Karen Campus</div>
+      </div>
+      <div class="weekly-card fade-in">
+        <div class="weekly-day">Saturday · Weekly</div>
+        <div class="weekly-time">3:00 PM</div>
+        <div class="weekly-name">AY Program</div>
+        <div class="weekly-desc">Ambassadors for Christ Youth — vibrant student-led praise, devotion, and fellowship. High energy, real faith, great friendships.</div>
+        <div class="weekly-loc"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> AY Hall · CUK Karen Campus</div>
+      </div>
+      <div class="weekly-card fade-in">
+        <div class="weekly-day">Wednesday · Weekly</div>
+        <div class="weekly-time">6:00 PM</div>
+        <div class="weekly-name">Prayer Meeting</div>
+        <div class="weekly-desc">Mid-week intercessory prayer, devotional reflection, and group sharing. Bring your burdens — leave encouraged.</div>
+        <div class="weekly-loc"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> Chapel · CUK Karen Campus</div>
+      </div>
+      <div class="weekly-card fade-in">
+        <div class="weekly-day">Tuesday &amp; Thursday</div>
+        <div class="weekly-time">5:30 PM</div>
+        <div class="weekly-name">Bible Study Groups</div>
+        <div class="weekly-desc">Small group Bible studies across campus hosted by members. Choose from several ongoing series — beginners and advanced welcome.</div>
+        <div class="weekly-loc"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> Various Venues · CUK Karen Campus</div>
+      </div>
+      <div class="weekly-card fade-in">
+        <div class="weekly-day">Friday · Weekly</div>
+        <div class="weekly-time">6:00 PM</div>
+        <div class="weekly-name">Vespers</div>
+        <div class="weekly-desc">A brief, reverent service to welcome the Sabbath — worship songs, a devotional thought, and prayer to close the week in God's presence.</div>
+        <div class="weekly-loc"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> Chapel · CUK Karen Campus</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ CTA STRIP ════════════════════ -->
+  <div class="cta-strip">
+    <div class="cta-strip-text">
+      <h3>Have an event to share?</h3>
+      <p>Submit your ministry event or campus programme for review and we'll add it to the calendar.</p>
+    </div>
+    <div class="cta-strip-actions">
+      <a href="#submit-event" class="btn btn-navy">Submit an Event</a>
+      <a href="./contact.html" class="btn btn-outline-navy">Prayer Request</a>
+    </div>
+  </div>
+
+  <!-- ════════════════════ SUBMIT EVENT FORM ════════════════════ -->
+  <section class="submit-section" id="submit-event">
+    <div class="submit-grid">
+      <div class="submit-copy">
+        <span class="section-tag">Submit an Event</span>
+        <h2 class="section-title">Share your ministry<br>gathering with us.</h2>
+        <p class="section-subtitle">All ministries and departments are welcome to submit upcoming events. Our team reviews submissions within 48 hours and will contact you to confirm listing.</p>
+        <div style="margin-top:2.5rem; display:flex; flex-direction:column; gap:1.25rem;">
+          <div style="display:flex; align-items:center; gap:1rem;">
+            <div style="width:40px;height:40px;background:var(--blue-pale);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg style="width:18px;height:18px;stroke:var(--blue);fill:none;stroke-width:2;" viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+            </div>
+            <p style="color:var(--gray-500);font-size:0.88rem;">Events are reviewed within 48 hours of submission.</p>
+          </div>
+          <div style="display:flex; align-items:center; gap:1rem;">
+            <div style="width:40px;height:40px;background:var(--blue-pale);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg style="width:18px;height:18px;stroke:var(--blue);fill:none;stroke-width:2;" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <p style="color:var(--gray-500);font-size:0.88rem;">Submit at least 5 days before your event date.</p>
+          </div>
+          <div style="display:flex; align-items:center; gap:1rem;">
+            <div style="width:40px;height:40px;background:var(--blue-pale);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg style="width:18px;height:18px;stroke:var(--blue);fill:none;stroke-width:2;" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><polyline points="4 4 12 13 20 4"/></svg>
+            </div>
+            <p style="color:var(--gray-500);font-size:0.88rem;">You'll receive a confirmation email once approved.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-card" id="submit-form-card">
+        <div class="form-title">Event Submission Form</div>
+        <form id="event-form" onsubmit="submitEventForm(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Your Name *</label>
+              <input type="text" placeholder="Full name" required>
+            </div>
+            <div class="form-group">
+              <label>Email Address *</label>
+              <input type="email" placeholder="you@example.com" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Event Title *</label>
+            <input type="text" placeholder="e.g. Health Screening Day" required>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Event Date *</label>
+              <input type="date" required>
+            </div>
+            <div class="form-group">
+              <label>Start Time *</label>
+              <input type="time" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Category</label>
+              <select>
+                <option>Worship</option>
+                <option>Youth / AY</option>
+                <option>Health &amp; Wellness</option>
+                <option>Outreach / Evangelism</option>
+                <option>Prayer</option>
+                <option>Music</option>
+                <option>Discipleship</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Venue / Location *</label>
+              <input type="text" placeholder="e.g. Main Hall, CUK Karen" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Event Description *</label>
+            <textarea placeholder="Briefly describe the event, its purpose, and who should attend…" required></textarea>
+          </div>
+          <div class="form-group">
+            <label>Additional Notes</label>
+            <input type="text" placeholder="e.g. RSVP link, contact person, registration details…">
+          </div>
+          <button type="submit" class="btn btn-primary form-submit">Submit Event for Review</button>
+        </form>
+        <div class="form-success" id="form-success">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          <h4>Submission received!</h4>
+          <p>Thank you. Our team will review your event and get back to you within 48 hours. Watch your inbox.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ════════════════════ MODAL ════════════════════ -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOnOverlay(event)">
+  <div class="modal" id="modal">
+    <div class="modal-hero">
+      <div class="modal-hero-bg" id="modal-bg"></div>
+      <div class="modal-hero-overlay"></div>
+      <button class="modal-close" onclick="closeModal()">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="modal-hero-content">
+        <div id="modal-cat"></div>
+        <h2 id="modal-title"></h2>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-details" id="modal-details"></div>
+      <p class="modal-desc" id="modal-desc"></p>
+      <div class="modal-actions" id="modal-actions"></div>
+    </div>
+  </div>
+</div>
+
+  <!-- ════════════════════ FOOTER ════════════════════ -->
   <footer class="site-footer">
+    <!-- Top accent bar -->
+    <div class="footer-top" style="padding:1.5rem 4rem; border-bottom:1px solid rgba(255,255,255,0.05); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+      <p class="footer-top-text"><strong>Service Times</strong> &nbsp;·&nbsp; Sabbath School 9:00 AM &nbsp;·&nbsp; Divine Service 11:00 AM &nbsp;·&nbsp; AY Program 3:00 PM</p>
+      <a href="./contact.html" class="btn btn-gold" style="padding:0.65rem 1.5rem; font-size:0.76rem;">Plan a Visit</a>
+    </div>
+
     <div class="footer-inner">
+      <!-- Brand column -->
       <div class="footer-brand">
         <div class="logo-wrap">
-          <svg class="logo-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2L4 9v14l12 7 12-7V9L16 2zm0 4.6l8 4.7v9.4l-8 4.7-8-4.7v-9.4l8-4.7zM16 11l-5 3v6l5 3 5-3v-6l-5-3z"></path></svg>
-          <div class="logo-text"><span class="church-name">CukSDA</span><span class="church-sub">Cooperative University SDA</span></div>
+          <!-- Official Adventist Logo in footer -->
+          <svg class="footer-logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 210" aria-hidden="true">
+            <g fill="none" fill-rule="evenodd">
+              <path fill="#FFFFFF" d="M106.924 171.313c0 .54.62.543.731 0 .824-3.998 2.075-6.663 4.03-9.25l-4.397.003c-.201 0-.364.162-.364.363v8.884zm31.611-55.503c.05 5.78-1.61 10.747-12.15 21.297l-8.336 8.338c-3.794 3.797-7.205 7.264-9.222 10.73h8.233l.974-.975 11.96-11.984c9.96-9.97 11.349-20.516 9.223-27.395-.181-.584-.687-.623-.682-.01zm-10.496 35.265l-9.99 10.008c-6.047 6.053-11.125 11.269-11.125 16.973l.006 1.588c0 .43.536.499.7.048 1.868-5.107 8.106-10.557 19.548-8.625 0 0 49.849 8.622 50.267 8.659.487.043.728-.437.414-.81-.189-.225-23.2-23.258-23.2-23.258l-26.62-4.583zm-36.062 10.988a.364.364 0 0 1-.364-.364v-5.163c0-.202.163-.364.364-.364l8.724.002c.201 0 .364-.163.364-.364-.023-4.637-3.515-7.788-17.508-5.35l-30.215 5.198s-23.012 23.033-23.2 23.258c-.315.373-.074.853.413.81.42-.037 50.267-8.66 50.267-8.66 11.443-1.931 17.681 3.52 19.548 8.626.164.45.701.383.701-.048l.001-17.218c0-.2-.163-.363-.364-.363h-8.731zm-13.928-72.16c-9.96 9.969-11.349 20.516-9.222 27.395.18.584.686.623.68.01-.05-5.78 1.612-10.746 12.151-21.296l22.721-22.735c6.047-6.054 11.125-11.27 11.125-16.973v-8.897c0-.542-.62-.544-.732 0-1.494 7.26-4.395 10.125-10.378 16.113L78.05 89.902zm37.477-26.933c0-.54-.62-.543-.732 0-1.494 7.261-4.388 10.17-10.37 16.16L80.56 102.993c-11.58 11.592-13.584 22.81-7.694 30.02.393.481.815.192.56-.388-3.895-8.819 5.443-18.17 9.889-22.62L104.401 88.9c6.047-6.053 11.125-11.269 11.125-16.973V62.97zm-34.311 55.008c-11.581 11.592-6.256 22.787.5 25.87.592.27.828-.211.374-.603-5.416-4.699-3.772-12.6 3.04-19.418l19.248-19.267c6.047-6.053 11.124-11.268 11.124-16.972v-8.896c0-.54-.62-.543-.73 0-1.495 7.259-4.39 10.112-10.373 16.1l-23.183 23.186zm25.688 37.771c0 .541.62.543.73 0 1.496-7.259 4.39-10.17 10.372-16.158l9.479-9.468c11.58-11.59 13.583-22.809 7.693-30.018-.393-.481-.815-.193-.558.387 3.893 8.819-5.444 18.169-9.89 22.62l-6.701 6.709c-6.048 6.052-11.125 11.267-11.125 16.971v8.957zm11.128-31.822c-5.983 5.988-8.879 8.841-10.373 16.101-.112.544-.731.542-.731 0v-8.896c0-5.703 5.077-10.92 11.125-16.972l4.862-4.868c6.813-6.82 8.457-14.719 3.04-19.418-.453-.392-.217-.874.376-.603 6.755 3.082 12.08 14.277.498 25.87l-8.797 8.786zM174.395 163.348c.496 0 .792-.277.792-.678 0-.447-.248-.64-.801-.64h-.468v1.318h.477zm-1.2-1.927h1.22c1.039 0 1.506.41 1.506 1.231 0 .6-.363.934-.744 1.087l1.107 1.85h-.82l-.955-1.65h-.59v1.65h-.725v-4.168zm4.262 2.079c0-1.65-1.231-2.995-2.957-2.995-1.726 0-2.966 1.25-2.966 2.995 0 1.65 1.24 2.995 2.966 2.995 1.632 0 2.957-1.25 2.957-2.995zm-6.457 0c0-2.03 1.47-3.5 3.5-3.5 1.936 0 3.5 1.47 3.5 3.5 0 2.032-1.468 3.5-3.5 3.5-2.03 0-3.5-1.468-3.5-3.5z"/>
+            </g>
+          </svg>
+          <div class="logo-text">
+            <span class="church-name">CukSDA</span>
+            <span class="church-sub">Cooperative University SDA</span>
+          </div>
         </div>
-        <p>A student-led Adventist fellowship at the Cooperative University of Kenya, growing in faith, friendship, and service.</p>
+        <p>A vibrant Seventh-day Adventist community at the Cooperative University of Kenya — growing together in faith, fellowship, and service to our campus and the world.</p>
+
+        <!-- Real SVG social icons -->
+        <div class="footer-socials">
+          <!-- Facebook -->
+          <a href="#" class="social-btn social-fb" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <!-- Instagram -->
+          <a href="#" class="social-btn social-ig" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <!-- YouTube -->
+          <a href="#" class="social-btn social-yt" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+          </a>
+          <!-- X / Twitter -->
+          <a href="#" class="social-btn social-tw" aria-label="X (Twitter)">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
+          </a>
+          <!-- WhatsApp -->
+          <a href="#" class="social-btn social-wa" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          </a>
+        </div>
       </div>
-      <div class="footer-col"><h5>Explore</h5><ul><li><a href="./about.html">About Us</a></li><li><a href="./ministries.html">Ministries</a></li><li><a href="./events.html">Events</a></li><li><a href="./beliefs.html">Beliefs</a></li><li><a href="./sermons.html">Sermons</a></li></ul></div>
-      <div class="footer-col"><h5>Connect</h5><ul><li><a href="./contact.html">Contact Us</a></li><li><a href="./contact.html">Prayer Request</a></li><li><a href="./contact.html">Plan a Visit</a></li><li><a href="./contact.html">Volunteer</a></li></ul></div>
-      <div class="footer-col"><h5>Find Us</h5><ul><li><a href="#">CUK Main Campus</a></li><li><a href="#">Karen, Nairobi</a></li><li><a href="mailto:hello@cuksda.org">hello@cuksda.org</a></li><li><a href="tel:+254700000000">+254 700 000 000</a></li></ul></div>
+
+      <!-- Explore column -->
+      <div class="footer-col">
+        <h5>Explore</h5>
+        <ul>
+          <li><a href="./about.html">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            About Us
+          </a></li>
+          <li><a href="./ministries.html">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            Ministries
+          </a></li>
+          <li><a href="./events.html">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Events
+          </a></li>
+          <li><a href="./beliefs.html">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Beliefs
+          </a></li>
+          <li><a href="./sermons.html">
+            <svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+            Sermons
+          </a></li>
+        </ul>
+      </div>
+
+      <!-- Connect column -->
+      <div class="footer-col">
+        <h5>Connect</h5>
+        <ul>
+          <li><a href="./contact.html">
+            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            Contact Us
+          </a></li>
+          <li><a href="./contact.html">
+            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            Prayer Request
+          </a></li>
+          <li><a href="./contact.html">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            Plan a Visit
+          </a></li>
+          <li><a href="./contact.html">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="23" y1="11" x2="17" y2="11"/><line x1="20" y1="8" x2="20" y2="14"/></svg>
+            Volunteer
+          </a></li>
+          <li><a href="./ministries.html">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Join a Ministry
+          </a></li>
+        </ul>
+      </div>
+
+      <!-- Contact column -->
+      <div class="footer-col">
+        <h5>Find Us</h5>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Cooperative University of Kenya<br>Karen Campus, Nairobi</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>
+          <span>Sabbath School · 9:00 AM<br>Divine Service · 11:00 AM<br>AY Program · 3:00 PM</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><polyline points="4 4 12 13 20 4"/></svg>
+          <a href="mailto:hello@cuksda.org">hello@cuksda.org</a>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.5a19.79 19.79 0 01-3-8.59A2 2 0 012.06 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.5A16 16 0 0015.5 17.1l.7-.7a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          <a href="tel:+254700000000">+254 700 000 000</a>
+        </div>
+
+        <!-- Newsletter signup -->
+        <div class="footer-newsletter">
+          <h5>Stay Connected</h5>
+          <p>Get our weekly bulletin, event updates, and devotional reflections in your inbox.</p>
+          <div class="newsletter-form">
+            <input type="email" placeholder="Your email address" aria-label="Email for newsletter">
+            <button type="button" onclick="alert('Thank you! You\'ll hear from us soon.')">Subscribe</button>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="footer-bottom"><p>© 2026 CukSDA — Cooperative University SDA Community. All rights reserved.</p><div class="sda-badge"><svg viewBox="0 0 24 24"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z"></path></svg><span>Seventh-day Adventist Church</span></div></div>
+
+    <hr class="footer-divider">
+
+    <div class="footer-bottom">
+      <p>© 2026 CukSDA — Cooperative University SDA Community. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Sitemap</a>
+      </div>
+      <div class="sda-badge">
+        <!-- Official Adventist logo mark in badge -->
+        <svg class="sda-badge-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 210">
+          <g fill="none" fill-rule="evenodd">
+            <path fill="#c9a84c" d="M106.924 171.313c0 .54.62.543.731 0 .824-3.998 2.075-6.663 4.03-9.25l-4.397.003c-.201 0-.364.162-.364.363v8.884zm31.611-55.503c.05 5.78-1.61 10.747-12.15 21.297l-8.336 8.338c-3.794 3.797-7.205 7.264-9.222 10.73h8.233l.974-.975 11.96-11.984c9.96-9.97 11.349-20.516 9.223-27.395-.181-.584-.687-.623-.682-.01zm-10.496 35.265l-9.99 10.008c-6.047 6.053-11.125 11.269-11.125 16.973l.006 1.588c0 .43.536.499.7.048 1.868-5.107 8.106-10.557 19.548-8.625 0 0 49.849 8.622 50.267 8.659.487.043.728-.437.414-.81-.189-.225-23.2-23.258-23.2-23.258l-26.62-4.583zm-36.062 10.988a.364.364 0 0 1-.364-.364v-5.163c0-.202.163-.364.364-.364l8.724.002c.201 0 .364-.163.364-.364-.023-4.637-3.515-7.788-17.508-5.35l-30.215 5.198s-23.012 23.033-23.2 23.258c-.315.373-.074.853.413.81.42-.037 50.267-8.66 50.267-8.66 11.443-1.931 17.681 3.52 19.548 8.626.164.45.701.383.701-.048l.001-17.218c0-.2-.163-.363-.364-.363h-8.731zm-13.928-72.16c-9.96 9.969-11.349 20.516-9.222 27.395.18.584.686.623.68.01-.05-5.78 1.612-10.746 12.151-21.296l22.721-22.735c6.047-6.054 11.125-11.27 11.125-16.973v-8.897c0-.542-.62-.544-.732 0-1.494 7.26-4.395 10.125-10.378 16.113L78.05 89.902zm37.477-26.933c0-.54-.62-.543-.732 0-1.494 7.261-4.388 10.17-10.37 16.16L80.56 102.993c-11.58 11.592-13.584 22.81-7.694 30.02.393.481.815.192.56-.388-3.895-8.819 5.443-18.17 9.889-22.62L104.401 88.9c6.047-6.053 11.125-11.269 11.125-16.973V62.97zm-34.311 55.008c-11.581 11.592-6.256 22.787.5 25.87.592.27.828-.211.374-.603-5.416-4.699-3.772-12.6 3.04-19.418l19.248-19.267c6.047-6.053 11.124-11.268 11.124-16.972v-8.896c0-.54-.62-.543-.73 0-1.495 7.259-4.39 10.112-10.373 16.1l-23.183 23.186zm25.688 37.771c0 .541.62.543.73 0 1.496-7.259 4.39-10.17 10.372-16.158l9.479-9.468c11.58-11.59 13.583-22.809 7.693-30.018-.393-.481-.815-.193-.558.387 3.893 8.819-5.444 18.169-9.89 22.62l-6.701 6.709c-6.048 6.052-11.125 11.267-11.125 16.971v8.957z"/>
+          </g>
+        </svg>
+        Seventh-day Adventist Church
+      </div>
+    </div>
   </footer>
+
+
+<script>
+  // ── Header scroll ──
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 30));
+
+  // ── Mobile menu ──
+  const toggle = document.getElementById('menu-toggle');
+  const nav = document.getElementById('primary-nav');
+  toggle.addEventListener('click', () => nav.classList.toggle('open'));
+  if (window.innerWidth <= 768) {
+    document.querySelectorAll('.nav-item > button').forEach(btn => {
+      btn.addEventListener('click', () => btn.closest('.nav-item').classList.toggle('open'));
+    });
+  }
+
+  // ── Countdown to June 14, 2026 ──
+  function updateCountdown() {
+    const target = new Date('2026-06-14T18:30:00+03:00');
+    const now = new Date();
+    const diff = Math.max(0, target - now);
+    const days = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const mins = Math.floor((diff % 3600000) / 60000);
+    const secs = Math.floor((diff % 60000) / 1000);
+    document.getElementById('cd-days').textContent = String(days).padStart(2, '0');
+    document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+    document.getElementById('cd-mins').textContent = String(mins).padStart(2, '0');
+    document.getElementById('cd-secs').textContent = String(secs).padStart(2, '0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // ── Calendar ──
+  const calEvents = {
+    '2026-05-24': [{ label: 'Health Screening', cls: 'dot-green', modal: 'health' }],
+    '2026-05-28': [{ label: 'Prayer Meeting', cls: 'dot-purple', modal: 'prayer' }],
+    '2026-05-31': [{ label: 'Sabbath', cls: 'dot-gold', modal: null }],
+    '2026-06-03': [{ label: 'Bible Study', cls: 'dot-blue', modal: null }],
+    '2026-06-06': [{ label: 'Sabbath', cls: 'dot-gold', modal: null }],
+    '2026-06-07': [{ label: 'AY Talent Show', cls: 'dot-purple', modal: 'talent' }],
+    '2026-06-10': [{ label: 'Bible Study', cls: 'dot-blue', modal: null }],
+    '2026-06-13': [{ label: 'Sabbath', cls: 'dot-gold', modal: null }],
+    '2026-06-14': [{ label: 'Crusade Opens', cls: 'dot-blue', modal: 'evangelism' }],
+    '2026-06-17': [{ label: 'Bible Study', cls: 'dot-blue', modal: null }],
+    '2026-06-20': [{ label: 'Sabbath', cls: 'dot-gold', modal: null }],
+    '2026-06-21': [{ label: 'Choir Night', cls: 'dot-purple', modal: 'choir' }],
+    '2026-06-27': [{ label: 'Sabbath', cls: 'dot-gold', modal: null }],
+  };
+
+  let calYear = 2026, calMonth = 5; // 0-indexed, so 5 = June
+
+  function renderCalendar() {
+    const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    document.getElementById('cal-month-label').textContent = `${months[calMonth]} ${calYear}`;
+    const firstDay = new Date(calYear, calMonth, 1).getDay();
+    const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+    const daysInPrev = new Date(calYear, calMonth, 0).getDate();
+    const today = new Date();
+
+    let html = '';
+    // Prev month days
+    for (let i = firstDay - 1; i >= 0; i--) {
+      html += `<div class="cal-day other-month"><div class="cal-day-num">${daysInPrev - i}</div></div>`;
+    }
+    // Current month days
+    for (let d = 1; d <= daysInMonth; d++) {
+      const dateStr = `${calYear}-${String(calMonth + 1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+      const isToday = today.getFullYear() === calYear && today.getMonth() === calMonth && today.getDate() === d;
+      const isSabbath = new Date(calYear, calMonth, d).getDay() === 6;
+      const events = calEvents[dateStr] || [];
+      let cls = 'cal-day';
+      if (isSabbath) cls += ' sabbath-day';
+      if (isToday) cls += ' today';
+      if (events.length > 0) cls += ' has-event';
+      const modalAttr = events[0]?.modal ? `onclick="openModal('${events[0].modal}')"` : '';
+      html += `<div class="${cls}" ${modalAttr}>
+        <div class="cal-day-num">${d}</div>
+        ${events.map(e => `<span class="cal-event-dot ${e.cls}">${e.label}</span>`).join('')}
+        ${isSabbath ? '<span class="cal-sabbath-label">Sabbath</span>' : ''}
+      </div>`;
+    }
+    // Next month days
+    const totalCells = Math.ceil((firstDay + daysInMonth) / 7) * 7;
+    const remaining = totalCells - firstDay - daysInMonth;
+    for (let d = 1; d <= remaining; d++) {
+      html += `<div class="cal-day other-month"><div class="cal-day-num">${d}</div></div>`;
+    }
+    document.getElementById('cal-days').innerHTML = html;
+  }
+
+  function changeMonth(dir) {
+    calMonth += dir;
+    if (calMonth > 11) { calMonth = 0; calYear++; }
+    if (calMonth < 0) { calMonth = 11; calYear--; }
+    renderCalendar();
+  }
+  renderCalendar();
+
+  // ── View toggle ──
+  let currentView = 'list';
+  function setView(view) {
+    currentView = view;
+    document.getElementById('list-view').style.display = view === 'list' ? 'flex' : 'none';
+    document.getElementById('grid-view').style.display = view === 'grid' ? 'grid' : 'none';
+    document.getElementById('list-view-btn').classList.toggle('active', view === 'list');
+    document.getElementById('grid-view-btn').classList.toggle('active', view === 'grid');
+    filterEvents();
+  }
+
+  // ── Filtering ──
+  let activeFilter = 'all';
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeFilter = btn.dataset.filter;
+      filterEvents();
+    });
+  });
+
+  function filterEvents() {
+    const query = document.getElementById('event-search').value.toLowerCase();
+    const listCards = document.querySelectorAll('.event-list-card');
+    const gridCards = document.querySelectorAll('.event-grid-card');
+    let visible = 0;
+
+    [...listCards, ...gridCards].forEach(card => {
+      const cat = card.dataset.category;
+      const title = card.dataset.title.toLowerCase();
+      const matchFilter = activeFilter === 'all' || cat === activeFilter;
+      const matchSearch = !query || title.includes(query);
+      card.classList.toggle('hidden', !(matchFilter && matchSearch));
+      if (matchFilter && matchSearch) visible++;
+    });
+
+    // count unique visible (list + grid can both show same event)
+    const uniqueVisible = [...listCards].filter(c => !c.classList.contains('hidden')).length;
+    document.getElementById('results-count').textContent = `Showing ${uniqueVisible} event${uniqueVisible !== 1 ? 's' : ''}`;
+    document.getElementById('no-results').style.display = uniqueVisible === 0 ? 'block' : 'none';
+  }
+
+  function resetFilters() {
+    document.getElementById('event-search').value = '';
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector('.filter-btn[data-filter="all"]').classList.add('active');
+    activeFilter = 'all';
+    filterEvents();
+  }
+
+  // ── Modal data ──
+  const modalData = {
+    evangelism: {
+      title: 'Campus Evangelistic Series 2026',
+      cat: '<span class="category-pill cat-outreach">Evangelism</span>',
+      bg: 'url(https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=900&q=80)',
+      details: [
+        { icon: 'calendar', label: 'Date', value: 'Saturday June 14 – Saturday June 21, 2026' },
+        { icon: 'clock', label: 'Time', value: '6:30 PM Nightly (Opening: 5:00 PM)' },
+        { icon: 'location', label: 'Venue', value: 'Main Hall · CUK Karen Campus' },
+        { icon: 'person', label: 'Preacher', value: 'Pastor David Mwangi, EKUC' },
+      ],
+      desc: '"More Than Enough" is a week-long campus evangelistic crusade featuring powerful preaching, praise music, and community prayer. Open to all CUK students, staff, and surrounding community. Childcare provided. Come with friends and questions — expect a genuine encounter.',
+      actions: '<a href="#" class="btn btn-gold">Register Now</a><a href="#" class="btn btn-outline-dark">Add to Calendar</a>'
+    },
+    health: {
+      title: 'Health Ministry Free Screening',
+      cat: '<span class="category-pill cat-health">Health</span>',
+      bg: 'url(https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=900&q=80)',
+      details: [
+        { icon: 'calendar', label: 'Date', value: 'Saturday, May 24, 2026' },
+        { icon: 'clock', label: 'Time', value: '9:00 AM – 2:00 PM' },
+        { icon: 'location', label: 'Venue', value: 'Foyer · CUK Karen Campus' },
+        { icon: 'person', label: 'Organiser', value: 'CukSDA Health & Wellness Ministry' },
+      ],
+      desc: 'Free blood pressure, blood sugar, and BMI screening for all CUK students and staff. Run by qualified health professionals from our community. No appointment needed — walk in anytime between 9 AM and 2 PM. This is a completely free service.',
+      actions: '<a href="#" class="btn btn-primary">RSVP</a><a href="#" class="btn btn-outline-dark">Add to Calendar</a>'
+    },
+    prayer: {
+      title: 'Mid-Week Prayer Meeting',
+      cat: '<span class="category-pill cat-prayer">Prayer</span>',
+      bg: 'url(https://images.unsplash.com/photo-1544531586-fde5298cdd40?w=900&q=80)',
+      details: [
+        { icon: 'calendar', label: 'Recurring', value: 'Every Wednesday' },
+        { icon: 'clock', label: 'Time', value: '6:00 PM – 7:30 PM' },
+        { icon: 'location', label: 'Venue', value: 'Chapel · CUK Karen Campus' },
+        { icon: 'person', label: 'Led By', value: 'Prayer & Intercession Ministry Team' },
+      ],
+      desc: 'A mid-week gathering for intercessory prayer, Scripture reading, and devotional reflection. Open to everyone — you do not need to be a member. Bring your burdens, praise reports, and a heart for God and community. No registration needed.',
+      actions: '<a href="#" class="btn btn-primary">Add to Calendar</a>'
+    },
+    talent: {
+      title: 'AY Society Talent Show 2026',
+      cat: '<span class="category-pill cat-youth">Youth</span>',
+      bg: 'url(https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=900&q=80)',
+      details: [
+        { icon: 'calendar', label: 'Date', value: 'Saturday, June 7, 2026' },
+        { icon: 'clock', label: 'Time', value: '3:00 PM – 6:00 PM' },
+        { icon: 'location', label: 'Venue', value: 'Main Hall · CUK Karen Campus' },
+        { icon: 'person', label: 'Organiser', value: 'CukSDA AY Society' },
+      ],
+      desc: 'A celebration of the gifts God has placed in our student community — featuring music, drama, spoken word, poetry, dance, and more. Entry is free. If you\'d like to perform, register before June 1 to secure your slot.',
+      actions: '<a href="#" class="btn btn-primary">Register to Perform</a><a href="#" class="btn btn-outline-dark">Attend (Free)</a>'
+    },
+    choir: {
+      title: 'Choir Recital & Praise Night',
+      cat: '<span class="category-pill cat-music">Music</span>',
+      bg: 'url(https://images.unsplash.com/photo-1516062423079-7ca13cdc7f5a?w=900&q=80)',
+      details: [
+        { icon: 'calendar', label: 'Date', value: 'Saturday, June 21, 2026' },
+        { icon: 'clock', label: 'Time', value: '5:00 PM – 8:00 PM' },
+        { icon: 'location', label: 'Venue', value: 'Main Hall · CUK Karen Campus' },
+        { icon: 'person', label: 'Featuring', value: 'CukSDA Choir, Praise Teams, Guest Musicians' },
+      ],
+      desc: 'A closing celebration concert for the Evangelistic Series week. Featuring performances from the CukSDA main choir, praise and worship team, and special guest musicians from across Nairobi. Entry is completely free — all are welcome to come and be blessed.',
+      actions: '<a href="#" class="btn btn-primary">RSVP (Free)</a><a href="#" class="btn btn-outline-dark">Add to Calendar</a>'
+    },
+    outreach: {
+      title: 'Karen Community Outreach Day',
+      cat: '<span class="category-pill cat-outreach">Outreach</span>',
+      bg: 'url(https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=900&q=80)',
+      details: [
+        { icon: 'calendar', label: 'Date', value: 'Sunday, July 5, 2026' },
+        { icon: 'clock', label: 'Time', value: '8:00 AM – 4:00 PM' },
+        { icon: 'location', label: 'Venue', value: 'Karen Village · Nairobi (Meet at CUK Gate 7:45 AM)' },
+        { icon: 'person', label: 'Organiser', value: 'Evangelism & Outreach Ministry' },
+      ],
+      desc: 'Quarterly community outreach in the Karen neighbourhood — including door-to-door visits, free health checks, Adventist literature distribution, children\'s programmes, and prayer. We need at least 40 volunteers. Sign up by June 28 via the link below.',
+      actions: '<a href="#" class="btn btn-primary">Volunteer Sign-Up</a><a href="#" class="btn btn-outline-dark">Learn More</a>'
+    },
+    camp: {
+      title: 'AY Leadership Camp 2026',
+      cat: '<span class="category-pill cat-youth">Youth</span>',
+      bg: 'url(https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=900&q=80)',
+      details: [
+        { icon: 'calendar', label: 'Date', value: 'August 1–3, 2026 (Full Weekend)' },
+        { icon: 'clock', label: 'Time', value: 'Friday 4:00 PM – Sunday 2:00 PM' },
+        { icon: 'location', label: 'Venue', value: 'Brackenhurst Conference Centre, Limuru' },
+        { icon: 'person', label: 'Capacity', value: '50 students (limited places)' },
+      ],
+      desc: 'A three-day leadership and discipleship retreat for university students committed to growth. Includes leadership workshops, nature worship, team challenges, devotional sessions, outdoor activities, and rich fellowship. Meals and accommodation included in registration fee.',
+      actions: '<a href="#" class="btn btn-primary">Apply Now</a><a href="#" class="btn btn-outline-dark">More Info</a>'
+    },
+    graduation: {
+      title: 'Graduation Thanksgiving Service',
+      cat: '<span class="category-pill cat-worship">Worship</span>',
+      bg: 'url(https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=900&q=80)',
+      details: [
+        { icon: 'calendar', label: 'Date', value: 'Saturday, August 22, 2026' },
+        { icon: 'clock', label: 'Time', value: '10:00 AM – 1:00 PM' },
+        { icon: 'location', label: 'Venue', value: 'Main Hall · CUK Karen Campus' },
+        { icon: 'person', label: 'Honouring', value: 'CukSDA Class of 2026 Graduates' },
+      ],
+      desc: 'A special Sabbath thanksgiving service dedicating the 2026 graduating class before God as they step into the next chapter of life. Families and friends are warmly welcome. Followed by a fellowship lunch. Please RSVP so we can plan seating and catering.',
+      actions: '<a href="#" class="btn btn-primary">RSVP</a><a href="#" class="btn btn-outline-dark">Add to Calendar</a>'
+    }
+  };
+
+  const iconSvgs = {
+    calendar: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>',
+    clock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>',
+    location: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>',
+    person: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>'
+  };
+
+  function openModal(key) {
+    const d = modalData[key];
+    if (!d) return;
+    document.getElementById('modal-bg').style.backgroundImage = d.bg;
+    document.getElementById('modal-cat').innerHTML = d.cat;
+    document.getElementById('modal-title').textContent = d.title;
+    document.getElementById('modal-desc').textContent = d.desc;
+    document.getElementById('modal-actions').innerHTML = d.actions;
+    const detailsHtml = d.details.map(det => `
+      <div class="modal-detail">
+        <div class="modal-detail-icon">${iconSvgs[det.icon]}</div>
+        <div>
+          <div class="modal-detail-label">${det.label}</div>
+          <div class="modal-detail-value">${det.value}</div>
+        </div>
+      </div>
+    `).join('');
+    document.getElementById('modal-details').innerHTML = detailsHtml;
+    document.getElementById('modal-overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('modal-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function closeModalOnOverlay(e) {
+    if (e.target === document.getElementById('modal-overlay')) closeModal();
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  // ── Form submission ──
+  function submitEventForm(e) {
+    e.preventDefault();
+    document.getElementById('event-form').style.display = 'none';
+    document.getElementById('form-success').style.display = 'block';
+  }
+
+  // ── Scroll fade-in ──
+  const fadeEls = document.querySelectorAll('.fade-in');
+  const fadeObs = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        fadeObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.07 });
+  fadeEls.forEach(el => fadeObs.observe(el));
+</script>
 </body>
 </html>
