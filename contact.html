@@ -3,92 +3,1412 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#050e1f">
-  <title>Contact — CukSDA</title>
-  <meta name="description" content="Reach out to CukSDA for visit planning, prayer requests, ministry involvement, and campus fellowship.">
-  <link rel="stylesheet" href="./style.css">
-  <script src="./script.js" defer></script>
+  <title>Visit Us · CukSDA</title>
+  <meta name="description" content="Find us, reach out, submit a prayer request, or plan your visit to the CukSDA community at the Cooperative University of Kenya, Karen Campus.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: 'DM Sans', sans-serif; color: #0f172a; background: #fff; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    :root {
+      --navy: #050e1f;
+      --navy-mid: #0a1e3d;
+      --navy-soft: #102952;
+      --blue: #1a5fd4;
+      --blue-mid: #1448a0;
+      --blue-light: #7aadff;
+      --blue-pale: #dbeafe;
+      --gold: #c9a84c;
+      --gold-light: #e4c97a;
+      --gold-dim: #7a5e1e;
+      --cream: #faf8f4;
+      --cream-dark: #f0ece3;
+      --white: #ffffff;
+      --gray-100: #f4f4f5;
+      --gray-200: #e4e4e7;
+      --gray-400: #a1a1aa;
+      --gray-500: #71717a;
+      --gray-700: #3f3f46;
+      --text: #0f172a;
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 40px;
+      --shadow-sm: 0 2px 12px rgba(0,0,0,0.06);
+      --shadow-md: 0 8px 32px rgba(0,0,0,0.10);
+      --shadow-lg: 0 20px 60px rgba(0,0,0,0.15);
+      --transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 0.82rem;
+      letter-spacing: 0.04em; text-transform: uppercase;
+      padding: 0.85rem 2rem; border-radius: var(--radius-xl);
+      border: 2px solid transparent; cursor: pointer; transition: var(--transition);
+    }
+    .btn svg { width: 16px; height: 16px; }
+    .btn-gold { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+    .btn-gold:hover { background: var(--gold-light); border-color: var(--gold-light); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(201,168,76,0.35); }
+    .btn-outline { background: transparent; color: var(--white); border-color: rgba(255,255,255,0.45); }
+    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.1); }
+    .btn-outline-dark { background: transparent; color: var(--navy); border-color: var(--navy); }
+    .btn-outline-dark:hover { background: var(--navy); color: var(--white); }
+    .btn-primary { background: var(--blue); color: var(--white); border-color: var(--blue); }
+    .btn-primary:hover { background: var(--blue-mid); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(26,95,212,0.35); }
+    .btn-sm { padding: 0.6rem 1.25rem; font-size: 0.74rem; }
+    .btn-navy { background: var(--navy); color: var(--white); border-color: var(--navy); }
+    .btn-navy:hover { background: var(--navy-soft); }
+
+    /* ── SECTION ATOMS ── */
+    .section-tag { font-family: 'DM Mono', monospace; font-weight: 500; font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+    .section-tag::after { content: ''; width: 36px; height: 1.5px; background: currentColor; flex-shrink: 0; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.12; color: var(--navy); }
+    .section-subtitle { color: var(--gray-500); font-size: 1rem; line-height: 1.8; max-width: 620px; margin-top: 1rem; font-weight: 400; }
+
+    /* ── HEADER ── */
+    header.site-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      height: 76px; display: flex; align-items: center; justify-content: space-between;
+      padding: 0 3rem;
+      background: linear-gradient(180deg,rgba(5,14,31,0.95) 0%,rgba(5,14,31,0.6) 100%);
+      transition: background 0.4s, box-shadow 0.4s;
+    }
+    header.site-header.scrolled {
+      background: rgba(5,14,31,0.97);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.06), 0 4px 24px rgba(0,0,0,0.4);
+      backdrop-filter: blur(12px);
+    }
+    .logo-wrap { display: flex; align-items: center; gap: 0.7rem; }
+    .logo-icon-adventist { width: 42px; height: 42px; flex-shrink: 0; }
+    .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+    .logo-text .church-name { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 1.05rem; color: var(--white); letter-spacing: 0.04em; text-transform: uppercase; }
+    .logo-text .church-sub { font-family: 'DM Mono', monospace; font-size: 0.58rem; color: var(--blue-light); letter-spacing: 0.14em; text-transform: uppercase; }
+    nav.primary-nav { display: flex; align-items: center; gap: 0.2rem; }
+    .nav-item { position: relative; }
+    .nav-item > a, .nav-item > button {
+      color: rgba(255,255,255,0.82); font-size: 0.8rem; font-weight: 500;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      padding: 0.5rem 0.85rem; border-radius: 6px; transition: var(--transition);
+      display: flex; align-items: center; gap: 0.3rem;
+      background: none; border: none; cursor: pointer; font-family: inherit;
+    }
+    .nav-item > a:hover, .nav-item > a.active, .nav-item > button:hover { color: var(--white); background: rgba(255,255,255,0.09); }
+    .nav-item > a.active::after { content: ''; position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%); width: 16px; height: 2px; background: var(--gold); border-radius: 2px; }
+    .nav-item .chevron { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2.5; transition: transform 0.2s ease; opacity: 0.6; }
+    .nav-item:hover .chevron { transform: rotate(180deg); opacity: 1; }
+    .dropdown {
+      position: absolute; top: calc(100% + 8px); left: 50%;
+      transform: translateX(-50%) translateY(-10px);
+      min-width: 220px; background: rgba(5,14,31,0.98);
+      backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-md); padding: 0.75rem 0;
+      opacity: 0; visibility: hidden; transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4); z-index: 300;
+    }
+    .dropdown::before { content: ''; position: absolute; top: -6px; left: 50%; transform: translateX(-50%) rotate(45deg); width: 12px; height: 12px; background: rgba(5,14,31,0.98); border-top: 1px solid rgba(255,255,255,0.08); border-left: 1px solid rgba(255,255,255,0.08); }
+    .dropdown a { display: block; padding: 0.6rem 1.25rem; color: rgba(255,255,255,0.7); font-size: 0.82rem; font-weight: 400; transition: all 0.2s; white-space: nowrap; }
+    .dropdown a:hover { color: var(--white); background: rgba(255,255,255,0.06); padding-left: 1.5rem; }
+    .dropdown-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 0.5rem 0.75rem; }
+    .dropdown-label { padding: 0.3rem 1.25rem; font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); pointer-events: none; }
+    .nav-item:hover .dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+    .menu-toggle { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 8px; }
+    .menu-toggle span { display: block; width: 22px; height: 2px; background: var(--white); border-radius: 2px; transition: var(--transition); }
+
+    /* ══════════════════════════════════════
+       PAGE HERO
+    ══════════════════════════════════════ */
+    .page-hero {
+      position: relative; padding: 140px 5rem 80px;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-soft) 60%, #0d3060 100%);
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: ''; position: absolute; top: -40%; right: -10%; width: 800px; height: 800px;
+      border-radius: 50%; background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .page-hero::after {
+      content: ''; position: absolute; bottom: -30%; left: -5%; width: 600px; height: 600px;
+      border-radius: 50%; background: radial-gradient(circle, rgba(26,95,212,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .page-hero-inner { position: relative; z-index: 1; max-width: 1400px; }
+    .breadcrumb { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem; font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+    .breadcrumb a { color: rgba(255,255,255,0.4); transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--gold); }
+    .breadcrumb svg { width: 10px; height: 10px; stroke: currentColor; fill: none; stroke-width: 2.5; }
+    .page-hero h1 { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: clamp(3rem, 6vw, 5rem); color: var(--white); line-height: 1.06; }
+    .page-hero h1 em { font-style: italic; color: var(--gold-light); }
+    .page-hero-desc { color: rgba(255,255,255,0.62); font-size: 1.05rem; line-height: 1.75; max-width: 560px; margin-top: 1.25rem; }
+    .hero-meta-strip { display: flex; gap: 2.5rem; margin-top: 2.5rem; flex-wrap: wrap; }
+    .hero-meta-item { display: flex; align-items: center; gap: 0.6rem; color: rgba(255,255,255,0.55); font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; }
+    .hero-meta-item svg { width: 15px; height: 15px; stroke: var(--gold); fill: none; stroke-width: 2; flex-shrink: 0; }
+    .hero-arc { position: absolute; bottom: -2px; left: 0; right: 0; z-index: 2; pointer-events: none; }
+    .hero-arc svg { display: block; width: 100%; }
+
+    /* ══════════════════════════════════════
+       QUICK CONTACT STRIP
+    ══════════════════════════════════════ */
+    .quick-strip {
+      background: var(--gold);
+      display: grid; grid-template-columns: repeat(4, 1fr);
+    }
+    .quick-strip-item {
+      padding: 2rem 2.5rem; border-right: 1px solid rgba(5,14,31,0.12);
+      display: flex; align-items: center; gap: 1.25rem;
+      transition: background 0.2s; cursor: pointer;
+      text-decoration: none;
+    }
+    .quick-strip-item:last-child { border-right: none; }
+    .quick-strip-item:hover { background: var(--gold-light); }
+    .quick-strip-icon {
+      width: 48px; height: 48px; background: rgba(5,14,31,0.12); border-radius: 12px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      transition: background 0.2s;
+    }
+    .quick-strip-item:hover .quick-strip-icon { background: rgba(5,14,31,0.2); }
+    .quick-strip-icon svg { width: 22px; height: 22px; stroke: var(--navy); fill: none; stroke-width: 2; }
+    .quick-strip-label { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(5,14,31,0.55); margin-bottom: 0.25rem; }
+    .quick-strip-value { font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 0.92rem; color: var(--navy); }
+
+    /* ══════════════════════════════════════
+       MAIN CONTACT SECTION
+    ══════════════════════════════════════ */
+    .contact-main { background: var(--cream); padding: 5rem; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: start; }
+
+    /* Left — info panel */
+    .contact-info { display: flex; flex-direction: column; gap: 2.5rem; }
+    .contact-info-block { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 2rem; transition: var(--transition); }
+    .contact-info-block:hover { box-shadow: var(--shadow-md); }
+    .contact-info-block-header { display: flex; align-items: center; gap: 0.85rem; margin-bottom: 1.25rem; }
+    .cib-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .cib-icon svg { width: 20px; height: 20px; fill: none; stroke-width: 2; }
+    .cib-icon.gold-bg { background: rgba(201,168,76,0.15); }
+    .cib-icon.gold-bg svg { stroke: var(--gold-dim); }
+    .cib-icon.blue-bg { background: var(--blue-pale); }
+    .cib-icon.blue-bg svg { stroke: var(--blue); }
+    .cib-icon.green-bg { background: rgba(16,185,129,0.12); }
+    .cib-icon.green-bg svg { stroke: #059669; }
+    .cib-icon.purple-bg { background: rgba(139,92,246,0.12); }
+    .cib-icon.purple-bg svg { stroke: #7c3aed; }
+    .cib-icon.red-bg { background: rgba(239,68,68,0.1); }
+    .cib-icon.red-bg svg { stroke: #dc2626; }
+    .contact-info-block h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 700; color: var(--navy); }
+    .contact-info-block .sub { font-family: 'DM Mono', monospace; font-size: 0.56rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-400); margin-top: 0.15rem; }
+
+    /* Service times table */
+    .service-times { display: flex; flex-direction: column; gap: 0; }
+    .service-row { display: flex; justify-content: space-between; align-items: center; padding: 0.65rem 0; border-bottom: 1px solid var(--gray-200); }
+    .service-row:last-child { border-bottom: none; }
+    .service-name { font-size: 0.88rem; color: var(--navy); font-weight: 500; }
+    .service-day-time { display: flex; flex-direction: column; align-items: flex-end; gap: 0.1rem; }
+    .service-day { font-family: 'DM Mono', monospace; font-size: 0.56rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-400); }
+    .service-time { font-family: 'DM Mono', monospace; font-size: 0.78rem; font-weight: 500; color: var(--gold-dim); }
+    .service-highlight { background: rgba(201,168,76,0.06); border-radius: 6px; padding: 0.65rem 0.75rem; margin: 0 -0.75rem; }
+
+    /* Address detail */
+    .address-lines { display: flex; flex-direction: column; gap: 0.5rem; }
+    .address-line { display: flex; align-items: flex-start; gap: 0.65rem; font-size: 0.9rem; color: var(--gray-500); line-height: 1.5; }
+    .address-line svg { width: 15px; height: 15px; stroke: var(--blue); fill: none; stroke-width: 2; flex-shrink: 0; margin-top: 3px; }
+    .address-line a { color: var(--blue); }
+    .address-line a:hover { text-decoration: underline; }
+
+    /* Directions CTA */
+    .directions-btn { display: flex; align-items: center; gap: 0.75rem; margin-top: 1.25rem; padding: 0.85rem 1.25rem; background: var(--navy); color: var(--white); border-radius: var(--radius-sm); font-size: 0.82rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; transition: var(--transition); border: none; cursor: pointer; width: 100%; justify-content: center; }
+    .directions-btn:hover { background: var(--navy-soft); transform: translateY(-1px); }
+    .directions-btn svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; }
+
+    /* Social links */
+    .social-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .social-link-card { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; border: 1.5px solid var(--gray-200); border-radius: var(--radius-sm); transition: var(--transition); cursor: pointer; }
+    .social-link-card:hover { border-color: transparent; box-shadow: var(--shadow-sm); transform: translateY(-1px); }
+    .social-link-card.fb:hover { background: #1877f215; border-color: #1877f2; }
+    .social-link-card.ig:hover { background: rgba(131,58,180,0.06); border-color: #833ab4; }
+    .social-link-card.yt:hover { background: rgba(255,0,0,0.06); border-color: #ff0000; }
+    .social-link-card.wa:hover { background: rgba(37,211,102,0.06); border-color: #25d366; }
+    .social-link-card.tw:hover { background: rgba(0,0,0,0.04); border-color: #000; }
+    .social-link-card svg { width: 22px; height: 22px; flex-shrink: 0; }
+    .social-link-label { font-size: 0.82rem; font-weight: 600; color: var(--navy); }
+    .social-link-handle { font-family: 'DM Mono', monospace; font-size: 0.58rem; color: var(--gray-400); letter-spacing: 0.06em; }
+
+    /* ══════════════════════════════════════
+       RIGHT — CONTACT FORM (TABBED)
+    ══════════════════════════════════════ */
+    .contact-form-panel { position: sticky; top: 96px; }
+    .form-tabs { display: flex; background: var(--gray-100); border-radius: var(--radius-md); padding: 0.35rem; gap: 0.25rem; margin-bottom: 1.75rem; }
+    .form-tab {
+      flex: 1; padding: 0.65rem 0.5rem; border: none; background: transparent; cursor: pointer;
+      font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--gray-500); border-radius: var(--radius-sm); transition: var(--transition); font-weight: 500;
+    }
+    .form-tab.active { background: var(--white); color: var(--navy); box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    .form-panel { display: none; }
+    .form-panel.active { display: block; }
+    .form-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 2.5rem; box-shadow: var(--shadow-sm); }
+    .form-card-header { margin-bottom: 2rem; }
+    .form-card-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--navy); font-weight: 700; margin-bottom: 0.35rem; }
+    .form-card-sub { color: var(--gray-500); font-size: 0.85rem; line-height: 1.6; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.45rem; margin-bottom: 1.1rem; }
+    .form-group label { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-700); }
+    .form-group input, .form-group select, .form-group textarea {
+      border: 1.5px solid var(--gray-200); border-radius: var(--radius-sm);
+      padding: 0.75rem 1rem; font-family: 'DM Sans', sans-serif; font-size: 0.88rem;
+      color: var(--text); outline: none; transition: border-color 0.2s; background: var(--white);
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--blue); }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-group.full { grid-column: 1 / -1; }
+    .form-submit { width: 100%; padding: 0.9rem; font-size: 0.82rem; margin-top: 0.5rem; border-radius: var(--radius-sm); border: none; }
+    .form-footer-note { text-align: center; margin-top: 1rem; color: var(--gray-400); font-size: 0.78rem; }
+    .form-footer-note a { color: var(--blue); }
+
+    /* Radio group for prayer form */
+    .radio-group { display: flex; flex-direction: column; gap: 0.5rem; }
+    .radio-item { display: flex; align-items: center; gap: 0.65rem; cursor: pointer; }
+    .radio-item input[type="radio"] { accent-color: var(--blue); width: 16px; height: 16px; cursor: pointer; }
+    .radio-item label { font-size: 0.88rem; color: var(--gray-700); cursor: pointer; }
+
+    /* Checkbox */
+    .checkbox-item { display: flex; align-items: flex-start; gap: 0.65rem; }
+    .checkbox-item input[type="checkbox"] { accent-color: var(--blue); width: 16px; height: 16px; cursor: pointer; margin-top: 2px; }
+    .checkbox-item label { font-size: 0.84rem; color: var(--gray-500); line-height: 1.5; cursor: pointer; }
+
+    /* Form success */
+    .form-success { display: none; text-align: center; padding: 3rem 2rem; }
+    .form-success .success-icon { width: 64px; height: 64px; background: rgba(16,185,129,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; }
+    .form-success .success-icon svg { width: 30px; height: 30px; stroke: #059669; fill: none; stroke-width: 2.5; }
+    .form-success h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--navy); margin-bottom: 0.5rem; }
+    .form-success p { color: var(--gray-500); font-size: 0.88rem; line-height: 1.7; }
+    .form-success .btn { margin-top: 1.5rem; }
+
+    /* ══════════════════════════════════════
+       MAP SECTION
+    ══════════════════════════════════════ */
+    .map-section { background: var(--white); }
+    .map-container { position: relative; height: 520px; overflow: hidden; }
+    .map-iframe { width: 100%; height: 100%; border: none; display: block; filter: grayscale(15%); }
+    .map-overlay-card {
+      position: absolute; top: 2.5rem; left: 5rem; z-index: 10;
+      background: var(--white); border-radius: var(--radius-lg); padding: 1.75rem;
+      box-shadow: var(--shadow-lg); max-width: 320px; border: 1px solid var(--gray-200);
+    }
+    .map-overlay-tag { font-family: 'DM Mono', monospace; font-size: 0.56rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
+    .map-overlay-tag::before { content: ''; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+    .map-overlay-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--navy); margin-bottom: 1rem; }
+    .map-address-item { display: flex; align-items: flex-start; gap: 0.6rem; margin-bottom: 0.65rem; font-size: 0.85rem; color: var(--gray-600); line-height: 1.5; }
+    .map-address-item svg { width: 14px; height: 14px; stroke: var(--blue); fill: none; stroke-width: 2; flex-shrink: 0; margin-top: 3px; }
+    .map-overlay-actions { display: flex; gap: 0.6rem; margin-top: 1.25rem; }
+    .map-btn { flex: 1; padding: 0.65rem 0.5rem; border-radius: var(--radius-sm); font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 0.72rem; letter-spacing: 0.04em; text-transform: uppercase; border: none; cursor: pointer; transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 0.4rem; }
+    .map-btn svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; }
+    .map-btn-primary { background: var(--navy); color: var(--white); }
+    .map-btn-primary:hover { background: var(--navy-soft); }
+    .map-btn-outline { background: var(--cream); color: var(--navy); border: 1.5px solid var(--gray-200); }
+    .map-btn-outline:hover { border-color: var(--navy); }
+
+    /* ══════════════════════════════════════
+       HOW TO FIND US
+    ══════════════════════════════════════ */
+    .directions-section { background: var(--cream); padding: 5rem; }
+    .directions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 3rem; }
+    .direction-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 2rem; transition: var(--transition); }
+    .direction-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+    .direction-icon { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; }
+    .direction-icon svg { width: 24px; height: 24px; fill: none; stroke-width: 2; }
+    .direction-icon.car { background: rgba(26,95,212,0.1); }
+    .direction-icon.car svg { stroke: var(--blue); }
+    .direction-icon.bus { background: rgba(16,185,129,0.12); }
+    .direction-icon.bus svg { stroke: #059669; }
+    .direction-icon.walk { background: rgba(201,168,76,0.15); }
+    .direction-icon.walk svg { stroke: var(--gold-dim); }
+    .direction-icon.online { background: rgba(139,92,246,0.12); }
+    .direction-icon.online svg { stroke: #7c3aed; }
+    .direction-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--navy); margin-bottom: 0.75rem; }
+    .direction-card p { color: var(--gray-500); font-size: 0.88rem; line-height: 1.7; }
+    .direction-steps { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.75rem; }
+    .direction-step { display: flex; gap: 0.75rem; font-size: 0.85rem; color: var(--gray-500); align-items: flex-start; }
+    .step-num { width: 22px; height: 22px; background: var(--navy); color: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+    /* ══════════════════════════════════════
+       MEET THE LEADERSHIP
+    ══════════════════════════════════════ */
+    .leadership-section { background: var(--navy); padding: 5rem; position: relative; overflow: hidden; }
+    .leadership-section::before { content: ''; position: absolute; top: -20%; right: -5%; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%); pointer-events: none; }
+    .leadership-section .section-tag { color: var(--gold); }
+    .leadership-section .section-tag::after { background: var(--gold); }
+    .leadership-section .section-title { color: var(--white); }
+    .leadership-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem; flex-wrap: wrap; margin-bottom: 3rem; }
+    .leadership-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+    .leader-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-lg); padding: 1.75rem 1.5rem; text-align: center; transition: var(--transition); }
+    .leader-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(201,168,76,0.25); transform: translateY(-4px); }
+    .leader-avatar { width: 72px; height: 72px; border-radius: 50%; background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; border: 2px solid rgba(201,168,76,0.3); overflow: hidden; }
+    .leader-avatar svg { width: 32px; height: 32px; stroke: rgba(255,255,255,0.4); fill: none; stroke-width: 1.5; }
+    .leader-initials { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 700; color: var(--gold); }
+    .leader-name { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--white); font-weight: 600; margin-bottom: 0.2rem; }
+    .leader-role { font-family: 'DM Mono', monospace; font-size: 0.54rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+    .leader-contact { display: flex; flex-direction: column; gap: 0.3rem; }
+    .leader-contact a { font-family: 'DM Mono', monospace; font-size: 0.56rem; color: rgba(255,255,255,0.4); letter-spacing: 0.06em; transition: color 0.2s; display: flex; align-items: center; justify-content: center; gap: 0.4rem; }
+    .leader-contact a:hover { color: var(--gold); }
+    .leader-contact a svg { width: 11px; height: 11px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+    /* ══════════════════════════════════════
+       FAQ SECTION
+    ══════════════════════════════════════ */
+    .faq-section { background: var(--white); padding: 5rem; }
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; margin-top: 3rem; }
+    .faq-list { display: flex; flex-direction: column; gap: 0; }
+    .faq-item { border-bottom: 1px solid var(--gray-200); }
+    .faq-question {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 0; cursor: pointer; gap: 1rem;
+    }
+    .faq-question h5 { font-family: 'DM Sans', sans-serif; font-size: 0.92rem; font-weight: 600; color: var(--navy); line-height: 1.4; }
+    .faq-chevron { width: 20px; height: 20px; border: 1.5px solid var(--gray-200); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.3s ease; }
+    .faq-chevron svg { width: 10px; height: 10px; stroke: var(--gray-500); fill: none; stroke-width: 2.5; transition: transform 0.3s ease; }
+    .faq-item.open .faq-chevron { background: var(--navy); border-color: var(--navy); }
+    .faq-item.open .faq-chevron svg { stroke: var(--white); transform: rotate(180deg); }
+    .faq-answer { overflow: hidden; max-height: 0; transition: max-height 0.35s ease; }
+    .faq-answer p { padding: 0 0 1.25rem; color: var(--gray-500); font-size: 0.88rem; line-height: 1.75; }
+    .faq-item.open .faq-answer { max-height: 300px; }
+
+    .faq-cta-box { background: var(--navy); border-radius: var(--radius-lg); padding: 2.5rem; }
+    .faq-cta-box .section-tag { color: var(--gold); }
+    .faq-cta-box .section-tag::after { background: var(--gold); }
+    .faq-cta-box h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; color: var(--white); margin-bottom: 0.75rem; }
+    .faq-cta-box p { color: rgba(255,255,255,0.55); font-size: 0.88rem; line-height: 1.7; margin-bottom: 1.75rem; }
+    .faq-cta-contacts { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.75rem; }
+    .faq-cta-contact { display: flex; align-items: center; gap: 0.85rem; }
+    .faq-cta-contact-icon { width: 38px; height: 38px; background: rgba(255,255,255,0.07); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .faq-cta-contact-icon svg { width: 17px; height: 17px; stroke: var(--gold); fill: none; stroke-width: 2; }
+    .faq-cta-contact-label { font-family: 'DM Mono', monospace; font-size: 0.52rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
+    .faq-cta-contact-value { font-size: 0.88rem; font-weight: 500; color: var(--white); }
+    .faq-cta-contact-value a { color: var(--white); transition: color 0.2s; }
+    .faq-cta-contact-value a:hover { color: var(--gold); }
+
+    /* ══════════════════════════════════════
+       VISIT CARD STRIP
+    ══════════════════════════════════════ */
+    .visit-strip { background: var(--cream); padding: 4rem 5rem; }
+    .visit-strip-inner { background: var(--gold); border-radius: var(--radius-lg); padding: 3rem 4rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .visit-strip-text h3 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 700; color: var(--navy); margin-bottom: 0.35rem; }
+    .visit-strip-text p { color: rgba(5,14,31,0.6); font-size: 0.92rem; max-width: 520px; line-height: 1.65; }
+    .visit-strip-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+    /* ── SCROLL FADE ── */
+    .fade-in { opacity: 0; transform: translateY(22px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── FOOTER ── */
+    footer.site-footer { background: var(--navy); color: var(--white); border-top: 1px solid rgba(255,255,255,0.05); }
+    .footer-top-bar { background: rgba(255,255,255,0.02); border-bottom: 1px solid rgba(255,255,255,0.05); padding: 1.5rem 4rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-top-text { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.05rem; color: rgba(255,255,255,0.5); }
+    .footer-top-text strong { color: var(--gold); font-style: normal; font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; }
+    .footer-inner { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 3.5rem; padding: 5rem 4rem 4rem; max-width: 1400px; margin: 0 auto; }
+    .footer-brand p { color: rgba(255,255,255,0.48); font-size: 0.88rem; line-height: 1.8; margin-top: 1.25rem; max-width: 280px; }
+    .footer-socials { display: flex; gap: 0.6rem; margin-top: 1.75rem; }
+    .social-btn { width: 38px; height: 38px; background: rgba(255,255,255,0.07); border-radius: 10px; display: flex; align-items: center; justify-content: center; transition: var(--transition); color: rgba(255,255,255,0.6); }
+    .social-btn:hover { background: var(--blue); color: var(--white); transform: translateY(-2px); }
+    .social-btn svg { width: 17px; height: 17px; fill: currentColor; }
+    .social-fb:hover { background: #1877f2; }
+    .social-ig:hover { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); }
+    .social-yt:hover { background: #ff0000; }
+    .social-tw:hover { background: #000000; }
+    .social-wa:hover { background: #25d366; }
+    .footer-col h5 { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.35rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 0.65rem; }
+    .footer-col ul li a { color: rgba(255,255,255,0.48); font-size: 0.87rem; transition: color 0.2s; display: flex; align-items: center; gap: 0.45rem; }
+    .footer-col ul li a:hover { color: var(--white); }
+    .footer-col ul li a svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; opacity: 0.5; flex-shrink: 0; }
+    .footer-contact-item { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 1rem; color: rgba(255,255,255,0.48); font-size: 0.87rem; line-height: 1.55; }
+    .footer-contact-item svg { width: 15px; height: 15px; stroke: var(--blue-light); fill: none; stroke-width: 2; margin-top: 2px; flex-shrink: 0; }
+    .footer-contact-item a { color: rgba(255,255,255,0.48); transition: color 0.2s; }
+    .footer-contact-item a:hover { color: var(--white); }
+    .footer-newsletter { margin-top: 1.5rem; }
+    .footer-newsletter p { color: rgba(255,255,255,0.45); font-size: 0.82rem; line-height: 1.65; margin-bottom: 1rem; }
+    .newsletter-form { display: flex; flex-direction: column; gap: 0.6rem; }
+    .newsletter-form input { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius-sm); color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 0.84rem; padding: 0.7rem 1rem; outline: none; transition: border-color 0.2s; width: 100%; }
+    .newsletter-form input:focus { border-color: var(--blue-light); }
+    .newsletter-form input::placeholder { color: rgba(255,255,255,0.3); }
+    .newsletter-form button { background: var(--gold); color: var(--navy); border: none; border-radius: var(--radius-sm); font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.7rem 1rem; cursor: pointer; transition: var(--transition); }
+    .newsletter-form button:hover { background: var(--gold-light); }
+    .footer-divider { border: none; border-top: 1px solid rgba(255,255,255,0.06); margin: 0 4rem; }
+    .footer-bottom { padding: 1.75rem 4rem; display: flex; align-items: center; justify-content: space-between; max-width: 1400px; margin: 0 auto; flex-wrap: wrap; gap: 1rem; }
+    .footer-bottom p { color: rgba(255,255,255,0.28); font-size: 0.78rem; }
+    .footer-bottom-links { display: flex; gap: 1.5rem; }
+    .footer-bottom-links a { color: rgba(255,255,255,0.28); font-size: 0.78rem; transition: color 0.2s; }
+    .footer-bottom-links a:hover { color: rgba(255,255,255,0.6); }
+    .sda-badge { display: flex; align-items: center; gap: 0.6rem; color: rgba(255,255,255,0.3); font-size: 0.74rem; font-family: 'DM Mono', monospace; letter-spacing: 0.08em; }
+    .sda-badge-logo { width: 22px; height: 22px; opacity: 0.5; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1200px) {
+      .leadership-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-inner { grid-template-columns: 1fr 1fr 1fr; gap: 2.5rem; }
+    }
+    @media (max-width: 1024px) {
+      .page-hero { padding: 130px 3rem 70px; }
+      .contact-main, .directions-section, .faq-section, .leadership-section, .visit-strip { padding: 4rem 3rem; }
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .contact-form-panel { position: static; }
+      .quick-strip { grid-template-columns: 1fr 1fr; }
+      .quick-strip-item:nth-child(2) { border-right: none; }
+      .quick-strip-item:nth-child(3) { border-top: 1px solid rgba(5,14,31,0.12); }
+      .quick-strip-item:nth-child(4) { border-top: 1px solid rgba(5,14,31,0.12); border-right: none; }
+      .faq-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .directions-grid { grid-template-columns: 1fr 1fr; }
+      .map-overlay-card { left: 3rem; }
+      .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; padding: 4rem 3rem 3rem; }
+    }
+    @media (max-width: 768px) {
+      header.site-header { padding: 0 1.5rem; }
+      .menu-toggle { display: flex; }
+      nav.primary-nav { position: fixed; top: 76px; left: 0; right: 0; background: rgba(5,14,31,0.98); backdrop-filter: blur(16px); flex-direction: column; padding: 1.5rem; gap: 0.4rem; transform: translateY(-110%); transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); border-bottom: 1px solid rgba(255,255,255,0.06); overflow-y: auto; max-height: calc(100vh - 76px); }
+      nav.primary-nav.open { transform: translateY(0); }
+      .nav-item { width: 100%; }
+      .nav-item > a, .nav-item > button { width: 100%; padding: 0.75rem 1rem; }
+      .nav-item .chevron { display: none; }
+      .dropdown { position: static; transform: none; opacity: 1; visibility: visible; display: none; background: rgba(255,255,255,0.03); border: none; box-shadow: none; min-width: auto; padding: 0.5rem 0 0.5rem 1rem; margin-top: 0.25rem; }
+      .dropdown::before { display: none; }
+      .dropdown a { padding: 0.5rem 1rem; }
+      .nav-item.open .dropdown { display: block; }
+      .page-hero { padding: 120px 1.5rem 60px; }
+      .quick-strip { grid-template-columns: 1fr 1fr; }
+      .contact-main, .directions-section, .faq-section, .leadership-section, .visit-strip { padding: 3rem 1.5rem; }
+      .form-tabs { flex-wrap: wrap; }
+      .form-row { grid-template-columns: 1fr; }
+      .leadership-grid { grid-template-columns: 1fr 1fr; }
+      .directions-grid { grid-template-columns: 1fr; }
+      .social-grid { grid-template-columns: 1fr; }
+      .map-overlay-card { left: 1.5rem; top: 1.5rem; max-width: calc(100% - 3rem); }
+      .map-container { height: 450px; }
+      .visit-strip-inner { padding: 2rem; flex-direction: column; }
+      .footer-top-bar { padding: 1.25rem 1.5rem; }
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1.5rem 2rem; }
+      .footer-divider { margin: 0 1.5rem; }
+      .footer-bottom { padding: 1.5rem 1.5rem; flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+      .footer-bottom-links { flex-wrap: wrap; gap: 1rem; }
+      .quick-strip-item { padding: 1.5rem; }
+    }
+  </style>
 </head>
 <body>
-  <header class="site-header">
-    <a class="logo-wrap" href="./index.html">
-      <svg class="logo-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2L4 9v14l12 7 12-7V9L16 2zm0 4.6l8 4.7v9.4l-8 4.7-8-4.7v-9.4l8-4.7zM16 11l-5 3v6l5 3 5-3v-6l-5-3z"></path></svg>
-      <div class="logo-text"><span class="church-name">CukSDA</span><span class="church-sub">Cooperative University SDA</span></div>
-    </a>
-    <nav class="primary-nav">
-      <div class="nav-item"><a href="./index.html">Home</a></div>
-      <div class="nav-item"><a href="./about.html">About</a></div>
-      <div class="nav-item"><a href="./ministries.html">Ministries</a></div>
-      <div class="nav-item"><a href="./events.html">Events</a></div>
-      <div class="nav-item"><a href="./beliefs.html">Beliefs</a></div>
-      <div class="nav-item"><a href="./sermons.html">Sermons</a></div>
-      <div class="nav-item"><a class="active" href="./contact.html" aria-current="page">Contact</a></div>
-    </nav>
-    <button class="menu-toggle" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
-  </header>
 
-  <main>
-    <section class="page-hero">
-      <div class="page-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1494173853739-c21f58b16055?w=1600&q=80');"></div>
-      <div class="page-hero-content">
-        <span class="page-hero-tag">Contact</span>
-        <h1>Reach out to CukSDA.</h1>
-        <p>Contact us for visit planning, prayer requests, ministry involvement, or any questions about our student community.</p>
-      </div>
-    </section>
-
-    <section class="page-content">
-      <div class="section-block">
-        <span class="section-tag">Connect</span>
-        <h2 class="section-title">We’re here to help and welcome you.</h2>
-        <p>Use the form below to send a prayer request, ask about a ministry, or plan your visit to CUK campus fellowship.</p>
-      </div>
-
-      <div class="contact-grid">
-        <div class="contact-card">
-          <h3>Contact Details</h3>
-          <p><strong>Location</strong><br>Cooperative University of Kenya, Karen Campus</p>
-          <p><strong>Email</strong><br><a href="mailto:hello@cuksda.org">hello@cuksda.org</a></p>
-          <p><strong>Phone</strong><br><a href="tel:+254700000000">+254 700 000 000</a></p>
-        </div>
-        <div class="contact-card">
-          <h3>Prayer &amp; Visits</h3>
-          <p>Submit a prayer request or ask for guidance to join our next Sabbath service or outreach event.</p>
-          <p><strong>Service times</strong><br>Sabbath School · 9:00 AM<br>Divine Service · 11:00 AM</p>
-        </div>
-      </div>
-
-      <form class="contact-form" onsubmit="event.preventDefault(); alert('Message submitted. Thank you!');">
-        <div class="form-grid">
-          <input type="text" placeholder="Your name" required>
-          <input type="email" placeholder="Your email" required>
-        </div>
-        <input type="text" placeholder="Subject" required>
-        <textarea placeholder="How can we help you?" required></textarea>
-        <button type="submit" class="btn btn-primary">Send Message</button>
-      </form>
-
-      <div class="map-card">
-        <h3>Find us in Karen</h3>
-        <p>CUK Main Campus is located in the Karen neighborhood of Nairobi. We’d love to welcome you to our next gathering.</p>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <div class="logo-wrap">
-          <svg class="logo-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2L4 9v14l12 7 12-7V9L16 2zm0 4.6l8 4.7v9.4l-8 4.7-8-4.7v-9.4l8-4.7zM16 11l-5 3v6l5 3 5-3v-6l-5-3z"></path></svg>
-          <div class="logo-text"><span class="church-name">CukSDA</span><span class="church-sub">Cooperative University SDA</span></div>
-        </div>
-        <p>A student-led Adventist fellowship at the Cooperative University of Kenya, growing in faith, friendship, and service.</p>
-      </div>
-      <div class="footer-col"><h5>Explore</h5><ul><li><a href="./about.html">About Us</a></li><li><a href="./ministries.html">Ministries</a></li><li><a href="./events.html">Events</a></li><li><a href="./beliefs.html">Beliefs</a></li><li><a href="./sermons.html">Sermons</a></li></ul></div>
-      <div class="footer-col"><h5>Connect</h5><ul><li><a href="./contact.html">Contact Us</a></li><li><a href="./contact.html">Prayer Request</a></li><li><a href="./contact.html">Plan a Visit</a></li><li><a href="./contact.html">Volunteer</a></li></ul></div>
-      <div class="footer-col"><h5>Find Us</h5><ul><li><a href="#">CUK Main Campus</a></li><li><a href="#">Karen, Nairobi</a></li><li><a href="mailto:hello@cuksda.org">hello@cuksda.org</a></li><li><a href="tel:+254700000000">+254 700 000 000</a></li></ul></div>
+<!-- ════════════════════ HEADER ════════════════════ -->
+<header class="site-header" id="site-header">
+  <a class="logo-wrap" href="./index.html">
+    <svg class="logo-icon-adventist" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 210" aria-label="Seventh-day Adventist symbol">
+      <g fill="none" fill-rule="evenodd">
+        <path fill="#FFFFFF" d="M106.924 171.313c0 .54.62.543.731 0 .824-3.998 2.075-6.663 4.03-9.25l-4.397.003c-.201 0-.364.162-.364.363v8.884zm31.611-55.503c.05 5.78-1.61 10.747-12.15 21.297l-8.336 8.338c-3.794 3.797-7.205 7.264-9.222 10.73h8.233l.974-.975 11.96-11.984c9.96-9.97 11.349-20.516 9.223-27.395-.181-.584-.687-.623-.682-.01zm-10.496 35.265l-9.99 10.008c-6.047 6.053-11.125 11.269-11.125 16.973l.006 1.588c0 .43.536.499.7.048 1.868-5.107 8.106-10.557 19.548-8.625 0 0 49.849 8.622 50.267 8.659.487.043.728-.437.414-.81-.189-.225-23.2-23.258-23.2-23.258l-26.62-4.583zm-36.062 10.988a.364.364 0 0 1-.364-.364v-5.163c0-.202.163-.364.364-.364l8.724.002c.201 0 .364-.163.364-.364-.023-4.637-3.515-7.788-17.508-5.35l-30.215 5.198s-23.012 23.033-23.2 23.258c-.315.373-.074.853.413.81.42-.037 50.267-8.66 50.267-8.66 11.443-1.931 17.681 3.52 19.548 8.626.164.45.701.383.701-.048l.001-17.218c0-.2-.163-.363-.364-.363h-8.731zm-13.928-72.16c-9.96 9.969-11.349 20.516-9.222 27.395.18.584.686.623.68.01-.05-5.78 1.612-10.746 12.151-21.296l22.721-22.735c6.047-6.054 11.125-11.27 11.125-16.973v-8.897c0-.542-.62-.544-.732 0-1.494 7.26-4.395 10.125-10.378 16.113L78.05 89.902zm37.477-26.933c0-.54-.62-.543-.732 0-1.494 7.261-4.388 10.17-10.37 16.16L80.56 102.993c-11.58 11.592-13.584 22.81-7.694 30.02.393.481.815.192.56-.388-3.895-8.819 5.443-18.17 9.889-22.62L104.401 88.9c6.047-6.053 11.125-11.269 11.125-16.973V62.97zm-34.311 55.008c-11.581 11.592-6.256 22.787.5 25.87.592.27.828-.211.374-.603-5.416-4.699-3.772-12.6 3.04-19.418l19.248-19.267c6.047-6.053 11.124-11.268 11.124-16.972v-8.896c0-.54-.62-.543-.73 0-1.495 7.259-4.39 10.112-10.373 16.1l-23.183 23.186zm25.688 37.771c0 .541.62.543.73 0 1.496-7.259 4.39-10.17 10.372-16.158l9.479-9.468c11.58-11.59 13.583-22.809 7.693-30.018-.393-.481-.815-.193-.558.387 3.893 8.819-5.444 18.169-9.89 22.62l-6.701 6.709c-6.048 6.052-11.125 11.267-11.125 16.971v8.957zm11.128-31.822c-5.983 5.988-8.879 8.841-10.373 16.101-.112.544-.731.542-.731 0v-8.896c0-5.703 5.077-10.92 11.125-16.972l4.862-4.868c6.813-6.82 8.457-14.719 3.04-19.418-.453-.392-.217-.874.376-.603 6.755 3.082 12.08 14.277.498 25.87l-8.797 8.786z"/>
+      </g>
+    </svg>
+    <div class="logo-text">
+      <span class="church-name">CukSDA</span>
+      <span class="church-sub">Cooperative University SDA</span>
     </div>
-    <div class="footer-bottom"><p>© 2026 CukSDA — Cooperative University SDA Community. All rights reserved.</p><div class="sda-badge"><svg viewBox="0 0 24 24"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z"></path></svg><span>Seventh-day Adventist Church</span></div></div>
-  </footer>
+  </a>
+  <nav class="primary-nav" id="primary-nav">
+    <div class="nav-item"><a href="./index.html">Home</a></div>
+    <div class="nav-item">
+      <button>About <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+      <div class="dropdown">
+        <a href="./about.html">Who We Are</a>
+        <a href="./about.html">Our History</a>
+        <a href="./about.html">Leadership Team</a>
+        <div class="dropdown-divider"></div>
+        <div class="dropdown-label">Quick Links</div>
+        <a href="./ministries.html">Our Ministries</a>
+        <a href="./beliefs.html">What We Believe</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <button>Ministries <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+      <div class="dropdown">
+        <a href="./ministries.html">Worship &amp; Devotion</a>
+        <a href="./ministries.html">Youth &amp; University</a>
+        <a href="./ministries.html">Health &amp; Wellness</a>
+        <a href="./ministries.html">Evangelism &amp; Outreach</a>
+      </div>
+    </div>
+    <div class="nav-item"><a href="./events.html">Events</a></div>
+    <div class="nav-item">
+      <button>Beliefs <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+      <div class="dropdown">
+        <a href="./beliefs.html">28 Fundamental Beliefs</a>
+        <a href="./beliefs.html">The Sabbath</a>
+        <a href="./beliefs.html">Second Coming</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <button>Sermons <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+      <div class="dropdown">
+        <a href="./sermons.html">Latest Sermons</a>
+        <a href="./sermons.html">Sermon Archive</a>
+      </div>
+    </div>
+    <div class="nav-item"><a href="./contact.html" class="active">Visit Us</a></div>
+  </nav>
+  <button class="menu-toggle" id="menu-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+</header>
+
+<main>
+
+  <!-- ════════════════════ PAGE HERO ════════════════════ -->
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <div class="breadcrumb">
+        <a href="./index.html">Home</a>
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+        <span>Visit Us</span>
+      </div>
+      <h1>We'd love to<br>hear from <em>you.</em></h1>
+      <p class="page-hero-desc">Whether you want to visit for the first time, submit a prayer request, connect with a ministry, or simply say hello — we're here. You're always welcome at CukSDA.</p>
+      <div class="hero-meta-strip">
+        <div class="hero-meta-item">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Karen Campus, Nairobi
+        </div>
+        <div class="hero-meta-item">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>
+          Sabbath · 9:00 AM – 5:00 PM
+        </div>
+        <div class="hero-meta-item">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.5a19.79 19.79 0 01-3-8.59A2 2 0 012.06 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.5A16 16 0 0015.5 17.1l.7-.7a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          +254 700 000 000
+        </div>
+      </div>
+    </div>
+    <div class="hero-arc">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,60 C360,0 1080,0 1440,60 L1440,60 L0,60 Z" fill="#c9a84c"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ════════════════════ QUICK CONTACT STRIP ════════════════════ -->
+  <div class="quick-strip">
+    <a href="tel:+254700000000" class="quick-strip-item">
+      <div class="quick-strip-icon">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.5a19.79 19.79 0 01-3-8.59A2 2 0 012.06 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.5A16 16 0 0015.5 17.1l.7-.7a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+      </div>
+      <div>
+        <div class="quick-strip-label">Call Us</div>
+        <div class="quick-strip-value">+254 700 000 000</div>
+      </div>
+    </a>
+    <a href="mailto:hello@cuksda.org" class="quick-strip-item">
+      <div class="quick-strip-icon">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><polyline points="4 4 12 13 20 4"/></svg>
+      </div>
+      <div>
+        <div class="quick-strip-label">Email Us</div>
+        <div class="quick-strip-value">hello@cuksda.org</div>
+      </div>
+    </a>
+    <a href="https://wa.me/254700000000" class="quick-strip-item">
+      <div class="quick-strip-icon">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" fill="var(--navy)"/></svg>
+      </div>
+      <div>
+        <div class="quick-strip-label">WhatsApp</div>
+        <div class="quick-strip-value">Chat with Us</div>
+      </div>
+    </a>
+    <a href="https://maps.google.com/?q=Cooperative+University+of+Kenya+Karen" target="_blank" class="quick-strip-item">
+      <div class="quick-strip-icon">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <div>
+        <div class="quick-strip-label">Location</div>
+        <div class="quick-strip-value">Get Directions</div>
+      </div>
+    </a>
+  </div>
+
+  <!-- ════════════════════ MAIN CONTACT + FORM ════════════════════ -->
+  <section class="contact-main">
+    <div class="contact-grid">
+
+      <!-- LEFT — Info Blocks -->
+      <div class="contact-info">
+
+        <!-- Service Times -->
+        <div class="contact-info-block fade-in">
+          <div class="contact-info-block-header">
+            <div class="cib-icon gold-bg">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>
+            </div>
+            <div>
+              <h4>Service Times</h4>
+              <div class="sub">Every Sabbath (Saturday)</div>
+            </div>
+          </div>
+          <div class="service-times">
+            <div class="service-row service-highlight">
+              <div class="service-name">✦ Sabbath School</div>
+              <div class="service-day-time">
+                <span class="service-day">Saturday</span>
+                <span class="service-time">9:00 AM</span>
+              </div>
+            </div>
+            <div class="service-row service-highlight" style="margin-top:0.25rem;">
+              <div class="service-name">✦ Divine Service</div>
+              <div class="service-day-time">
+                <span class="service-day">Saturday</span>
+                <span class="service-time">11:00 AM</span>
+              </div>
+            </div>
+            <div class="service-row service-highlight" style="margin-top:0.25rem;">
+              <div class="service-name">✦ AY Program</div>
+              <div class="service-day-time">
+                <span class="service-day">Saturday</span>
+                <span class="service-time">3:00 PM</span>
+              </div>
+            </div>
+            <div class="service-row" style="margin-top:0.5rem;">
+              <div class="service-name">Vespers</div>
+              <div class="service-day-time">
+                <span class="service-day">Friday</span>
+                <span class="service-time">6:00 PM</span>
+              </div>
+            </div>
+            <div class="service-row">
+              <div class="service-name">Prayer Meeting</div>
+              <div class="service-day-time">
+                <span class="service-day">Wednesday</span>
+                <span class="service-time">6:00 PM</span>
+              </div>
+            </div>
+            <div class="service-row">
+              <div class="service-name">Bible Study Groups</div>
+              <div class="service-day-time">
+                <span class="service-day">Tue &amp; Thu</span>
+                <span class="service-time">5:30 PM</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Find Us -->
+        <div class="contact-info-block fade-in">
+          <div class="contact-info-block-header">
+            <div class="cib-icon blue-bg">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <h4>Find Us</h4>
+              <div class="sub">Karen Campus · Nairobi</div>
+            </div>
+          </div>
+          <div class="address-lines">
+            <div class="address-line">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Cooperative University of Kenya, Karen Campus, Off Karen Road, Nairobi, Kenya
+            </div>
+            <div class="address-line">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.5a19.79 19.79 0 01-3-8.59A2 2 0 012.06 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.5A16 16 0 0015.5 17.1l.7-.7a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+              <a href="tel:+254700000000">+254 700 000 000</a>
+            </div>
+            <div class="address-line">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><polyline points="4 4 12 13 20 4"/></svg>
+              <a href="mailto:hello@cuksda.org">hello@cuksda.org</a>
+            </div>
+            <div class="address-line">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              P.O. Box 48231 – 00100, Nairobi
+            </div>
+          </div>
+          <a href="https://maps.google.com/?q=Cooperative+University+of+Kenya+Karen" target="_blank" class="directions-btn" style="text-decoration:none; display:flex;">
+            <svg viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+            Open in Google Maps
+          </a>
+        </div>
+
+        <!-- Connect Online -->
+        <div class="contact-info-block fade-in">
+          <div class="contact-info-block-header">
+            <div class="cib-icon purple-bg">
+              <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </div>
+            <div>
+              <h4>Connect Online</h4>
+              <div class="sub">Follow us on social media</div>
+            </div>
+          </div>
+          <div class="social-grid">
+            <a href="#" class="social-link-card fb">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="#1877f2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              <div>
+                <div class="social-link-label">Facebook</div>
+                <div class="social-link-handle">@CukSDA</div>
+              </div>
+            </a>
+            <a href="#" class="social-link-card ig">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="#e1306c"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+              <div>
+                <div class="social-link-label">Instagram</div>
+                <div class="social-link-handle">@cuksda_ke</div>
+              </div>
+            </a>
+            <a href="#" class="social-link-card yt">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="#ff0000"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+              <div>
+                <div class="social-link-label">YouTube</div>
+                <div class="social-link-handle">CukSDA Church</div>
+              </div>
+            </a>
+            <a href="#" class="social-link-card wa">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+              <div>
+                <div class="social-link-label">WhatsApp</div>
+                <div class="social-link-handle">Community Chat</div>
+              </div>
+            </a>
+            <a href="#" class="social-link-card tw" style="grid-column: 1 / -1;">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="#000"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
+              <div>
+                <div class="social-link-label">X (Twitter)</div>
+                <div class="social-link-handle">@CukSDA</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT — Tabbed Forms -->
+      <div class="contact-form-panel">
+        <div class="form-tabs">
+          <button class="form-tab active" onclick="switchTab('general')">General Enquiry</button>
+          <button class="form-tab" onclick="switchTab('prayer')">Prayer Request</button>
+          <button class="form-tab" onclick="switchTab('visit')">Plan a Visit</button>
+          <button class="form-tab" onclick="switchTab('volunteer')">Volunteer</button>
+        </div>
+
+        <!-- General Enquiry -->
+        <div class="form-panel active" id="panel-general">
+          <div class="form-card">
+            <div id="general-form-wrap">
+              <div class="form-card-header">
+                <div class="form-card-title">Send us a message</div>
+                <div class="form-card-sub">We read every message and typically reply within 24–48 hours on weekdays. For urgent matters, please call or WhatsApp us directly.</div>
+              </div>
+              <form onsubmit="handleSubmit(event, 'general-form-wrap', 'general-success')">
+                <div class="form-row">
+                  <div class="form-group"><label>First Name *</label><input type="text" placeholder="Your first name" required></div>
+                  <div class="form-group"><label>Last Name *</label><input type="text" placeholder="Your last name" required></div>
+                </div>
+                <div class="form-group"><label>Email Address *</label><input type="email" placeholder="you@example.com" required></div>
+                <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="+254 7XX XXX XXX"></div>
+                <div class="form-group"><label>Subject *</label>
+                  <select required>
+                    <option value="">Select a topic…</option>
+                    <option>General Question</option>
+                    <option>Membership Inquiry</option>
+                    <option>Ministry Information</option>
+                    <option>Event Information</option>
+                    <option>Leadership / Pastoral</option>
+                    <option>Media / Sermon Request</option>
+                    <option>Partnerships & Collaboration</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div class="form-group"><label>Message *</label><textarea placeholder="How can we help you?" required style="min-height:140px;"></textarea></div>
+                <div class="form-group">
+                  <div class="checkbox-item">
+                    <input type="checkbox" id="newsletter-opt">
+                    <label for="newsletter-opt">Subscribe to our weekly bulletin and updates</label>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary form-submit">Send Message <svg style="width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+                <p class="form-footer-note">We respect your privacy. Read our <a href="#">Privacy Policy</a>.</p>
+              </form>
+            </div>
+            <div class="form-success" id="general-success">
+              <div class="success-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <h4>Message received!</h4>
+              <p>Thank you for reaching out. Our team will get back to you within 24–48 hours. God bless you.</p>
+              <button class="btn btn-outline-dark btn-sm" onclick="resetForm('general-form-wrap','general-success')">Send Another</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prayer Request -->
+        <div class="form-panel" id="panel-prayer">
+          <div class="form-card">
+            <div id="prayer-form-wrap">
+              <div class="form-card-header">
+                <div class="form-card-title">Submit a Prayer Request</div>
+                <div class="form-card-sub">Our prayer team intercedes faithfully. All requests are treated with complete confidentiality unless you indicate otherwise.</div>
+              </div>
+              <form onsubmit="handleSubmit(event, 'prayer-form-wrap', 'prayer-success')">
+                <div class="form-row">
+                  <div class="form-group"><label>Your Name *</label><input type="text" placeholder="First name is fine" required></div>
+                  <div class="form-group"><label>Email (optional)</label><input type="email" placeholder="For a follow-up"></div>
+                </div>
+                <div class="form-group"><label>Prayer Category</label>
+                  <select>
+                    <option>Health &amp; Healing</option>
+                    <option>Family &amp; Relationships</option>
+                    <option>Financial &amp; Employment</option>
+                    <option>Spiritual Growth</option>
+                    <option>Academic &amp; Career</option>
+                    <option>Grief &amp; Loss</option>
+                    <option>Praise &amp; Thanksgiving</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div class="form-group"><label>Your Prayer Request *</label><textarea placeholder="Share what's on your heart. You can be as detailed or as brief as you'd like." required style="min-height:160px;"></textarea></div>
+                <div class="form-group">
+                  <label style="margin-bottom:0.6rem; display:block;">Sharing Preferences</label>
+                  <div class="radio-group">
+                    <div class="radio-item">
+                      <input type="radio" name="share-pref" id="pref-private" value="private" checked>
+                      <label for="pref-private">Keep completely private — pastoral team only</label>
+                    </div>
+                    <div class="radio-item">
+                      <input type="radio" name="share-pref" id="pref-team" value="team">
+                      <label for="pref-team">Share with the prayer team (first name only)</label>
+                    </div>
+                    <div class="radio-item">
+                      <input type="radio" name="share-pref" id="pref-public" value="public">
+                      <label for="pref-public">Share publicly in church bulletin</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="checkbox-item">
+                    <input type="checkbox" id="prayer-followup">
+                    <label for="prayer-followup">I'd welcome a follow-up call or visit from the pastoral team</label>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary form-submit" style="background:var(--gold);border-color:var(--gold);color:var(--navy);">Submit Prayer Request</button>
+                <p class="form-footer-note">Your request is sacred to us. It will be prayed over with reverence.</p>
+              </form>
+            </div>
+            <div class="form-success" id="prayer-success">
+              <div class="success-icon" style="background:rgba(201,168,76,0.12);"><svg viewBox="0 0 24 24" style="stroke:var(--gold-dim);"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <h4>We're praying with you.</h4>
+              <p>Your request has been received and will be lifted in prayer. May God meet you right where you are. — CukSDA Prayer Team</p>
+              <button class="btn btn-outline-dark btn-sm" onclick="resetForm('prayer-form-wrap','prayer-success')">Submit Another</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Plan a Visit -->
+        <div class="form-panel" id="panel-visit">
+          <div class="form-card">
+            <div id="visit-form-wrap">
+              <div class="form-card-header">
+                <div class="form-card-title">Plan Your First Visit</div>
+                <div class="form-card-sub">Fill in the form and we'll assign a friendly member to welcome you personally on your first Sabbath. No pressure — just warmth.</div>
+              </div>
+              <form onsubmit="handleSubmit(event, 'visit-form-wrap', 'visit-success')">
+                <div class="form-row">
+                  <div class="form-group"><label>Your Name *</label><input type="text" placeholder="Full name" required></div>
+                  <div class="form-group"><label>Phone / WhatsApp *</label><input type="tel" placeholder="+254 7XX XXX XXX" required></div>
+                </div>
+                <div class="form-group"><label>Email Address</label><input type="email" placeholder="Optional — for a reminder"></div>
+                <div class="form-group"><label>Planned Visit Date *</label><input type="date" required></div>
+                <div class="form-group"><label>How did you hear about us?</label>
+                  <select>
+                    <option>Friend or classmate</option>
+                    <option>Campus notice board</option>
+                    <option>Social media</option>
+                    <option>Outreach or event</option>
+                    <option>Online search</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div class="form-group"><label>Are you bringing anyone?</label>
+                  <select>
+                    <option>Just me</option>
+                    <option>Bringing 1–2 friends</option>
+                    <option>Bringing a group (3+)</option>
+                    <option>Coming with family</option>
+                  </select>
+                </div>
+                <div class="form-group"><label>Anything you'd like us to know?</label><textarea placeholder="Special needs, questions, or anything that would help us welcome you well…" style="min-height:90px;"></textarea></div>
+                <div class="form-group">
+                  <div class="checkbox-item">
+                    <input type="checkbox" id="visit-transport">
+                    <label for="visit-transport">I may need help with directions or transport from the gate — please note this</label>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary form-submit">Book My Visit</button>
+                <p class="form-footer-note">We'll send a WhatsApp message to confirm. No booking needed — drop-ins always welcome too.</p>
+              </form>
+            </div>
+            <div class="form-success" id="visit-success">
+              <div class="success-icon" style="background:rgba(26,95,212,0.1);"><svg viewBox="0 0 24 24" style="stroke:var(--blue);"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <h4>We can't wait to meet you!</h4>
+              <p>Your visit is registered. A member of our welcome team will reach out to you via WhatsApp to confirm. We look forward to seeing you on Sabbath.</p>
+              <button class="btn btn-outline-dark btn-sm" onclick="resetForm('visit-form-wrap','visit-success')">Register Another</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Volunteer -->
+        <div class="form-panel" id="panel-volunteer">
+          <div class="form-card">
+            <div id="volunteer-form-wrap">
+              <div class="form-card-header">
+                <div class="form-card-title">Join a Ministry Team</div>
+                <div class="form-card-sub">There's a place for every gift at CukSDA. Tell us what you're passionate about and we'll connect you with the right team.</div>
+              </div>
+              <form onsubmit="handleSubmit(event, 'volunteer-form-wrap', 'volunteer-success')">
+                <div class="form-row">
+                  <div class="form-group"><label>Full Name *</label><input type="text" placeholder="Your name" required></div>
+                  <div class="form-group"><label>Year of Study</label>
+                    <select>
+                      <option>1st Year</option>
+                      <option>2nd Year</option>
+                      <option>3rd Year</option>
+                      <option>4th Year</option>
+                      <option>Postgraduate</option>
+                      <option>Staff / Faculty</option>
+                      <option>Community Member</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group"><label>Email Address *</label><input type="email" placeholder="you@example.com" required></div>
+                <div class="form-group"><label>Phone / WhatsApp *</label><input type="tel" placeholder="+254 7XX XXX XXX" required></div>
+                <div class="form-group">
+                  <label style="margin-bottom:0.6rem; display:block;">Ministries of Interest (select all that apply)</label>
+                  <div class="radio-group" style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;">
+                    <div class="radio-item"><input type="checkbox" id="min-worship"><label for="min-worship">Worship &amp; Music</label></div>
+                    <div class="radio-item"><input type="checkbox" id="min-ay"><label for="min-ay">AY / Youth</label></div>
+                    <div class="radio-item"><input type="checkbox" id="min-health"><label for="min-health">Health &amp; Wellness</label></div>
+                    <div class="radio-item"><input type="checkbox" id="min-outreach"><label for="min-outreach">Outreach &amp; Evangelism</label></div>
+                    <div class="radio-item"><input type="checkbox" id="min-prayer"><label for="min-prayer">Prayer &amp; Intercession</label></div>
+                    <div class="radio-item"><input type="checkbox" id="min-media"><label for="min-media">Media &amp; Technology</label></div>
+                    <div class="radio-item"><input type="checkbox" id="min-welcome"><label for="min-welcome">Welcome Team</label></div>
+                    <div class="radio-item"><input type="checkbox" id="min-children"><label for="min-children">Children's Ministry</label></div>
+                  </div>
+                </div>
+                <div class="form-group"><label>Skills, Gifts or Experience</label><textarea placeholder="Tell us about skills or gifts you'd like to offer — music, design, speaking, hospitality, IT, counselling, etc." style="min-height:100px;"></textarea></div>
+                <div class="form-group"><label>Availability</label>
+                  <select>
+                    <option>Saturdays only</option>
+                    <option>Weekday evenings</option>
+                    <option>Flexible / most days</option>
+                    <option>Special events only</option>
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-primary form-submit">Submit Application</button>
+                <p class="form-footer-note">A ministry leader will contact you within 5 business days to discuss next steps.</p>
+              </form>
+            </div>
+            <div class="form-success" id="volunteer-success">
+              <div class="success-icon" style="background:rgba(139,92,246,0.1);"><svg viewBox="0 0 24 24" style="stroke:#7c3aed;"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <h4>Welcome to the team!</h4>
+              <p>Your volunteer application is in. A ministry leader will reach out soon to discuss how best to plug you in. Every gift counts — we're glad you're here.</p>
+              <button class="btn btn-outline-dark btn-sm" onclick="resetForm('volunteer-form-wrap','volunteer-success')">Submit Another</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ MAP ════════════════════ -->
+  <section class="map-section">
+    <div class="map-container">
+      <iframe
+        class="map-iframe"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.872985059!2d36.70!3d-1.33!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f0498e5b71bfd%3A0xbdaa2f27c6f77b2f!2sCooperative%20University%20of%20Kenya!5e0!3m2!1sen!2ske!4v1716000000000"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="CukSDA Location Map">
+      </iframe>
+      <div class="map-overlay-card">
+        <div class="map-overlay-tag">We Are Here</div>
+        <h3>CukSDA Community</h3>
+        <div class="map-address-item">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Cooperative University of Kenya, Karen Campus, Nairobi
+        </div>
+        <div class="map-address-item">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>
+          Sabbath: 9:00 AM – 5:00 PM · Wed Prayer: 6:00 PM
+        </div>
+        <div class="map-address-item">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.5a19.79 19.79 0 01-3-8.59A2 2 0 012.06 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.5A16 16 0 0015.5 17.1l.7-.7a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          +254 700 000 000
+        </div>
+        <div class="map-overlay-actions">
+          <a href="https://maps.google.com/?q=Cooperative+University+of+Kenya+Karen" target="_blank" class="map-btn map-btn-primary" style="text-decoration:none;">
+            <svg viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+            Directions
+          </a>
+          <button class="map-btn map-btn-outline" onclick="document.getElementById('panel-visit').closest('.form-panel').classList.add('active'); switchTab('visit');">
+            Plan a Visit
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ HOW TO FIND US ════════════════════ -->
+  <section class="directions-section">
+    <div>
+      <span class="section-tag">Getting Here</span>
+      <h2 class="section-title">How to find us.</h2>
+      <p class="section-subtitle">Karen Campus is well connected. Here are the easiest ways to get to CukSDA on Sabbath morning.</p>
+    </div>
+    <div class="directions-grid">
+      <div class="direction-card fade-in">
+        <div class="direction-icon car">
+          <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        </div>
+        <h4>By Car / Boda Boda</h4>
+        <div class="direction-steps">
+          <div class="direction-step"><div class="step-num">1</div>Head towards Karen along Ngong Road or Karen Road.</div>
+          <div class="direction-step"><div class="step-num">2</div>Turn onto Lang'ata Road — CUK Karen Campus is signposted from the main junction.</div>
+          <div class="direction-step"><div class="step-num">3</div>Enter through the main gate — inform security you are attending the SDA church service.</div>
+          <div class="direction-step"><div class="step-num">4</div>Free parking is available within the campus grounds on Saturdays.</div>
+        </div>
+      </div>
+      <div class="direction-card fade-in">
+        <div class="direction-icon bus">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="18" rx="2"/><line x1="2" y1="7" x2="22" y2="7"/><line x1="2" y1="13" x2="22" y2="13"/><line x1="7" y1="2" x2="7" y2="20"/><circle cx="7" cy="20" r="2"/><circle cx="17" cy="20" r="2"/></svg>
+        </div>
+        <h4>By Matatu / Public Bus</h4>
+        <div class="direction-steps">
+          <div class="direction-step"><div class="step-num">1</div>From the CBD, board any matatu headed to Karen or Lang'ata (Route 111, 126, or 125).</div>
+          <div class="direction-step"><div class="step-num">2</div>Alight at Karen Shopping Centre or the Hardy Junction stage.</div>
+          <div class="direction-step"><div class="step-num">3</div>Take a boda boda or tuk-tuk to Cooperative University of Kenya (about 10–15 min).</div>
+          <div class="direction-step"><div class="step-num">4</div>Proceed to the main gate and direct the guard to the SDA church inside campus.</div>
+        </div>
+      </div>
+      <div class="direction-card fade-in">
+        <div class="direction-icon walk">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="4" r="2"/><path d="M15.89 8.11L13 7l-2.5 3.5L8 18l4-1.5 2 4h2l-2.5-4.5 2-2L18 18h2"/><path d="M8 10.5L6 18"/></svg>
+        </div>
+        <h4>On Campus (Students)</h4>
+        <div class="direction-steps">
+          <div class="direction-step"><div class="step-num">1</div>From CUK student hostels, walk towards the main academic block — follow signage for the chapel area.</div>
+          <div class="direction-step"><div class="step-num">2</div>The CukSDA Hall is adjacent to the main multipurpose block — ask any SDA student on Sabbath morning.</div>
+          <div class="direction-step"><div class="step-num">3</div>WhatsApp our welcome team for a guide to walk with you: +254 700 000 000.</div>
+        </div>
+      </div>
+      <div class="direction-card fade-in">
+        <div class="direction-icon online">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <h4>Join Us Online</h4>
+        <p>Can't make it in person? We livestream our Divine Service every Saturday at 11:00 AM. Subscribe to our YouTube channel and turn on notifications so you never miss a Sabbath.</p>
+        <div class="direction-steps" style="margin-top:1rem;">
+          <div class="direction-step"><div class="step-num">1</div>Search <strong>"CukSDA Church"</strong> on YouTube.</div>
+          <div class="direction-step"><div class="step-num">2</div>Subscribe and click the bell icon for live notifications.</div>
+          <div class="direction-step"><div class="step-num">3</div>Sermons are also available to watch after the service.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ LEADERSHIP ════════════════════ -->
+  <section class="leadership-section">
+    <div class="leadership-header">
+      <div>
+        <span class="section-tag">Our Team</span>
+        <h2 class="section-title">Who to reach out to.</h2>
+        <p class="section-subtitle" style="color:rgba(255,255,255,0.5); margin-top:0.75rem;">Our leaders are approachable and accessible. Don't hesitate to reach out directly.</p>
+      </div>
+    </div>
+    <div class="leadership-grid">
+      <div class="leader-card fade-in">
+        <div class="leader-avatar"><span class="leader-initials">PM</span></div>
+        <div class="leader-name">Pastor J. Mwangi</div>
+        <div class="leader-role">Church Pastor</div>
+        <div class="leader-contact">
+          <a href="mailto:pastor@cuksda.org"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><polyline points="4 4 12 13 20 4"/></svg> pastor@cuksda.org</a>
+          <a href="tel:+254700000001"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.5a19.79 19.79 0 01-3-8.59A2 2 0 012.06 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.5A16 16 0 0015.5 17.1l.7-.7a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg> +254 700 000 001</a>
+        </div>
+      </div>
+      <div class="leader-card fade-in">
+        <div class="leader-avatar"><span class="leader-initials">AO</span></div>
+        <div class="leader-name">Sis. A. Odhiambo</div>
+        <div class="leader-role">Church Elder &amp; Head Elder</div>
+        <div class="leader-contact">
+          <a href="mailto:elder@cuksda.org"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><polyline points="4 4 12 13 20 4"/></svg> elder@cuksda.org</a>
+          <a href="tel:+254700000002"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.5a19.79 19.79 0 01-3-8.59A2 2 0 012.06 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.5A16 16 0 0015.5 17.1l.7-.7a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg> +254 700 000 002</a>
+        </div>
+      </div>
+      <div class="leader-card fade-in">
+        <div class="leader-avatar"><span class="leader-initials">BK</span></div>
+        <div class="leader-name">Bro. B. Kamau</div>
+        <div class="leader-role">AY Society President</div>
+        <div class="leader-contact">
+          <a href="mailto:ay@cuksda.org"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><polyline points="4 4 12 13 20 4"/></svg> ay@cuksda.org</a>
+          <a href="tel:+254700000003"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.5a19.79 19.79 0 01-3-8.59A2 2 0 012.06 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.5A16 16 0 0015.5 17.1l.7-.7a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg> +254 700 000 003</a>
+        </div>
+      </div>
+      <div class="leader-card fade-in">
+        <div class="leader-avatar"><span class="leader-initials">GW</span></div>
+        <div class="leader-name">Sis. G. Wanjiku</div>
+        <div class="leader-role">Treasurer &amp; Church Clerk</div>
+        <div class="leader-contact">
+          <a href="mailto:admin@cuksda.org"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><polyline points="4 4 12 13 20 4"/></svg> admin@cuksda.org</a>
+          <a href="tel:+254700000004"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.5a19.79 19.79 0 01-3-8.59A2 2 0 012.06 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.5A16 16 0 0015.5 17.1l.7-.7a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg> +254 700 000 004</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ FAQ ════════════════════ -->
+  <section class="faq-section">
+    <div style="max-width:1400px;">
+      <span class="section-tag">Common Questions</span>
+      <h2 class="section-title">Questions before you visit?</h2>
+      <div class="faq-grid">
+        <div class="faq-list fade-in">
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              <h5>Do I have to be a Seventh-day Adventist to attend?</h5>
+              <div class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+            </div>
+            <div class="faq-answer"><p>Not at all. Everyone is genuinely welcome — whether you're a first-time visitor, someone exploring faith for the first time, or a Christian from another denomination. There is no pressure, no commitment required. Come as you are.</p></div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              <h5>What should I wear to the service?</h5>
+              <div class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+            </div>
+            <div class="faq-answer"><p>Smart casual to formal is the norm — many members dress in their best for Sabbath as a sign of reverence. But we won't turn you away for wearing a T-shirt and jeans. What matters most is that you come.</p></div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              <h5>Is parking available on campus?</h5>
+              <div class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+            </div>
+            <div class="faq-answer"><p>Yes. Free parking is available within the CUK Karen Campus grounds every Saturday. Inform the security guard at the main gate that you are attending the SDA church service.</p></div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              <h5>Is there a service for children?</h5>
+              <div class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+            </div>
+            <div class="faq-answer"><p>Yes. Children are warmly welcome at all services. We have a dedicated Sabbath School class for children during the Sabbath School hour (9–10:30 AM) and a children's corner within the main service. Nursing mothers also have a comfortable side room available.</p></div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              <h5>How do I transfer membership to CukSDA?</h5>
+              <div class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+            </div>
+            <div class="faq-answer"><p>Speak to our Church Clerk, Sis. G. Wanjiku, after any service or email admin@cuksda.org. You'll need a letter of transfer from your home church. The process is straightforward and the team will guide you through every step.</p></div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              <h5>Can non-students attend CukSDA services?</h5>
+              <div class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+            </div>
+            <div class="faq-answer"><p>Absolutely. While we're based at a university, CukSDA is open to the entire Karen and Nairobi community — staff, families, and community members are all welcome. Our congregation includes people from many walks of life.</p></div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              <h5>Do you accept tithe and offering online?</h5>
+              <div class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+            </div>
+            <div class="faq-answer"><p>Yes. You can give via M-Pesa Paybill Number <strong>123456</strong>, Account: <strong>CUKSDA TITHE</strong> or <strong>CUKSDA OFFERING</strong>. Offering envelopes are also available in the church foyer every Sabbath.</p></div>
+          </div>
+        </div>
+
+        <div class="faq-cta-box fade-in">
+          <span class="section-tag" style="font-size:0.56rem;">Still have questions?</span>
+          <h3>We're always a message away.</h3>
+          <p>Our team monitors messages throughout the week. For the quickest response, WhatsApp us or call directly. We'll get back to you.</p>
+          <div class="faq-cta-contacts">
+            <div class="faq-cta-contact">
+              <div class="faq-cta-contact-icon">
+                <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.5a19.79 19.79 0 01-3-8.59A2 2 0 012.06 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.5A16 16 0 0015.5 17.1l.7-.7a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+              </div>
+              <div>
+                <div class="faq-cta-contact-label">Call or WhatsApp</div>
+                <div class="faq-cta-contact-value"><a href="tel:+254700000000">+254 700 000 000</a></div>
+              </div>
+            </div>
+            <div class="faq-cta-contact">
+              <div class="faq-cta-contact-icon">
+                <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><polyline points="4 4 12 13 20 4"/></svg>
+              </div>
+              <div>
+                <div class="faq-cta-contact-label">Email</div>
+                <div class="faq-cta-contact-value"><a href="mailto:hello@cuksda.org">hello@cuksda.org</a></div>
+              </div>
+            </div>
+            <div class="faq-cta-contact">
+              <div class="faq-cta-contact-icon">
+                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <div class="faq-cta-contact-label">In Person</div>
+                <div class="faq-cta-contact-value">Every Sabbath from 9:00 AM</div>
+              </div>
+            </div>
+          </div>
+          <a href="tel:+254700000000" class="btn btn-gold" style="width:100%;justify-content:center;">Call Us Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ VISIT CTA ════════════════════ -->
+  <section class="visit-strip">
+    <div class="visit-strip-inner">
+      <div class="visit-strip-text">
+        <h3>Your seat is already waiting.</h3>
+        <p>You don't need to RSVP, know anyone, or have it all together. CukSDA is a community of people on a journey — and every seat is open. Come this Sabbath. We'd love to have you.</p>
+      </div>
+      <div class="visit-strip-actions">
+        <button class="btn btn-navy" onclick="switchTab('visit'); document.querySelector('.contact-main').scrollIntoView({behavior:'smooth'});">Plan My Visit</button>
+        <a href="https://maps.google.com/?q=Cooperative+University+of+Kenya+Karen" target="_blank" class="btn btn-outline-navy">Get Directions</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ════════════════════ FOOTER ════════════════════ -->
+<footer class="site-footer">
+  <div class="footer-top-bar">
+    <p class="footer-top-text"><strong>Service Times</strong> &nbsp;·&nbsp; Sabbath School 9:00 AM &nbsp;·&nbsp; Divine Service 11:00 AM &nbsp;·&nbsp; AY Program 3:00 PM</p>
+    <a href="#" class="btn btn-gold" style="padding:0.65rem 1.5rem; font-size:0.76rem;">Plan a Visit</a>
+  </div>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo-wrap">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 210" style="width:38px;height:38px;" aria-hidden="true">
+          <g fill="none" fill-rule="evenodd">
+            <path fill="#FFFFFF" d="M106.924 171.313c0 .54.62.543.731 0 .824-3.998 2.075-6.663 4.03-9.25l-4.397.003c-.201 0-.364.162-.364.363v8.884zm31.611-55.503c.05 5.78-1.61 10.747-12.15 21.297l-8.336 8.338c-3.794 3.797-7.205 7.264-9.222 10.73h8.233l.974-.975 11.96-11.984c9.96-9.97 11.349-20.516 9.223-27.395-.181-.584-.687-.623-.682-.01zm-10.496 35.265l-9.99 10.008c-6.047 6.053-11.125 11.269-11.125 16.973l.006 1.588c0 .43.536.499.7.048 1.868-5.107 8.106-10.557 19.548-8.625 0 0 49.849 8.622 50.267 8.659.487.043.728-.437.414-.81-.189-.225-23.2-23.258-23.2-23.258l-26.62-4.583zm-36.062 10.988a.364.364 0 0 1-.364-.364v-5.163c0-.202.163-.364.364-.364l8.724.002c.201 0 .364-.163.364-.364-.023-4.637-3.515-7.788-17.508-5.35l-30.215 5.198s-23.012 23.033-23.2 23.258c-.315.373-.074.853.413.81.42-.037 50.267-8.66 50.267-8.66 11.443-1.931 17.681 3.52 19.548 8.626.164.45.701.383.701-.048l.001-17.218c0-.2-.163-.363-.364-.363h-8.731zm-13.928-72.16c-9.96 9.969-11.349 20.516-9.222 27.395.18.584.686.623.68.01-.05-5.78 1.612-10.746 12.151-21.296l22.721-22.735c6.047-6.054 11.125-11.27 11.125-16.973v-8.897c0-.542-.62-.544-.732 0-1.494 7.26-4.395 10.125-10.378 16.113L78.05 89.902zm37.477-26.933c0-.54-.62-.543-.732 0-1.494 7.261-4.388 10.17-10.37 16.16L80.56 102.993c-11.58 11.592-13.584 22.81-7.694 30.02.393.481.815.192.56-.388-3.895-8.819 5.443-18.17 9.889-22.62L104.401 88.9c6.047-6.053 11.125-11.269 11.125-16.973V62.97z"/>
+          </g>
+        </svg>
+        <div class="logo-text"><span class="church-name">CukSDA</span><span class="church-sub">Cooperative University SDA</span></div>
+      </div>
+      <p>A vibrant Seventh-day Adventist community at the Cooperative University of Kenya — growing together in faith, fellowship, and service.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-btn social-fb" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a href="#" class="social-btn social-ig" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+        <a href="#" class="social-btn social-yt" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></a>
+        <a href="#" class="social-btn social-wa" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Explore</h5>
+      <ul>
+        <li><a href="./about.html"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>About Us</a></li>
+        <li><a href="./ministries.html"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Ministries</a></li>
+        <li><a href="./events.html"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Events</a></li>
+        <li><a href="./beliefs.html"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Beliefs</a></li>
+        <li><a href="./sermons.html"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>Sermons</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Connect</h5>
+      <ul>
+        <li><a href="./contact.html"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>Contact Us</a></li>
+        <li><a href="#"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>Prayer Request</a></li>
+        <li><a href="#"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>Plan a Visit</a></li>
+        <li><a href="#"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="23" y1="11" x2="17" y2="11"/><line x1="20" y1="8" x2="20" y2="14"/></svg>Volunteer</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Find Us</h5>
+      <div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>CUK Karen Campus, Nairobi</span></div>
+      <div class="footer-contact-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg><span>Sat School · 9 AM · Service · 11 AM · AY · 3 PM</span></div>
+      <div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><polyline points="4 4 12 13 20 4"/></svg><a href="mailto:hello@cuksda.org">hello@cuksda.org</a></div>
+      <div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.5a19.79 19.79 0 01-3-8.59A2 2 0 012.06 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.5A16 16 0 0015.5 17.1l.7-.7a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg><a href="tel:+254700000000">+254 700 000 000</a></div>
+      <div class="footer-newsletter">
+        <h5>Weekly Bulletin</h5>
+        <p>Get events, sermons, and devotionals delivered to your inbox every Friday.</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Your email address" aria-label="Email for newsletter">
+          <button type="button" onclick="alert('Thank you! You\'ll hear from us soon.')">Subscribe</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr class="footer-divider">
+  <div class="footer-bottom">
+    <p>© 2026 CukSDA — Cooperative University SDA Community. All rights reserved.</p>
+    <div class="footer-bottom-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+      <a href="#">Sitemap</a>
+    </div>
+    <div class="sda-badge">
+      <svg class="sda-badge-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 210"><g fill="none" fill-rule="evenodd"><path fill="#c9a84c" d="M106.924 171.313c0 .54.62.543.731 0 .824-3.998 2.075-6.663 4.03-9.25l-4.397.003c-.201 0-.364.162-.364.363v8.884zm31.611-55.503c.05 5.78-1.61 10.747-12.15 21.297l-8.336 8.338c-3.794 3.797-7.205 7.264-9.222 10.73h8.233l.974-.975 11.96-11.984c9.96-9.97 11.349-20.516 9.223-27.395-.181-.584-.687-.623-.682-.01z"/></g></svg>
+      Seventh-day Adventist Church
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── Header scroll ──
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 30));
+
+  // ── Mobile menu ──
+  const toggle = document.getElementById('menu-toggle');
+  const nav = document.getElementById('primary-nav');
+  toggle.addEventListener('click', () => nav.classList.toggle('open'));
+  if (window.innerWidth <= 768) {
+    document.querySelectorAll('.nav-item > button').forEach(btn => {
+      btn.addEventListener('click', () => btn.closest('.nav-item').classList.toggle('open'));
+    });
+  }
+
+  // ── Tab switching ──
+  function switchTab(tab) {
+    document.querySelectorAll('.form-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.form-panel').forEach(p => p.classList.remove('active'));
+    const tabMap = { general: 0, prayer: 1, visit: 2, volunteer: 3 };
+    document.querySelectorAll('.form-tab')[tabMap[tab]].classList.add('active');
+    document.getElementById('panel-' + tab).classList.add('active');
+  }
+
+  // ── Form submission ──
+  function handleSubmit(e, formWrapId, successId) {
+    e.preventDefault();
+    document.getElementById(formWrapId).style.display = 'none';
+    document.getElementById(successId).style.display = 'block';
+  }
+
+  function resetForm(formWrapId, successId) {
+    document.getElementById(formWrapId).style.display = 'block';
+    document.getElementById(successId).style.display = 'none';
+    document.getElementById(formWrapId).querySelector('form').reset();
+  }
+
+  // ── FAQ accordion ──
+  function toggleFaq(el) {
+    const item = el.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // ── Scroll fade-in ──
+  const fadeEls = document.querySelectorAll('.fade-in');
+  const fadeObs = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        fadeObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.07 });
+  fadeEls.forEach(el => fadeObs.observe(el));
+</script>
 </body>
 </html>
