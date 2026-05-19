@@ -7,7 +7,7 @@
   <meta name="description" content="Welcome to CukSDA — the Seventh-day Adventist community at the Cooperative University of Kenya, Karen Campus. Join us every Sabbath for worship, fellowship, and service.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <style>
     /* ── RESET & ROOT ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -27,6 +27,7 @@
       --gold: #c9a84c;
       --gold-light: #e4c97a;
       --gold-dim: #7a5e1e;
+      --gold-pale: #fdf6e3;
       --cream: #faf8f4;
       --cream-dark: #f0ece3;
       --white: #ffffff;
@@ -43,6 +44,7 @@
       --shadow-sm: 0 2px 12px rgba(0,0,0,0.06);
       --shadow-md: 0 8px 32px rgba(0,0,0,0.10);
       --shadow-lg: 0 20px 60px rgba(0,0,0,0.15);
+      --shadow-gold: 0 8px 40px rgba(201,168,76,0.22);
       --transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
     }
 
@@ -50,489 +52,758 @@
     .btn {
       display: inline-flex; align-items: center; gap: 0.5rem;
       font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 0.82rem;
-      letter-spacing: 0.04em; text-transform: uppercase;
-      padding: 0.85rem 2rem; border-radius: var(--radius-xl);
+      letter-spacing: 0.05em; text-transform: uppercase;
+      padding: 0.9rem 2.2rem; border-radius: var(--radius-xl);
       border: 2px solid transparent; cursor: pointer; transition: var(--transition);
     }
     .btn svg { width: 16px; height: 16px; }
     .btn-gold { background: var(--gold); color: var(--navy); border-color: var(--gold); }
-    .btn-gold:hover { background: var(--gold-light); border-color: var(--gold-light); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(201,168,76,0.35); }
-    .btn-outline { background: transparent; color: var(--white); border-color: rgba(255,255,255,0.45); }
+    .btn-gold:hover { background: var(--gold-light); border-color: var(--gold-light); transform: translateY(-2px); box-shadow: var(--shadow-gold); }
+    .btn-outline { background: transparent; color: var(--white); border-color: rgba(255,255,255,0.4); }
     .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.1); }
-    .btn-outline-dark { background: transparent; color: var(--navy); border-color: var(--navy); }
-    .btn-outline-dark:hover { background: var(--navy); color: var(--white); }
+    .btn-outline-dark { background: transparent; color: var(--navy); border-color: rgba(5,14,31,0.25); }
+    .btn-outline-dark:hover { background: var(--navy); color: var(--white); border-color: var(--navy); }
     .btn-primary { background: var(--blue); color: var(--white); border-color: var(--blue); }
-    .btn-primary:hover { background: var(--blue-mid); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(26,95,212,0.35); }
+    .btn-primary:hover { background: var(--blue-mid); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,95,212,0.35); }
 
     /* ── SECTION ATOMS ── */
-    .section-tag { font-family: 'DM Mono', monospace; font-weight: 500; font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
-    .section-tag::after { content: ''; width: 36px; height: 1.5px; background: currentColor; flex-shrink: 0; }
-    .section-title { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.12; color: var(--navy); }
-    .section-subtitle { color: var(--gray-500); font-size: 1rem; line-height: 1.8; max-width: 620px; margin-top: 1rem; font-weight: 400; }
+    .section-tag { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--blue); display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+    .section-tag::before { content: ''; width: 28px; height: 1.5px; background: currentColor; flex-shrink: 0; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1; color: var(--navy); }
+    .section-subtitle { color: var(--gray-500); font-size: 1rem; line-height: 1.85; max-width: 620px; margin-top: 1rem; font-weight: 300; }
 
-    /* ── HEADER ── */
+    /* ═══════════════════════════════════
+       HEADER
+    ═══════════════════════════════════ */
     header.site-header {
       position: fixed; top: 0; left: 0; right: 0; z-index: 200;
       height: 76px; display: flex; align-items: center; justify-content: space-between;
-      padding: 0 3rem;
-      background: linear-gradient(180deg,rgba(5,14,31,0.95) 0%,rgba(5,14,31,0.6) 100%);
+      padding: 0 3.5rem;
+      background: linear-gradient(180deg,rgba(5,14,31,0.96) 0%,rgba(5,14,31,0.55) 100%);
       transition: background 0.4s, box-shadow 0.4s;
     }
     header.site-header.scrolled {
-      background: rgba(5,14,31,0.97);
-      box-shadow: 0 1px 0 rgba(255,255,255,0.06), 0 4px 24px rgba(0,0,0,0.4);
-      backdrop-filter: blur(12px);
+      background: rgba(5,14,31,0.98);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.05), 0 4px 24px rgba(0,0,0,0.4);
+      backdrop-filter: blur(16px);
     }
-    .logo-wrap { display: flex; align-items: center; gap: 0.7rem; }
-    .logo-icon-adventist { width: 42px; height: 42px; flex-shrink: 0; }
+    .logo-wrap { display: flex; align-items: center; gap: 0.75rem; }
+    .logo-icon-adventist { width: 40px; height: 40px; flex-shrink: 0; }
     .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
-    .logo-text .church-name { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 1.05rem; color: var(--white); letter-spacing: 0.04em; text-transform: uppercase; }
-    .logo-text .church-sub { font-family: 'DM Mono', monospace; font-size: 0.58rem; color: var(--blue-light); letter-spacing: 0.14em; text-transform: uppercase; }
+    .logo-text .church-name { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 1.05rem; color: var(--white); letter-spacing: 0.06em; text-transform: uppercase; }
+    .logo-text .church-sub { font-family: 'DM Mono', monospace; font-size: 0.56rem; color: var(--blue-light); letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.8; }
 
-    nav.primary-nav { display: flex; align-items: center; gap: 0.2rem; }
+    nav.primary-nav { display: flex; align-items: center; gap: 0.1rem; }
     .nav-item { position: relative; }
     .nav-item > a, .nav-item > button {
-      color: rgba(255,255,255,0.82); font-size: 0.8rem; font-weight: 500;
-      letter-spacing: 0.05em; text-transform: uppercase;
-      padding: 0.5rem 0.85rem; border-radius: 6px; transition: var(--transition);
+      color: rgba(255,255,255,0.78); font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 0.5rem 0.9rem; border-radius: 6px; transition: var(--transition);
       display: flex; align-items: center; gap: 0.3rem;
       background: none; border: none; cursor: pointer; font-family: inherit;
     }
-    .nav-item > a:hover, .nav-item > a.active, .nav-item > button:hover { color: var(--white); background: rgba(255,255,255,0.09); }
-    .nav-item > a.active { position: relative; }
-    .nav-item > a.active::after { content: ''; position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%); width: 16px; height: 2px; background: var(--gold); border-radius: 2px; }
-    .nav-item .chevron { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2.5; transition: transform 0.2s ease; opacity: 0.6; }
+    .nav-item > a:hover, .nav-item > a.active, .nav-item > button:hover { color: var(--white); background: rgba(255,255,255,0.08); }
+    .nav-item > a.active { color: var(--gold-light); }
+    .nav-item .chevron { width: 10px; height: 10px; stroke: currentColor; fill: none; stroke-width: 2.5; transition: transform 0.2s ease; opacity: 0.5; }
     .nav-item:hover .chevron { transform: rotate(180deg); opacity: 1; }
-
     .dropdown {
-      position: absolute; top: calc(100% + 8px); left: 50%;
-      transform: translateX(-50%) translateY(-10px);
-      min-width: 220px; background: rgba(5,14,31,0.98);
-      backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.08);
+      position: absolute; top: calc(100% + 10px); left: 50%;
+      transform: translateX(-50%) translateY(-8px);
+      min-width: 220px; background: rgba(4,12,26,0.99);
+      backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.07);
       border-radius: var(--radius-md); padding: 0.75rem 0;
       opacity: 0; visibility: hidden; transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.4); z-index: 300;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.5); z-index: 300;
     }
-    .dropdown::before { content: ''; position: absolute; top: -6px; left: 50%; transform: translateX(-50%) rotate(45deg); width: 12px; height: 12px; background: rgba(5,14,31,0.98); border-top: 1px solid rgba(255,255,255,0.08); border-left: 1px solid rgba(255,255,255,0.08); }
-    .dropdown a { display: block; padding: 0.6rem 1.25rem; color: rgba(255,255,255,0.7); font-size: 0.82rem; font-weight: 400; transition: all 0.2s; white-space: nowrap; }
-    .dropdown a:hover { color: var(--white); background: rgba(255,255,255,0.06); padding-left: 1.5rem; }
-    .dropdown a.active { color: var(--gold); background: rgba(201,168,76,0.08); }
-    .dropdown-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 0.5rem 0.75rem; }
-    .dropdown-label { padding: 0.3rem 1.25rem; font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); pointer-events: none; }
+    .dropdown::before { content: ''; position: absolute; top: -5px; left: 50%; transform: translateX(-50%) rotate(45deg); width: 10px; height: 10px; background: rgba(4,12,26,0.99); border-top: 1px solid rgba(255,255,255,0.07); border-left: 1px solid rgba(255,255,255,0.07); }
+    .dropdown a { display: block; padding: 0.55rem 1.25rem; color: rgba(255,255,255,0.62); font-size: 0.82rem; font-weight: 400; transition: all 0.2s; white-space: nowrap; }
+    .dropdown a:hover { color: var(--white); background: rgba(255,255,255,0.05); padding-left: 1.5rem; }
+    .dropdown a.active { color: var(--gold); }
+    .dropdown-divider { height: 1px; background: rgba(255,255,255,0.07); margin: 0.5rem 0.75rem; }
+    .dropdown-label { padding: 0.3rem 1.25rem; font-family: 'DM Mono', monospace; font-size: 0.56rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); pointer-events: none; opacity: 0.8; }
     .nav-item:hover .dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
     .menu-toggle { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 8px; }
     .menu-toggle span { display: block; width: 22px; height: 2px; background: var(--white); border-radius: 2px; transition: var(--transition); }
 
-    /* ══════════════════════════════════════
-       HERO
-    ══════════════════════════════════════ */
+    /* ═══════════════════════════════════
+       HERO — SPLIT LAYOUT
+    ═══════════════════════════════════ */
     .hero {
-      position: relative; min-height: 100vh;
-      display: flex; flex-direction: column; justify-content: flex-end;
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       overflow: hidden;
     }
-    .hero-bg {
-      position: absolute; inset: 0;
-      background:
-        linear-gradient(170deg, rgba(5,14,31,0.88) 0%, rgba(10,30,61,0.55) 45%, rgba(5,14,31,0.82) 100%),
-        url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1920&q=80') center/cover no-repeat;
-      animation: heroZoom 24s ease-in-out infinite alternate;
-    }
-    @keyframes heroZoom { from { transform: scale(1.06); } to { transform: scale(1.0); } }
 
-    /* Animated grain overlay */
-    .hero-grain {
-      position: absolute; inset: 0; pointer-events: none; z-index: 1;
+    .hero-left {
+      position: relative;
+      background: var(--navy);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 4.5rem 5rem 5rem;
+      z-index: 2;
+      overflow: hidden;
+    }
+    .hero-left::after {
+      content: '';
+      position: absolute;
+      top: 0; right: -120px; bottom: 0;
+      width: 240px;
+      background: inherit;
+      clip-path: polygon(0 0, 0% 100%, 100% 100%);
+      z-index: 3;
+    }
+
+    .hero-left-pattern {
+      position: absolute;
+      inset: 0;
       opacity: 0.04;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    }
-
-    /* Decorative arc */
-    .hero-arc {
-      position: absolute; bottom: -2px; left: 0; right: 0; z-index: 2;
+      background-image:
+        repeating-linear-gradient(45deg, rgba(201,168,76,1) 0, rgba(201,168,76,1) 1px, transparent 0, transparent 50%),
+        repeating-linear-gradient(-45deg, rgba(201,168,76,1) 0, rgba(201,168,76,1) 1px, transparent 0, transparent 50%);
+      background-size: 32px 32px;
       pointer-events: none;
     }
-    .hero-arc svg { display: block; width: 100%; }
 
-    .hero-content {
-      position: relative; z-index: 3;
-      padding: 0 6rem 7rem;
-      max-width: 1400px; width: 100%;
-      animation: fadeUp 1s ease forwards;
+    .hero-left-glow {
+      position: absolute;
+      bottom: -10%;
+      left: -20%;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(26,95,212,0.18) 0%, transparent 70%);
+      pointer-events: none;
     }
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(32px); } to { opacity: 1; transform: translateY(0); } }
 
-    .hero-eyebrow { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; }
-    .hero-eyebrow-line { width: 36px; height: 2px; background: var(--gold); }
-    .hero-eyebrow-text { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--gold); letter-spacing: 0.22em; text-transform: uppercase; }
+    /* ── HERO IMAGE COLLAGE (replaces plain bg) ── */
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-right-img {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, var(--navy) 0%, transparent 30%),
+        linear-gradient(180deg, rgba(5,14,31,0.3) 0%, rgba(5,14,31,0.7) 100%),
+        url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1400&q=85') center/cover no-repeat;
+      animation: heroZoom 28s ease-in-out infinite alternate;
+    }
+    @keyframes heroZoom { from { transform: scale(1.08) translateX(0); } to { transform: scale(1.0) translateX(-2%); } }
+
+    /* ── HERO IMAGE STRIP (stacked real photos) ── */
+    .hero-img-strip {
+      position: absolute;
+      top: 0; right: 0;
+      width: 100%; height: 100%;
+      display: grid;
+      grid-template-rows: 1fr 1fr 1fr;
+      gap: 3px;
+      z-index: 2;
+      opacity: 0;
+      animation: stripFadeIn 1.2s 0.4s ease forwards;
+    }
+    @keyframes stripFadeIn { to { opacity: 1; } }
+    .hero-img-strip-row {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-img-strip-row img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 8s ease;
+    }
+    .hero-img-strip-row:hover img { transform: scale(1.04); }
+    .hero-img-strip-row::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, var(--navy) 0%, rgba(5,14,31,0.2) 40%, transparent 100%);
+      z-index: 1;
+    }
+    .hero-img-strip-label {
+      position: absolute;
+      bottom: 0.75rem; right: 1rem;
+      z-index: 2;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.52rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* Floating service cards on right */
+    .hero-float-cards {
+      position: absolute;
+      bottom: 3rem;
+      right: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      z-index: 4;
+    }
+    .hero-float-card {
+      background: rgba(5,14,31,0.82);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 14px;
+      padding: 1rem 1.35rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      min-width: 230px;
+      transition: var(--transition);
+      animation: floatIn 0.8s ease both;
+    }
+    .hero-float-card:nth-child(1) { animation-delay: 0.9s; }
+    .hero-float-card:nth-child(2) { animation-delay: 1.1s; }
+    .hero-float-card:nth-child(3) { animation-delay: 1.3s; }
+    @keyframes floatIn { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: translateX(0); } }
+    .hero-float-card:hover { background: rgba(5,14,31,0.95); border-color: rgba(201,168,76,0.3); transform: translateX(-4px); }
+    .hero-float-icon {
+      width: 40px; height: 40px;
+      background: rgba(201,168,76,0.15);
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .hero-float-icon svg { width: 16px; height: 16px; stroke: var(--gold); fill: none; stroke-width: 2; }
+    .hero-float-label span:first-child { display: block; font-family: 'DM Mono', monospace; font-size: 0.55rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.15rem; }
+    .hero-float-label span:last-child { font-size: 0.9rem; font-weight: 600; color: var(--white); }
+    .hero-float-time { margin-left: auto; font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 700; color: var(--gold); line-height: 1; }
+
+    /* Left content */
+    .hero-content {
+      position: relative;
+      z-index: 5;
+      animation: slideUp 1s ease both;
+    }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 100px;
+      padding: 0.4rem 1rem 0.4rem 0.5rem;
+      margin-bottom: 2rem;
+      animation: slideUp 0.8s 0.2s ease both;
+    }
+    .hero-eyebrow-dot {
+      width: 28px; height: 28px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .hero-eyebrow-dot svg { width: 12px; height: 12px; stroke: var(--navy); fill: none; stroke-width: 2.5; }
+    .hero-eyebrow-text { font-family: 'DM Mono', monospace; font-size: 0.62rem; color: var(--gold); letter-spacing: 0.18em; text-transform: uppercase; }
 
     .hero h1 {
       font-family: 'Cormorant Garamond', serif; font-weight: 700;
-      font-size: clamp(3.2rem, 8vw, 6.5rem); line-height: 1.02;
-      color: var(--white); max-width: 860px;
+      font-size: clamp(3rem, 5.5vw, 5.5rem); line-height: 1.01;
+      color: var(--white); max-width: 660px;
+      animation: slideUp 0.8s 0.35s ease both;
     }
-    .hero h1 em { font-style: italic; color: var(--gold-light); }
+    .hero h1 .line-accent {
+      display: block;
+      color: transparent;
+      -webkit-text-stroke: 1.5px rgba(255,255,255,0.35);
+      font-style: italic;
+    }
+    .hero h1 em { font-style: italic; color: var(--gold-light); -webkit-text-stroke: 0; }
+
+    .hero-divider {
+      width: 64px; height: 3px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      border-radius: 2px;
+      margin: 2rem 0;
+      animation: slideUp 0.8s 0.5s ease both;
+    }
 
     .hero-desc {
-      color: rgba(255,255,255,0.70); font-size: 1.05rem; line-height: 1.78;
-      max-width: 520px; margin-top: 1.5rem; font-weight: 300;
+      color: rgba(255,255,255,0.62); font-size: 1rem; line-height: 1.82;
+      max-width: 460px; font-weight: 300;
+      animation: slideUp 0.8s 0.5s ease both;
     }
 
-    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2.5rem; }
-
-    .hero-service-strip {
-      display: flex; align-items: center; gap: 2.5rem;
-      margin-top: 3.5rem; padding-top: 2rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      flex-wrap: wrap;
+    .hero-actions {
+      display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2.5rem;
+      animation: slideUp 0.8s 0.65s ease both;
     }
-    .hero-service-item { display: flex; align-items: center; gap: 0.75rem; }
-    .hero-service-icon { width: 38px; height: 38px; background: rgba(201,168,76,0.18); border: 1px solid rgba(201,168,76,0.35); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .hero-service-icon svg { width: 16px; height: 16px; stroke: var(--gold); fill: none; stroke-width: 2; }
-    .hero-service-label { display: flex; flex-direction: column; }
-    .hero-service-label span:first-child { font-family: 'DM Mono', monospace; font-size: 0.58rem; color: var(--gold); letter-spacing: 0.14em; text-transform: uppercase; }
-    .hero-service-label span:last-child { font-size: 0.92rem; color: rgba(255,255,255,0.85); font-weight: 500; }
 
-    /* Scroll indicator */
-    .hero-scroll {
-      position: absolute; bottom: 8rem; right: 5rem; z-index: 3;
-      display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
-      animation: fadeUp 1.2s 0.4s ease both;
+    .hero-stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 3.5rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      animation: slideUp 0.8s 0.8s ease both;
     }
-    .hero-scroll span { font-family: 'DM Mono', monospace; font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.35); writing-mode: vertical-rl; }
-    .scroll-line { width: 1px; height: 48px; background: linear-gradient(180deg, rgba(201,168,76,0.6) 0%, transparent 100%); animation: scrollPulse 2.5s ease infinite; }
-    @keyframes scrollPulse { 0%,100% { opacity: 0.4; transform: scaleY(1); } 50% { opacity: 1; transform: scaleY(1.15); } }
+    .hero-stat {}
+    .hero-stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1;
+    }
+    .hero-stat-num span { color: var(--gold); }
+    .hero-stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.56rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.38);
+      margin-top: 0.3rem;
+    }
 
-    /* ══════════════════════════════════════
-       TICKER / ANNOUNCEMENT BAR
-    ══════════════════════════════════════ */
+    .hero-scroll-pill {
+      position: absolute;
+      left: 50%;
+      bottom: 2.5rem;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .hero-scroll-pill span {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.52rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+    }
+    .hero-scroll-mouse {
+      width: 24px; height: 38px;
+      border: 1.5px solid rgba(255,255,255,0.2);
+      border-radius: 12px;
+      display: flex; justify-content: center; padding-top: 6px;
+    }
+    .hero-scroll-dot {
+      width: 4px; height: 8px;
+      background: var(--gold);
+      border-radius: 2px;
+      animation: scrollDot 2s ease infinite;
+    }
+    @keyframes scrollDot { 0%, 100% { transform: translateY(0); opacity: 1; } 60% { transform: translateY(12px); opacity: 0; } }
+
+    /* ═══════════════════════════════════
+       TICKER
+    ═══════════════════════════════════ */
     .ticker-bar {
-      background: var(--gold); padding: 0; overflow: hidden; height: 44px;
+      background: var(--gold); overflow: hidden; height: 46px;
       display: flex; align-items: center;
     }
-    .ticker-label { background: var(--navy); color: var(--gold); font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 0 1.5rem; height: 100%; display: flex; align-items: center; white-space: nowrap; flex-shrink: 0; }
+    .ticker-label {
+      background: var(--navy); color: var(--gold);
+      font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase;
+      padding: 0 1.75rem; height: 100%; display: flex; align-items: center; white-space: nowrap; flex-shrink: 0;
+      border-right: 2px solid rgba(201,168,76,0.3);
+    }
     .ticker-track { display: flex; align-items: center; overflow: hidden; flex: 1; }
-    .ticker-inner { display: flex; gap: 0; animation: ticker 38s linear infinite; white-space: nowrap; }
+    .ticker-inner { display: flex; gap: 0; animation: ticker 40s linear infinite; white-space: nowrap; }
     .ticker-inner:hover { animation-play-state: paused; }
     @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-    .ticker-item { display: flex; align-items: center; gap: 2rem; padding: 0 2.5rem; font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; font-style: italic; color: var(--navy); }
-    .ticker-item::before { content: '✦'; font-style: normal; font-family: 'DM Sans', sans-serif; font-size: 0.55rem; opacity: 0.5; }
+    .ticker-item { display: flex; align-items: center; gap: 2.5rem; padding: 0 2.5rem; font-family: 'Cormorant Garamond', serif; font-size: 0.96rem; font-style: italic; color: var(--navy); font-weight: 600; }
+    .ticker-item::before { content: '✦'; font-style: normal; font-family: 'DM Sans', sans-serif; font-size: 0.52rem; opacity: 0.45; }
 
-    /* ══════════════════════════════════════
-       WELCOME INTRO
-    ══════════════════════════════════════ */
-    .welcome-section { background: var(--cream); padding: 7rem 5rem; }
-    .welcome-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 6rem; align-items: center; }
-    .welcome-copy .section-tag { color: var(--blue); }
-    .welcome-lead { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; line-height: 1.65; color: var(--navy); margin-top: 1.5rem; font-weight: 400; }
-    .welcome-body { color: var(--gray-500); font-size: 0.97rem; line-height: 1.85; margin-top: 1rem; }
+    /* ═══════════════════════════════════
+       QUICK FEATURES STRIP
+    ═══════════════════════════════════ */
+    .features-strip { display: grid; grid-template-columns: repeat(4, 1fr); background: var(--white); border-bottom: 1px solid var(--gray-200); }
+    .feature-tile { padding: 2.25rem 2rem; border-right: 1px solid var(--gray-200); display: flex; flex-direction: column; gap: 0.75rem; transition: var(--transition); cursor: pointer; position: relative; overflow: hidden; }
+    .feature-tile::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--gold); transform: scaleX(0); transition: transform 0.35s ease; }
+    .feature-tile:last-child { border-right: none; }
+    .feature-tile:hover { background: var(--cream); }
+    .feature-tile:hover::before { transform: scaleX(1); }
+    .feature-tile-icon { width: 48px; height: 48px; border-radius: 12px; background: var(--blue-pale); display: flex; align-items: center; justify-content: center; transition: var(--transition); }
+    .feature-tile:hover .feature-tile-icon { background: var(--blue); }
+    .feature-tile-icon svg { width: 20px; height: 20px; stroke: var(--blue); fill: none; stroke-width: 1.8; transition: var(--transition); }
+    .feature-tile:hover .feature-tile-icon svg { stroke: var(--white); }
+    .feature-tile h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--navy); font-weight: 700; }
+    .feature-tile p { font-size: 0.84rem; color: var(--gray-500); line-height: 1.65; }
+    .feature-tile-link { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); display: flex; align-items: center; gap: 0.4rem; margin-top: auto; }
+    .feature-tile-link svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2.5; }
+
+    /* ═══════════════════════════════════
+       WELCOME / INTRO
+    ═══════════════════════════════════ */
+    .welcome-section { background: var(--cream); padding: 8rem 5rem; }
+    .welcome-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 6rem; align-items: center; }
+    .welcome-lead { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; line-height: 1.62; color: var(--navy); margin-top: 1.5rem; font-weight: 400; }
+    .welcome-body { color: var(--gray-500); font-size: 0.97rem; line-height: 1.88; margin-top: 1rem; font-weight: 300; }
     .welcome-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
-
     .welcome-visual { position: relative; }
-    .welcome-img-main {
-      border-radius: var(--radius-lg); overflow: hidden; height: 480px;
-      background: url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=900&q=80') center/cover;
-    }
-    .welcome-img-inset {
-      position: absolute; bottom: -2rem; left: -2.5rem;
-      width: 220px; height: 165px; border-radius: var(--radius-md); overflow: hidden;
-      background: url('https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=500&q=80') center/cover;
-      border: 5px solid var(--cream); box-shadow: var(--shadow-md);
-    }
-    .welcome-badge {
-      position: absolute; top: 2rem; right: -1.5rem;
-      background: var(--navy); border-radius: var(--radius-md); padding: 1.25rem 1.5rem;
-      box-shadow: var(--shadow-lg); min-width: 180px;
-    }
-    .welcome-badge .num { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 700; color: var(--white); line-height: 1; }
+    .welcome-img-main { border-radius: var(--radius-lg); overflow: hidden; height: 500px; }
+    .welcome-img-main img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .welcome-img-main:hover img { transform: scale(1.03); }
+    .welcome-img-inset { position: absolute; bottom: -2rem; left: -3rem; width: 230px; height: 175px; border-radius: var(--radius-md); overflow: hidden; border: 5px solid var(--cream); box-shadow: var(--shadow-md); }
+    .welcome-img-inset img { width: 100%; height: 100%; object-fit: cover; }
+    .welcome-badge { position: absolute; top: 2.5rem; right: -2rem; background: var(--navy); border-radius: var(--radius-md); padding: 1.35rem 1.65rem; box-shadow: var(--shadow-lg); min-width: 190px; }
+    .welcome-badge .num { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 700; color: var(--white); line-height: 1; }
     .welcome-badge .num span { color: var(--gold); }
-    .welcome-badge .lbl { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 0.3rem; }
+    .welcome-badge .lbl { font-family: 'DM Mono', monospace; font-size: 0.56rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-top: 0.35rem; }
 
-    /* ══════════════════════════════════════
-       SERVICE TIMES CARDS
-    ══════════════════════════════════════ */
-    .services-section { background: var(--navy); padding: 5rem; position: relative; overflow: hidden; }
-    .services-section::before { content: ''; position: absolute; top: -30%; right: -10%; width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 68%); pointer-events: none; }
+    /* ═══════════════════════════════════
+       SERVICE TIMES
+    ═══════════════════════════════════ */
+    .services-section { background: var(--navy); padding: 6rem 5rem; position: relative; overflow: hidden; }
+    .services-section::before { content: ''; position: absolute; top: -30%; right: -10%; width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(circle, rgba(201,168,76,0.055) 0%, transparent 68%); pointer-events: none; }
     .services-section .section-tag { color: var(--gold); }
-    .services-section .section-tag::after { background: var(--gold); }
+    .services-section .section-tag::before { background: var(--gold); }
     .services-section .section-title { color: var(--white); }
     .services-header { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 3.5rem; }
     .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
     .service-card {
-      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
-      border-radius: var(--radius-lg); padding: 2.2rem; transition: var(--transition);
-      position: relative; overflow: hidden;
+      background: rgba(255,255,255,0.038);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--radius-lg); overflow: hidden;
+      transition: var(--transition); position: relative; cursor: default;
     }
-    .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--gold); transform: scaleX(0); transition: transform 0.35s ease; }
-    .service-card:hover { background: rgba(255,255,255,0.07); border-color: rgba(201,168,76,0.25); transform: translateY(-4px); }
+    /* Image header on service card */
+    .service-card-img {
+      height: 180px;
+      overflow: hidden;
+      position: relative;
+    }
+    .service-card-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .service-card:hover .service-card-img img { transform: scale(1.06); }
+    .service-card-img::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(5,14,31,0.85) 100%);
+    }
+    .service-card-body { padding: 2.4rem; }
+    .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--gold), var(--gold-light)); transform: scaleX(0); transition: transform 0.4s ease; transform-origin: left; z-index: 2; }
+    .service-card:hover { background: rgba(255,255,255,0.065); border-color: rgba(201,168,76,0.22); transform: translateY(-5px); }
     .service-card:hover::before { transform: scaleX(1); }
-    .service-time { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 700; color: var(--gold); line-height: 1; margin-bottom: 0.25rem; }
-    .service-period { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 1rem; }
-    .service-name { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--white); margin-bottom: 0.6rem; }
-    .service-desc { color: rgba(255,255,255,0.48); font-size: 0.87rem; line-height: 1.72; }
-    .service-meta { display: flex; align-items: center; gap: 0.5rem; margin-top: 1.25rem; font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); opacity: 0.75; }
+    .service-time-wrap { display: flex; align-items: baseline; gap: 0.25rem; margin-bottom: 0.25rem; }
+    .service-time { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 700; color: var(--gold); line-height: 1; }
+    .service-ampm { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; color: var(--gold); opacity: 0.7; text-transform: uppercase; }
+    .service-period { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 1.1rem; }
+    .service-name { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--white); margin-bottom: 0.65rem; font-weight: 600; }
+    .service-desc { color: rgba(255,255,255,0.45); font-size: 0.88rem; line-height: 1.75; font-weight: 300; }
+    .service-meta { display: flex; align-items: center; gap: 0.5rem; margin-top: 1.5rem; font-family: 'DM Mono', monospace; font-size: 0.56rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(201,168,76,0.65); border-top: 1px solid rgba(255,255,255,0.06); padding-top: 1rem; }
     .service-meta svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2; }
 
-    /* ══════════════════════════════════════
-       FEATURED SECTIONS STRIP
-    ══════════════════════════════════════ */
-    .features-strip { display: grid; grid-template-columns: repeat(4, 1fr); background: var(--white); border-bottom: 1px solid var(--gray-200); }
-    .feature-tile { padding: 2.25rem 2rem; border-right: 1px solid var(--gray-200); display: flex; flex-direction: column; gap: 0.75rem; transition: var(--transition); cursor: pointer; }
-    .feature-tile:last-child { border-right: none; }
-    .feature-tile:hover { background: var(--cream); }
-    .feature-tile-icon { width: 46px; height: 46px; border-radius: 12px; background: var(--blue-pale); display: flex; align-items: center; justify-content: center; transition: var(--transition); }
-    .feature-tile:hover .feature-tile-icon { background: var(--blue); }
-    .feature-tile-icon svg { width: 20px; height: 20px; stroke: var(--blue); fill: none; stroke-width: 1.8; transition: var(--transition); }
-    .feature-tile:hover .feature-tile-icon svg { stroke: var(--white); }
-    .feature-tile h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--navy); }
-    .feature-tile p { font-size: 0.84rem; color: var(--gray-500); line-height: 1.65; }
-    .feature-tile-link { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); display: flex; align-items: center; gap: 0.4rem; margin-top: auto; }
-    .feature-tile-link svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2.5; }
-
-    /* ══════════════════════════════════════
+    /* ═══════════════════════════════════
        MINISTRIES
-    ══════════════════════════════════════ */
-    .ministries-section { padding: 7rem 5rem; background: var(--cream); }
+    ═══════════════════════════════════ */
+    .ministries-section { padding: 8rem 5rem; background: var(--cream); }
     .ministries-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; margin-top: 4rem; }
-    .ministry-card {
-      border-radius: var(--radius-lg); overflow: hidden; position: relative;
-      height: 320px; cursor: pointer; transition: var(--transition);
-    }
+    .ministry-card { border-radius: var(--radius-lg); overflow: hidden; position: relative; height: 340px; cursor: pointer; transition: var(--transition); }
     .ministry-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
     .ministry-bg { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform 0.55s ease; }
-    .ministry-card:hover .ministry-bg { transform: scale(1.06); }
-    .ministry-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5,14,31,0.15) 0%, rgba(5,14,31,0.85) 100%); }
+    .ministry-bg img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.55s ease; }
+    .ministry-card:hover .ministry-bg img { transform: scale(1.07); }
+    .ministry-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5,14,31,0.1) 0%, rgba(5,14,31,0.88) 100%); }
     .ministry-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem; }
-    .ministry-tag { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
-    .ministry-content h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; color: var(--white); margin-bottom: 0.5rem; }
-    .ministry-content p { color: rgba(255,255,255,0.65); font-size: 0.84rem; line-height: 1.65; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, opacity 0.4s ease; opacity: 0; }
+    .ministry-tag { font-family: 'DM Mono', monospace; font-size: 0.56rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+    .ministry-content h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--white); margin-bottom: 0.5rem; }
+    .ministry-content p { color: rgba(255,255,255,0.62); font-size: 0.84rem; line-height: 1.65; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, opacity 0.4s ease; opacity: 0; font-weight: 300; }
     .ministry-card:hover .ministry-content p { max-height: 80px; opacity: 1; }
+    .ministry-arrow { display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; margin-top: 1rem; opacity: 0; transform: translateX(-6px); transition: all 0.3s ease; }
+    .ministry-arrow svg { width: 14px; height: 14px; stroke: var(--white); fill: none; stroke-width: 2; }
+    .ministry-card:hover .ministry-arrow { opacity: 1; transform: translateX(0); }
 
-    /* ══════════════════════════════════════
+    /* ═══════════════════════════════════
        UPCOMING EVENTS
-    ══════════════════════════════════════ */
-    .events-section { padding: 7rem 5rem; background: var(--white); }
+    ═══════════════════════════════════ */
+    .events-section { padding: 8rem 5rem; background: var(--white); }
     .events-header { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 3.5rem; }
     .events-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 2rem; }
-    .event-featured {
-      border-radius: var(--radius-lg); overflow: hidden; position: relative; min-height: 440px;
-      background: url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=900&q=80') center/cover;
-    }
-    .event-featured-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5,14,31,0.2) 0%, rgba(5,14,31,0.9) 100%); }
-    .event-featured-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 2.5rem; }
-    .event-date-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--gold); color: var(--navy); font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.35rem 0.85rem; border-radius: 4px; margin-bottom: 1rem; font-weight: 500; }
-    .event-featured-content h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--white); margin-bottom: 0.5rem; }
-    .event-featured-content p { color: rgba(255,255,255,0.65); font-size: 0.9rem; line-height: 1.65; margin-bottom: 1.25rem; }
-
+    .event-featured { border-radius: var(--radius-lg); overflow: hidden; position: relative; min-height: 460px; }
+    .event-featured-bg { position: absolute; inset: 0; }
+    .event-featured-bg img { width: 100%; height: 100%; object-fit: cover; }
+    .event-featured-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5,14,31,0.15) 0%, rgba(5,14,31,0.92) 100%); }
+    .event-featured-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 2.75rem; }
+    .event-date-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--gold); color: var(--navy); font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.35rem 0.9rem; border-radius: 4px; margin-bottom: 1rem; font-weight: 500; }
+    .event-featured-content h3 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--white); margin-bottom: 0.65rem; font-weight: 700; }
+    .event-featured-content p { color: rgba(255,255,255,0.62); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1.5rem; font-weight: 300; }
     .events-list { display: flex; flex-direction: column; gap: 1rem; }
-    .event-item {
-      border: 1px solid var(--gray-200); border-radius: var(--radius-md);
-      padding: 1.35rem 1.5rem; display: flex; gap: 1.25rem; align-items: flex-start;
-      transition: var(--transition);
-    }
-    .event-item:hover { box-shadow: var(--shadow-md); transform: translateX(4px); border-color: transparent; }
-    .event-cal {
-      background: var(--navy); border-radius: 10px; min-width: 52px; padding: 0.5rem 0;
-      display: flex; flex-direction: column; align-items: center; flex-shrink: 0;
-    }
-    .event-cal-month { font-family: 'DM Mono', monospace; font-size: 0.55rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); }
-    .event-cal-day { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 700; color: var(--white); line-height: 1; }
-    .event-info h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--navy); margin-bottom: 0.3rem; }
-    .event-info .meta { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-400); display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
-    .event-info .meta svg { width: 11px; height: 11px; stroke: currentColor; fill: none; stroke-width: 2; }
-    .event-info p { color: var(--gray-500); font-size: 0.84rem; line-height: 1.6; margin-top: 0.4rem; }
+    .event-item { border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 1.35rem 1.5rem; display: flex; gap: 1.25rem; align-items: flex-start; transition: var(--transition); }
+    .event-item:hover { box-shadow: var(--shadow-md); transform: translateX(4px); border-color: var(--blue-pale); background: #f8fbff; }
+    .event-cal { background: var(--navy); border-radius: 10px; min-width: 54px; padding: 0.55rem 0; display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+    .event-cal-month { font-family: 'DM Mono', monospace; font-size: 0.54rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); }
+    .event-cal-day { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 700; color: var(--white); line-height: 1; }
+    .event-info h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--navy); margin-bottom: 0.3rem; font-weight: 700; }
+    .event-info .meta { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-400); display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+    .event-info .meta svg { width: 10px; height: 10px; stroke: currentColor; fill: none; stroke-width: 2; }
+    .event-info p { color: var(--gray-500); font-size: 0.83rem; line-height: 1.62; margin-top: 0.4rem; font-weight: 300; }
 
-    /* ══════════════════════════════════════
+    /* ═══════════════════════════════════
        SCRIPTURE VERSE BANNER
-    ══════════════════════════════════════ */
+    ═══════════════════════════════════ */
     .verse-banner {
       background: linear-gradient(135deg, var(--navy) 0%, var(--navy-soft) 100%);
-      padding: 6rem 5rem; position: relative; overflow: hidden; text-align: center;
+      padding: 7rem 5rem; position: relative; overflow: hidden; text-align: center;
     }
-    .verse-banner::before { content: '"'; position: absolute; top: -3rem; left: 3rem; font-family: 'Cormorant Garamond', serif; font-size: 20rem; color: rgba(201,168,76,0.05); line-height: 1; pointer-events: none; }
-    .verse-banner::after { content: '"'; position: absolute; bottom: -8rem; right: 3rem; font-family: 'Cormorant Garamond', serif; font-size: 20rem; color: rgba(201,168,76,0.05); line-height: 1; pointer-events: none; }
-    .verse-text { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 3.5vw, 2.5rem); color: var(--white); font-style: italic; line-height: 1.45; max-width: 840px; margin: 0 auto; position: relative; z-index: 1; }
-    .verse-ref { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-top: 1.5rem; position: relative; z-index: 1; }
+    .verse-banner::before { content: '"'; position: absolute; top: -4rem; left: 2rem; font-family: 'Cormorant Garamond', serif; font-size: 22rem; color: rgba(201,168,76,0.04); line-height: 1; pointer-events: none; }
+    .verse-banner::after { content: '"'; position: absolute; bottom: -9rem; right: 2rem; font-family: 'Cormorant Garamond', serif; font-size: 22rem; color: rgba(201,168,76,0.04); line-height: 1; pointer-events: none; }
+    .verse-text { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.7rem, 3.5vw, 2.6rem); color: var(--white); font-style: italic; line-height: 1.45; max-width: 860px; margin: 0 auto; position: relative; z-index: 1; font-weight: 300; }
+    .verse-ref { font-family: 'DM Mono', monospace; font-size: 0.66rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-top: 1.75rem; position: relative; z-index: 1; }
 
-    /* ══════════════════════════════════════
-       TESTIMONIALS / COMMUNITY VOICES
-    ══════════════════════════════════════ */
-    .testimonials-section { padding: 7rem 5rem; background: var(--cream); }
+    /* ═══════════════════════════════════
+       TESTIMONIALS
+    ═══════════════════════════════════ */
+    .testimonials-section { padding: 8rem 5rem; background: var(--cream); }
     .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; margin-top: 4rem; }
-    .testimonial-card { background: var(--white); border-radius: var(--radius-lg); padding: 2rem; border: 1px solid var(--gray-200); transition: var(--transition); position: relative; }
-    .testimonial-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
-    .testimonial-card::before { content: '"'; font-family: 'Cormorant Garamond', serif; font-size: 4.5rem; color: var(--gold); line-height: 0.8; position: absolute; top: 1.5rem; right: 1.75rem; opacity: 0.25; }
-    .testimonial-stars { display: flex; gap: 0.2rem; margin-bottom: 1rem; }
-    .testimonial-stars svg { width: 14px; height: 14px; fill: var(--gold); stroke: none; }
-    .testimonial-text { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-style: italic; color: var(--navy); line-height: 1.7; margin-bottom: 1.5rem; }
-    .testimonial-person { display: flex; align-items: center; gap: 0.9rem; }
-    .testimonial-avatar { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--white); flex-shrink: 0; }
-    .t-av1 { background: linear-gradient(135deg, #0a1e3d, #1a5fd4); }
-    .t-av2 { background: linear-gradient(135deg, #7a5e1e, #c9a84c); }
-    .t-av3 { background: linear-gradient(135deg, #102952, #7aadff); }
+    .testimonial-card { background: var(--white); border-radius: var(--radius-lg); padding: 2.25rem; border: 1px solid var(--gray-200); transition: var(--transition); position: relative; overflow: hidden; }
+    .testimonial-card::before { content: '"'; font-family: 'Cormorant Garamond', serif; font-size: 5rem; color: var(--gold); line-height: 0.8; position: absolute; top: 1.5rem; right: 1.75rem; opacity: 0.18; }
+    .testimonial-card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); border-color: var(--gray-100); }
+    .testimonial-stars { display: flex; gap: 0.2rem; margin-bottom: 1.1rem; }
+    .testimonial-stars svg { width: 13px; height: 13px; fill: var(--gold); stroke: none; }
+    .testimonial-text { font-family: 'Cormorant Garamond', serif; font-size: 1.06rem; font-style: italic; color: var(--navy); line-height: 1.72; margin-bottom: 1.75rem; font-weight: 400; }
+    .testimonial-person { display: flex; align-items: center; gap: 0.9rem; border-top: 1px solid var(--gray-100); padding-top: 1.25rem; }
+    /* Real photo avatar */
+    .testimonial-avatar {
+      width: 44px; height: 44px; border-radius: 50%; overflow: hidden;
+      flex-shrink: 0; border: 2px solid var(--gray-200);
+    }
+    .testimonial-avatar img { width: 100%; height: 100%; object-fit: cover; }
     .testimonial-name { font-weight: 600; font-size: 0.9rem; color: var(--navy); }
-    .testimonial-role { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-400); }
+    .testimonial-role { font-family: 'DM Mono', monospace; font-size: 0.56rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-400); }
 
-    /* ══════════════════════════════════════
-       SERMON PREVIEW
-    ══════════════════════════════════════ */
-    .sermons-section { padding: 7rem 5rem; background: var(--white); }
+    /* ═══════════════════════════════════
+       RECENT SERMONS
+    ═══════════════════════════════════ */
+    .sermons-section { padding: 8rem 5rem; background: var(--white); }
     .sermons-header { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 3.5rem; }
     .sermons-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; }
     .sermon-card { border-radius: var(--radius-lg); border: 1px solid var(--gray-200); overflow: hidden; transition: var(--transition); }
-    .sermon-card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); }
-    .sermon-thumb {
-      height: 185px; background: url('https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=600&q=80') center/cover;
-      position: relative;
-    }
-    .sermon-thumb-2 { background-image: url('https://images.unsplash.com/photo-1516062423079-7ca13cdc7f5a?w=600&q=80'); }
-    .sermon-thumb-3 { background-image: url('https://images.unsplash.com/photo-1544531586-fde5298cdd40?w=600&q=80'); }
-    .sermon-play {
-      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-      width: 52px; height: 52px; background: rgba(255,255,255,0.95); border-radius: 50%;
-      display: flex; align-items: center; justify-content: center; transition: var(--transition);
-    }
+    .sermon-card:hover { box-shadow: var(--shadow-md); transform: translateY(-5px); }
+    .sermon-thumb { height: 195px; position: relative; overflow: hidden; }
+    .sermon-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .sermon-card:hover .sermon-thumb img { transform: scale(1.06); }
+    .sermon-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 54px; height: 54px; background: rgba(255,255,255,0.95); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: var(--transition); box-shadow: 0 4px 20px rgba(0,0,0,0.2); z-index: 2; }
     .sermon-card:hover .sermon-play { background: var(--gold); transform: translate(-50%, -50%) scale(1.1); }
     .sermon-play svg { width: 18px; height: 18px; fill: var(--navy); margin-left: 2px; }
-    .sermon-body { padding: 1.5rem; }
+    .sermon-body { padding: 1.5rem 1.65rem; }
     .sermon-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem; }
-    .sermon-series { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); }
-    .sermon-duration { font-family: 'DM Mono', monospace; font-size: 0.58rem; color: var(--gray-400); }
-    .sermon-body h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--navy); margin-bottom: 0.4rem; line-height: 1.3; }
-    .sermon-speaker { font-size: 0.83rem; color: var(--gray-500); }
-    .sermon-date { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: var(--gray-400); letter-spacing: 0.08em; margin-top: 0.85rem; padding-top: 0.85rem; border-top: 1px solid var(--gray-200); }
+    .sermon-series { font-family: 'DM Mono', monospace; font-size: 0.56rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); }
+    .sermon-duration { font-family: 'DM Mono', monospace; font-size: 0.56rem; color: var(--gray-400); }
+    .sermon-body h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--navy); margin-bottom: 0.35rem; line-height: 1.3; font-weight: 700; }
+    .sermon-speaker { font-size: 0.83rem; color: var(--gray-500); font-weight: 300; }
+    .sermon-date { font-family: 'DM Mono', monospace; font-size: 0.58rem; color: var(--gray-400); letter-spacing: 0.08em; margin-top: 0.9rem; padding-top: 0.9rem; border-top: 1px solid var(--gray-200); }
 
-    /* ══════════════════════════════════════
+    /* ═══════════════════════════════════
        BELIEFS SNAPSHOT
-    ══════════════════════════════════════ */
-    .beliefs-snapshot { padding: 7rem 5rem; background: var(--navy); position: relative; overflow: hidden; }
-    .beliefs-snapshot::before { content: ''; position: absolute; bottom: -20%; left: -8%; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(26,95,212,0.12) 0%, transparent 68%); pointer-events: none; }
+    ═══════════════════════════════════ */
+    .beliefs-snapshot { padding: 8rem 5rem; background: var(--navy); position: relative; overflow: hidden; }
+    .beliefs-snapshot::before { content: ''; position: absolute; bottom: -20%; left: -8%; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(26,95,212,0.1) 0%, transparent 68%); pointer-events: none; }
     .beliefs-snapshot .section-tag { color: var(--gold); }
-    .beliefs-snapshot .section-tag::after { background: var(--gold); }
+    .beliefs-snapshot .section-tag::before { background: var(--gold); }
     .beliefs-snapshot .section-title { color: var(--white); }
-    .beliefs-snapshot .section-subtitle { color: rgba(255,255,255,0.55); }
+    .beliefs-snapshot .section-subtitle { color: rgba(255,255,255,0.48); max-width: 580px; }
     .beliefs-top { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 2rem; margin-bottom: 4rem; }
     .beliefs-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
-    .belief-pill {
-      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.09);
-      border-radius: var(--radius-md); padding: 1.5rem; transition: var(--transition);
-    }
-    .belief-pill:hover { background: rgba(255,255,255,0.09); border-color: rgba(201,168,76,0.3); transform: translateY(-3px); }
-    .belief-pill-num { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.16em; color: var(--gold); margin-bottom: 0.75rem; }
-    .belief-pill h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: var(--white); margin-bottom: 0.4rem; }
-    .belief-pill p { color: rgba(255,255,255,0.45); font-size: 0.82rem; line-height: 1.65; }
+    .belief-pill { background: rgba(255,255,255,0.038); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-md); padding: 1.65rem; transition: var(--transition); }
+    .belief-pill:hover { background: rgba(255,255,255,0.075); border-color: rgba(201,168,76,0.28); transform: translateY(-4px); }
+    .belief-pill-num { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.16em; color: var(--gold); margin-bottom: 0.8rem; opacity: 0.8; }
+    .belief-pill h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--white); margin-bottom: 0.4rem; font-weight: 600; }
+    .belief-pill p { color: rgba(255,255,255,0.42); font-size: 0.82rem; line-height: 1.68; font-weight: 300; }
 
-    /* ══════════════════════════════════════
-       PHOTO MOSAIC / CAMPUS LIFE
-    ══════════════════════════════════════ */
-    .mosaic-section { padding: 7rem 5rem; background: var(--cream); }
+    /* ═══════════════════════════════════
+       CAMPUS LIFE PHOTO MOSAIC
+    ═══════════════════════════════════ */
+    .mosaic-section { padding: 8rem 5rem; background: var(--cream); }
     .mosaic-header { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 3.5rem; }
-    .mosaic-grid {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      grid-template-rows: 220px 220px;
-      gap: 1rem;
-    }
-    .mosaic-item { border-radius: var(--radius-md); overflow: hidden; position: relative; background-size: cover; background-position: center; transition: transform 0.5s ease; }
+    .mosaic-grid { display: grid; grid-template-columns: repeat(12, 1fr); grid-template-rows: 240px 240px; gap: 1rem; }
+    .mosaic-item { border-radius: var(--radius-md); overflow: hidden; position: relative; transition: transform 0.5s ease; }
     .mosaic-item:hover { transform: scale(1.02); z-index: 2; }
-    .mosaic-item-1 { grid-column: 1 / 6; grid-row: 1 / 3; background-image: url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80'); }
-    .mosaic-item-2 { grid-column: 6 / 9; grid-row: 1 / 2; background-image: url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=600&q=80'); }
-    .mosaic-item-3 { grid-column: 9 / 13; grid-row: 1 / 2; background-image: url('https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=600&q=80'); }
-    .mosaic-item-4 { grid-column: 6 / 10; grid-row: 2 / 3; background-image: url('https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=600&q=80'); }
-    .mosaic-item-5 { grid-column: 10 / 13; grid-row: 2 / 3; background-image: url('https://images.unsplash.com/photo-1516062423079-7ca13cdc7f5a?w=500&q=80'); }
-    .mosaic-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(5,14,31,0.85) 100%); opacity: 0; transition: opacity 0.4s; }
+    .mosaic-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .mosaic-item:hover img { transform: scale(1.05); }
+    .mosaic-item-1 { grid-column: 1 / 6; grid-row: 1 / 3; }
+    .mosaic-item-2 { grid-column: 6 / 9; grid-row: 1 / 2; }
+    .mosaic-item-3 { grid-column: 9 / 13; grid-row: 1 / 2; }
+    .mosaic-item-4 { grid-column: 6 / 10; grid-row: 2 / 3; }
+    .mosaic-item-5 { grid-column: 10 / 13; grid-row: 2 / 3; }
+    .mosaic-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(5,14,31,0.88) 100%); opacity: 0; transition: opacity 0.4s; }
     .mosaic-item:hover .mosaic-overlay { opacity: 1; }
-    .mosaic-caption { position: absolute; bottom: 1rem; left: 1.25rem; color: var(--white); opacity: 0; transition: opacity 0.4s; }
+    .mosaic-caption { position: absolute; bottom: 1.1rem; left: 1.25rem; color: var(--white); opacity: 0; transition: opacity 0.4s; }
     .mosaic-item:hover .mosaic-caption { opacity: 1; }
-    .mosaic-caption span { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); }
-    .mosaic-caption h5 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; margin-top: 0.15rem; }
+    .mosaic-caption span { font-family: 'DM Mono', monospace; font-size: 0.56rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); }
+    .mosaic-caption h5 { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; margin-top: 0.15rem; }
 
-    /* ══════════════════════════════════════
+    /* ═══════════════════════════════════
+       WEEKLY PROGRAMME
+    ═══════════════════════════════════ */
+    .programme-section { padding: 8rem 5rem; background: var(--white); }
+    .programme-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: start; margin-top: 4rem; }
+    .programme-copy .section-subtitle { margin-bottom: 2.5rem; }
+    .programme-day-tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+    .day-tab { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.5rem 1.1rem; border-radius: 100px; border: 1.5px solid var(--gray-200); color: var(--gray-500); cursor: pointer; transition: var(--transition); background: none; }
+    .day-tab.active, .day-tab:hover { background: var(--navy); color: var(--white); border-color: var(--navy); }
+    .programme-items { display: flex; flex-direction: column; gap: 0; }
+    .programme-item { display: flex; align-items: stretch; gap: 1.5rem; padding: 1.5rem 0; border-bottom: 1px solid var(--gray-100); }
+    .programme-item:first-child { padding-top: 0; }
+    .programme-item:last-child { border-bottom: none; }
+    .prog-time { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 700; color: var(--navy); min-width: 80px; padding-top: 0.1rem; }
+    .prog-time small { display: block; font-family: 'DM Mono', monospace; font-size: 0.54rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-400); font-weight: 400; margin-top: 0.1rem; }
+    .prog-bar { width: 2px; background: var(--gray-200); border-radius: 2px; flex-shrink: 0; position: relative; }
+    .prog-bar::before { content: ''; position: absolute; top: 6px; left: 50%; transform: translateX(-50%); width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+    .prog-info h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--navy); margin-bottom: 0.25rem; font-weight: 700; }
+    .prog-info p { font-size: 0.84rem; color: var(--gray-500); line-height: 1.6; font-weight: 300; }
+    .prog-tag { display: inline-block; font-family: 'DM Mono', monospace; font-size: 0.52rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 4px; margin-top: 0.5rem; }
+    .prog-tag-all { background: var(--blue-pale); color: var(--blue); }
+    .prog-tag-youth { background: rgba(201,168,76,0.12); color: var(--gold-dim); }
+    .prog-tag-open { background: rgba(16,41,82,0.08); color: var(--navy-soft); }
+
+    .programme-visual { position: relative; }
+    .programme-week-grid { display: grid; grid-template-rows: repeat(5, auto); gap: 0; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); overflow: hidden; }
+    .prog-week-row { display: grid; grid-template-columns: 100px 1fr; }
+    .prog-week-day { background: var(--navy); padding: 1.25rem 1rem; display: flex; flex-direction: column; justify-content: center; gap: 0.15rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .prog-week-day:last-child { border-bottom: none; }
+    .prog-week-day-name { font-family: 'DM Mono', monospace; font-size: 0.56rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+    .prog-week-day-date { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 700; color: var(--white); line-height: 1; }
+    .prog-week-day.highlight .prog-week-day-date { color: var(--gold); }
+    .prog-week-day.highlight .prog-week-day-name { color: var(--gold); opacity: 0.8; }
+    .prog-week-events { padding: 0.75rem 1.25rem; border-bottom: 1px solid var(--gray-100); display: flex; flex-direction: column; gap: 0.4rem; justify-content: center; background: var(--white); }
+    .prog-week-events:last-child { border-bottom: none; }
+    .prog-week-event { display: flex; align-items: center; gap: 0.6rem; font-size: 0.82rem; color: var(--gray-700); }
+    .prog-week-event-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gray-300); flex-shrink: 0; }
+    .prog-week-event-dot.gold { background: var(--gold); }
+    .prog-week-event-dot.blue { background: var(--blue); }
+    .prog-week-event strong { font-size: 0.8rem; }
+    .prog-week-event-time { font-family: 'DM Mono', monospace; font-size: 0.56rem; color: var(--gray-400); margin-left: auto; white-space: nowrap; }
+    .prog-week-empty { color: var(--gray-400); font-size: 0.8rem; font-style: italic; }
+
+    /* ═══════════════════════════════════
+       LEADERSHIP TEAM — ENHANCED WITH PHOTOS
+    ═══════════════════════════════════ */
+    .leadership-section { padding: 8rem 5rem; background: var(--cream); }
+    .leadership-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.75rem; margin-top: 4rem; }
+    .leader-card { background: var(--white); border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--gray-200); transition: var(--transition); text-align: center; }
+    .leader-card:hover { box-shadow: var(--shadow-md); transform: translateY(-6px); border-color: var(--gray-100); }
+    /* Photo header */
+    .leader-photo-wrap {
+      height: 220px;
+      position: relative;
+      overflow: hidden;
+    }
+    .leader-photo-wrap img {
+      width: 100%; height: 100%; object-fit: cover; object-position: center top;
+      transition: transform 0.6s ease;
+    }
+    .leader-card:hover .leader-photo-wrap img { transform: scale(1.06); }
+    .leader-photo-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 50%, rgba(5,14,31,0.6) 100%);
+    }
+    /* Role badge over photo */
+    .leader-photo-role {
+      position: absolute;
+      bottom: 0.85rem; left: 0; right: 0;
+      text-align: center;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.54rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      padding: 0 1rem;
+    }
+    .leader-body { padding: 1.5rem 1.5rem 1.75rem; }
+    .leader-name { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--navy); font-weight: 700; margin-bottom: 0.85rem; }
+    .leader-bio { font-size: 0.83rem; color: var(--gray-500); line-height: 1.65; font-weight: 300; }
+
+    /* ═══════════════════════════════════
        JOIN / CTA
-    ══════════════════════════════════════ */
-    .join-section { padding: 8rem 5rem; background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, var(--navy-soft) 100%); position: relative; overflow: hidden; }
-    .join-section::after { content: ''; position: absolute; top: -20%; right: -10%; width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 68%); pointer-events: none; }
-    .join-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    ═══════════════════════════════════ */
+    .join-section { padding: 9rem 5rem; background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, var(--navy-soft) 100%); position: relative; overflow: hidden; }
+    .join-section::after { content: ''; position: absolute; top: -20%; right: -10%; width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(circle, rgba(201,168,76,0.065) 0%, transparent 68%); pointer-events: none; }
+    .join-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
     .join-copy .section-tag { color: var(--gold); }
-    .join-copy .section-tag::after { background: var(--gold); }
+    .join-copy .section-tag::before { background: var(--gold); }
     .join-copy .section-title { color: var(--white); }
-    .join-copy .section-subtitle { color: rgba(255,255,255,0.6); max-width: 480px; }
+    .join-copy .section-subtitle { color: rgba(255,255,255,0.55); max-width: 480px; font-weight: 300; }
     .join-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2.5rem; }
     .join-cards { display: flex; flex-direction: column; gap: 1rem; }
-    .join-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.09); border-radius: var(--radius-md); padding: 1.5rem 1.75rem; display: flex; gap: 1.25rem; align-items: flex-start; transition: var(--transition); }
-    .join-card:hover { background: rgba(255,255,255,0.09); border-color: rgba(201,168,76,0.25); transform: translateX(4px); }
-    .join-card-icon { width: 42px; height: 42px; background: rgba(26,95,212,0.22); border-radius: 11px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .join-card { background: rgba(255,255,255,0.042); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-md); padding: 1.6rem 1.8rem; display: flex; gap: 1.25rem; align-items: flex-start; transition: var(--transition); }
+    .join-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(201,168,76,0.2); transform: translateX(5px); }
+    .join-card-icon { width: 44px; height: 44px; background: rgba(26,95,212,0.2); border-radius: 11px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .join-card-icon svg { width: 18px; height: 18px; stroke: var(--blue-light); fill: none; stroke-width: 2; }
-    .join-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--white); margin-bottom: 0.3rem; }
-    .join-card p { color: rgba(255,255,255,0.48); font-size: 0.84rem; line-height: 1.65; }
+    .join-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--white); margin-bottom: 0.3rem; font-weight: 600; }
+    .join-card p { color: rgba(255,255,255,0.45); font-size: 0.84rem; line-height: 1.68; font-weight: 300; }
 
-    /* ══════════════════════════════════════
+    /* ═══════════════════════════════════
        FOOTER
-    ══════════════════════════════════════ */
+    ═══════════════════════════════════ */
     footer.site-footer { background: var(--navy); color: var(--white); border-top: 1px solid rgba(255,255,255,0.05); }
     .footer-top { background: rgba(255,255,255,0.02); border-bottom: 1px solid rgba(255,255,255,0.05); padding: 1.5rem 4rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
-    .footer-top-text { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.05rem; color: rgba(255,255,255,0.5); }
-    .footer-top-text strong { color: var(--gold); font-style: normal; font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; }
+    .footer-top-text { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.05rem; color: rgba(255,255,255,0.48); }
+    .footer-top-text strong { color: var(--gold); font-style: normal; font-family: 'DM Mono', monospace; font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; }
     .footer-inner { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 3.5rem; padding: 5rem 4rem 4rem; }
-    .footer-brand p { color: rgba(255,255,255,0.48); font-size: 0.88rem; line-height: 1.8; margin-top: 1.25rem; max-width: 280px; }
-    .footer-logo-icon { width: 38px; height: 38px; flex-shrink: 0; }
+    .footer-brand p { color: rgba(255,255,255,0.45); font-size: 0.88rem; line-height: 1.82; margin-top: 1.25rem; max-width: 280px; font-weight: 300; }
+    .footer-logo-icon { width: 36px; height: 36px; flex-shrink: 0; }
     .footer-socials { display: flex; gap: 0.6rem; margin-top: 1.75rem; }
-    .social-btn {
-      width: 38px; height: 38px; background: rgba(255,255,255,0.07); border-radius: 10px;
-      display: flex; align-items: center; justify-content: center; transition: var(--transition);
-      color: rgba(255,255,255,0.6);
-    }
+    .social-btn { width: 38px; height: 38px; background: rgba(255,255,255,0.07); border-radius: 10px; display: flex; align-items: center; justify-content: center; transition: var(--transition); color: rgba(255,255,255,0.55); }
     .social-btn:hover { transform: translateY(-2px); }
-    .social-btn svg { width: 17px; height: 17px; fill: currentColor; }
+    .social-btn svg { width: 16px; height: 16px; fill: currentColor; }
     .social-fb:hover { background: #1877f2; color: #fff; }
     .social-ig:hover { background: linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045); color: #fff; }
     .social-yt:hover { background: #ff0000; color: #fff; }
     .social-tw:hover { background: #000; color: #fff; }
     .social-wa:hover { background: #25d366; color: #fff; }
-    .footer-col h5 { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.35rem; }
+    .footer-col h5 { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.4rem; }
     .footer-col ul { list-style: none; }
     .footer-col ul li { margin-bottom: 0.65rem; }
-    .footer-col ul li a { color: rgba(255,255,255,0.48); font-size: 0.87rem; transition: color 0.2s; display: flex; align-items: center; gap: 0.45rem; }
+    .footer-col ul li a { color: rgba(255,255,255,0.45); font-size: 0.86rem; transition: color 0.2s; display: flex; align-items: center; gap: 0.45rem; font-weight: 300; }
     .footer-col ul li a:hover { color: var(--white); }
-    .footer-col ul li a svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; opacity: 0.5; flex-shrink: 0; }
-    .footer-contact-item { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 1rem; color: rgba(255,255,255,0.48); font-size: 0.87rem; line-height: 1.55; }
-    .footer-contact-item svg { width: 15px; height: 15px; stroke: var(--blue-light); fill: none; stroke-width: 2; margin-top: 2px; flex-shrink: 0; }
-    .footer-contact-item a { color: rgba(255,255,255,0.48); transition: color 0.2s; }
+    .footer-col ul li a svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2; opacity: 0.45; flex-shrink: 0; }
+    .footer-contact-item { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 1rem; color: rgba(255,255,255,0.45); font-size: 0.86rem; line-height: 1.58; font-weight: 300; }
+    .footer-contact-item svg { width: 14px; height: 14px; stroke: var(--blue-light); fill: none; stroke-width: 2; margin-top: 2px; flex-shrink: 0; }
+    .footer-contact-item a { color: rgba(255,255,255,0.45); transition: color 0.2s; }
     .footer-contact-item a:hover { color: var(--white); }
-    .footer-newsletter { margin-top: 1.5rem; }
-    .footer-newsletter p { color: rgba(255,255,255,0.45); font-size: 0.82rem; line-height: 1.65; margin-bottom: 1rem; }
+    .footer-newsletter { margin-top: 1.75rem; }
+    .footer-newsletter p { color: rgba(255,255,255,0.38); font-size: 0.82rem; line-height: 1.68; margin-bottom: 1rem; font-weight: 300; }
     .newsletter-form { display: flex; flex-direction: column; gap: 0.6rem; }
-    .newsletter-form input { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius-sm); color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 0.84rem; padding: 0.7rem 1rem; outline: none; transition: border-color 0.2s; width: 100%; }
+    .newsletter-form input { background: rgba(255,255,255,0.065); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-sm); color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 0.84rem; padding: 0.75rem 1rem; outline: none; transition: border-color 0.2s; width: 100%; font-weight: 300; }
     .newsletter-form input:focus { border-color: var(--blue-light); }
-    .newsletter-form input::placeholder { color: rgba(255,255,255,0.3); }
-    .newsletter-form button { background: var(--gold); color: var(--navy); border: none; border-radius: var(--radius-sm); font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.7rem 1rem; cursor: pointer; transition: var(--transition); }
+    .newsletter-form input::placeholder { color: rgba(255,255,255,0.25); }
+    .newsletter-form button { background: var(--gold); color: var(--navy); border: none; border-radius: var(--radius-sm); font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.75rem 1rem; cursor: pointer; transition: var(--transition); }
     .newsletter-form button:hover { background: var(--gold-light); }
-    .footer-divider { border: none; border-top: 1px solid rgba(255,255,255,0.06); margin: 0 4rem; }
+    .footer-divider { border: none; border-top: 1px solid rgba(255,255,255,0.055); margin: 0 4rem; }
     .footer-bottom { padding: 1.75rem 4rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
-    .footer-bottom p { color: rgba(255,255,255,0.28); font-size: 0.78rem; }
+    .footer-bottom p { color: rgba(255,255,255,0.25); font-size: 0.78rem; }
     .footer-bottom-links { display: flex; gap: 1.5rem; }
-    .footer-bottom-links a { color: rgba(255,255,255,0.28); font-size: 0.78rem; transition: color 0.2s; }
-    .footer-bottom-links a:hover { color: rgba(255,255,255,0.6); }
-    .sda-badge { display: flex; align-items: center; gap: 0.6rem; color: rgba(255,255,255,0.3); font-size: 0.74rem; font-family: 'DM Mono', monospace; letter-spacing: 0.08em; }
-    .sda-badge-logo { width: 22px; height: 22px; opacity: 0.5; }
+    .footer-bottom-links a { color: rgba(255,255,255,0.25); font-size: 0.78rem; transition: color 0.2s; }
+    .footer-bottom-links a:hover { color: rgba(255,255,255,0.55); }
+    .sda-badge { display: flex; align-items: center; gap: 0.6rem; color: rgba(255,255,255,0.25); font-size: 0.72rem; font-family: 'DM Mono', monospace; letter-spacing: 0.08em; }
+    .sda-badge-logo { width: 22px; height: 22px; opacity: 0.45; }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 1200px) {
       .footer-inner { grid-template-columns: 1fr 1fr 1fr; gap: 2.5rem; }
       .beliefs-list { grid-template-columns: repeat(2, 1fr); }
+      .leadership-grid { grid-template-columns: repeat(2, 1fr); }
+      .programme-grid { grid-template-columns: 1fr; gap: 3rem; }
     }
     @media (max-width: 1024px) {
-      .hero-content { padding: 0 3rem 6rem; }
-      .welcome-section, .services-section, .ministries-section, .events-section, .testimonials-section, .sermons-section, .beliefs-snapshot, .mosaic-section, .join-section { padding: 5rem 3rem; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 8rem 3rem 5rem; min-height: 100vh; }
+      .hero-left::after { display: none; }
+      .hero-right { display: none; }
+      .hero-float-cards { display: none; }
+      .welcome-section, .services-section, .ministries-section, .events-section, .testimonials-section, .sermons-section, .beliefs-snapshot, .mosaic-section, .join-section, .programme-section, .leadership-section { padding: 5rem 3rem; }
       .welcome-grid { grid-template-columns: 1fr; gap: 3rem; }
       .welcome-visual { order: -1; }
-      .welcome-img-main { height: 360px; }
+      .welcome-img-main { height: 380px; }
       .welcome-img-inset { display: none; }
       .welcome-badge { display: none; }
       .services-grid { grid-template-columns: 1fr 1fr; }
       .ministries-grid { grid-template-columns: 1fr 1fr; }
       .events-grid { grid-template-columns: 1fr; }
-      .event-featured { min-height: 300px; }
       .testimonials-grid { grid-template-columns: 1fr 1fr; }
       .sermons-grid { grid-template-columns: 1fr 1fr; }
       .join-grid { grid-template-columns: 1fr; gap: 3rem; }
@@ -553,26 +824,24 @@
     @media (max-width: 768px) {
       header.site-header { padding: 0 1.5rem; }
       .menu-toggle { display: flex; }
-      nav.primary-nav { position: fixed; top: 76px; left: 0; right: 0; background: rgba(5,14,31,0.98); backdrop-filter: blur(16px); flex-direction: column; padding: 1.5rem; gap: 0.4rem; transform: translateY(-110%); transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); border-bottom: 1px solid rgba(255,255,255,0.06); overflow-y: auto; max-height: calc(100vh - 76px); }
+      nav.primary-nav { position: fixed; top: 76px; left: 0; right: 0; background: rgba(5,14,31,0.99); backdrop-filter: blur(20px); flex-direction: column; padding: 1.5rem; gap: 0.4rem; transform: translateY(-110%); transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); border-bottom: 1px solid rgba(255,255,255,0.05); overflow-y: auto; max-height: calc(100vh - 76px); }
       nav.primary-nav.open { transform: translateY(0); }
       .nav-item { width: 100%; }
       .nav-item > a, .nav-item > button { width: 100%; padding: 0.75rem 1rem; }
       .nav-item .chevron { display: none; }
       .dropdown { position: static; transform: none; opacity: 1; visibility: visible; display: none; background: rgba(255,255,255,0.03); border: none; box-shadow: none; min-width: auto; padding: 0.5rem 0 0.5rem 1rem; margin-top: 0.25rem; }
       .dropdown::before { display: none; }
-      .dropdown a { padding: 0.5rem 1rem; font-size: 0.85rem; }
+      .dropdown a { padding: 0.5rem 1rem; }
       .nav-item.open .dropdown { display: block; }
-      .hero-content { padding: 0 1.5rem 5rem; }
-      .hero-scroll { display: none; }
-      .hero-service-strip { gap: 1.25rem; }
-      .welcome-section, .services-section, .ministries-section, .events-section, .testimonials-section, .sermons-section, .beliefs-snapshot, .mosaic-section, .join-section { padding: 4rem 1.5rem; }
-      .features-strip { grid-template-columns: 1fr 1fr; }
-      .services-grid { grid-template-columns: 1fr; }
-      .ministries-grid { grid-template-columns: 1fr; }
-      .testimonials-grid { grid-template-columns: 1fr; }
-      .sermons-grid { grid-template-columns: 1fr; }
+      .hero-left { padding: 7rem 1.5rem 4rem; }
+      .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+      .welcome-section, .services-section, .ministries-section, .events-section, .testimonials-section, .sermons-section, .beliefs-snapshot, .mosaic-section, .join-section, .programme-section, .leadership-section { padding: 4rem 1.5rem; }
+      .features-strip { grid-template-columns: 1fr; }
+      .feature-tile { border-right: none; border-bottom: 1px solid var(--gray-200); }
+      .feature-tile:last-child { border-bottom: none; }
+      .services-grid, .ministries-grid, .testimonials-grid, .sermons-grid, .leadership-grid { grid-template-columns: 1fr; }
       .beliefs-list { grid-template-columns: 1fr 1fr; }
-      .mosaic-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 180px 180px 180px; gap: 0.75rem; }
+      .mosaic-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 170px 170px 170px; gap: 0.75rem; }
       .mosaic-item-1 { grid-column: 1 / 3; grid-row: 1 / 2; }
       .mosaic-item-2 { grid-column: 1 / 2; grid-row: 2 / 3; }
       .mosaic-item-3 { grid-column: 2 / 3; grid-row: 2 / 3; }
@@ -583,24 +852,21 @@
       .footer-divider { margin: 0 1.5rem; }
       .footer-bottom { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
       .footer-bottom-links { flex-wrap: wrap; gap: 1rem; }
-      .features-strip { grid-template-columns: 1fr; }
-      .feature-tile { border-right: none; border-bottom: 1px solid var(--gray-200); }
-      .feature-tile:last-child { border-bottom: none; }
       .verse-banner { padding: 4rem 1.5rem; }
       .join-grid { gap: 2rem; }
-      .hero-service-strip { display: none; }
+      .programme-day-tabs { gap: 0.4rem; }
+      .prog-week-row { grid-template-columns: 75px 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ════════════════════ HEADER ════════════════════ -->
+  <!-- ════ HEADER ════ -->
   <header class="site-header" id="site-header">
     <a class="logo-wrap" href="./index.html">
-      <!-- Official Adventist church symbol (white) from uploaded ZIP -->
       <svg class="logo-icon-adventist" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 210" aria-label="Seventh-day Adventist symbol">
         <g fill="none" fill-rule="evenodd">
-          <path fill="#FFFFFF" d="M106.924 171.313c0 .54.62.543.731 0 .824-3.998 2.075-6.663 4.03-9.25l-4.397.003c-.201 0-.364.162-.364.363v8.884zm31.611-55.503c.05 5.78-1.61 10.747-12.15 21.297l-8.336 8.338c-3.794 3.797-7.205 7.264-9.222 10.73h8.233l.974-.975 11.96-11.984c9.96-9.97 11.349-20.516 9.223-27.395-.181-.584-.687-.623-.682-.01zm-10.496 35.265l-9.99 10.008c-6.047 6.053-11.125 11.269-11.125 16.973l.006 1.588c0 .43.536.499.7.048 1.868-5.107 8.106-10.557 19.548-8.625 0 0 49.849 8.622 50.267 8.659.487.043.728-.437.414-.81-.189-.225-23.2-23.258-23.2-23.258l-26.62-4.583zm-36.062 10.988a.364.364 0 0 1-.364-.364v-5.163c0-.202.163-.364.364-.364l8.724.002c.201 0 .364-.163.364-.364-.023-4.637-3.515-7.788-17.508-5.35l-30.215 5.198s-23.012 23.033-23.2 23.258c-.315.373-.074.853.413.81.42-.037 50.267-8.66 50.267-8.66 11.443-1.931 17.681 3.52 19.548 8.626.164.45.701.383.701-.048l.001-17.218c0-.2-.163-.363-.364-.363h-8.731zm-13.928-72.16c-9.96 9.969-11.349 20.516-9.222 27.395.18.584.686.623.68.01-.05-5.78 1.612-10.746 12.151-21.296l22.721-22.735c6.047-6.054 11.125-11.27 11.125-16.973v-8.897c0-.542-.62-.544-.732 0-1.494 7.26-4.395 10.125-10.378 16.113L78.05 89.902zm37.477-26.933c0-.54-.62-.543-.732 0-1.494 7.261-4.388 10.17-10.37 16.16L80.56 102.993c-11.58 11.592-13.584 22.81-7.694 30.02.393.481.815.192.56-.388-3.895-8.819 5.443-18.17 9.889-22.62L104.401 88.9c6.047-6.053 11.125-11.269 11.125-16.973V62.97zm-34.311 55.008c-11.581 11.592-6.256 22.787.5 25.87.592.27.828-.211.374-.603-5.416-4.699-3.772-12.6 3.04-19.418l19.248-19.267c6.047-6.053 11.124-11.268 11.124-16.972v-8.896c0-.54-.62-.543-.73 0-1.495 7.259-4.39 10.112-10.373 16.1l-23.183 23.186zm25.688 37.771c0 .541.62.543.73 0 1.496-7.259 4.39-10.17 10.372-16.158l9.479-9.468c11.58-11.59 13.583-22.809 7.693-30.018-.393-.481-.815-.193-.558.387 3.893 8.819-5.444 18.169-9.89 22.62l-6.701 6.709c-6.048 6.052-11.125 11.267-11.125 16.971v8.957zm11.128-31.822c-5.983 5.988-8.879 8.841-10.373 16.101-.112.544-.731.542-.731 0v-8.896c0-5.703 5.077-10.92 11.125-16.972l4.862-4.868c6.813-6.82 8.457-14.719 3.04-19.418-.453-.392-.217-.874.376-.603 6.755 3.082 12.08 14.277.498 25.87l-8.797 8.786zM174.395 163.348c.496 0 .792-.277.792-.678 0-.447-.248-.64-.801-.64h-.468v1.318h.477zm-1.2-1.927h1.22c1.039 0 1.506.41 1.506 1.231 0 .6-.363.934-.744 1.087l1.107 1.85h-.82l-.955-1.65h-.59v1.65h-.725v-4.168zm4.262 2.079c0-1.65-1.231-2.995-2.957-2.995-1.726 0-2.966 1.25-2.966 2.995 0 1.65 1.24 2.995 2.966 2.995 1.632 0 2.957-1.25 2.957-2.995zm-6.457 0c0-2.03 1.47-3.5 3.5-3.5 1.936 0 3.5 1.47 3.5 3.5 0 2.032-1.468 3.5-3.5 3.5-2.03 0-3.5-1.468-3.5-3.5z"/>
+          <path fill="#FFFFFF" d="M106.924 171.313c0 .54.62.543.731 0 .824-3.998 2.075-6.663 4.03-9.25l-4.397.003c-.201 0-.364.162-.364.363v8.884zm31.611-55.503c.05 5.78-1.61 10.747-12.15 21.297l-8.336 8.338c-3.794 3.797-7.205 7.264-9.222 10.73h8.233l.974-.975 11.96-11.984c9.96-9.97 11.349-20.516 9.223-27.395-.181-.584-.687-.623-.682-.01zm-10.496 35.265l-9.99 10.008c-6.047 6.053-11.125 11.269-11.125 16.973l.006 1.588c0 .43.536.499.7.048 1.868-5.107 8.106-10.557 19.548-8.625 0 0 49.849 8.622 50.267 8.659.487.043.728-.437.414-.81-.189-.225-23.2-23.258-23.2-23.258l-26.62-4.583zm-36.062 10.988a.364.364 0 0 1-.364-.364v-5.163c0-.202.163-.364.364-.364l8.724.002c.201 0 .364-.163.364-.364-.023-4.637-3.515-7.788-17.508-5.35l-30.215 5.198s-23.012 23.033-23.2 23.258c-.315.373-.074.853.413.81.42-.037 50.267-8.66 50.267-8.66 11.443-1.931 17.681 3.52 19.548 8.626.164.45.701.383.701-.048l.001-17.218c0-.2-.163-.363-.364-.363h-8.731zm-13.928-72.16c-9.96 9.969-11.349 20.516-9.222 27.395.18.584.686.623.68.01-.05-5.78 1.612-10.746 12.151-21.296l22.721-22.735c6.047-6.054 11.125-11.27 11.125-16.973v-8.897c0-.542-.62-.544-.732 0-1.494 7.26-4.395 10.125-10.378 16.113L78.05 89.902zm37.477-26.933c0-.54-.62-.543-.732 0-1.494 7.261-4.388 10.17-10.37 16.16L80.56 102.993c-11.58 11.592-13.584 22.81-7.694 30.02.393.481.815.192.56-.388-3.895-8.819 5.443-18.17 9.889-22.62L104.401 88.9c6.047-6.053 11.125-11.269 11.125-16.973V62.97zm-34.311 55.008c-11.581 11.592-6.256 22.787.5 25.87.592.27.828-.211.374-.603-5.416-4.699-3.772-12.6 3.04-19.418l19.248-19.267c6.047-6.053 11.124-11.268 11.124-16.972v-8.896c0-.54-.62-.543-.73 0-1.495 7.259-4.39 10.112-10.373 16.1l-23.183 23.186zm25.688 37.771c0 .541.62.543.73 0 1.496-7.259 4.39-10.17 10.372-16.158l9.479-9.468c11.58-11.59 13.583-22.809 7.693-30.018-.393-.481-.815-.193-.558.387 3.893 8.819-5.444 18.169-9.89 22.62l-6.701 6.709c-6.048 6.052-11.125 11.267-11.125 16.971v8.957zm11.128-31.822c-5.983 5.988-8.879 8.841-10.373 16.101-.112.544-.731.542-.731 0v-8.896c0-5.703 5.077-10.92 11.125-16.972l4.862-4.868c6.813-6.82 8.457-14.719 3.04-19.418-.453-.392-.217-.874.376-.603 6.755 3.082 12.08 14.277.498 25.87l-8.797 8.786z"/>
         </g>
       </svg>
       <div class="logo-text">
@@ -611,11 +877,8 @@
 
     <nav class="primary-nav" id="primary-nav">
       <div class="nav-item"><a href="./index.html" class="active">Home</a></div>
-
       <div class="nav-item">
-        <button>About
-          <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </button>
+        <button>About <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
         <div class="dropdown">
           <a href="./about.html">Who We Are</a>
           <a href="./about.html">Our History</a>
@@ -626,11 +889,8 @@
           <a href="./beliefs.html">What We Believe</a>
         </div>
       </div>
-
       <div class="nav-item">
-        <button>Ministries
-          <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </button>
+        <button>Ministries <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
         <div class="dropdown">
           <div class="dropdown-label">Ministries</div>
           <a href="./ministries.html">Worship &amp; Devotion</a>
@@ -644,11 +904,8 @@
           <a href="./contact.html">Volunteer</a>
         </div>
       </div>
-
       <div class="nav-item">
-        <button>Events
-          <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </button>
+        <button>Events <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
         <div class="dropdown">
           <a href="./events.html">Upcoming Events</a>
           <a href="./events.html">Sabbath Services</a>
@@ -658,11 +915,8 @@
           <a href="./contact.html">Submit an Event</a>
         </div>
       </div>
-
       <div class="nav-item">
-        <button>Beliefs
-          <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </button>
+        <button>Beliefs <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
         <div class="dropdown">
           <a href="./beliefs.html">28 Fundamental Beliefs</a>
           <a href="./beliefs.html">The Bible</a>
@@ -670,11 +924,8 @@
           <a href="./beliefs.html">Second Coming</a>
         </div>
       </div>
-
       <div class="nav-item">
-        <button>Sermons
-          <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </button>
+        <button>Sermons <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
         <div class="dropdown">
           <a href="./sermons.html">Latest Sermons</a>
           <a href="./sermons.html">Sermon Archive</a>
@@ -683,11 +934,8 @@
           <a href="./contact.html">Request a Topic</a>
         </div>
       </div>
-
       <div class="nav-item">
-        <button>Visit Us
-          <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </button>
+        <button>Visit Us <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
         <div class="dropdown">
           <a href="./contact.html">Plan Your Visit</a>
           <a href="./contact.html">Prayer Request</a>
@@ -696,94 +944,132 @@
         </div>
       </div>
     </nav>
-
     <button class="menu-toggle" id="menu-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
   </header>
 
   <main>
 
-    <!-- ════════════════════ HERO ════════════════════ -->
+    <!-- ════ HERO — SPLIT LAYOUT ════ -->
     <section class="hero">
-      <div class="hero-bg"></div>
-      <div class="hero-grain"></div>
 
-      <!-- Decorative bottom arc -->
-      <div class="hero-arc">
-        <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0,60 C360,0 1080,0 1440,60 L1440,60 L0,60 Z" fill="#faf8f4"/>
-        </svg>
+      <!-- LEFT: dark content panel -->
+      <div class="hero-left">
+        <div class="hero-left-pattern"></div>
+        <div class="hero-left-glow"></div>
+
+        <div class="hero-content">
+          <div class="hero-eyebrow">
+            <div class="hero-eyebrow-dot">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <span class="hero-eyebrow-text">CUK Karen Campus · Nairobi</span>
+          </div>
+
+          <h1>
+            Where Faith<br>
+            <span class="line-accent">Meets</span>
+            <em>Community</em>
+          </h1>
+
+          <div class="hero-divider"></div>
+
+          <p class="hero-desc">We are the Seventh-day Adventist family at the Cooperative University of Kenya — a diverse, welcoming campus community united by love for Christ, a passion for truth, and a calling to serve.</p>
+
+          <div class="hero-actions">
+            <a href="./contact.html" class="btn btn-gold">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+              Plan a Visit
+            </a>
+            <a href="./about.html" class="btn btn-outline">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              Who We Are
+            </a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <div class="hero-stat-num">200<span>+</span></div>
+              <div class="hero-stat-label">Active Members</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-num">8<span></span></div>
+              <div class="hero-stat-label">Ministries</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-num">3<span></span></div>
+              <div class="hero-stat-label">Sabbath Services</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-num">5<span>+</span></div>
+              <div class="hero-stat-label">Years Serving CUK</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: stacked photo strip -->
+      <div class="hero-right">
+        <div class="hero-right-img"></div>
+
+        <!-- Stacked image strip over the background -->
+        <div class="hero-img-strip">
+          <div class="hero-img-strip-row">
+            <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=900&q=85" alt="Community worship together" loading="eager">
+            <span class="hero-img-strip-label">Sabbath Worship</span>
+          </div>
+          <div class="hero-img-strip-row">
+            <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=900&q=85" alt="Students in Bible study" loading="eager">
+            <span class="hero-img-strip-label">Bible Study</span>
+          </div>
+          <div class="hero-img-strip-row">
+            <img src="https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=900&q=85" alt="Community outreach and service" loading="eager">
+            <span class="hero-img-strip-label">Community Service</span>
+          </div>
+        </div>
+
+        <!-- Floating service time cards -->
+        <div class="hero-float-cards">
+          <div class="hero-float-card">
+            <div class="hero-float-icon">
+              <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+            </div>
+            <div class="hero-float-label">
+              <span>Sabbath School</span>
+              <span>Every Saturday</span>
+            </div>
+            <div class="hero-float-time">9<small style="font-size:0.75rem">AM</small></div>
+          </div>
+          <div class="hero-float-card">
+            <div class="hero-float-icon">
+              <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+            </div>
+            <div class="hero-float-label">
+              <span>Divine Service</span>
+              <span>Every Saturday</span>
+            </div>
+            <div class="hero-float-time">11<small style="font-size:0.75rem">AM</small></div>
+          </div>
+          <div class="hero-float-card">
+            <div class="hero-float-icon">
+              <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/></svg>
+            </div>
+            <div class="hero-float-label">
+              <span>AY Program</span>
+              <span>Every Saturday</span>
+            </div>
+            <div class="hero-float-time">3<small style="font-size:0.75rem">PM</small></div>
+          </div>
+        </div>
       </div>
 
       <!-- Scroll indicator -->
-      <div class="hero-scroll">
+      <div class="hero-scroll-pill">
         <span>Scroll</span>
-        <div class="scroll-line"></div>
-      </div>
-
-      <div class="hero-content">
-        <div class="hero-eyebrow">
-          <div class="hero-eyebrow-line"></div>
-          <span class="hero-eyebrow-text">CUK Karen Campus · Nairobi</span>
-        </div>
-        <h1>
-          Where Faith<br>
-          Meets <em>Community</em><br>
-          on Campus.
-        </h1>
-        <p class="hero-desc">We are the Seventh-day Adventist family at the Cooperative University of Kenya — a diverse, welcoming community united by love for Christ, a passion for truth, and a calling to serve.</p>
-        <div class="hero-actions">
-          <a href="./contact.html" class="btn btn-gold">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
-            Plan a Visit
-          </a>
-          <a href="./about.html" class="btn btn-outline">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-            Who We Are
-          </a>
-        </div>
-
-        <div class="hero-service-strip">
-          <div class="hero-service-item">
-            <div class="hero-service-icon">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>
-            </div>
-            <div class="hero-service-label">
-              <span>Sabbath School</span>
-              <span>9:00 AM</span>
-            </div>
-          </div>
-          <div class="hero-service-item">
-            <div class="hero-service-icon">
-              <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
-            </div>
-            <div class="hero-service-label">
-              <span>Divine Service</span>
-              <span>11:00 AM</span>
-            </div>
-          </div>
-          <div class="hero-service-item">
-            <div class="hero-service-icon">
-              <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-            </div>
-            <div class="hero-service-label">
-              <span>AY Program</span>
-              <span>3:00 PM</span>
-            </div>
-          </div>
-          <div class="hero-service-item">
-            <div class="hero-service-icon">
-              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            </div>
-            <div class="hero-service-label">
-              <span>Location</span>
-              <span>Karen Campus, Nairobi</span>
-            </div>
-          </div>
-        </div>
+        <div class="hero-scroll-mouse"><div class="hero-scroll-dot"></div></div>
       </div>
     </section>
 
-    <!-- ════════════════════ TICKER ════════════════════ -->
+    <!-- ════ TICKER ════ -->
     <div class="ticker-bar" aria-label="Announcements">
       <div class="ticker-label">Announcements</div>
       <div class="ticker-track">
@@ -795,8 +1081,7 @@
           <div class="ticker-item">Health Ministry Screening · May 24, 2026</div>
           <div class="ticker-item">Mid-Week Prayer Meeting · Wednesdays 6:00 PM</div>
           <div class="ticker-item">Bible Study Groups · Tuesdays &amp; Thursdays</div>
-          <div class="ticker-item">New to CukSDA? Speak to any of our welcome team this Sabbath!</div>
-          <!-- Duplicate for seamless loop -->
+          <div class="ticker-item">New to CukSDA? Speak to our welcome team this Sabbath!</div>
           <div class="ticker-item">Sabbath School · Every Saturday 9:00 AM</div>
           <div class="ticker-item">Divine Service · Every Saturday 11:00 AM</div>
           <div class="ticker-item">AY Program · Every Saturday 3:00 PM</div>
@@ -804,12 +1089,12 @@
           <div class="ticker-item">Health Ministry Screening · May 24, 2026</div>
           <div class="ticker-item">Mid-Week Prayer Meeting · Wednesdays 6:00 PM</div>
           <div class="ticker-item">Bible Study Groups · Tuesdays &amp; Thursdays</div>
-          <div class="ticker-item">New to CukSDA? Speak to any of our welcome team this Sabbath!</div>
+          <div class="ticker-item">New to CukSDA? Speak to our welcome team this Sabbath!</div>
         </div>
       </div>
     </div>
 
-    <!-- ════════════════════ QUICK FEATURES STRIP ════════════════════ -->
+    <!-- ════ QUICK FEATURES STRIP ════ -->
     <div class="features-strip">
       <a href="./about.html" class="feature-tile">
         <div class="feature-tile-icon">
@@ -845,7 +1130,7 @@
       </a>
     </div>
 
-    <!-- ════════════════════ WELCOME / INTRO ════════════════════ -->
+    <!-- ════ WELCOME / INTRO ════ -->
     <section class="welcome-section">
       <div class="welcome-grid">
         <div class="welcome-copy">
@@ -860,8 +1145,12 @@
           </div>
         </div>
         <div class="welcome-visual">
-          <div class="welcome-img-main"></div>
-          <div class="welcome-img-inset"></div>
+          <div class="welcome-img-main">
+            <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=900&q=80" alt="CukSDA community members in fellowship" loading="lazy">
+          </div>
+          <div class="welcome-img-inset">
+            <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=500&q=80" alt="Students gathered in worship" loading="lazy">
+          </div>
           <div class="welcome-badge">
             <div class="num">200<span>+</span></div>
             <div class="lbl">Active Members</div>
@@ -870,7 +1159,7 @@
       </div>
     </section>
 
-    <!-- ════════════════════ SERVICE TIMES ════════════════════ -->
+    <!-- ════ SERVICE TIMES ════ -->
     <section class="services-section">
       <div class="services-header">
         <div>
@@ -880,40 +1169,67 @@
         <a href="./contact.html" class="btn btn-gold">Plan a Visit</a>
       </div>
       <div class="services-grid">
+        <!-- Service card 1 — with photo header -->
         <div class="service-card">
-          <div class="service-time">9:00</div>
-          <div class="service-period">Saturday Morning</div>
-          <div class="service-name">Sabbath School</div>
-          <p class="service-desc">An interactive time of Bible study in small groups, discussion, and mission reflection. Perfect for both long-time members and first-time visitors to engage with Scripture together.</p>
-          <div class="service-meta">
-            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            Main Hall · CUK Karen Campus
+          <div class="service-card-img">
+            <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=700&q=80" alt="Sabbath School Bible study gathering" loading="lazy">
+          </div>
+          <div class="service-card-body">
+            <div class="service-time-wrap">
+              <div class="service-time">9:00</div>
+              <div class="service-ampm">AM</div>
+            </div>
+            <div class="service-period">Saturday Morning</div>
+            <div class="service-name">Sabbath School</div>
+            <p class="service-desc">An interactive time of Bible study in small groups, discussion, and mission reflection. Perfect for both long-time members and first-time visitors to engage with Scripture together.</p>
+            <div class="service-meta">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Main Hall · CUK Karen Campus
+            </div>
           </div>
         </div>
+        <!-- Service card 2 -->
         <div class="service-card">
-          <div class="service-time">11:00</div>
-          <div class="service-period">Saturday Late Morning</div>
-          <div class="service-name">Divine Service</div>
-          <p class="service-desc">Our main worship gathering — rich with praise, prayer, Scripture reading, and a Spirit-led message from the Word of God. Expect a warm welcome and a community that worships with their whole heart.</p>
-          <div class="service-meta">
-            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            Main Hall · CUK Karen Campus
+          <div class="service-card-img">
+            <img src="https://images.unsplash.com/photo-1516062423079-7ca13cdc7f5a?w=700&q=80" alt="Divine service worship gathering" loading="lazy">
+          </div>
+          <div class="service-card-body">
+            <div class="service-time-wrap">
+              <div class="service-time">11:00</div>
+              <div class="service-ampm">AM</div>
+            </div>
+            <div class="service-period">Saturday Late Morning</div>
+            <div class="service-name">Divine Service</div>
+            <p class="service-desc">Our main worship gathering — rich with praise, prayer, Scripture reading, and a Spirit-led message from the Word of God. Expect a warm welcome and a community that worships with their whole heart.</p>
+            <div class="service-meta">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Main Hall · CUK Karen Campus
+            </div>
           </div>
         </div>
+        <!-- Service card 3 -->
         <div class="service-card">
-          <div class="service-time">3:00</div>
-          <div class="service-period">Saturday Afternoon</div>
-          <div class="service-name">AY Program</div>
-          <p class="service-desc">Ambassadors for Christ Youth — a vibrant, student-led program of praise, devotion, special features, and fellowship for the university community. High energy, real faith, great friendships.</p>
-          <div class="service-meta">
-            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            AY Hall · CUK Karen Campus
+          <div class="service-card-img">
+            <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?w=700&q=80" alt="AY youth program gathering" loading="lazy">
+          </div>
+          <div class="service-card-body">
+            <div class="service-time-wrap">
+              <div class="service-time">3:00</div>
+              <div class="service-ampm">PM</div>
+            </div>
+            <div class="service-period">Saturday Afternoon</div>
+            <div class="service-name">AY Program</div>
+            <p class="service-desc">Ambassadors for Christ Youth — a vibrant, student-led program of praise, devotion, special features, and fellowship for the university community. High energy, real faith, great friendships.</p>
+            <div class="service-meta">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              AY Hall · CUK Karen Campus
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ════════════════════ MINISTRIES ════════════════════ -->
+    <!-- ════ MINISTRIES ════ -->
     <section class="ministries-section">
       <div style="display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:1.5rem; margin-bottom:0;">
         <div>
@@ -925,63 +1241,69 @@
       </div>
       <div class="ministries-grid">
         <div class="ministry-card">
-          <div class="ministry-bg" style="background-image:url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=700&q=80')"></div>
+          <div class="ministry-bg"><img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=700&q=80" alt="Worship ministry"></div>
           <div class="ministry-overlay"></div>
           <div class="ministry-content">
             <div class="ministry-tag">Worship</div>
             <h3>Worship &amp; Devotion</h3>
             <p>Choir, music team, praise &amp; worship — bringing the congregation into the presence of God every Sabbath.</p>
+            <div class="ministry-arrow"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
           </div>
         </div>
         <div class="ministry-card">
-          <div class="ministry-bg" style="background-image:url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=700&q=80')"></div>
+          <div class="ministry-bg"><img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=700&q=80" alt="Youth ministry"></div>
           <div class="ministry-overlay"></div>
           <div class="ministry-content">
             <div class="ministry-tag">Youth</div>
             <h3>Youth &amp; University</h3>
             <p>AY Society programming, campus outreach, leadership development, and peer mentorship for students.</p>
+            <div class="ministry-arrow"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
           </div>
         </div>
         <div class="ministry-card">
-          <div class="ministry-bg" style="background-image:url('https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=700&q=80')"></div>
+          <div class="ministry-bg"><img src="https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=700&q=80" alt="Health ministry"></div>
           <div class="ministry-overlay"></div>
           <div class="ministry-content">
             <div class="ministry-tag">Health</div>
             <h3>Health &amp; Wellness</h3>
             <p>Free health screenings, nutrition workshops, mental health support, and wholistic wellbeing for the CUK community.</p>
+            <div class="ministry-arrow"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
           </div>
         </div>
         <div class="ministry-card">
-          <div class="ministry-bg" style="background-image:url('https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=700&q=80')"></div>
+          <div class="ministry-bg"><img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=700&q=80" alt="Outreach ministry"></div>
           <div class="ministry-overlay"></div>
           <div class="ministry-content">
             <div class="ministry-tag">Outreach</div>
             <h3>Evangelism &amp; Outreach</h3>
             <p>Crusades, door-to-door visits, literature distribution, and community events — sharing the gospel with boldness and love.</p>
+            <div class="ministry-arrow"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
           </div>
         </div>
         <div class="ministry-card">
-          <div class="ministry-bg" style="background-image:url('https://images.unsplash.com/photo-1516062423079-7ca13cdc7f5a?w=700&q=80')"></div>
+          <div class="ministry-bg"><img src="https://images.unsplash.com/photo-1516062423079-7ca13cdc7f5a?w=700&q=80" alt="Discipleship ministry"></div>
           <div class="ministry-overlay"></div>
           <div class="ministry-content">
             <div class="ministry-tag">Discipleship</div>
             <h3>Discipleship &amp; Growth</h3>
             <p>Bible study groups, one-on-one mentoring, and Sabbath School — walking together in intentional spiritual formation.</p>
+            <div class="ministry-arrow"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
           </div>
         </div>
         <div class="ministry-card">
-          <div class="ministry-bg" style="background-image:url('https://images.unsplash.com/photo-1544531586-fde5298cdd40?w=700&q=80')"></div>
+          <div class="ministry-bg"><img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?w=700&q=80" alt="Prayer ministry"></div>
           <div class="ministry-overlay"></div>
           <div class="ministry-content">
             <div class="ministry-tag">Prayer</div>
             <h3>Prayer &amp; Intercession</h3>
-            <p>Mid-week prayer meetings, 24-hour prayer chains, and a dedicated intercessory prayer team lifting the campus to God.</p>
+            <p>Mid-week prayer meetings, 24-hour prayer chains, and a dedicated intercessory team lifting the campus to God.</p>
+            <div class="ministry-arrow"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ════════════════════ UPCOMING EVENTS ════════════════════ -->
+    <!-- ════ UPCOMING EVENTS ════ -->
     <section class="events-section">
       <div class="events-header">
         <div>
@@ -992,6 +1314,9 @@
       </div>
       <div class="events-grid">
         <div class="event-featured">
+          <div class="event-featured-bg">
+            <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=900&q=80" alt="Campus Evangelistic Series" loading="lazy">
+          </div>
           <div class="event-featured-overlay"></div>
           <div class="event-featured-content">
             <span class="event-date-badge">
@@ -999,7 +1324,7 @@
               June 14–21, 2026 · Main Hall
             </span>
             <h3>Campus Evangelistic Series 2026</h3>
-            <p>A week of powerful preaching, praise, and prayer — open to the entire CUK community. This year's theme: <em>"More Than Enough."</em> In partnership with the East Kenya Union Conference.</p>
+            <p>A week of powerful preaching, praise, and prayer — open to the entire CUK community. Theme: <em>"More Than Enough."</em> In partnership with the East Kenya Union Conference.</p>
             <a href="./events.html" class="btn btn-gold" style="padding:0.7rem 1.5rem; font-size:0.76rem;">Register Now</a>
           </div>
         </div>
@@ -1052,13 +1377,114 @@
       </div>
     </section>
 
-    <!-- ════════════════════ SCRIPTURE VERSE ════════════════════ -->
+    <!-- ════ WEEKLY PROGRAMME ════ -->
+    <section class="programme-section">
+      <div style="display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:1.5rem; margin-bottom:0;">
+        <div>
+          <span class="section-tag">Weekly Programme</span>
+          <h2 class="section-title">A full week of<br>faith and fellowship.</h2>
+          <p class="section-subtitle">CukSDA isn't just a Saturday church. Our community is active throughout the week with prayer, study, outreach, and more.</p>
+        </div>
+        <a href="./events.html" class="btn btn-outline-dark">Full Calendar</a>
+      </div>
+      <div class="programme-grid">
+        <div class="programme-copy">
+          <div class="programme-items">
+            <div class="programme-item">
+              <div class="prog-time">9:00 <small>Saturday AM</small></div>
+              <div class="prog-bar"></div>
+              <div class="prog-info">
+                <h4>Sabbath School</h4>
+                <p>Interactive Bible study in small groups — open to everyone.</p>
+                <span class="prog-tag prog-tag-all">All Welcome</span>
+              </div>
+            </div>
+            <div class="programme-item">
+              <div class="prog-time">11:00 <small>Saturday AM</small></div>
+              <div class="prog-bar"></div>
+              <div class="prog-info">
+                <h4>Divine Service</h4>
+                <p>Worship, praise, and the preached Word of God.</p>
+                <span class="prog-tag prog-tag-all">All Welcome</span>
+              </div>
+            </div>
+            <div class="programme-item">
+              <div class="prog-time">3:00 <small>Saturday PM</small></div>
+              <div class="prog-bar"></div>
+              <div class="prog-info">
+                <h4>AY Program</h4>
+                <p>Student-led youth program with praise, features, and fellowship.</p>
+                <span class="prog-tag prog-tag-youth">Youth Focus</span>
+              </div>
+            </div>
+            <div class="programme-item">
+              <div class="prog-time">6:00 <small>Wednesday PM</small></div>
+              <div class="prog-bar"></div>
+              <div class="prog-info">
+                <h4>Mid-Week Prayer Meeting</h4>
+                <p>Intercessory prayer and devotional reflection — Chapel.</p>
+                <span class="prog-tag prog-tag-open">Open to All</span>
+              </div>
+            </div>
+            <div class="programme-item">
+              <div class="prog-time">5:30 <small>Tue &amp; Thu PM</small></div>
+              <div class="prog-bar"></div>
+              <div class="prog-info">
+                <h4>Bible Study Groups</h4>
+                <p>Small-group studies by faculty and halls of residence.</p>
+                <span class="prog-tag prog-tag-youth">Small Groups</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="programme-visual">
+          <div class="programme-week-grid">
+            <div class="prog-week-row">
+              <div class="prog-week-day"><span class="prog-week-day-name">Tue</span><span class="prog-week-day-date">20</span></div>
+              <div class="prog-week-events">
+                <div class="prog-week-event"><span class="prog-week-event-dot blue"></span><span>Bible Study Group</span><span class="prog-week-event-time">5:30 PM</span></div>
+              </div>
+            </div>
+            <div class="prog-week-row">
+              <div class="prog-week-day"><span class="prog-week-day-name">Wed</span><span class="prog-week-day-date">21</span></div>
+              <div class="prog-week-events">
+                <div class="prog-week-event"><span class="prog-week-event-dot blue"></span><span>Prayer Meeting</span><span class="prog-week-event-time">6:00 PM</span></div>
+              </div>
+            </div>
+            <div class="prog-week-row">
+              <div class="prog-week-day"><span class="prog-week-day-name">Thu</span><span class="prog-week-day-date">22</span></div>
+              <div class="prog-week-events">
+                <div class="prog-week-event"><span class="prog-week-event-dot blue"></span><span>Bible Study Group</span><span class="prog-week-event-time">5:30 PM</span></div>
+              </div>
+            </div>
+            <div class="prog-week-row">
+              <div class="prog-week-day highlight"><span class="prog-week-day-name">Sat</span><span class="prog-week-day-date">24</span></div>
+              <div class="prog-week-events">
+                <div class="prog-week-event"><span class="prog-week-event-dot gold"></span><strong>Sabbath School</strong><span class="prog-week-event-time">9:00 AM</span></div>
+                <div class="prog-week-event"><span class="prog-week-event-dot gold"></span><strong>Divine Service</strong><span class="prog-week-event-time">11:00 AM</span></div>
+                <div class="prog-week-event"><span class="prog-week-event-dot gold"></span><strong>Health Screening</strong><span class="prog-week-event-time">9:00 AM</span></div>
+                <div class="prog-week-event"><span class="prog-week-event-dot gold"></span><strong>AY Program</strong><span class="prog-week-event-time">3:00 PM</span></div>
+              </div>
+            </div>
+            <div class="prog-week-row">
+              <div class="prog-week-day"><span class="prog-week-day-name">Sun</span><span class="prog-week-day-date">25</span></div>
+              <div class="prog-week-events">
+                <div class="prog-week-event prog-week-empty">No scheduled events</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════ SCRIPTURE VERSE ════ -->
     <div class="verse-banner">
       <p class="verse-text">"Let your light so shine before men, that they may see your good works and glorify your Father who is in heaven."</p>
       <p class="verse-ref">Matthew 5:16 · KJV</p>
     </div>
 
-    <!-- ════════════════════ TESTIMONIALS ════════════════════ -->
+    <!-- ════ TESTIMONIALS — WITH REAL AVATARS ════ -->
     <section class="testimonials-section">
       <span class="section-tag">Community Voices</span>
       <h2 class="section-title">What members are saying.</h2>
@@ -1074,10 +1500,12 @@
           </div>
           <p class="testimonial-text">Joining CukSDA was honestly the best decision I made in my first year. I walked in nervous and alone, and left with a family I never expected. The community here is real — people who actually care about you.</p>
           <div class="testimonial-person">
-            <div class="testimonial-avatar t-av1">AN</div>
+            <div class="testimonial-avatar">
+              <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=100&h=100&fit=crop&crop=face&q=80" alt="Amina Nderi">
+            </div>
             <div>
               <div class="testimonial-name">Amina Nderi</div>
-              <div class="testimonial-role">3rd Year, Business Administration</div>
+              <div class="testimonial-role">3rd Year · Business Administration</div>
             </div>
           </div>
         </div>
@@ -1091,10 +1519,12 @@
           </div>
           <p class="testimonial-text">I came back to church through CukSDA after years away from faith. The Sabbath service and the Bible study groups helped me rebuild my relationship with God in a way I didn't think was possible. No judgment — just grace.</p>
           <div class="testimonial-person">
-            <div class="testimonial-avatar t-av2">KO</div>
+            <div class="testimonial-avatar">
+              <img src="https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?w=100&h=100&fit=crop&crop=face&q=80" alt="Kelvin Omondi">
+            </div>
             <div>
               <div class="testimonial-name">Kelvin Omondi</div>
-              <div class="testimonial-role">Staff, Finance Department</div>
+              <div class="testimonial-role">Staff · Finance Department</div>
             </div>
           </div>
         </div>
@@ -1108,17 +1538,19 @@
           </div>
           <p class="testimonial-text">The Health Ministry changed how I think about my body and my faith. We ran free screenings for over 300 people last year. It's the kind of service that shows people the love of Christ before you say a single word.</p>
           <div class="testimonial-person">
-            <div class="testimonial-avatar t-av3">LW</div>
+            <div class="testimonial-avatar">
+              <img src="https://images.unsplash.com/photo-1589156280159-27698a70f29e?w=100&h=100&fit=crop&crop=face&q=80" alt="Lydia Waweru">
+            </div>
             <div>
               <div class="testimonial-name">Lydia Waweru</div>
-              <div class="testimonial-role">4th Year, Nursing</div>
+              <div class="testimonial-role">4th Year · Nursing</div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ════════════════════ RECENT SERMONS ════════════════════ -->
+    <!-- ════ RECENT SERMONS — WITH REAL THUMBNAILS ════ -->
     <section class="sermons-section">
       <div class="sermons-header">
         <div>
@@ -1130,41 +1562,35 @@
       <div class="sermons-grid">
         <div class="sermon-card">
           <div class="sermon-thumb">
+            <img src="https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=600&q=80" alt="When the Storm Is Real sermon" loading="lazy">
             <div class="sermon-play"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
           </div>
           <div class="sermon-body">
-            <div class="sermon-meta">
-              <span class="sermon-series">Grace &amp; Truth</span>
-              <span class="sermon-duration">42 min</span>
-            </div>
+            <div class="sermon-meta"><span class="sermon-series">Grace &amp; Truth</span><span class="sermon-duration">42 min</span></div>
             <h4>When the Storm Is Real</h4>
             <p class="sermon-speaker">Elder James Njoroge</p>
             <p class="sermon-date">Saturday, May 17, 2026</p>
           </div>
         </div>
         <div class="sermon-card">
-          <div class="sermon-thumb sermon-thumb-2">
+          <div class="sermon-thumb">
+            <img src="https://images.unsplash.com/photo-1516062423079-7ca13cdc7f5a?w=600&q=80" alt="Rest Is Not Weakness sermon" loading="lazy">
             <div class="sermon-play"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
           </div>
           <div class="sermon-body">
-            <div class="sermon-meta">
-              <span class="sermon-series">Anchored</span>
-              <span class="sermon-duration">38 min</span>
-            </div>
+            <div class="sermon-meta"><span class="sermon-series">Anchored</span><span class="sermon-duration">38 min</span></div>
             <h4>Rest Is Not Weakness</h4>
             <p class="sermon-speaker">Pr. Samuel Kariuki</p>
             <p class="sermon-date">Saturday, May 10, 2026</p>
           </div>
         </div>
         <div class="sermon-card">
-          <div class="sermon-thumb sermon-thumb-3">
+          <div class="sermon-thumb">
+            <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?w=600&q=80" alt="Chosen Before You Were Born sermon" loading="lazy">
             <div class="sermon-play"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
           </div>
           <div class="sermon-body">
-            <div class="sermon-meta">
-              <span class="sermon-series">Identity</span>
-              <span class="sermon-duration">45 min</span>
-            </div>
+            <div class="sermon-meta"><span class="sermon-series">Identity</span><span class="sermon-duration">45 min</span></div>
             <h4>Chosen Before You Were Born</h4>
             <p class="sermon-speaker">Deaconess Grace Mutua</p>
             <p class="sermon-date">Saturday, May 3, 2026</p>
@@ -1173,7 +1599,7 @@
       </div>
     </section>
 
-    <!-- ════════════════════ BELIEFS SNAPSHOT ════════════════════ -->
+    <!-- ════ BELIEFS SNAPSHOT ════ -->
     <section class="beliefs-snapshot">
       <div class="beliefs-top">
         <div>
@@ -1184,50 +1610,76 @@
         <a href="./beliefs.html" class="btn btn-outline">Explore All 28 Beliefs</a>
       </div>
       <div class="beliefs-list">
-        <div class="belief-pill">
-          <div class="belief-pill-num">Belief 01</div>
-          <h4>Holy Scriptures</h4>
-          <p>The 66 books of the Bible are the inspired, inerrant Word of God and the only rule of faith and practice.</p>
+        <div class="belief-pill"><div class="belief-pill-num">Belief 01</div><h4>Holy Scriptures</h4><p>The 66 books of the Bible are the inspired, inerrant Word of God and the only rule of faith and practice.</p></div>
+        <div class="belief-pill"><div class="belief-pill-num">Belief 05</div><h4>The Trinity</h4><p>One God exists as Father, Son, and Holy Spirit — three co-eternal persons perfectly united in nature and purpose.</p></div>
+        <div class="belief-pill"><div class="belief-pill-num">Belief 10</div><h4>Salvation in Christ</h4><p>By grace through faith alone, humanity is justified, sanctified, and glorified through Jesus Christ.</p></div>
+        <div class="belief-pill"><div class="belief-pill-num">Belief 20</div><h4>The Sabbath</h4><p>Saturday — the seventh day — is God's holy rest, a weekly sign of our covenant relationship with our Creator.</p></div>
+        <div class="belief-pill"><div class="belief-pill-num">Belief 24</div><h4>The Second Coming</h4><p>Christ's literal, personal, visible return is the blessed hope — the grand climax of the gospel message.</p></div>
+        <div class="belief-pill"><div class="belief-pill-num">Belief 14</div><h4>Unity in the Body</h4><p>In Christ all barriers are broken. The church is one body — diverse in expression, united in mission and love.</p></div>
+        <div class="belief-pill"><div class="belief-pill-num">Belief 22</div><h4>Christian Stewardship</h4><p>God is owner of all. We are stewards of time, talent, and treasure — returning tithes and offerings with joy.</p></div>
+        <div class="belief-pill"><div class="belief-pill-num">Belief 28</div><h4>The New Earth</h4><p>God will re-create the earth as the eternal home of the redeemed — where sin, death, and sorrow are no more.</p></div>
+      </div>
+    </section>
+
+    <!-- ════ LEADERSHIP TEAM — WITH REAL PHOTOS ════ -->
+    <section class="leadership-section">
+      <div style="display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:1.5rem; margin-bottom:0;">
+        <div>
+          <span class="section-tag">Leadership</span>
+          <h2 class="section-title">Meet the team<br>serving our community.</h2>
+          <p class="section-subtitle">Our church officers and ministry leaders are students, staff, and community members committed to seeing CukSDA grow in faith and fruitfulness.</p>
         </div>
-        <div class="belief-pill">
-          <div class="belief-pill-num">Belief 05</div>
-          <h4>The Trinity</h4>
-          <p>One God exists as Father, Son, and Holy Spirit — three co-eternal persons perfectly united in nature and purpose.</p>
+        <a href="./about.html" class="btn btn-outline-dark">Full Leadership</a>
+      </div>
+      <div class="leadership-grid">
+        <div class="leader-card">
+          <div class="leader-photo-wrap">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop&crop=face&q=80" alt="Joseph Mutua – Church Elder" loading="lazy">
+            <div class="leader-photo-overlay"></div>
+            <div class="leader-photo-role">Church Elder</div>
+          </div>
+          <div class="leader-body">
+            <div class="leader-name">Joseph Mutua</div>
+            <p class="leader-bio">Serving the CukSDA congregation with wisdom and pastoral care. Joseph has been part of the community since its founding year.</p>
+          </div>
         </div>
-        <div class="belief-pill">
-          <div class="belief-pill-num">Belief 10</div>
-          <h4>Salvation in Christ</h4>
-          <p>By grace through faith alone, humanity is justified, sanctified, and glorified through Jesus Christ.</p>
+        <div class="leader-card">
+          <div class="leader-photo-wrap">
+            <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=400&h=300&fit=crop&crop=face&q=80" alt="Faith Kamau – Head Deaconess" loading="lazy">
+            <div class="leader-photo-overlay"></div>
+            <div class="leader-photo-role">Head Deaconess</div>
+          </div>
+          <div class="leader-body">
+            <div class="leader-name">Faith Kamau</div>
+            <p class="leader-bio">Faith leads the deaconess ministry with warmth and dedication, ensuring every member and visitor feels truly at home.</p>
+          </div>
         </div>
-        <div class="belief-pill">
-          <div class="belief-pill-num">Belief 20</div>
-          <h4>The Sabbath</h4>
-          <p>Saturday — the seventh day — is God's holy rest, a weekly sign of our covenant relationship with our Creator.</p>
+        <div class="leader-card">
+          <div class="leader-photo-wrap">
+            <img src="https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?w=400&h=300&fit=crop&crop=face&q=80" alt="Daniel Otieno – AY Society President" loading="lazy">
+            <div class="leader-photo-overlay"></div>
+            <div class="leader-photo-role">AY Society President</div>
+          </div>
+          <div class="leader-body">
+            <div class="leader-name">Daniel Otieno</div>
+            <p class="leader-bio">Daniel drives the student-led AY programme with energy and vision, connecting peers to faith, purpose, and community.</p>
+          </div>
         </div>
-        <div class="belief-pill">
-          <div class="belief-pill-num">Belief 24</div>
-          <h4>The Second Coming</h4>
-          <p>Christ's literal, personal, visible return is the blessed hope — the grand climax of the gospel message.</p>
-        </div>
-        <div class="belief-pill">
-          <div class="belief-pill-num">Belief 14</div>
-          <h4>Unity in the Body</h4>
-          <p>In Christ all barriers are broken. The church is one body — diverse in expression, united in mission and love.</p>
-        </div>
-        <div class="belief-pill">
-          <div class="belief-pill-num">Belief 22</div>
-          <h4>Christian Stewardship</h4>
-          <p>God is owner of all. We are stewards of time, talent, and treasure — returning tithes and offerings with joy.</p>
-        </div>
-        <div class="belief-pill">
-          <div class="belief-pill-num">Belief 28</div>
-          <h4>The New Earth</h4>
-          <p>God will re-create the earth as the eternal home of the redeemed — where sin, death, and sorrow are no more.</p>
+        <div class="leader-card">
+          <div class="leader-photo-wrap">
+            <img src="https://images.unsplash.com/photo-1589156280159-27698a70f29e?w=400&h=300&fit=crop&crop=face&q=80" alt="Rose Wanjiku – Health Ministry Director" loading="lazy">
+            <div class="leader-photo-overlay"></div>
+            <div class="leader-photo-role">Health Ministry Director</div>
+          </div>
+          <div class="leader-body">
+            <div class="leader-name">Rose Wanjiku</div>
+            <p class="leader-bio">A nursing professional championing wholistic health across the CUK campus through screenings, workshops, and wellness events.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ════════════════════ CAMPUS LIFE PHOTO MOSAIC ════════════════════ -->
+    <!-- ════ CAMPUS LIFE PHOTO MOSAIC ════ -->
     <section class="mosaic-section">
       <div class="mosaic-header">
         <div>
@@ -1235,33 +1687,33 @@
           <h2 class="section-title">Life at CukSDA — every week.</h2>
           <p class="section-subtitle">From Sabbath morning worship to midweek Bible studies, community outreach to choir rehearsal — there is always something happening here.</p>
         </div>
-        <a href="./about.html#campus" class="btn btn-outline-dark">See More</a>
+        <a href="./about.html" class="btn btn-outline-dark">See More</a>
       </div>
       <div class="mosaic-grid">
         <div class="mosaic-item mosaic-item-1">
-          <div class="mosaic-overlay"></div>
-          <div class="mosaic-caption"><span>Worship</span><h5>Sabbath Together</h5></div>
+          <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80" alt="Sabbath worship together" loading="lazy">
+          <div class="mosaic-overlay"></div><div class="mosaic-caption"><span>Worship</span><h5>Sabbath Together</h5></div>
         </div>
         <div class="mosaic-item mosaic-item-2">
-          <div class="mosaic-overlay"></div>
-          <div class="mosaic-caption"><span>Fellowship</span><h5>Bible Study</h5></div>
+          <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=600&q=80" alt="Bible study fellowship" loading="lazy">
+          <div class="mosaic-overlay"></div><div class="mosaic-caption"><span>Fellowship</span><h5>Bible Study</h5></div>
         </div>
         <div class="mosaic-item mosaic-item-3">
-          <div class="mosaic-overlay"></div>
-          <div class="mosaic-caption"><span>Service</span><h5>Community Outreach</h5></div>
+          <img src="https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=600&q=80" alt="Community outreach service" loading="lazy">
+          <div class="mosaic-overlay"></div><div class="mosaic-caption"><span>Service</span><h5>Community Outreach</h5></div>
         </div>
         <div class="mosaic-item mosaic-item-4">
-          <div class="mosaic-overlay"></div>
-          <div class="mosaic-caption"><span>Youth</span><h5>AY Programs</h5></div>
+          <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=600&q=80" alt="AY youth program" loading="lazy">
+          <div class="mosaic-overlay"></div><div class="mosaic-caption"><span>Youth</span><h5>AY Programs</h5></div>
         </div>
         <div class="mosaic-item mosaic-item-5">
-          <div class="mosaic-overlay"></div>
-          <div class="mosaic-caption"><span>Music</span><h5>Choir &amp; Praise</h5></div>
+          <img src="https://images.unsplash.com/photo-1516062423079-7ca13cdc7f5a?w=500&q=80" alt="Choir and music praise" loading="lazy">
+          <div class="mosaic-overlay"></div><div class="mosaic-caption"><span>Music</span><h5>Choir &amp; Praise</h5></div>
         </div>
       </div>
     </section>
 
-    <!-- ════════════════════ JOIN / CTA ════════════════════ -->
+    <!-- ════ JOIN / CTA ════ -->
     <section class="join-section">
       <div class="join-grid">
         <div class="join-copy">
@@ -1307,21 +1759,18 @@
 
   </main>
 
-  <!-- ════════════════════ FOOTER ════════════════════ -->
+  <!-- ════ FOOTER ════ -->
   <footer class="site-footer">
     <div class="footer-top">
       <p class="footer-top-text"><strong>Service Times</strong> &nbsp;·&nbsp; Sabbath School 9:00 AM &nbsp;·&nbsp; Divine Service 11:00 AM &nbsp;·&nbsp; AY Program 3:00 PM</p>
-      <a href="./contact.html" class="btn btn-gold" style="padding:0.65rem 1.5rem; font-size:0.76rem;">Plan a Visit</a>
+      <a href="./contact.html" class="btn btn-gold" style="padding:0.65rem 1.5rem; font-size:0.74rem;">Plan a Visit</a>
     </div>
-
     <div class="footer-inner">
-      <!-- Brand -->
       <div class="footer-brand">
         <div class="logo-wrap">
-          <!-- Official Adventist symbol (white) from uploaded ZIP -->
           <svg class="footer-logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 210" aria-hidden="true">
             <g fill="none" fill-rule="evenodd">
-              <path fill="#FFFFFF" d="M106.924 171.313c0 .54.62.543.731 0 .824-3.998 2.075-6.663 4.03-9.25l-4.397.003c-.201 0-.364.162-.364.363v8.884zm31.611-55.503c.05 5.78-1.61 10.747-12.15 21.297l-8.336 8.338c-3.794 3.797-7.205 7.264-9.222 10.73h8.233l.974-.975 11.96-11.984c9.96-9.97 11.349-20.516 9.223-27.395-.181-.584-.687-.623-.682-.01zm-10.496 35.265l-9.99 10.008c-6.047 6.053-11.125 11.269-11.125 16.973l.006 1.588c0 .43.536.499.7.048 1.868-5.107 8.106-10.557 19.548-8.625 0 0 49.849 8.622 50.267 8.659.487.043.728-.437.414-.81-.189-.225-23.2-23.258-23.2-23.258l-26.62-4.583zm-36.062 10.988a.364.364 0 0 1-.364-.364v-5.163c0-.202.163-.364.364-.364l8.724.002c.201 0 .364-.163.364-.364-.023-4.637-3.515-7.788-17.508-5.35l-30.215 5.198s-23.012 23.033-23.2 23.258c-.315.373-.074.853.413.81.42-.037 50.267-8.66 50.267-8.66 11.443-1.931 17.681 3.52 19.548 8.626.164.45.701.383.701-.048l.001-17.218c0-.2-.163-.363-.364-.363h-8.731zm-13.928-72.16c-9.96 9.969-11.349 20.516-9.222 27.395.18.584.686.623.68.01-.05-5.78 1.612-10.746 12.151-21.296l22.721-22.735c6.047-6.054 11.125-11.27 11.125-16.973v-8.897c0-.542-.62-.544-.732 0-1.494 7.26-4.395 10.125-10.378 16.113L78.05 89.902zm37.477-26.933c0-.54-.62-.543-.732 0-1.494 7.261-4.388 10.17-10.37 16.16L80.56 102.993c-11.58 11.592-13.584 22.81-7.694 30.02.393.481.815.192.56-.388-3.895-8.819 5.443-18.17 9.889-22.62L104.401 88.9c6.047-6.053 11.125-11.269 11.125-16.973V62.97zm-34.311 55.008c-11.581 11.592-6.256 22.787.5 25.87.592.27.828-.211.374-.603-5.416-4.699-3.772-12.6 3.04-19.418l19.248-19.267c6.047-6.053 11.124-11.268 11.124-16.972v-8.896c0-.54-.62-.543-.73 0-1.495 7.259-4.39 10.112-10.373 16.1l-23.183 23.186zm25.688 37.771c0 .541.62.543.73 0 1.496-7.259 4.39-10.17 10.372-16.158l9.479-9.468c11.58-11.59 13.583-22.809 7.693-30.018-.393-.481-.815-.193-.558.387 3.893 8.819-5.444 18.169-9.89 22.62l-6.701 6.709c-6.048 6.052-11.125 11.267-11.125 16.971v8.957zm11.128-31.822c-5.983 5.988-8.879 8.841-10.373 16.101-.112.544-.731.542-.731 0v-8.896c0-5.703 5.077-10.92 11.125-16.972l4.862-4.868c6.813-6.82 8.457-14.719 3.04-19.418-.453-.392-.217-.874.376-.603 6.755 3.082 12.08 14.277.498 25.87l-8.797 8.786zM174.395 163.348c.496 0 .792-.277.792-.678 0-.447-.248-.64-.801-.64h-.468v1.318h.477zm-1.2-1.927h1.22c1.039 0 1.506.41 1.506 1.231 0 .6-.363.934-.744 1.087l1.107 1.85h-.82l-.955-1.65h-.59v1.65h-.725v-4.168zm4.262 2.079c0-1.65-1.231-2.995-2.957-2.995-1.726 0-2.966 1.25-2.966 2.995 0 1.65 1.24 2.995 2.966 2.995 1.632 0 2.957-1.25 2.957-2.995zm-6.457 0c0-2.03 1.47-3.5 3.5-3.5 1.936 0 3.5 1.47 3.5 3.5 0 2.032-1.468 3.5-3.5 3.5-2.03 0-3.5-1.468-3.5-3.5z"/>
+              <path fill="#FFFFFF" d="M106.924 171.313c0 .54.62.543.731 0 .824-3.998 2.075-6.663 4.03-9.25l-4.397.003c-.201 0-.364.162-.364.363v8.884zm31.611-55.503c.05 5.78-1.61 10.747-12.15 21.297l-8.336 8.338c-3.794 3.797-7.205 7.264-9.222 10.73h8.233l.974-.975 11.96-11.984c9.96-9.97 11.349-20.516 9.223-27.395-.181-.584-.687-.623-.682-.01zm-10.496 35.265l-9.99 10.008c-6.047 6.053-11.125 11.269-11.125 16.973l.006 1.588c0 .43.536.499.7.048 1.868-5.107 8.106-10.557 19.548-8.625 0 0 49.849 8.622 50.267 8.659.487.043.728-.437.414-.81-.189-.225-23.2-23.258-23.2-23.258l-26.62-4.583zm-36.062 10.988a.364.364 0 0 1-.364-.364v-5.163c0-.202.163-.364.364-.364l8.724.002c.201 0 .364-.163.364-.364-.023-4.637-3.515-7.788-17.508-5.35l-30.215 5.198s-23.012 23.033-23.2 23.258c-.315.373-.074.853.413.81.42-.037 50.267-8.66 50.267-8.66 11.443-1.931 17.681 3.52 19.548 8.626.164.45.701.383.701-.048l.001-17.218c0-.2-.163-.363-.364-.363h-8.731zm-13.928-72.16c-9.96 9.969-11.349 20.516-9.222 27.395.18.584.686.623.68.01-.05-5.78 1.612-10.746 12.151-21.296l22.721-22.735c6.047-6.054 11.125-11.27 11.125-16.973v-8.897c0-.542-.62-.544-.732 0-1.494 7.26-4.395 10.125-10.378 16.113L78.05 89.902zm37.477-26.933c0-.54-.62-.543-.732 0-1.494 7.261-4.388 10.17-10.37 16.16L80.56 102.993c-11.58 11.592-13.584 22.81-7.694 30.02.393.481.815.192.56-.388-3.895-8.819 5.443-18.17 9.889-22.62L104.401 88.9c6.047-6.053 11.125-11.269 11.125-16.973V62.97zm-34.311 55.008c-11.581 11.592-6.256 22.787.5 25.87.592.27.828-.211.374-.603-5.416-4.699-3.772-12.6 3.04-19.418l19.248-19.267c6.047-6.053 11.124-11.268 11.124-16.972v-8.896c0-.54-.62-.543-.73 0-1.495 7.259-4.39 10.112-10.373 16.1l-23.183 23.186zm25.688 37.771c0 .541.62.543.73 0 1.496-7.259 4.39-10.17 10.372-16.158l9.479-9.468c11.58-11.59 13.583-22.809 7.693-30.018-.393-.481-.815-.193-.558.387 3.893 8.819-5.444 18.169-9.89 22.62l-6.701 6.709c-6.048 6.052-11.125 11.267-11.125 16.971v8.957z"/>
             </g>
           </svg>
           <div class="logo-text">
@@ -1330,28 +1779,13 @@
           </div>
         </div>
         <p>A vibrant Seventh-day Adventist community at the Cooperative University of Kenya — growing together in faith, fellowship, and service to our campus and the world.</p>
-
-        <!-- Social icons (SVG, real brand marks) -->
         <div class="footer-socials">
-          <a href="#" class="social-btn social-fb" aria-label="Facebook">
-            <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-          </a>
-          <a href="#" class="social-btn social-ig" aria-label="Instagram">
-            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-          </a>
-          <a href="#" class="social-btn social-yt" aria-label="YouTube">
-            <svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
-          </a>
-          <a href="#" class="social-btn social-tw" aria-label="X (Twitter)">
-            <svg viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
-          </a>
-          <a href="#" class="social-btn social-wa" aria-label="WhatsApp">
-            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-          </a>
+          <a href="#" class="social-btn social-fb" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          <a href="#" class="social-btn social-ig" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+          <a href="#" class="social-btn social-yt" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></a>
+          <a href="#" class="social-btn social-wa" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
         </div>
       </div>
-
-      <!-- Explore -->
       <div class="footer-col">
         <h5>Explore</h5>
         <ul>
@@ -1362,20 +1796,16 @@
           <li><a href="./sermons.html"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>Sermons</a></li>
         </ul>
       </div>
-
-      <!-- Connect -->
       <div class="footer-col">
         <h5>Connect</h5>
         <ul>
           <li><a href="./contact.html"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>Contact Us</a></li>
           <li><a href="./contact.html"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>Prayer Request</a></li>
-          <li><a href="./contact.html"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Plan a Visit</a></li>
+          <li><a href="./contact.html"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>Plan a Visit</a></li>
           <li><a href="./contact.html"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="23" y1="11" x2="17" y2="11"/><line x1="20" y1="8" x2="20" y2="14"/></svg>Volunteer</a></li>
           <li><a href="./ministries.html"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Join a Ministry</a></li>
         </ul>
       </div>
-
-      <!-- Find Us -->
       <div class="footer-col">
         <h5>Find Us</h5>
         <div class="footer-contact-item">
@@ -1394,11 +1824,9 @@
           <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.5a19.79 19.79 0 01-3-8.59A2 2 0 012.06 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.5A16 16 0 0015.5 17.1l.7-.7a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
           <a href="tel:+254700000000">+254 700 000 000</a>
         </div>
-
-        <!-- Newsletter -->
         <div class="footer-newsletter">
           <h5>Stay Connected</h5>
-          <p>Weekly bulletin, event updates, and devotional reflections — straight to your inbox.</p>
+          <p>Weekly bulletin, events &amp; devotional reflections — straight to your inbox.</p>
           <div class="newsletter-form">
             <input type="email" placeholder="Your email address" aria-label="Email for newsletter">
             <button type="button" onclick="alert('Thank you! You\'ll hear from us soon.')">Subscribe</button>
@@ -1406,9 +1834,7 @@
         </div>
       </div>
     </div>
-
     <hr class="footer-divider">
-
     <div class="footer-bottom">
       <p>© 2026 CukSDA — Cooperative University SDA Community. All rights reserved.</p>
       <div class="footer-bottom-links">
@@ -1416,11 +1842,10 @@
         <a href="#">Terms of Use</a>
         <a href="#">Sitemap</a>
       </div>
-      <!-- Official Adventist gold logo mark in footer badge, from uploaded ZIP -->
       <div class="sda-badge">
         <svg class="sda-badge-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 210" aria-hidden="true">
           <g fill="none" fill-rule="evenodd">
-            <path fill="#c9a84c" d="M106.924 171.313c0 .54.62.543.731 0 .824-3.998 2.075-6.663 4.03-9.25l-4.397.003c-.201 0-.364.162-.364.363v8.884zm31.611-55.503c.05 5.78-1.61 10.747-12.15 21.297l-8.336 8.338c-3.794 3.797-7.205 7.264-9.222 10.73h8.233l.974-.975 11.96-11.984c9.96-9.97 11.349-20.516 9.223-27.395-.181-.584-.687-.623-.682-.01zm-10.496 35.265l-9.99 10.008c-6.047 6.053-11.125 11.269-11.125 16.973l.006 1.588c0 .43.536.499.7.048 1.868-5.107 8.106-10.557 19.548-8.625 0 0 49.849 8.622 50.267 8.659.487.043.728-.437.414-.81-.189-.225-23.2-23.258-23.2-23.258l-26.62-4.583zm-36.062 10.988a.364.364 0 0 1-.364-.364v-5.163c0-.202.163-.364.364-.364l8.724.002c.201 0 .364-.163.364-.364-.023-4.637-3.515-7.788-17.508-5.35l-30.215 5.198s-23.012 23.033-23.2 23.258c-.315.373-.074.853.413.81.42-.037 50.267-8.66 50.267-8.66 11.443-1.931 17.681 3.52 19.548 8.626.164.45.701.383.701-.048l.001-17.218c0-.2-.163-.363-.364-.363h-8.731zm-13.928-72.16c-9.96 9.969-11.349 20.516-9.222 27.395.18.584.686.623.68.01-.05-5.78 1.612-10.746 12.151-21.296l22.721-22.735c6.047-6.054 11.125-11.27 11.125-16.973v-8.897c0-.542-.62-.544-.732 0-1.494 7.26-4.395 10.125-10.378 16.113L78.05 89.902zm37.477-26.933c0-.54-.62-.543-.732 0-1.494 7.261-4.388 10.17-10.37 16.16L80.56 102.993c-11.58 11.592-13.584 22.81-7.694 30.02.393.481.815.192.56-.388-3.895-8.819 5.443-18.17 9.889-22.62L104.401 88.9c6.047-6.053 11.125-11.269 11.125-16.973V62.97zm-34.311 55.008c-11.581 11.592-6.256 22.787.5 25.87.592.27.828-.211.374-.603-5.416-4.699-3.772-12.6 3.04-19.418l19.248-19.267c6.047-6.053 11.124-11.268 11.124-16.972v-8.896c0-.54-.62-.543-.73 0-1.495 7.259-4.39 10.112-10.373 16.1l-23.183 23.186zm25.688 37.771c0 .541.62.543.73 0 1.496-7.259 4.39-10.17 10.372-16.158l9.479-9.468c11.58-11.59 13.583-22.809 7.693-30.018-.393-.481-.815-.193-.558.387 3.893 8.819-5.444 18.169-9.89 22.62l-6.701 6.709c-6.048 6.052-11.125 11.267-11.125 16.971v8.957z"/>
+            <path fill="#c9a84c" d="M106.924 171.313c0 .54.62.543.731 0 .824-3.998 2.075-6.663 4.03-9.25l-4.397.003c-.201 0-.364.162-.364.363v8.884zm31.611-55.503c.05 5.78-1.61 10.747-12.15 21.297l-8.336 8.338c-3.794 3.797-7.205 7.264-9.222 10.73h8.233l.974-.975 11.96-11.984c9.96-9.97 11.349-20.516 9.223-27.395-.181-.584-.687-.623-.682-.01zm-10.496 35.265l-9.99 10.008c-6.047 6.053-11.125 11.269-11.125 16.973l.006 1.588c0 .43.536.499.7.048 1.868-5.107 8.106-10.557 19.548-8.625 0 0 49.849 8.622 50.267 8.659.487.043.728-.437.414-.81-.189-.225-23.2-23.258-23.2-23.258l-26.62-4.583zm-36.062 10.988a.364.364 0 0 1-.364-.364v-5.163c0-.202.163-.364.364-.364l8.724.002c.201 0 .364-.163.364-.364-.023-4.637-3.515-7.788-17.508-5.35l-30.215 5.198s-23.012 23.033-23.2 23.258c-.315.373-.074.853.413.81.42-.037 50.267-8.66 50.267-8.66 11.443-1.931 17.681 3.52 19.548 8.626.164.45.701.383.701-.048l.001-17.218c0-.2-.163-.363-.364-.363h-8.731z"/>
           </g>
         </svg>
         Seventh-day Adventist Church
@@ -1429,69 +1854,61 @@
   </footer>
 
   <script>
-    // ── Scroll header ──
+    // Header scroll
     const header = document.getElementById('site-header');
     window.addEventListener('scroll', () => {
       header.classList.toggle('scrolled', window.scrollY > 30);
     });
 
-    // ── Mobile menu ──
+    // Mobile menu
     const toggle = document.getElementById('menu-toggle');
     const nav = document.getElementById('primary-nav');
-    toggle.addEventListener('click', () => {
-      nav.classList.toggle('open');
-    });
+    toggle.addEventListener('click', () => nav.classList.toggle('open'));
 
-    // ── Mobile dropdowns ──
+    // Mobile dropdowns
     if (window.innerWidth <= 768) {
       document.querySelectorAll('.nav-item > button').forEach(btn => {
-        btn.addEventListener('click', () => {
-          btn.closest('.nav-item').classList.toggle('open');
-        });
+        btn.addEventListener('click', () => btn.closest('.nav-item').classList.toggle('open'));
       });
     }
 
-    // ── Smooth anchor scroll ──
+    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
         const target = document.querySelector(a.getAttribute('href'));
-        if (target) {
-          e.preventDefault();
-          window.scrollTo({ top: target.offsetTop - 76, behavior: 'smooth' });
-        }
+        if (target) { e.preventDefault(); window.scrollTo({ top: target.offsetTop - 76, behavior: 'smooth' }); }
       });
     });
 
-    // ── Fade-in on scroll ──
+    // Intersection observer fade-in
     const fadeEls = document.querySelectorAll(
-      '.service-card, .ministry-card, .event-item, .testimonial-card, .sermon-card, .belief-pill, .join-card, .feature-tile, .mosaic-item'
+      '.service-card, .ministry-card, .event-item, .testimonial-card, .sermon-card, .belief-pill, .join-card, .feature-tile, .mosaic-item, .leader-card, .programme-item, .prog-week-row'
     );
     const fadeObs = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.style.opacity = '1';
-          entry.target.style.transform = entry.target.classList.contains('ministry-card')
-            ? 'translateY(0)' : 'translateY(0)';
+          entry.target.style.transform = 'translateY(0)';
           fadeObs.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.08 });
+    }, { threshold: 0.07 });
     fadeEls.forEach((el, i) => {
       el.style.opacity = '0';
-      el.style.transform = 'translateY(22px)';
-      el.style.transition = `opacity 0.6s ${i * 0.05}s ease, transform 0.6s ${i * 0.05}s ease`;
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = `opacity 0.55s ${i * 0.04}s ease, transform 0.55s ${i * 0.04}s ease`;
       fadeObs.observe(el);
     });
 
-    // ── Counter animation for welcome badge ──
+    // Counter animation
     function animateCount(el, target) {
       let start = 0;
-      const step = Math.ceil(target / 60);
+      const step = Math.ceil(target / 55);
       const interval = setInterval(() => {
         start = Math.min(start + step, target);
         el.textContent = start;
         if (start >= target) clearInterval(interval);
-      }, 25);
+      }, 22);
     }
     const badgeObs = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -1499,15 +1916,12 @@
           const numEl = entry.target.querySelector('.num');
           if (numEl) {
             const text = numEl.textContent;
-            const num = parseInt(text.replace(/\D/g, ''));
-            const suffix = text.replace(/[0-9]/g, '');
-            const span = document.createElement('span');
-            span.textContent = suffix;
+            const num = parseInt(text.replace(/\D/g,''));
+            const suffix = text.replace(/[0-9]/g,'');
+            const span = document.createElement('span'); span.textContent = suffix;
             numEl.textContent = '';
-            const counter = document.createElement('span');
-            counter.textContent = '0';
-            numEl.appendChild(counter);
-            numEl.appendChild(span);
+            const counter = document.createElement('span'); counter.textContent = '0';
+            numEl.appendChild(counter); numEl.appendChild(span);
             animateCount(counter, num);
           }
           badgeObs.unobserve(entry.target);
@@ -1515,6 +1929,26 @@
       });
     }, { threshold: 0.5 });
     document.querySelectorAll('.welcome-badge').forEach(el => badgeObs.observe(el));
+
+    // Hero stat counters
+    const statObs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.hero-stat-num').forEach(el => {
+            const text = el.textContent;
+            const num = parseInt(text.replace(/\D/g,''));
+            const suffix = text.replace(/[0-9]/g,'');
+            const counter = document.createElement('span'); counter.textContent = '0';
+            const suffixSpan = document.createElement('span'); suffixSpan.textContent = suffix;
+            el.textContent = '';
+            el.appendChild(counter); el.appendChild(suffixSpan);
+            animateCount(counter, num);
+          });
+          statObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('.hero-stats').forEach(el => statObs.observe(el));
   </script>
 </body>
 </html>
