@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Giving & Support · CukSDA</title>
+  <meta name="description" content="Support the ministry of CukSDA at Cooperative University of Kenya. Learn about giving opportunities, tithes, offerings, and how to invest in campus ministry.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: 'DM Sans', sans-serif; color: #0f172a; background: #fff; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    :root {
+      --navy: #050e1f;
+      --navy-mid: #0a1e3d;
+      --navy-soft: #102952;
+      --blue: #1a5fd4;
+      --blue-mid: #1448a0;
+      --blue-light: #7aadff;
+      --blue-pale: #dbeafe;
+      --gold: #c9a84c;
+      --gold-light: #e4c97a;
+      --gold-dim: #7a5e1e;
+      --cream: #faf8f4;
+      --cream-dark: #f0ece3;
+      --white: #ffffff;
+      --gray-100: #f4f4f5;
+      --gray-200: #e4e4e7;
+      --gray-400: #a1a1aa;
+      --gray-500: #71717a;
+      --gray-700: #3f3f46;
+      --text: #0f172a;
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 40px;
+      --shadow-sm: 0 2px 12px rgba(0,0,0,0.06);
+      --shadow-md: 0 8px 32px rgba(0,0,0,0.10);
+      --shadow-lg: 0 20px 60px rgba(0,0,0,0.15);
+      --transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* ── BUTTONS ── */
+    .btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; padding: 0.85rem 2rem; border-radius: var(--radius-xl); border: 2px solid transparent; cursor: pointer; transition: var(--transition); }
+    .btn svg { width: 16px; height: 16px; }
+    .btn-gold { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+    .btn-gold:hover { background: var(--gold-light); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(201,168,76,0.35); }
+    .btn-outline { background: transparent; color: var(--white); border-color: rgba(255,255,255,0.45); }
+    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.1); }
+    .btn-outline-dark { background: transparent; color: var(--navy); border-color: var(--navy); }
+    .btn-outline-dark:hover { background: var(--navy); color: var(--white); }
+    .btn-primary { background: var(--blue); color: var(--white); border-color: var(--blue); }
+    .btn-primary:hover { background: var(--blue-mid); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(26,95,212,0.35); }
+
+    /* ── SECTION ATOMS ── */
+    .section-tag { font-family: 'DM Mono', monospace; font-weight: 500; font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+    .section-tag::after { content: ''; width: 36px; height: 1.5px; background: currentColor; flex-shrink: 0; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.12; color: var(--navy); }
+    .section-subtitle { color: var(--gray-500); font-size: 1rem; line-height: 1.8; max-width: 620px; margin-top: 1rem; }
+
+    /* ── HEADER ── */
+    header.site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 76px; display: flex; align-items: center; justify-content: space-between; padding: 0 3rem; background: linear-gradient(180deg,rgba(5,14,31,0.95) 0%,rgba(5,14,31,0.6) 100%); transition: background 0.4s, box-shadow 0.4s; }
+    header.site-header.scrolled { background: rgba(5,14,31,0.97); box-shadow: 0 1px 0 rgba(255,255,255,0.06), 0 4px 24px rgba(0,0,0,0.4); backdrop-filter: blur(12px); }
+    .logo-wrap { display: flex; align-items: center; gap: 0.7rem; }
+    .logo-icon-adventist { width: 42px; height: 42px; flex-shrink: 0; }
+    .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+    .logo-text .church-name { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 1.05rem; color: var(--white); letter-spacing: 0.04em; text-transform: uppercase; }
+    .logo-text .church-sub { font-family: 'DM Mono', monospace; font-size: 0.58rem; color: var(--blue-light); letter-spacing: 0.14em; text-transform: uppercase; }
+    nav.primary-nav { display: flex; align-items: center; gap: 0.2rem; }
+    .nav-item { position: relative; }
+    .nav-item > a, .nav-item > button { color: rgba(255,255,255,0.82); font-size: 0.8rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; padding: 0.5rem 0.85rem; border-radius: 6px; transition: var(--transition); display: flex; align-items: center; gap: 0.3rem; background: none; border: none; cursor: pointer; font-family: inherit; }
+    .nav-item > a:hover, .nav-item > a.active, .nav-item > button:hover { color: var(--white); background: rgba(255,255,255,0.09); }
+    .nav-item > a.active::after { content: ''; position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%); width: 16px; height: 2px; background: var(--gold); border-radius: 2px; }
+    .menu-toggle { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 8px; }
+    .menu-toggle span { display: block; width: 22px; height: 2px; background: var(--white); border-radius: 2px; transition: var(--transition); }
+
+    /* ══════════════════════════════════════
+       PAGE HERO
+    ══════════════════════════════════════ */
+    .page-hero {
+      position: relative; padding: 140px 5rem 80px;
+      background: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1600&q=90') center/cover no-repeat, linear-gradient(135deg, var(--navy) 0%, var(--navy-soft) 60%, #0d3060 100%);
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: ''; position: absolute; top: -40%; right: -10%; width: 800px; height: 800px;
+      border-radius: 50%; background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .page-hero::after {
+      content: ''; position: absolute; bottom: -30%; left: -5%; width: 600px; height: 600px;
+      border-radius: 50%; background: radial-gradient(circle, rgba(26,95,212,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .page-hero-inner { position: relative; z-index: 1; max-width: 1400px; margin: 0 auto; }
+    .breadcrumb { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem; font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+    .breadcrumb a { color: rgba(255,255,255,0.4); transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--gold); }
+    .breadcrumb svg { width: 10px; height: 10px; stroke: currentColor; fill: none; stroke-width: 2.5; }
+    .page-hero h1 { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: clamp(3rem, 6vw, 5rem); color: var(--white); line-height: 1.06; }
+    .page-hero h1 em { font-style: italic; color: var(--gold-light); }
+    .page-hero-desc { color: rgba(255,255,255,0.62); font-size: 1.05rem; line-height: 1.75; max-width: 560px; margin-top: 1.25rem; }
+
+    /* ══════════════════════════════════════
+       THEOLOGY / HEART OF GIVING
+    ══════════════════════════════════════ */
+    .philosophy-section { padding: 7rem 5rem; background: var(--cream); }
+    .philosophy-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .philosophy-text p { color: var(--gray-500); font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.5rem; }
+    .philosophy-quote { background: var(--white); padding: 3rem; border-radius: var(--radius-lg); border-left: 4px solid var(--gold); box-shadow: var(--shadow-sm); }
+    .philosophy-quote blockquote { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-style: italic; color: var(--navy); line-height: 1.4; margin-bottom: 1rem; }
+    .philosophy-quote cite { font-family: 'DM Mono', monospace; font-size: 0.75rem; font-style: normal; letter-spacing: 0.1em; color: var(--blue); text-transform: uppercase; }
+
+    /* ══════════════════════════════════════
+       PRACTICAL WAYS TO GIVE (M-PESA / BANK)
+    ══════════════════════════════════════ */
+    .practical-giving { padding: 7rem 5rem; background: var(--white); }
+    .practical-inner { max-width: 1200px; margin: 0 auto; }
+    .practical-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+    
+    .pay-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 2.5rem; transition: var(--transition); position: relative; display: flex; flex-direction: column; }
+    .pay-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--blue-pale); }
+    .pay-card.highlight { border: 2px solid var(--blue); background: var(--cream); }
+    
+    .pay-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; background: rgba(26,95,212,0.1); }
+    .pay-icon svg { width: 24px; height: 24px; stroke: var(--blue); fill: none; stroke-width: 2; }
+    .pay-card.highlight .pay-icon { background: var(--blue); }
+    .pay-card.highlight .pay-icon svg { stroke: var(--white); }
+    
+    .pay-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--navy); margin-bottom: 0.5rem; }
+    .pay-card p { color: var(--gray-500); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem; flex-grow: 1; }
+    
+    .pay-details-box { background: var(--gray-100); border-radius: var(--radius-sm); padding: 1.25rem; font-family: 'DM Mono', monospace; font-size: 0.85rem; color: var(--navy); margin-bottom: 1rem; }
+    .pay-card.highlight .pay-details-box { background: var(--white); border: 1px solid rgba(26,95,212,0.15); }
+    .pay-row { display: flex; justify-content: space-between; margin-bottom: 0.5rem; padding-bottom: 0.5rem; border-bottom: 1px dashed var(--gray-200); }
+    .pay-row:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+    .pay-label { color: var(--gray-500); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .pay-value { font-weight: 600; font-size: 0.95rem; }
+
+    /* ══════════════════════════════════════
+       FUNDS BREAKDOWN SECTION
+    ══════════════════════════════════════ */
+    .funds-section { padding: 7rem 5rem; background: var(--cream-dark); }
+    .funds-inner { max-width: 1200px; margin: 0 auto; }
+    .funds-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 3rem; }
+    .fund-item { background: var(--white); padding: 2rem; border-radius: var(--radius-md); display: flex; gap: 1.5rem; }
+    .fund-icon { width: 50px; height: 50px; flex-shrink: 0; border-radius: 50%; background: var(--cream); display: flex; align-items: center; justify-content: center; color: var(--gold); }
+    .fund-icon svg { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 1.5; }
+    .fund-content h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--navy); margin-bottom: 0.5rem; }
+    .fund-content p { color: var(--gray-500); font-size: 0.9rem; line-height: 1.6; }
+
+    /* ══════════════════════════════════════
+       IMPACT SECTION
+    ══════════════════════════════════════ */
+    .impact-section { padding: 7rem 5rem; background: linear-gradient(135deg, var(--navy) 0%, var(--navy-soft) 100%); position: relative; overflow: hidden; }
+    .impact-section::before { content: ''; position: absolute; top: -20%; right: -10%; width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%); pointer-events: none; }
+    .impact-section .section-tag { color: var(--gold); }
+    .impact-section .section-tag::after { background: var(--gold); }
+    .impact-section .section-title { color: var(--white); }
+    .impact-section .section-subtitle { color: rgba(255,255,255,0.55); }
+    .impact-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; text-align: center; }
+    .impact-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-top: 4rem; }
+    .impact-card { text-align: center; }
+    .impact-number { font-family: 'Cormorant Garamond', serif; font-size: 3.2rem; font-weight: 700; color: var(--gold); line-height: 1; }
+    .impact-label { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-top: 0.8rem; }
+    .impact-description { color: rgba(255,255,255,0.65); font-size: 0.9rem; margin-top: 0.8rem; line-height: 1.6; }
+
+    /* ══════════════════════════════════════
+       FAQ SECTION
+    ══════════════════════════════════════ */
+    .faq-section { padding: 7rem 5rem; background: var(--white); }
+    .faq-inner { max-width: 800px; margin: 0 auto; }
+    .faq-list { margin-top: 3rem; }
+    details { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); margin-bottom: 1rem; padding: 1.25rem 1.5rem; transition: var(--transition); }
+    details:hover { border-color: var(--blue-pale); }
+    summary { font-weight: 600; font-size: 1.05rem; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; color: var(--navy); }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: '+'; font-size: 1.5rem; font-weight: 300; color: var(--blue); transition: transform 0.3s; }
+    details[open] { border-color: var(--blue); box-shadow: var(--shadow-sm); }
+    details[open] summary { margin-bottom: 1rem; color: var(--blue); }
+    details[open] summary::after { transform: rotate(45deg); }
+    .faq-answer { color: var(--gray-500); font-size: 0.95rem; line-height: 1.7; padding-right: 1rem; }
+
+    /* ══════════════════════════════════════
+       CTA SECTION
+    ══════════════════════════════════════ */
+    .cta-section { padding: 7rem 5rem; background: var(--cream); text-align: center; }
+    .cta-content { max-width: 700px; margin: 0 auto; }
+    .cta-section .section-tag { justify-content: center; }
+    .cta-section .section-tag::after { order: -1; margin-right: auto; margin-left: 0; }
+    .cta-section .section-title { margin-top: 1rem; }
+    .cta-actions { display: flex; gap: 1rem; justify-content: center; margin-top: 2.5rem; flex-wrap: wrap; }
+
+    /* ── FOOTER ── */
+    footer.site-footer { background: var(--navy); color: rgba(255,255,255,0.65); padding: 5rem 5rem 2rem; border-top: 1px solid rgba(255,255,255,0.06); }
+    .footer-content { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; max-width: 1400px; margin-left: auto; margin-right: auto; }
+    .footer-brand h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--white); margin-bottom: 0.5rem; }
+    .footer-brand p { color: rgba(255,255,255,0.5); font-size: 0.9rem; line-height: 1.6; max-width: 280px; }
+    .footer-col h4 { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+    .footer-col a { display: block; color: rgba(255,255,255,0.55); font-size: 0.85rem; margin-bottom: 0.6rem; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--gold); }
+    .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.06); font-family: 'DM Mono', monospace; font-size: 0.7rem; color: rgba(255,255,255,0.35); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .philosophy-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .practical-grid { grid-template-columns: 1fr 1fr; }
+      .impact-grid { grid-template-columns: repeat(2, 1fr); }
+      .page-hero { padding: 120px 3rem 4rem; }
+    }
+    @media (max-width: 768px) {
+      header.site-header { padding: 0 1.5rem; }
+      .menu-toggle { display: flex; z-index: 201; }
+      
+      /* Mobile Nav Fix */
+      nav.primary-nav { position: fixed; top: 0; right: -100%; width: 80%; max-width: 300px; height: 100vh; background: var(--navy); flex-direction: column; justify-content: center; align-items: flex-start; padding: 2rem; transition: right 0.4s cubic-bezier(0.4,0,0.2,1); box-shadow: -10px 0 30px rgba(0,0,0,0.5); }
+      nav.primary-nav.open { right: 0; }
+      .nav-item { width: 100%; margin-bottom: 0.5rem; }
+      .nav-item > a { font-size: 1.1rem; padding: 1rem; width: 100%; }
+      .nav-item > a.active::after { left: 1rem; transform: none; bottom: 5px; }
+
+      .page-hero { padding: 100px 1.5rem 3rem; }
+      .philosophy-section, .practical-giving, .funds-section, .impact-section, .faq-section, .cta-section { padding: 4rem 1.5rem; }
+      
+      .practical-grid, .funds-grid { grid-template-columns: 1fr; }
+      .impact-grid { grid-template-columns: 1fr; }
+      .footer-content { grid-template-columns: 1fr; gap: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ════════════════════ HEADER ════════════════════ -->
+  <header class="site-header" id="site-header">
+    <a class="logo-wrap" href="./index.html">
+      <svg class="logo-icon-adventist" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 210">
+        <g fill="none" fill-rule="evenodd">
+          <path fill="#FFFFFF" d="M106.924 171.313c0 .54.62.543.731 0 .824-3.998 2.075-6.663 4.03-9.25l-4.397.003c-.201 0-.364.162-.364.363v8.884zm31.611-55.503c.05 5.78-1.61 10.747-12.15 21.297l-8.336 8.338c-3.794 3.797-7.205 7.264-9.222 10.73h8.233l.974-.975 11.96-11.984c9.96-9.97 11.349-20.516 9.223-27.395-.181-.584-.687-.623-.682-.01zm-10.496 35.265l-9.99 10.008c-6.047 6.053-11.125 11.269-11.125 16.973l.006 1.588c0 .43.536.499.7.048 1.868-5.107 8.106-10.557 19.548-8.625 0 0 49.849 8.622 50.267 8.659.487.043.728-.437.414-.81-.189-.225-23.2-23.258-23.2-23.258l-26.62-4.583zm-36.062 10.988a.364.364 0 0 1-.364-.364v-5.163c0-.202.163-.364.364-.364l8.724.002c.201 0 .364-.163.364-.364-.023-4.637-3.515-7.788-17.508-5.35l-30.215 5.198s-23.012 23.033-23.2 23.258c-.315.373-.074.853.413.81.42-.037 50.267-8.66 50.267-8.66 11.443-1.931 17.681 3.52 19.548 8.626.164.45.701.383.701-.048l.001-17.218c0-.2-.163-.363-.364-.363h-8.731zm-13.928-72.16c-9.96 9.969-11.349 20.516-9.222 27.395.18.584.686.623.68.01-.05-5.78 1.612-10.746 12.151-21.296l22.721-22.735c6.047-6.054 11.125-11.27 11.125-16.973v-8.897c0-.542-.62-.544-.732 0-1.494 7.26-4.395 10.125-10.378 16.113L78.05 89.902zm37.477-26.933c0-.54-.62-.543-.732 0-1.494 7.261-4.388 10.17-10.37 16.16L80.56 102.993c-11.58 11.592-13.584 22.81-7.694 30.02.393.481.815.192.56-.388-3.895-8.819 5.443-18.17 9.889-22.62L104.401 88.9c6.047-6.053 11.125-11.269 11.125-16.973V62.97zm-34.311 55.008c-11.581 11.592-6.256 22.787.5 25.87.592.27.828-.211.374-.603-5.416-4.699-3.772-12.6 3.04-19.418l19.248-19.267c6.047-6.053 11.124-11.268 11.124-16.972v-8.896c0-.54-.62-.543-.73 0-1.495 7.259-4.39 10.112-10.373 16.1l-23.183 23.186zm25.688 37.771c0 .541.62.543.73 0 1.496-7.259 4.39-10.17 10.372-16.158l9.479-9.468c11.58-11.59 13.583-22.809 7.693-30.018-.393-.481-.815-.193-.558.387 3.893 8.819-5.444 18.169-9.89 22.62l-6.701 6.709c-6.048 6.052-11.125 11.267-11.125 16.971v8.957zm11.128-31.822c-5.983 5.988-8.879 8.841-10.373 16.101-.112.544-.731.542-.731 0v-8.896c0-5.703 5.077-10.92 11.125-16.972l4.862-4.868c6.813-6.82 8.457-14.719 3.04-19.418-.453-.392-.217-.874.376-.603 6.755 3.082 12.08 14.277.498 25.87l-8.797 8.786z"/>
+        </g>
+      </svg>
+      <div class="logo-text">
+        <span class="church-name">CukSDA</span>
+        <span class="church-sub">Cooperative University SDA</span>
+      </div>
+    </a>
+
+    <nav class="primary-nav" id="primary-nav">
+      <div class="nav-item"><a href="./index.html">Home</a></div>
+      <div class="nav-item"><a href="./about.html">About</a></div>
+      <div class="nav-item"><a href="./ministries.html">Ministries</a></div>
+      <div class="nav-item"><a href="./events.html">Events</a></div>
+      <div class="nav-item"><a href="./beliefs.html">Beliefs</a></div>
+      <div class="nav-item"><a href="./sermons.html">Sermons</a></div>
+      <div class="nav-item"><a href="./giving.html" class="active">Giving</a></div>
+      <div class="nav-item"><a href="./contact.html">Contact</a></div>
+    </nav>
+
+    <button class="menu-toggle" id="menu-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </header>
+
+  <main>
+
+    <!-- ════════════════════ PAGE HERO ════════════════════ -->
+    <section class="page-hero">
+      <div class="page-hero-inner">
+        <div class="breadcrumb">
+          <a href="./index.html">Home</a>
+          <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          <span style="color:var(--gold)">Giving</span>
+        </div>
+        <h1>Supporting Ministry<br><em>That Transforms Lives</em></h1>
+        <p class="page-hero-desc">Your generosity fuels the mission of CukSDA. Whether through tithes, offerings, or special projects, every contribution strengthens our campus ministry and extends God's kingdom.</p>
+      </div>
+    </section>
+
+    <!-- ════════════════════ HEART OF GIVING (NEW) ════════════════════ -->
+    <section class="philosophy-section">
+      <div class="philosophy-inner">
+        <div class="philosophy-text">
+          <span class="section-tag">Our Philosophy</span>
+          <h2 class="section-title">The Heart of Biblical Stewardship</h2>
+          <p class="section-subtitle">At CukSDA, we view giving not as a financial transaction, but as a deeply spiritual act of worship and trust in God's providence.</p>
+          <p>We recognize that everything we have—our time, talents, and resources—are gifts entrusted to us by God. Faithful stewardship is our response to His unending grace.</p>
+          <p>As a campus church, every shilling given directly supports evangelism, nurtures spiritual growth among students, and cares for the physical needs of our community through our welfare programs.</p>
+        </div>
+        <div class="philosophy-quote">
+          <blockquote>"Bring the whole tithe into the storehouse, that there may be food in my house. Test me in this," says the Lord Almighty, "and see if I will not throw open the floodgates of heaven and pour out so much blessing that there will not be room enough to store it."</blockquote>
+          <cite>— Malachi 3:10 (NIV)</cite>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════ PRACTICAL GIVING METHODS (EXPANDED) ════════════════════ -->
+    <section class="practical-giving">
+      <div class="practical-inner">
+        <div class="giving-intro" style="max-width: 800px;">
+          <span class="section-tag">Ways to Give</span>
+          <h2 class="section-title">Convenient ways to return your tithes and offerings.</h2>
+          <p class="section-subtitle">We have made it simple and secure to give, whether you are attending service in person at the Karen Campus or supporting us from afar.</p>
+        </div>
+
+        <div class="practical-grid">
+          <!-- M-Pesa Card -->
+          <div class="pay-card highlight">
+            <div class="pay-icon">
+              <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2" ry="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+            </div>
+            <h3>Mobile Money (M-Pesa)</h3>
+            <p>The fastest and most convenient way to give. You can send your tithes and offerings directly to our church Paybill number.</p>
+            
+            <div class="pay-details-box">
+              <div class="pay-row">
+                <span class="pay-label">Paybill Number</span>
+                <span class="pay-value">800200</span>
+              </div>
+              <div class="pay-row">
+                <span class="pay-label">Account No.</span>
+                <span class="pay-value">Tithe / Offering</span>
+              </div>
+            </div>
+            <p style="font-size: 0.8rem; margin-top: 0.5rem;">*Specify the purpose in the account name (e.g., "Tithe John Doe" or "Camp Meeting").</p>
+          </div>
+
+          <!-- Bank Transfer Card -->
+          <div class="pay-card">
+            <div class="pay-icon">
+              <svg viewBox="0 0 24 24"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11m16-11v11M8 14v3m4-3v3m4-3v3"/></svg>
+            </div>
+            <h3>Bank Transfer</h3>
+            <p>For larger donations or standing orders, you can deposit directly into the church's main bank account.</p>
+            
+            <div class="pay-details-box">
+              <div class="pay-row">
+                <span class="pay-label">Bank</span>
+                <span class="pay-value">Cooperative Bank</span>
+              </div>
+              <div class="pay-row">
+                <span class="pay-label">Branch</span>
+                <span class="pay-value">Karen Branch</span>
+              </div>
+              <div class="pay-row">
+                <span class="pay-label">Account No.</span>
+                <span class="pay-value">01120000000000</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- In Person Card -->
+          <div class="pay-card">
+            <div class="pay-icon">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <h3>During Service</h3>
+            <p>You can give cash or cheques using the offering envelopes provided during our weekly Sabbath services.</p>
+            
+            <div class="pay-details-box">
+              <div class="pay-row">
+                <span class="pay-label">When</span>
+                <span class="pay-value">Sabbath 11:00 AM</span>
+              </div>
+              <div class="pay-row">
+                <span class="pay-label">Envelopes</span>
+                <span class="pay-value">Available at door</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════ UNDERSTANDING FUNDS (NEW) ════════════════════ -->
+    <section class="funds-section">
+      <div class="funds-inner">
+        <div style="text-align: center; max-width: 700px; margin: 0 auto;">
+          <span class="section-tag" style="justify-content: center;">Understanding Your Giving</span>
+          <h2 class="section-title">Where does the money go?</h2>
+          <p class="section-subtitle" style="margin: 1rem auto 0;">As a Seventh-day Adventist Church, we follow a globally recognized, transparent system for managing the funds entrusted to us.</p>
+        </div>
+
+        <div class="funds-grid">
+          <div class="fund-item">
+            <div class="fund-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div class="fund-content">
+              <h4>Tithe (10%)</h4>
+              <p>The tithe is strictly reserved for the gospel ministry. 100% of the tithe collected at CukSDA is forwarded to the local Conference to support pastors, evangelists, and global missions. It is not used for local church expenses.</p>
+            </div>
+          </div>
+
+          <div class="fund-item">
+            <div class="fund-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <div class="fund-content">
+              <h4>Local Church Budget</h4>
+              <p>Your free-will offerings sustain our campus ministry. This fund pays for equipment, Sabbath school materials, venue maintenance, guest speakers, and day-to-day operational costs of the church.</p>
+            </div>
+          </div>
+
+          <div class="fund-item">
+            <div class="fund-icon">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </div>
+            <div class="fund-content">
+              <h4>Welfare & Dorcas</h4>
+              <p>Specifically designated to help students in financial distress, provide meals for the less fortunate around the university, and support community outreach initiatives spearheaded by the Adventist Community Services.</p>
+            </div>
+          </div>
+
+          <div class="fund-item">
+            <div class="fund-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </div>
+            <div class="fund-content">
+              <h4>Special Projects (e.g. Camp Meeting)</h4>
+              <p>These are seasonal or goal-specific funds. For example, contributing towards the annual Camp Meeting expenses, acquiring a new church keyboard, or funding a major evangelistic crusade.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════ IMPACT (KEPT & REFINED) ════════════════════ -->
+    <section class="impact-section">
+      <div class="impact-inner">
+        <span class="section-tag" style="justify-content: center;">Our Impact</span>
+        <h2 class="section-title">What your giving makes possible.</h2>
+        
+        <div class="impact-grid">
+          <div class="impact-card">
+            <div class="impact-number">200+</div>
+            <div class="impact-label">Active Members</div>
+            <div class="impact-description">A growing community of faith on campus</div>
+          </div>
+          <div class="impact-card">
+            <div class="impact-number">8</div>
+            <div class="impact-label">Ministry Teams</div>
+            <div class="impact-description">Serving every aspect of campus life</div>
+          </div>
+          <div class="impact-card">
+            <div class="impact-number">52</div>
+            <div class="impact-label">Sabbath Services</div>
+            <div class="impact-description">Weekly worship and spiritual growth</div>
+          </div>
+          <div class="impact-card">
+            <div class="impact-number">∞</div>
+            <div class="impact-label">Eternal Impact</div>
+            <div class="impact-description">Lives transformed through Christ</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════ FAQ SECTION (NEW) ════════════════════ -->
+    <section class="faq-section">
+      <div class="faq-inner">
+        <div style="text-align: center; margin-bottom: 3rem;">
+          <span class="section-tag" style="justify-content: center;">Common Questions</span>
+          <h2 class="section-title">Frequently Asked Questions</h2>
+        </div>
+
+        <div class="faq-list">
+          <details>
+            <summary>How can I get a receipt for my M-Pesa giving?</summary>
+            <div class="faq-answer">
+              <p>If you give via M-Pesa, the church treasury receives an automatic notification. To ensure you get an official church receipt, please present your M-Pesa confirmation message to the treasury desk immediately after the Sabbath service.</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>What is the difference between Tithe and Offering?</summary>
+            <div class="faq-answer">
+              <p>The tithe is a specific, biblical mandate to return 10% of our income to God, which is used exclusively to support the global pastoral ministry. Offerings are free-will gifts given above and beyond the tithe, and they are used to support local church operations, departments, and community outreach.</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>Can I direct my offering to a specific department?</summary>
+            <div class="faq-answer">
+              <p>Yes. If you are using a physical envelope, simply write the amount next to the specific department (e.g., Youth, Choir, Welfare). If giving via M-Pesa, please use the Account Name section to specify (e.g., "Offering - Choir"). If unspecified, it goes to the general Combined Church Budget.</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>Is my financial information secure?</summary>
+            <div class="faq-answer">
+              <p>Absolutely. We uphold strict confidentiality regarding all personal giving records. Only the treasury department handles your financial records, and they do so with the highest level of integrity and privacy in accordance with church policy.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════ CTA ════════════════════ -->
+    <section class="cta-section">
+      <div class="cta-content">
+        <span class="section-tag">Next Steps</span>
+        <h2 class="section-title">Join us in building<br>God's kingdom.</h2>
+        <p class="section-subtitle">Ready to support CukSDA? Contact our treasury team to learn more about giving options, or speak with a leader during Sabbath service.</p>
+        <div class="cta-actions">
+          <a href="./contact.html" class="btn btn-gold">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+            Get in Touch
+          </a>
+          <a href="./index.html" class="btn btn-outline-dark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 15 20 21 4 21 4 15"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Back Home
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ════════════════════ FOOTER ════════════════════ -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h3>CukSDA</h3>
+        <p>The Seventh-day Adventist community at the Cooperative University of Kenya, Karen Campus — proclaiming Christ through worship, service, and transformed lives.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="./index.html">Home</a>
+        <a href="./about.html">About Us</a>
+        <a href="./ministries.html">Ministries</a>
+        <a href="./events.html">Events</a>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <a href="./beliefs.html">Our Beliefs</a>
+        <a href="./sermons.html">Sermons</a>
+        <a href="./giving.html">Giving</a>
+        <a href="./contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="tel:+254701234567">+254 701 234 567</a>
+        <a href="mailto:info@cuksda.org">info@cuksda.org</a>
+        <a href="https://maps.google.com" target="_blank">Karen Campus, Nairobi</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 CukSDA · Cooperative University Seventh-day Adventist Community. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Header scroll effect
+    const header = document.getElementById('site-header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const primaryNav = document.getElementById('primary-nav');
+    menuToggle?.addEventListener('click', () => {
+      primaryNav.classList.toggle('open');
+      
+      // Animate hamburger to X
+      const spans = menuToggle.querySelectorAll('span');
+      if (primaryNav.classList.contains('open')) {
+        spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+        spans[1].style.opacity = '0';
+        spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+      } else {
+        spans[0].style.transform = 'none';
+        spans[1].style.opacity = '1';
+        spans[2].style.transform = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
